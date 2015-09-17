@@ -4,6 +4,8 @@
 angular.module('zstackUI', [
   'ngRoute',
   'zstackUI.login',
+  'zstackUI.vminstance',
+  'zstackUI.vmdetails',
   'zstackUI.view1',
   'zstackUI.view2',
   'zstackUI.version'

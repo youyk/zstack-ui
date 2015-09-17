@@ -7,10 +7,16 @@ angular.module('zstackUI.services.api', ['zstackUI.services.util'])
   var self = {}
   self.debugLogin = function(cb) {
     console.log("debugLogin")
+    if (self.socket) {
+      cb();
+      return;
+    }
     self.login('admin',
        'b109f3bbbc244eb82441917ed06d618b9008dd09b3befd1b5e07394c706a8bb980b1d7785e5976ec049b46df5f1326af5a2ea6d103fd07c95385ffab0cacbc86',
         cb);
   }
+
+  self.cbList = []
 
   self.connectWebsocket = function() {
     if (self.socket) return;
@@ -34,6 +40,7 @@ angular.module('zstackUI.services.api', ['zstackUI.services.util'])
     };
 
     var data = {'msg' : JSON.stringify(msg)};
+    console.log(JSON.stringify(data, null, 2));
     self.connectWebsocket();
     self.socket.emit('login', data);
     self.socket.on('login_ret', function(ret) {
@@ -52,6 +59,17 @@ angular.module('zstackUI.services.api', ['zstackUI.services.util'])
         cb();
       }
     });
+  }
+
+  self.call = function(msg, cb) {
+    var msgBody = ZStackUtil.firstItem(msg);
+    msgBody.session = {};
+    msgBody.session.uuid = self.session.uuid;
+    msgBody.session.callid = ZStackUtil.genUniqueId();
+    var data = {'msg' : JSON.stringify(msg)};
+    self.socket.emit('call', data);
+    console.log(JSON.stringify(data, null, 2));
+    self.cbList[msgBody.session.callid] = cb;
   }
   return self;
 }])
