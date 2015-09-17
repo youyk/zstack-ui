@@ -1,8 +1,8 @@
 'use strict';
 
-describe('myApp.view1 module', function() {
+describe('zstackUI.view1 module', function() {
 
-  beforeEach(module('myApp.view1'));
+  beforeEach(module('zstackUI.view1'));
 
   describe('view1 controller', function(){
 
