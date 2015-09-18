@@ -3,6 +3,7 @@
 // Declare app level module which depends on views, and components
 angular.module('zstackUI', [
   'ngRoute',
+  'ui.bootstrap',
   'zstackUI.login',
   'zstackUI.vminstance',
   'zstackUI.vmdetails',
