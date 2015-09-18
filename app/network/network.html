@@ -1,0 +1,22 @@
+<div class="col-sm-9 col-md-10 main">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Start IP</th>
+        <th>End IP</th>
+        <th>Netmask</th>
+        <th>Gateway</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="ipRange in networkList[0].ipRanges">
+        <td>{{ipRange.name}}</td>
+        <td>{{ipRange.startIp}}</td>
+        <td>{{ipRange.endIp}}</td>
+        <td>{{ipRange.netmask}}</td>
+        <td>{{ipRange.gateway}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

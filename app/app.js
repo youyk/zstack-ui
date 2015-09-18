@@ -7,6 +7,10 @@ angular.module('zstackUI', [
   'zstackUI.login',
   'zstackUI.vminstance',
   'zstackUI.vmdetails',
+  'zstackUI.host',
+  'zstackUI.offering',
+  'zstackUI.network',
+  'zstackUI.volume',
   'zstackUI.view1',
   'zstackUI.view2',
   'zstackUI.version'

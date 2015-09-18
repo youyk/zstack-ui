@@ -36,7 +36,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">UI App</a>
+        <a class="navbar-brand" href="#">ZStack</a>
       </div>
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
@@ -56,30 +56,22 @@
     <div class="row row-offcanvas row-offcanvas-left">
       <div class="col-sm-3 col-md-2 sidebar-offcanvas" id="sidebar" role="navigation">
         <ul class="nav nav-sidebar">
-          <li class="active"><a href="#">Dashboard</a></li>
-        </ul>
-        <ul class="nav nav-sidebar">
-          <li><a href="">Nav item</a></li>
-          <li><a href="">Nav item again</a></li>
-          <li><a href="">One more nav</a></li>
-          <li><a href="">Another nav item</a></li>
-          <li><a href="">More navigation</a></li>
-        </ul>
-        <ul class="nav nav-sidebar">
-          <li><a href="">Nav item again</a></li>
-          <li><a href="">One more nav</a></li>
-          <li><a href="">Another nav item</a></li>
+          <li><a href="#">Dashboard</a></li>
+          <li><a href="#/vminstance">VmInstance</a></li>
+          <li><a href="#/host">Host</a></li>
+          <li><a href="#/offering">Offering</a></li>
+          <li><a href="#/network">Network</a></li>
+          <li><a href="#/volume">Volume</a></li>
         </ul>
       </div><!--/span-->
       
       <div ng-view></div>
 
-      <div>Angular seed app: v<span app-version></span></div>
     </div><!--/row-->
   </div><!--/.container-->
 
   <footer>
-    <p class="pull-right">©2014 Company</p>
+    <p class="pull-right">©2015 Company</p>
   </footer>
 
   <!-- In production use:
@@ -98,6 +90,10 @@
   <script src="login/login.js"></script>
   <script src="vminstance/vminstance.js"></script>
   <script src="vminstance/vmdetails.js"></script>
+  <script src="host/host.js"></script>
+  <script src="offering/offering.js"></script>
+  <script src="network/network.js"></script>
+  <script src="volume/volume.js"></script>
   <script src="services/api.js"></script>
   <script src="services/util.js"></script>
 </body>

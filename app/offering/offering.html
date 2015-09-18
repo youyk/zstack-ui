@@ -1,0 +1,26 @@
+<div class="col-sm-9 col-md-10 main">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>CPU Number</th>
+        <th>CPU Speed</th>
+        <th>Memory</th>
+        <th>State</th>
+        <th>UUID</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="offering in offeringList">
+        <td>{{offering.name}}</td>
+        <td></td>
+        <td>{{offering.cpuNum}}</td>
+        <td>{{offering.cpuSpeed}}</td>
+        <td>{{offering.memorySize}}</td>
+        <td>{{offering.state}}</td>
+        <td>{{offering.uuid}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
