@@ -36,7 +36,7 @@ angular.module('zstackUI.vminstance', ['zstackUI.services.api'])
 
 .controller('ModalDemoCtrl', function ($scope, $modal, $log) {
 
-  $scope.items = ['item1', 'item2', 'item3'];
+  $scope.data = ['item1', 'item2', 'item3'];
 
   $scope.animationsEnabled = true;
 
@@ -49,8 +49,8 @@ angular.module('zstackUI.vminstance', ['zstackUI.services.api'])
       backdrop: 'static',
       size: size,
       resolve: {
-        items: function () {
-          return $scope.items;
+        data: function () {
+          return $scope.data;
         }
       }
     });
@@ -68,18 +68,40 @@ angular.module('zstackUI.vminstance', ['zstackUI.services.api'])
 
 })
 
-.controller('ModalInstanceCtrl', function ($scope, $modalInstance, items) {
+.controller('ModalInstanceCtrl', function ($scope, $modalInstance, data) {
 
-  $scope.items = items;
-  $scope.selected = {
-    item: $scope.items[0]
-  };
-
-  $scope.ok = function () {
-    $modalInstance.close($scope.selected.item);
-  };
-
-  $scope.cancel = function () {
+  // $scope.data = data;
+  // $scope.selected = {
+  //   item: $scope.data[0]
+  // };
+  $scope.steps = [
+    { number: 1, name: 'First Step' },
+    { number: 2, name: 'Second Step' },
+    { number: 3, name: 'Third Step' }
+    ];
+  
+  $scope.currentStep = angular.copy($scope.steps[0]);
+  
+  $scope.cancel = function() {
     $modalInstance.dismiss('cancel');
   };
+  
+  $scope.nextStep = function() {
+    // Perform current step actions and show next step:
+    // E.g. save form data
+    
+    var nextNumber = $scope.currentStep.number;
+    if ($scope.steps.length == nextNumber){
+      $modalInstance.dismiss('cancel');
+    }
+    $scope.currentStep = angular.copy($scope.steps[nextNumber]);
+  };
+
+  // $scope.ok = function () {
+  //   $modalInstance.close($scope.selected.item);
+  // };
+
+  // $scope.cancel = function () {
+  //   $modalInstance.dismiss('cancel');
+  // };
 });;

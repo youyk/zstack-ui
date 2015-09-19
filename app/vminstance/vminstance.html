@@ -1,21 +1,35 @@
 <div class="col-sm-9 col-md-10 main">
   <div ng-controller="ModalDemoCtrl">
       <script type="text/ng-template" id="myModalContent.html">
-          <div class="modal-header">
-              <h3 class="modal-title">I am a modal!</h3>
-          </div>
-          <div class="modal-body">
-              <ul>
-                  <li ng-repeat="item in items">
-                      <a href="#" ng-click="$event.preventDefault(); selected.item = item">{{ item }}</a>
-                  </li>
-              </ul>
-              Selected: <b>{{ selected.item }}</b>
-          </div>
-          <div class="modal-footer">
-              <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
-              <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
-          </div>
+        <div class="modal-header">
+          <h3>{{data.modalName}}</h3>
+        </div>
+        <div class="modal-body">
+          <form role="form">
+            <div class="row">
+              <div class="col-md-12">
+
+                <div ng-switch="currentStep.number">
+                  <div ng-switch-when="1">
+                    1
+                  </div>
+                  <div ng-switch-when="2">
+                    2
+                  </div>
+                  <div ng-switch-when="3">
+                    3
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </form>
+
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" ng-click="nextStep()">Next Step</button>
+          <button class="btn btn-default" ng-click="cancel()">Close</button>
+        </div>
       </script>
       <button type="button" class="btn btn-default" ng-click="open()">Create VM</button>
 <!--       <button type="button" class="btn btn-default" ng-click="open()">Open me!</button>
