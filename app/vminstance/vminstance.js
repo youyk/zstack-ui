@@ -46,6 +46,7 @@ angular.module('zstackUI.vminstance', ['zstackUI.services.api'])
       animation: $scope.animationsEnabled,
       templateUrl: 'myModalContent.html',
       controller: 'ModalInstanceCtrl',
+      backdrop: 'static',
       size: size,
       resolve: {
         items: function () {
