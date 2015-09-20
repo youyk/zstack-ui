@@ -1,0 +1,32 @@
+<div class="modal-header">
+  Select Instanceitem
+</div>
+<div class="modal-body">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>CPU Number</th>
+        <th>CPU Speed</th>
+        <th>Memory</th>
+        <th>State</th>
+        <th>UUID</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="item in offeringList" ng-click="select(item)" ng-class="{'table-highlight': item.uuid == instanceOffering.uuid}">
+        <td>{{item.name}}</td>
+        <td></td>
+        <td>{{item.cpuNum}}</td>
+        <td>{{item.cpuSpeed}}</td>
+        <td>{{item.memorySize}}</td>
+        <td>{{item.state}}</td>
+        <td>{{item.uuid}}</td>
+      </tr>
+    </tbody>
+  </table>
+<div class="modal-footer">
+  <button class="btn" ng-click="cancel()">Cancel</button>
+  <button class="btn btn-default" ng-click="ok()">OK</button>
+</div>

@@ -77,3 +77,11 @@ footer {
 .main .page-header {
   margin-top: 0;
 }
+
+.table-hover tbody tr.table-highlight:hover td, .table-hover tbody tr.table-highlight:hover th {
+  background-color: #ebf2f9;
+}
+
+.table-highlight {
+    background-color: #ebf2f9;
+}

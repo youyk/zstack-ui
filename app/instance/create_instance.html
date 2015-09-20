@@ -4,35 +4,43 @@
   </div>
   <div class="modal-body">
     <form role="form">
-      <div class="row">
-        <button ng-controller="SelectImageModalCtrl" type="button" class="btn btn-default" ng-click="open()">Test</button>
-
-        <div>a</div>
-        <div>a</div>
-        <div>a</div>
-        <div>a</div>
-        <div>a</div>
-        <div>a</div>
-        <div>a</div>
-        <div>a</div>
-        <div>a</div>
-        <div>a</div>
-        <div>a</div>
-        <div>a</div>
-        <div>a</div>
-        <div>a</div>
-        <div>a</div>
-        <div>a</div>
-        <div>a</div>
-        <div>a</div>
-        <div>a</div>
-        <div>a</div>
+      <div class="form-group">
+        <label for="usr">Name:</label>
+        <input type="text" class="form-control" ng-model="name">
+      </div>
+      <div class="form-group">
+        <label for="usr">Host Name:</label>
+        <input type="text" class="form-control" ng-model="hostname">
+      </div>
+      <div class="form-group">
+        <label for="usr">Image:</label>
+        <input type="text" class="form-control" ng-model="image.name" disabled>
+        <a ng-controller="ImageModalCtrl" href="" ng-click="open()">Select</a>
+      </div>
+      <div class="form-group">
+        <label for="usr">InstanceOffering:</label>
+        <input type="text" class="form-control" ng-model="instanceOffering.name" disabled>
+        <a ng-controller="InstanceOfferingModalCtrl" ng-click="open()">Select</a>
+      </div>
+      <div class="form-group">
+        <label for="usr">DataOffering:</label>
+        <input type="text" class="form-control" ng-model="dataOffering.name" disabled>
+        <a ng-controller="DataOfferingModalCtrl" ng-click="open()">Select</a>
+      </div>
+      <div class="form-group">
+        <label for="usr">Host:</label>
+        <input type="text" class="form-control" ng-model="host.name" disabled>
+        <a ng-controller="HostModalCtrl" ng-click="open()">Select</a>
+      </div>
+      <div class="form-group">
+        <label for="usr">Ip:</label>
+        <input type="text" class="form-control" ng-model="ip">
       </div>
     </form>
 
   </div>
   <div class="modal-footer">
-    <button class="btn btn-primary" ng-click="nextStep()">Next Step</button>
-    <button class="btn btn-default" ng-click="cancel()">Close</button>
+    <button class="btn" ng-click="cancel()">Cancel</button>
+    <button class="btn btn-default" ng-click="ok()">OK</button>
   </div>
 </div>

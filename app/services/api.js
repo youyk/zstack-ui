@@ -55,6 +55,9 @@ angular.module('zstackUI.services.api', ['zstackUI.services.util'])
         self.cbList[msg.session.callid](msg);
         delete self.cbList[msg.session.callid];
       });
+
+      self.getSystemInfo();
+
       if (ZStackUtil.notNullnotUndefined(cb)) {
         cb();
       }
@@ -71,5 +74,146 @@ angular.module('zstackUI.services.api', ['zstackUI.services.util'])
     console.log(JSON.stringify(data, null, 2));
     self.cbList[msgBody.session.callid] = cb;
   }
+
+  self.getSystemInfo = function() {
+    self.queryZone(function(data) {
+      self.defaultZone = data.inventories[0];
+      self.queryCluster([{
+          name: "zoneUuid",
+          op: "=",
+          value: data.inventories[0].uuid
+        }], function(data) {
+        self.defaultCluster = data.inventories[0]
+        self.queryL3Network([], function(data) {
+          self.defaultL3Network = data.inventories[0];
+        })
+      })
+    })
+  }
+
+  self.queryZone = function (cb) {
+    var msg = {
+      'org.zstack.header.zone.APIQueryZoneMsg': {
+        count: false,
+        start: 0,
+        replyWithCount: true,
+        conditions: []
+      }
+    }
+    self.call(msg, function(data) {
+      if (ZStackUtil.notNullnotUndefined(cb))
+        cb(data);
+    })
+  }
+
+  self.queryCluster = function (conditions, cb) {
+    var msg = {
+      'org.zstack.header.cluster.APIQueryClusterMsg': {
+        count: false,
+        start: 0,
+        replyWithCount: true,
+        conditions: conditions
+      }
+    }
+    self.call(msg, function(data) {
+      if (ZStackUtil.notNullnotUndefined(cb))
+        cb(data);
+    })
+  }
+
+  self.queryImage = function(conditions, cb) {
+    var msg = {
+      'org.zstack.header.image.APIQueryImageMsg': {
+        count: false,
+        start: 0,
+        replyWithCount: true,
+        conditions: []
+      }
+    }
+  
+    self.call(msg, function(data) {
+      if (ZStackUtil.notNullnotUndefined(cb))
+        cb(data);
+    })
+  }
+
+  self.queryL3Network = function (conditions, cb) {
+    var msg = {
+      'org.zstack.header.network.l3.APIQueryL3NetworkMsg': {
+        count: false,
+        start: 0,
+        replyWithCount: true,
+        conditions: conditions
+      }
+    }
+    self.call(msg, function(data) {
+      if (ZStackUtil.notNullnotUndefined(cb))
+        cb(data);
+    })
+  }
+
+  self.queryInstanceOffering = function (conditions, cb) {
+    var msg = {
+      'org.zstack.header.configuration.APIQueryInstanceOfferingMsg': {
+        count: false,
+        start: 0,
+        replyWithCount: true,
+        conditions: conditions
+      }
+    }
+    self.call(msg, function(data) {
+      if (ZStackUtil.notNullnotUndefined(cb))
+        cb(data);
+    })
+  }
+
+
+  self.queryDiskOffering = function (conditions, cb) {
+    var msg = {
+      'org.zstack.header.configuration.APIQueryDiskOfferingMsg': {
+        count: false,
+        start: 0,
+        replyWithCount: true,
+        conditions: conditions
+      }
+    }
+    self.call(msg, function(data) {
+      if (ZStackUtil.notNullnotUndefined(cb))
+        cb(data);
+    })
+  }
+
+  self.queryVolume = function (conditions, cb) {
+    var msg = {
+      'org.zstack.header.volume.APIQueryVolumeMsg': {
+        count: false,
+        start: 0,
+        replyWithCount: true,
+        conditions: conditions
+      }
+    }
+    self.call(msg, function(data) {
+      console.log(data)
+      if (ZStackUtil.notNullnotUndefined(cb))
+        cb(data);
+    })
+  }
+
+  self.queryHost = function (conditions, cb) {
+    var msg = {
+      'org.zstack.header.host.APIQueryHostMsg': {
+        count: false,
+        start: 0,
+        replyWithCount: true,
+        conditions: conditions
+      }
+    }
+    self.call(msg, function(data) {
+      console.log(data)
+      if (ZStackUtil.notNullnotUndefined(cb))
+        cb(data);
+    })
+  }
+
   return self;
 }])

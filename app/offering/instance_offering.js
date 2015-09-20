@@ -11,26 +11,15 @@ angular.module('zstackUI.offering.instance', ['zstackUI.services.api'])
 }])
 
 .controller('InstanceOfferingCtrl', ['$scope', 'ZStackApi', function($scope, ZStackApi) {
-  
-  var msg = {
-    'org.zstack.header.configuration.APIQueryInstanceOfferingMsg': {
-      count: false,
-      start: 0,
-      replyWithCount: true,
-      conditions: [{
+  ZStackApi.debugLogin(function() {
+    ZStackApi.queryInstanceOffering([{
         name: "type",
         op: "=",
         value: "UserVm"
-      }]
-    }
-  }
-  ZStackApi.debugLogin(function() {
-    ZStackApi.call(msg, function(data) {
-      console.log("APIQueryInstanceOfferingMsg");
-      console.log(data.inventories);
-      $scope.$apply(function() {
-        $scope.offeringList = data.inventories;
-      });
-    })
+      }], function(data) {
+          $scope.$apply(function() {
+            $scope.offeringList = data.inventories;
+        });
+      })
   });
 }])

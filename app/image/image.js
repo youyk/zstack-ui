@@ -17,16 +17,8 @@ angular.module('zstackUI.image',
                                  function($scope, ZStackApi, ZStackUtil) {
   $scope.ZStackUtil = ZStackUtil;
 
-  var msg = {
-    'org.zstack.header.image.APIQueryImageMsg': {
-      count: false,
-      start: 0,
-      replyWithCount: true,
-      conditions: []
-    }
-  }
   ZStackApi.debugLogin(function() {
-    ZStackApi.call(msg, function(data) {
+    ZStackApi.queryImage([], function(data) {
       console.log("APIQueryImageMsg");
       console.log(data.inventories);
       $scope.$apply(function() {
