@@ -1,0 +1,28 @@
+<div class="col-sm-9 col-md-10 main">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Media Type</th>
+        <th>State</th>
+        <th>Status</th>
+        <th>Guest OS</th>
+        <th>Size</th>
+        <th>Format</th>
+        <th>UUID</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="image in imageList">
+        <td>{{image.name}}</td>
+        <td>{{image.mediaType}}</td>
+        <td>{{image.state}}</td>
+        <td>{{image.status}}</td>
+        <td>{{image.platform}}</td>
+        <td>{{ZStackUtil.bytesToSize(image.size)}}</td>
+        <td>{{image.format}}</td>
+        <td>{{image.uuid}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,15 +1,15 @@
 'use strict';
 
-angular.module('zstackUI.offering', ['zstackUI.services.api'])
+angular.module('zstackUI.offering.instance', ['zstackUI.services.api'])
 
 .config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/offering', {
-    templateUrl: 'offering/offering.html',
-    controller: 'VmOfferingCtrl'
+  $routeProvider.when('/instance_offering', {
+    templateUrl: 'offering/instance_offering.html',
+    controller: 'InstanceOfferingCtrl'
   });
 }])
 
-.controller('VmOfferingCtrl', ['$scope', 'ZStackApi', function($scope, ZStackApi) {
+.controller('InstanceOfferingCtrl', ['$scope', 'ZStackApi', function($scope, ZStackApi) {
   
   var msg = {
     'org.zstack.header.configuration.APIQueryInstanceOfferingMsg': {
