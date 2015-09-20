@@ -35,7 +35,7 @@ angular.module('zstackUI.instance', ['zstackUI.services.api'])
   });
 }])
 
-.controller('ModalDemoCtrl', function ($scope, $modal, $log) {
+.controller('CreateInstanceModalCtrl', function ($scope, $modal, $log) {
 
   $scope.data = ['item1', 'item2', 'item3'];
 
@@ -45,8 +45,8 @@ angular.module('zstackUI.instance', ['zstackUI.services.api'])
 
     var modalInstance = $modal.open({
       animation: $scope.animationsEnabled,
-      templateUrl: 'myModalContent.html',
-      controller: 'ModalInstanceCtrl',
+      templateUrl: 'instance/create_instance.html',
+      controller: 'CreateInstanceModalInstanceCtrl',
       backdrop: 'static',
       size: size,
       resolve: {
@@ -69,7 +69,93 @@ angular.module('zstackUI.instance', ['zstackUI.services.api'])
 
 })
 
-.controller('ModalInstanceCtrl', function ($scope, $modalInstance, data) {
+.controller('CreateInstanceModalInstanceCtrl', function ($scope, $modalInstance, data) {
+
+  // $scope.data = data;
+  // $scope.selected = {
+  //   item: $scope.data[0]
+  // };
+  $scope.showDialog = true;
+  $scope.steps = [
+    { number: 1, name: 'First Step' },
+    { number: 2, name: 'Second Step' },
+    { number: 3, name: 'Third Step' }
+    ];
+  
+  $scope.currentStep = angular.copy($scope.steps[0]);
+
+  $scope.$on("child-dialog:open", function() {
+    console.log("ffffffffffffffff")
+    $scope.showDialog = false;
+  })
+
+  $scope.$on("child-dialog:close", function() {
+    console.log("child-dialog:close")
+    $scope.showDialog = true;
+  })
+  
+  $scope.cancel = function() {
+    $modalInstance.dismiss('cancel');
+  };
+  
+  $scope.nextStep = function() {
+    // Perform current step actions and show next step:
+    // E.g. save form data
+    
+    var nextNumber = $scope.currentStep.number;
+    if ($scope.steps.length == nextNumber){
+      $modalInstance.dismiss('cancel');
+    }
+    $scope.currentStep = angular.copy($scope.steps[nextNumber]);
+  };
+
+  // $scope.ok = function () {
+  //   $modalInstance.close($scope.selected.item);
+  // };
+
+  // $scope.cancel = function () {
+  //   $modalInstance.dismiss('cancel');
+  // };
+})
+
+.controller('SelectImageModalCtrl', function ($scope, $modal, $log) {
+
+  var self = $scope;
+  $scope.data = {};
+
+  $scope.animationsEnabled = true;
+
+  $scope.open = function (size) {
+
+    var modalInstance = $modal.open({
+      animation: $scope.animationsEnabled,
+      templateUrl: 'instance/select_image.html',
+      controller: 'SelectImageModalInstanceCtrl',
+      backdrop: 'static',
+      size: size,
+      resolve: {
+        data: function () {
+          return $scope.data;
+        }
+      }
+    });
+
+    modalInstance.result.then(function (selectedItem) {
+      $scope.selected = selectedItem;
+    }, function () {
+      $scope.$emit("child-dialog:close");
+      $log.info('Modal dismissed at: ' + new Date());
+    });
+
+    $scope.$emit("child-dialog:open");
+  };
+
+  $scope.toggleAnimation = function () {
+    $scope.animationsEnabled = !$scope.animationsEnabled;
+  };
+})
+
+.controller('SelectImageModalInstanceCtrl', function ($scope, $modalInstance, data) {
 
   // $scope.data = data;
   // $scope.selected = {
@@ -98,11 +184,11 @@ angular.module('zstackUI.instance', ['zstackUI.services.api'])
     $scope.currentStep = angular.copy($scope.steps[nextNumber]);
   };
 
-  // $scope.ok = function () {
-  //   $modalInstance.close($scope.selected.item);
-  // };
+  $scope.ok = function () {    
+    $modalInstance.dismiss('ok');
+  };
 
   // $scope.cancel = function () {
   //   $modalInstance.dismiss('cancel');
   // };
-});;
+});
