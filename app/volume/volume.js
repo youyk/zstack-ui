@@ -2,14 +2,15 @@
 
 angular.module('zstackUI.volume', ['zstackUI.services.api'])
 
-.config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/volume', {
+.config(['$stateProvider', function($stateProvider) {
+  $stateProvider.state('main.volume', {
+    url: '/volume',
     templateUrl: 'volume/volume.html',
-    controller: 'VmVolumeCtrl'
+    controller: 'VolumeCtrl'
   });
 }])
 
-.controller('VmVolumeCtrl', ['$scope', 'ZStackApi', function($scope, ZStackApi) {
+.controller('VolumeCtrl', ['$scope', 'ZStackApi', function($scope, ZStackApi) {
   
   var msg = {
     'org.zstack.header.volume.APIQueryVolumeMsg': {

@@ -2,14 +2,15 @@
 
 angular.module('zstackUI.host', ['zstackUI.services.api'])
 
-.config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/host', {
+.config(['$stateProvider', function($stateProvider) {
+  $stateProvider.state('main.host', {
+    url: '/host',
     templateUrl: 'host/host.html',
-    controller: 'VmHostCtrl'
+    controller: 'HostCtrl'
   });
 }])
 
-.controller('VmHostCtrl', ['$scope', 'ZStackApi', function($scope, ZStackApi) {
+.controller('HostCtrl', ['$scope', 'ZStackApi', function($scope, ZStackApi) {
   
   var msg = {
     'org.zstack.header.host.APIQueryHostMsg': {

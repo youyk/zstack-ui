@@ -52,25 +52,7 @@
     </div>
   </nav>
 
-  <div class="container-fluid">
-    <div class="row row-offcanvas row-offcanvas-left">
-      <div class="col-sm-3 col-md-2 sidebar-offcanvas" id="sidebar" role="navigation">
-        <ul class="nav nav-sidebar">
-          <li><a href="#">Dashboard</a></li>
-          <li><a href="#/vminstance">Instance</a></li>
-          <li><a href="#/host">Host</a></li>
-          <li><a href="#/image">Image</a></li>
-          <li><a href="#/network">Network</a></li>
-          <li><a href="#/volume">Volume</a></li>
-          <li><a href="#/instance_offering">Instance Offering</a></li>
-          <li><a href="#/data_offering">Data Offering</a></li>
-        </ul>
-      </div><!--/span-->
-      
-      <div ng-view></div>
-
-    </div><!--/row-->
-  </div><!--/.container-->
+  <div ui-view><div>
 
   <footer>
     <p class="pull-right">©2015 Company</p>
@@ -80,18 +62,13 @@
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
   -->
   <script src="bower_components/angular/angular.js"></script>
-  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
   <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
   <script src="bower_components/socket.io-client/dist/socket.io.min.js"></script>
   <script src="app.js"></script>
-  <script src="view1/view1.js"></script>
-  <script src="view2/view2.js"></script>
-  <script src="components/version/version.js"></script>
-  <script src="components/version/version-directive.js"></script>
-  <script src="components/version/interpolate-filter.js"></script>
+  <script src="main/main.js"></script>
   <script src="login/login.js"></script>
-  <script src="vminstance/vminstance.js"></script>
-  <script src="vminstance/vmdetails.js"></script>
+  <script src="instance/instance.js"></script>
   <script src="host/host.js"></script>
   <script src="image/image.js"></script>
   <script src="offering/instance_offering.js"></script>

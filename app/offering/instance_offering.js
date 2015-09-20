@@ -2,8 +2,9 @@
 
 angular.module('zstackUI.offering.instance', ['zstackUI.services.api'])
 
-.config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/instance_offering', {
+.config(['$stateProvider', function($stateProvider) {
+  $stateProvider.state('main.instance_offering', {
+    url: '/instance_offering',
     templateUrl: 'offering/instance_offering.html',
     controller: 'InstanceOfferingCtrl'
   });

@@ -2,14 +2,15 @@
 
 angular.module('zstackUI.network', ['zstackUI.services.api'])
 
-.config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/network', {
+.config(['$stateProvider', function($stateProvider) {
+  $stateProvider.state('main.network', {
+    url: '/network',
     templateUrl: 'network/network.html',
-    controller: 'VmNetworkCtrl'
+    controller: 'NetworkCtrl'
   });
 }])
 
-.controller('VmNetworkCtrl', ['$scope', 'ZStackApi', function($scope, ZStackApi) {
+.controller('NetworkCtrl', ['$scope', 'ZStackApi', function($scope, ZStackApi) {
   
   var msg = {
     'org.zstack.header.network.l3.APIQueryL3NetworkMsg': {

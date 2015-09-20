@@ -1,15 +1,16 @@
 'use strict';
 
-angular.module('zstackUI.vminstance', ['zstackUI.services.api'])
+angular.module('zstackUI.instance', ['zstackUI.services.api'])
 
-.config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/vminstance', {
-    templateUrl: 'vminstance/vminstance.html',
-    controller: 'VmInstanceCtrl'
+.config(['$stateProvider', function($stateProvider) {
+  $stateProvider.state('main.instance', {
+    url: '/instance',
+    templateUrl: 'instance/instance.html',
+    controller: 'InstanceCtrl'
   });
 }])
 
-.controller('VmInstanceCtrl', ['$scope', 'ZStackApi', function($scope, ZStackApi) {
+.controller('InstanceCtrl', ['$scope', 'ZStackApi', function($scope, ZStackApi) {
   
   var msg = {
     'org.zstack.header.vm.APIQueryVmInstanceMsg': {

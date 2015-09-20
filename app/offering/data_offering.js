@@ -6,12 +6,14 @@ angular.module('zstackUI.offering.data',
     'zstackUI.services.util'
     ])
 
-.config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/data_offering', {
+.config(['$stateProvider', function($stateProvider) {
+  $stateProvider.state('main.data_offering', {
+    url: '/data_offering',
     templateUrl: 'offering/data_offering.html',
     controller: 'DataOfferingCtrl'
   });
 }])
+
 
 .controller('DataOfferingCtrl', ['$scope', 'ZStackApi', 'ZStackUtil', 
                                  function($scope, ZStackApi, ZStackUtil) {

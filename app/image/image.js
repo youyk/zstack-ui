@@ -6,13 +6,13 @@ angular.module('zstackUI.image',
     'zstackUI.services.util'
     ])
 
-.config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/image', {
+.config(['$stateProvider', function($stateProvider) {
+  $stateProvider.state('main.image', {
+    url: '/image',
     templateUrl: 'image/image.html',
     controller: 'ImageCtrl'
   });
 }])
-
 .controller('ImageCtrl', ['$scope', 'ZStackApi', 'ZStackUtil', 
                                  function($scope, ZStackApi, ZStackUtil) {
   $scope.ZStackUtil = ZStackUtil;
