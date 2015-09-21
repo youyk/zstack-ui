@@ -12,11 +12,15 @@ angular.module('zstackUI.offering.instance', ['zstackUI.services.api'])
 
 .controller('InstanceOfferingCtrl', ['$scope', 'ZStackApi', function($scope, ZStackApi) {
   ZStackApi.debugLogin(function() {
-    ZStackApi.queryInstanceOffering([{
+    ZStackApi.queryInstanceOffering(
+      {
+        conditions: [{
         name: "type",
         op: "=",
         value: "UserVm"
-      }])
+        }]
+      }
+    )
     .then(function(data) {
       $scope.safeApply(function() {
         $scope.itemList = data.inventories;

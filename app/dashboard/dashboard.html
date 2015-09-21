@@ -1,0 +1,34 @@
+<div class="col-sm-9 col-md-10 main">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Capacity Name</th>
+        <th>Total Capacity</th>
+        <th>Availble Capacity</th>
+        <th>Availble Percentage</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="item in capList">
+        <td>{{item.name}}</td>
+        <td>{{item.total}}</td>
+        <td>{{item.available}}</td>
+        <td>{{item.percent}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Resource Name</th>
+        <th>Count</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="item in resList">
+        <td>{{item.name}}</td>
+        <td>{{item.count}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

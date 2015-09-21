@@ -18,11 +18,15 @@ angular.module('zstackUI.offering.data',
 .controller('DataOfferingCtrl', ['$scope', 'ZStackApi', 'ZStackUtil', 
                                  function($scope, ZStackApi, ZStackUtil) {
   ZStackApi.debugLogin(function() {
-    ZStackApi.queryDiskOffering([{
-        name: 'state',
-        op: '=',
-        value: 'Enabled'
-      }])
+    ZStackApi.queryDiskOffering(
+      {
+        conditions: [{
+          name: 'state',
+          op: '=',
+          value: 'Enabled'
+        }]
+      }
+    )
     .then(function(data) {
       $scope.safeApply(function() {
         $scope.itemList = data.inventories;

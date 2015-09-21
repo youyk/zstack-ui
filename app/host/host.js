@@ -13,7 +13,7 @@ angular.module('zstackUI.host', ['zstackUI.services.api'])
 .controller('HostCtrl', ['$scope', 'ZStackApi', function($scope, ZStackApi) {
   
   ZStackApi.debugLogin(function() {
-    ZStackApi.queryHost([])
+    ZStackApi.queryHost()
     .then(function(data) {
       $scope.safeApply(function() {
         $scope.itemList = data.inventories;

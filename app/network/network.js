@@ -12,7 +12,7 @@ angular.module('zstackUI.network', ['zstackUI.services.api'])
 
 .controller('NetworkCtrl', ['$scope', 'ZStackApi', function($scope, ZStackApi) {
   ZStackApi.debugLogin(function() {
-    ZStackApi.queryL3Network([])
+    ZStackApi.queryL3Network()
     .then(function(data) {
       $scope.safeApply(function() {
         $scope.itemList = data.inventories;

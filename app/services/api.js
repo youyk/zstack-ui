@@ -3,7 +3,6 @@
 angular.module('zstackUI.services.api', ['zstackUI.services.util'])
 
 .factory('ZStackApi', ['$q', 'ZStackUtil', function($q, ZStackUtil) {
-  console.log(ZStackUtil)
   var self = {}
   self.debugLogin = function(cb) {
     console.log("debugLogin")
@@ -76,35 +75,42 @@ angular.module('zstackUI.services.api', ['zstackUI.services.util'])
   }
 
   self.getSystemInfo = function() {
-    console.log(self.queryZone())
-    self.queryZone([])
+    self.queryZone()
     .then(function(data) {
       self.defaultZone = data.inventories[0];
-      return self.queryCluster([{
-        name: "zoneUuid",
-        op: "=",
-        value: data.inventories[0].uuid
-      }])
+      return self.queryCluster(
+        {
+          conditions: [{
+            name: "zoneUuid",
+            op: "=",
+            value: data.inventories[0].uuid
+          }]
+        }
+      );
     })
     .then(function(data) {
       self.defaultCluster = data.inventories[0];
-      return self.queryL3Network([]);
+      return self.queryL3Network();
     })
     .then(function(data) {
       self.defaultL3Network = data.inventories[0];
     })
   }
 
-  self.queryZone = function () {
+  self.simpleQuery = function(apiName, msgBody) {
     return $q(function(resolve, reject) {
-      var msg = {
-        'org.zstack.header.zone.APIQueryZoneMsg': {
-          count: false,
-          start: 0,
-          replyWithCount: true,
-          conditions: []
-        }
-      }
+      var msg = {};
+      if (!ZStackUtil.notNullnotUndefined(msgBody))
+        msgBody = {};
+      msg[apiName] = msgBody;
+      if (!ZStackUtil.notNullnotUndefined(msgBody.count))
+        msgBody.count = false
+      if (!ZStackUtil.notNullnotUndefined(msgBody.start))
+        msgBody.start = 0
+      if (!ZStackUtil.notNullnotUndefined(msgBody.replyWithCount))
+        msgBody.replyWithCount = true
+      if (!ZStackUtil.notNullnotUndefined(msgBody.conditions))
+        msgBody.conditions = []
 
       self.call(msg, function(data) {
         if (data.success)
@@ -115,16 +121,49 @@ angular.module('zstackUI.services.api', ['zstackUI.services.util'])
     });
   }
 
-  self.queryCluster = function (conditions) {
+  self.queryZone = function (msgBody) {
+    return self.simpleQuery('org.zstack.header.zone.APIQueryZoneMsg', msgBody);
+  }
+
+  self.queryCluster = function (msgBody) {
+    return self.simpleQuery('org.zstack.header.cluster.APIQueryClusterMsg', msgBody);
+  }
+
+  self.queryVmInstance = function(msgBody) {
+    return self.simpleQuery('org.zstack.header.vm.APIQueryVmInstanceMsg', msgBody);
+  }
+
+  self.queryImage = function(msgBody) {
+    return self.simpleQuery('org.zstack.header.image.APIQueryImageMsg', msgBody);
+  }
+
+  self.queryL3Network = function (msgBody) {
+    return self.simpleQuery('org.zstack.header.network.l3.APIQueryL3NetworkMsg', msgBody);
+  }
+
+  self.queryInstanceOffering = function (msgBody) {
+    return self.simpleQuery('org.zstack.header.configuration.APIQueryInstanceOfferingMsg', msgBody);
+  }
+
+
+  self.queryDiskOffering = function (msgBody) {
+    return self.simpleQuery('org.zstack.header.configuration.APIQueryDiskOfferingMsg', msgBody);
+  }
+
+  self.queryVolume = function (msgBody) {
+    return self.simpleQuery('org.zstack.header.volume.APIQueryVolumeMsg', msgBody);
+  }
+
+  self.queryHost = function (msgBody) {
+    return self.simpleQuery('org.zstack.header.host.APIQueryHostMsg', msgBody);
+  }
+
+  self._getCapacityByAll = function(apiName) {
     return $q(function(resolve, reject) {
-      var msg = {
-        'org.zstack.header.cluster.APIQueryClusterMsg': {
-          count: false,
-          start: 0,
-          replyWithCount: true,
-          conditions: conditions
+      var msg = {};
+      msg[apiName] = {
+          all: true
         }
-      }
 
       self.call(msg, function(data) {
         if (data.success)
@@ -135,145 +174,20 @@ angular.module('zstackUI.services.api', ['zstackUI.services.util'])
     });
   }
 
-  self.queryVmInstance = function(conditions) {
-    return $q(function(resolve, reject) {
-      var msg = {
-        'org.zstack.header.vm.APIQueryVmInstanceMsg': {
-          count: false,
-          start: 0,
-          replyWithCount: true,
-          conditions: conditions
-        }
-      }
-
-      self.call(msg, function(data) {
-        if (data.success)
-          resolve(data);
-        else
-          reject(data);
-      })
-    });
+  self.getMemoryCpuCapacityByAll = function() {
+    return self._getCapacityByAll("org.zstack.header.allocator.APIGetCpuMemoryCapacityMsg");
   }
 
-  self.queryImage = function(conditions) {
-    return $q(function(resolve, reject) {
-      var msg = {
-        'org.zstack.header.image.APIQueryImageMsg': {
-          count: false,
-          start: 0,
-          replyWithCount: true,
-          conditions: conditions
-        }
-      }
-
-      self.call(msg, function(data) {
-        if (data.success)
-          resolve(data);
-        else
-          reject(data);
-      })
-    });
+  self.getPirmaryStorageCapacityByAll = function() {
+    return self._getCapacityByAll("org.zstack.header.storage.primary.APIGetPrimaryStorageCapacityMsg");
   }
 
-  self.queryL3Network = function (conditions) {
-    return $q(function(resolve, reject) {
-      var msg = {
-        'org.zstack.header.network.l3.APIQueryL3NetworkMsg': {
-          count: false,
-          start: 0,
-          replyWithCount: true,
-          conditions: conditions
-        }
-      }
-
-      self.call(msg, function(data) {
-        if (data.success)
-          resolve(data);
-        else
-          reject(data);
-      })
-    });
+  self.getBackupStorageCapacityByAll = function() {
+    return self._getCapacityByAll("org.zstack.header.storage.backup.APIGetBackupStorageCapacityMsg");
   }
 
-  self.queryInstanceOffering = function (conditions) {
-    return $q(function(resolve, reject) {
-      var msg = {
-        'org.zstack.header.configuration.APIQueryInstanceOfferingMsg': {
-          count: false,
-          start: 0,
-          replyWithCount: true,
-          conditions: conditions
-        }
-      }
-
-      self.call(msg, function(data) {
-        if (data.success)
-          resolve(data);
-        else
-          reject(data);
-      })
-    });
-  }
-
-
-  self.queryDiskOffering = function (conditions, cb) {
-    return $q(function(resolve, reject) {
-      var msg = {
-        'org.zstack.header.configuration.APIQueryDiskOfferingMsg': {
-          count: false,
-          start: 0,
-          replyWithCount: true,
-          conditions: conditions
-        }
-      }
-
-      self.call(msg, function(data) {
-        if (data.success)
-          resolve(data);
-        else
-          reject(data);
-      })
-    });
-  }
-
-  self.queryVolume = function (conditions) {
-    return $q(function(resolve, reject) {
-      var msg = {
-        'org.zstack.header.volume.APIQueryVolumeMsg': {
-          count: false,
-          start: 0,
-          replyWithCount: true,
-          conditions: conditions
-        }
-      }
-
-      self.call(msg, function(data) {
-        if (data.success)
-          resolve(data);
-        else
-          reject(data);
-      })
-    });
-  }
-
-  self.queryHost = function (conditions) {
-    return $q(function(resolve, reject) {
-      var msg = {
-        'org.zstack.header.host.APIQueryHostMsg': {
-          count: false,
-          start: 0,
-          replyWithCount: true,
-          conditions: conditions
-        }
-      }
-
-      self.call(msg, function(data) {
-        if (data.success)
-          resolve(data);
-        else
-          reject(data);
-      })
-    });
+  self.getIpAddressCapacityByAll = function() {
+    return self._getCapacityByAll("org.zstack.header.network.l3.APIGetIpAddressCapacityMsg");
   }
 
   return self;

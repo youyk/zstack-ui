@@ -6,6 +6,7 @@ angular.module('zstackUI', [
   'ui.router',
   'zstackUI.main',
   'zstackUI.login',
+  'zstackUI.dashboard',
   'zstackUI.instance',
   'zstackUI.host',
   'zstackUI.image',

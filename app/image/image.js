@@ -18,7 +18,7 @@ angular.module('zstackUI.image',
   $scope.ZStackUtil = ZStackUtil;
 
   ZStackApi.debugLogin(function() {
-    ZStackApi.queryImage([])
+    ZStackApi.queryImage()
     .then(function(data) {
       $scope.safeApply(function() {
         $scope.imageList = data.inventories;

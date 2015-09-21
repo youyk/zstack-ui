@@ -50,5 +50,66 @@ angular.module('zstackUI.services.util', [])
     return Math.round(bytes / Math.pow(1024, i)) + ' ' + sizes[i];
   }
 
+  self.toFixed = function( num, precision ) {
+      var multiplier = Math.pow( 10, precision + 1 ),
+          wholeNumber = Math.floor( num * multiplier );
+      return Math.round( wholeNumber / 10 ) * 10 / multiplier;
+  }
+
+  self.sizeRoundToString = function(size) {
+    var K = 1024;
+    var M = K * K;
+    var G = M * K;
+    var T = G * K;
+    var P = T * K;
+
+    var sizeMap = {
+        'K': K,
+        'M': M,
+        'G': G,
+        'T': T,
+        'P': P
+    };
+
+    var suffixes = ['P', 'T', 'G', 'M', 'K'];
+    function round() {
+      var s = suffixes.shift();
+      if (!self.notNullnotUndefined(size)) {
+          return size+ ' Bytes';
+      }
+
+      var q = sizeMap[s];
+      var ret = size / q;
+      if (ret >= 1) {
+          return self.toFixed(ret, 2) + ' ' + s;
+      } else {
+          return round()
+      }
+    }
+
+    return round();
+  }
+
+  self.toSizeString = function(input) {
+    try {
+      return self.sizeRoundToString(parseInt(input));
+    } catch (e) {
+      return input;
+    }
+  }
+
+  self.toPercentageString = function(input) {
+    var per = parseFloat(input) * 100;
+    var perStr = per.toString();
+    if (perStr.length > 5) {
+      perStr = perStr.slice(0, 5);
+    }
+    return perStr+'%';
+  }
+
+  self.toMHZString = function(input) {
+    return input + ' MHZ';
+  }
+
   return self;
 })
