@@ -17,16 +17,16 @@ angular.module('zstackUI.offering.data',
 
 .controller('DataOfferingCtrl', ['$scope', 'ZStackApi', 'ZStackUtil', 
                                  function($scope, ZStackApi, ZStackUtil) {
-  $scope.ZStackUtil = ZStackUtil;
   ZStackApi.debugLogin(function() {
     ZStackApi.queryDiskOffering([{
         name: 'state',
         op: '=',
         value: 'Enabled'
-      }], function(data) {
-          $scope.$apply(function() {
-          $scope.offeringList = data.inventories;
-        });
-      })
+      }])
+    .then(function(data) {
+      $scope.safeApply(function() {
+        $scope.itemList = data.inventories;
+      });
+    });
   });
 }])

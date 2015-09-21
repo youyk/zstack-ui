@@ -16,7 +16,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="item in imageList" ng-click="select(item)" ng-class="{'table-highlight': item.uuid == image.uuid}">
+      <tr ng-repeat="item in itemList" ng-click="select(item)" ng-class="{'table-highlight': item.uuid == image.uuid}">
         <td>{{item.name}}</td>
         <td>{{item.mediaType}}</td>
         <td>{{item.state}}</td>

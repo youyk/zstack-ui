@@ -15,7 +15,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="item in offeringList" ng-click="select(item)" ng-class="{'table-highlight': item.uuid == instanceOffering.uuid}">
+      <tr ng-repeat="item in itemList" ng-click="select(item)" ng-class="{'table-highlight': item.uuid == instanceOffering.uuid}">
         <td>{{item.name}}</td>
         <td></td>
         <td>{{item.cpuNum}}</td>

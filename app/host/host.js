@@ -12,21 +12,12 @@ angular.module('zstackUI.host', ['zstackUI.services.api'])
 
 .controller('HostCtrl', ['$scope', 'ZStackApi', function($scope, ZStackApi) {
   
-  var msg = {
-    'org.zstack.header.host.APIQueryHostMsg': {
-      count: false,
-      start: 0,
-      replyWithCount: true,
-      conditions: []
-    }
-  }
   ZStackApi.debugLogin(function() {
-    ZStackApi.call(msg, function(data) {
-      console.log("APIQueryHostMsgRet");
-      console.log(data.inventories);
-      $scope.$apply(function() {
-        $scope.hostList = data.inventories;
+    ZStackApi.queryHost([])
+    .then(function(data) {
+      $scope.safeApply(function() {
+        $scope.itemList = data.inventories;
       });
-    })
+    });
   });
 }])

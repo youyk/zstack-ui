@@ -2,7 +2,7 @@
 
 angular.module('zstackUI.services.api', ['zstackUI.services.util'])
 
-.factory('ZStackApi', ['ZStackUtil', function(ZStackUtil) {
+.factory('ZStackApi', ['$q', 'ZStackUtil', function($q, ZStackUtil) {
   console.log(ZStackUtil)
   var self = {}
   self.debugLogin = function(cb) {
@@ -76,143 +76,204 @@ angular.module('zstackUI.services.api', ['zstackUI.services.util'])
   }
 
   self.getSystemInfo = function() {
-    self.queryZone(function(data) {
+    console.log(self.queryZone())
+    self.queryZone([])
+    .then(function(data) {
       self.defaultZone = data.inventories[0];
-      self.queryCluster([{
-          name: "zoneUuid",
-          op: "=",
-          value: data.inventories[0].uuid
-        }], function(data) {
-        self.defaultCluster = data.inventories[0]
-        self.queryL3Network([], function(data) {
-          self.defaultL3Network = data.inventories[0];
-        })
+      return self.queryCluster([{
+        name: "zoneUuid",
+        op: "=",
+        value: data.inventories[0].uuid
+      }])
+    })
+    .then(function(data) {
+      self.defaultCluster = data.inventories[0];
+      return self.queryL3Network([]);
+    })
+    .then(function(data) {
+      self.defaultL3Network = data.inventories[0];
+    })
+  }
+
+  self.queryZone = function () {
+    return $q(function(resolve, reject) {
+      var msg = {
+        'org.zstack.header.zone.APIQueryZoneMsg': {
+          count: false,
+          start: 0,
+          replyWithCount: true,
+          conditions: []
+        }
+      }
+
+      self.call(msg, function(data) {
+        if (data.success)
+          resolve(data);
+        else
+          reject(data);
       })
-    })
+    });
   }
 
-  self.queryZone = function (cb) {
-    var msg = {
-      'org.zstack.header.zone.APIQueryZoneMsg': {
-        count: false,
-        start: 0,
-        replyWithCount: true,
-        conditions: []
+  self.queryCluster = function (conditions) {
+    return $q(function(resolve, reject) {
+      var msg = {
+        'org.zstack.header.cluster.APIQueryClusterMsg': {
+          count: false,
+          start: 0,
+          replyWithCount: true,
+          conditions: conditions
+        }
       }
-    }
-    self.call(msg, function(data) {
-      if (ZStackUtil.notNullnotUndefined(cb))
-        cb(data);
-    })
+
+      self.call(msg, function(data) {
+        if (data.success)
+          resolve(data);
+        else
+          reject(data);
+      })
+    });
   }
 
-  self.queryCluster = function (conditions, cb) {
-    var msg = {
-      'org.zstack.header.cluster.APIQueryClusterMsg': {
-        count: false,
-        start: 0,
-        replyWithCount: true,
-        conditions: conditions
+  self.queryVmInstance = function(conditions) {
+    return $q(function(resolve, reject) {
+      var msg = {
+        'org.zstack.header.vm.APIQueryVmInstanceMsg': {
+          count: false,
+          start: 0,
+          replyWithCount: true,
+          conditions: conditions
+        }
       }
-    }
-    self.call(msg, function(data) {
-      if (ZStackUtil.notNullnotUndefined(cb))
-        cb(data);
-    })
+
+      self.call(msg, function(data) {
+        if (data.success)
+          resolve(data);
+        else
+          reject(data);
+      })
+    });
   }
 
-  self.queryImage = function(conditions, cb) {
-    var msg = {
-      'org.zstack.header.image.APIQueryImageMsg': {
-        count: false,
-        start: 0,
-        replyWithCount: true,
-        conditions: []
+  self.queryImage = function(conditions) {
+    return $q(function(resolve, reject) {
+      var msg = {
+        'org.zstack.header.image.APIQueryImageMsg': {
+          count: false,
+          start: 0,
+          replyWithCount: true,
+          conditions: conditions
+        }
       }
-    }
-  
-    self.call(msg, function(data) {
-      if (ZStackUtil.notNullnotUndefined(cb))
-        cb(data);
-    })
+
+      self.call(msg, function(data) {
+        if (data.success)
+          resolve(data);
+        else
+          reject(data);
+      })
+    });
   }
 
-  self.queryL3Network = function (conditions, cb) {
-    var msg = {
-      'org.zstack.header.network.l3.APIQueryL3NetworkMsg': {
-        count: false,
-        start: 0,
-        replyWithCount: true,
-        conditions: conditions
+  self.queryL3Network = function (conditions) {
+    return $q(function(resolve, reject) {
+      var msg = {
+        'org.zstack.header.network.l3.APIQueryL3NetworkMsg': {
+          count: false,
+          start: 0,
+          replyWithCount: true,
+          conditions: conditions
+        }
       }
-    }
-    self.call(msg, function(data) {
-      if (ZStackUtil.notNullnotUndefined(cb))
-        cb(data);
-    })
+
+      self.call(msg, function(data) {
+        if (data.success)
+          resolve(data);
+        else
+          reject(data);
+      })
+    });
   }
 
-  self.queryInstanceOffering = function (conditions, cb) {
-    var msg = {
-      'org.zstack.header.configuration.APIQueryInstanceOfferingMsg': {
-        count: false,
-        start: 0,
-        replyWithCount: true,
-        conditions: conditions
+  self.queryInstanceOffering = function (conditions) {
+    return $q(function(resolve, reject) {
+      var msg = {
+        'org.zstack.header.configuration.APIQueryInstanceOfferingMsg': {
+          count: false,
+          start: 0,
+          replyWithCount: true,
+          conditions: conditions
+        }
       }
-    }
-    self.call(msg, function(data) {
-      if (ZStackUtil.notNullnotUndefined(cb))
-        cb(data);
-    })
+
+      self.call(msg, function(data) {
+        if (data.success)
+          resolve(data);
+        else
+          reject(data);
+      })
+    });
   }
 
 
   self.queryDiskOffering = function (conditions, cb) {
-    var msg = {
-      'org.zstack.header.configuration.APIQueryDiskOfferingMsg': {
-        count: false,
-        start: 0,
-        replyWithCount: true,
-        conditions: conditions
+    return $q(function(resolve, reject) {
+      var msg = {
+        'org.zstack.header.configuration.APIQueryDiskOfferingMsg': {
+          count: false,
+          start: 0,
+          replyWithCount: true,
+          conditions: conditions
+        }
       }
-    }
-    self.call(msg, function(data) {
-      if (ZStackUtil.notNullnotUndefined(cb))
-        cb(data);
-    })
+
+      self.call(msg, function(data) {
+        if (data.success)
+          resolve(data);
+        else
+          reject(data);
+      })
+    });
   }
 
-  self.queryVolume = function (conditions, cb) {
-    var msg = {
-      'org.zstack.header.volume.APIQueryVolumeMsg': {
-        count: false,
-        start: 0,
-        replyWithCount: true,
-        conditions: conditions
+  self.queryVolume = function (conditions) {
+    return $q(function(resolve, reject) {
+      var msg = {
+        'org.zstack.header.volume.APIQueryVolumeMsg': {
+          count: false,
+          start: 0,
+          replyWithCount: true,
+          conditions: conditions
+        }
       }
-    }
-    self.call(msg, function(data) {
-      console.log(data)
-      if (ZStackUtil.notNullnotUndefined(cb))
-        cb(data);
-    })
+
+      self.call(msg, function(data) {
+        if (data.success)
+          resolve(data);
+        else
+          reject(data);
+      })
+    });
   }
 
-  self.queryHost = function (conditions, cb) {
-    var msg = {
-      'org.zstack.header.host.APIQueryHostMsg': {
-        count: false,
-        start: 0,
-        replyWithCount: true,
-        conditions: conditions
+  self.queryHost = function (conditions) {
+    return $q(function(resolve, reject) {
+      var msg = {
+        'org.zstack.header.host.APIQueryHostMsg': {
+          count: false,
+          start: 0,
+          replyWithCount: true,
+          conditions: conditions
+        }
       }
-    }
-    self.call(msg, function(data) {
-      console.log(data)
-      if (ZStackUtil.notNullnotUndefined(cb))
-        cb(data);
-    })
+
+      self.call(msg, function(data) {
+        if (data.success)
+          resolve(data);
+        else
+          reject(data);
+      })
+    });
   }
 
   return self;

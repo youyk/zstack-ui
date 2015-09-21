@@ -12,10 +12,11 @@ angular.module('zstackUI.volume', ['zstackUI.services.api'])
 
 .controller('VolumeCtrl', ['$scope', 'ZStackApi', function($scope, ZStackApi) {
   ZStackApi.debugLogin(function() {
-    ZStackApi.queryVolume([], function(data) {
-      $scope.$apply(function() {
-        $scope.volumeList = data.inventories;
+    ZStackApi.queryVolume([])
+    .then(function(data) {
+      $scope.safeApply(function() {
+        $scope.itemList = data.inventories;
       });
-    })
+    });
   });
 }])

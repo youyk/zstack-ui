@@ -25,13 +25,16 @@ angular.module('zstackUI.instance', ['zstackUI.services.api'])
     }
   }
   ZStackApi.debugLogin(function() {
-    ZStackApi.call(msg, function(data) {
-      console.log("APIQueryVmInstanceMsgRet");
-      console.log(data.inventories);
-      $scope.$apply(function() {
+    ZStackApi.queryVmInstance([{
+        name: "type",
+        op: "=",
+        value: "UserVm"
+      }])
+    .then(function(data) {
+      $scope.safeApply(function() {
         $scope.vmList = data.inventories;
       });
-    })
+    });
   });
 }])
 
@@ -167,13 +170,12 @@ angular.module('zstackUI.instance', ['zstackUI.services.api'])
 })
 
 .controller('ImageModalInstanceCtrl', ['$scope', 'ZStackApi', '$modalInstance', 'data', function ($scope, ZStackApi, $modalInstance, data) {
-  ZStackApi.queryImage([], function(data) {
-    console.log("APIQueryImageMsg");
-    console.log(data.inventories);
-    $scope.$apply(function() {
-      $scope.imageList = data.inventories;
+  ZStackApi.queryImage([])
+    .then(function(data) {
+      $scope.safeApply(function() {
+        $scope.itemList = data.inventories;
+      });
     });
-  })
 
   $scope.select = function(image) {
     console.log(image)
@@ -224,11 +226,12 @@ angular.module('zstackUI.instance', ['zstackUI.services.api'])
 })
 
 .controller('InstanceOfferingModalInstanceCtrl', ['$scope', 'ZStackApi', '$modalInstance', 'data', function ($scope, ZStackApi, $modalInstance, data) {
-  ZStackApi.queryInstanceOffering([], function(data) {
-    $scope.$apply(function() {
-      $scope.offeringList = data.inventories;
+  ZStackApi.queryInstanceOffering([])
+    .then(function(data) {
+      $scope.safeApply(function() {
+        $scope.itemList = data.inventories;
+      });
     });
-  })
 
   $scope.select = function(instanceOffering) {
     console.log(instanceOffering)
@@ -279,11 +282,12 @@ angular.module('zstackUI.instance', ['zstackUI.services.api'])
 })
 
 .controller('DataOfferingModalInstanceCtrl', ['$scope', 'ZStackApi', '$modalInstance', 'data', function ($scope, ZStackApi, $modalInstance, data) {
-  ZStackApi.queryDiskOffering([], function(data) {
-    $scope.$apply(function() {
-      $scope.offeringList = data.inventories;
+  ZStackApi.queryDiskOffering([])
+    .then(function(data) {
+      $scope.safeApply(function() {
+        $scope.itemList = data.inventories;
+      });
     });
-  })
 
   $scope.select = function(dataOffering) {
     console.log(dataOffering)
@@ -334,11 +338,12 @@ angular.module('zstackUI.instance', ['zstackUI.services.api'])
 })
 
 .controller('HostModalInstanceCtrl', ['$scope', 'ZStackApi', '$modalInstance', 'data', function ($scope, ZStackApi, $modalInstance, data) {
-  ZStackApi.queryHost([], function(data) {
-    $scope.$apply(function() {
-      $scope.hostList = data.inventories;
+  ZStackApi.queryHost([])
+    .then(function(data) {
+      $scope.safeApply(function() {
+        $scope.itemList = data.inventories;
+      });
     });
-  })
 
   $scope.select = function(host) {
     console.log(host)

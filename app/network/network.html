@@ -10,12 +10,12 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="ipRange in networkList[0].ipRanges">
-        <td>{{ipRange.name}}</td>
-        <td>{{ipRange.startIp}}</td>
-        <td>{{ipRange.endIp}}</td>
-        <td>{{ipRange.netmask}}</td>
-        <td>{{ipRange.gateway}}</td>
+      <tr ng-repeat="item in itemList[0].ipRanges">
+        <td>{{item.name}}</td>
+        <td>{{item.startIp}}</td>
+        <td>{{item.endIp}}</td>
+        <td>{{item.netmask}}</td>
+        <td>{{item.gateway}}</td>
       </tr>
     </tbody>
   </table>

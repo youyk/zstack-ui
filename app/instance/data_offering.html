@@ -13,7 +13,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="item in offeringList" ng-click="select(item)" ng-class="{'table-highlight': item.uuid == dataOffering.uuid}">
+      <tr ng-repeat="item in itemList" ng-click="select(item)" ng-class="{'table-highlight': item.uuid == dataOffering.uuid}">
         <td>{{item.name}}</td>
         <td></td>
         <td>{{ZStackUtil.bytesToSize(item.diskSize)}}</td>

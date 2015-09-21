@@ -16,10 +16,11 @@ angular.module('zstackUI.offering.instance', ['zstackUI.services.api'])
         name: "type",
         op: "=",
         value: "UserVm"
-      }], function(data) {
-          $scope.$apply(function() {
-            $scope.offeringList = data.inventories;
-        });
-      })
+      }])
+    .then(function(data) {
+      $scope.safeApply(function() {
+        $scope.itemList = data.inventories;
+      });
+    });
   });
 }])
