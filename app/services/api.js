@@ -7,7 +7,8 @@ angular.module('zstackUI.services.api', ['zstackUI.services.util'])
   self.debugLogin = function(cb) {
     console.log("debugLogin")
     if (self.socket) {
-      cb();
+      if (ZStackUtil.notNullnotUndefined(cb))
+        cb();
       return;
     }
     self.login('admin',
