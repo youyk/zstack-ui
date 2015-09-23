@@ -11,7 +11,7 @@ angular.module('zstackUI.instance', ['zstackUI.services.api'])
 }])
 
 .controller('InstanceCtrl', ['$scope', 'ZStackApi', function($scope, ZStackApi) {
-  ZStackApi.debugLogin(function() {
+  $scope.queryVmList = function() {
     ZStackApi.queryVmInstance(
       {
         conditions: [{
@@ -26,7 +26,14 @@ angular.module('zstackUI.instance', ['zstackUI.services.api'])
         $scope.vmList = data.inventories;
       });
     });
+  }
+  ZStackApi.debugLogin(function() {
+    $scope.queryVmList();
   });
+
+  $scope.$on("update:vmlist", function() {
+    $scope.queryVmList();
+  })
 }])
 
 .controller('CreateInstanceModalCtrl', function ($scope, $modal, $log) {
@@ -44,14 +51,13 @@ angular.module('zstackUI.instance', ['zstackUI.services.api'])
       backdrop: 'static',
       size: size,
       resolve: {
-        data: function () {
-          return $scope.data;
+        modalScope: function () {
+          return $scope;
         }
       }
     });
 
-    modalInstance.result.then(function (selectedItem) {
-      $scope.selected = selectedItem;
+    modalInstance.result.then(function () {
     }, function () {
       $log.info('Modal dismissed at: ' + new Date());
     });
@@ -63,7 +69,7 @@ angular.module('zstackUI.instance', ['zstackUI.services.api'])
 
 })
 
-.controller('CreateInstanceModalInstanceCtrl', ['$scope', 'ZStackApi', 'ZStackUtil', '$modalInstance', 'data', function ($scope, ZStackApi, ZStackUtil, $modalInstance, data) {
+.controller('CreateInstanceModalInstanceCtrl', ['$scope', 'ZStackApi', 'ZStackUtil', '$modalInstance', 'modalScope', function ($scope, ZStackApi, ZStackUtil, $modalInstance, modalScope) {
   var self = $scope;
   $scope.showDialog = true;
   $scope.name = "";
@@ -120,6 +126,7 @@ angular.module('zstackUI.instance', ['zstackUI.services.api'])
   $scope.ok = function() {
     self.create(function(ret) {
       console.log(ret)
+      modalScope.$emit("update:vmlist");
     })
     $modalInstance.close('ok');
   };

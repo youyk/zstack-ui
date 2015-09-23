@@ -56,6 +56,10 @@ angular.module('zstackUI.services.api', ['zstackUI.services.util'])
         delete self.cbList[msg.session.callid];
       });
 
+      self.socket.on('admin_broadcast', function(data) {
+        console.log(data)
+      });
+
       self.getSystemInfo();
 
       if (ZStackUtil.notNullnotUndefined(cb)) {

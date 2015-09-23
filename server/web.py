@@ -251,6 +251,9 @@ class CloudBus(object):
             evt_name = evt.keys()[0]
             if evt_name != "org.zstack.core.cloudbus.CanonicalEvent":
                 return
+            log.debug("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+
+            socketio.emit('admin_broadcast', evt, 'admin')
 
             log.debug('received a canonical event: %s' % body)
             evt_body = evt.values()[0]
