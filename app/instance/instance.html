@@ -10,16 +10,119 @@
         <th>Host IP</th>
         <th>State</th>
         <th>UUID</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
       <tr ng-repeat="vm in vmList">
-        <td>{{vm.name}}</td>
-        <td></td>
-        <td>{{vm.vmNics[0].ip}}</td>
-        <td></td>
-        <td>{{vm.state}}</td>
-        <td>{{vm.uuid}}</td>
+        <td ng-if="vm.collapsed"><a ng-click="onClickRow(vm)">{{vm.name}}</a></td>
+        <td ng-if="vm.collapsed"></td>
+        <td ng-if="vm.collapsed">{{vm.vmNics[0].ip}}</td>
+        <td ng-if="vm.collapsed"></td>
+        <td ng-if="vm.collapsed">{{vm.state}}</td>
+        <td ng-if="vm.collapsed">{{vm.uuid}}</td>
+        <td colspan="6" ng-if="!vm.collapsed">
+          <div class="row">
+            <div class="col-md-5">
+              <div class="row">
+                <label class="col-md-5 control-label">Name:</label>
+                <div class="col-md-7">{{vm.name}}</div>
+              </div>
+              <div class="row">
+                <label class="col-md-5 control-label">State:</label>
+                <div class="col-md-7">{{vm.state}}</div>
+              </div>
+              <div class="row">
+                <label class="col-md-5 control-label">Hypervisor:</label>
+                <div class="col-md-7">{{vm.hypervisorType}}</div>
+              </div>
+              <div class="row">
+                <label class="col-md-5 control-label">UUID:</label>
+                <div class="col-md-7">{{vm.uuid}}</div>
+              </div>
+              <div class="row">
+                <label class="col-md-5 control-label">CPU Number:</label>
+                <div class="col-md-7">{{vm.cpuNum}}</div>
+              </div>
+              <div class="row">
+                <label class="col-md-5 control-label">Memory Size:</label>
+                <div class="col-md-7">{{vm.memorySize}}</div>
+              </div>
+              <div class="row">
+                <label class="col-md-5 control-label">Instance Offering UUID:</label>
+                <div class="col-md-7">{{vm.instanceOfferingUuid}}</div>
+              </div>
+              <div class="row">
+                <label class="col-md-5 control-label">Image UUID:</label>
+                <div class="col-md-7">{{vm.imageUuid}}</div>
+              </div>
+              <div class="row">
+                <label class="col-md-5 control-label">Host UUID:</label>
+                <div class="col-md-7">{{vm.hostUuid}}</div>
+              </div>
+              <div class="row">
+                <label class="col-md-5 control-label">Last Host UUID:</label>
+                <div class="col-md-7">{{vm.lastHostUuid}}</div>
+              </div>
+              <div class="row">
+                <label class="col-md-5 control-label">Create Date:</label>
+                <div class="col-md-7">{{vm.createDate}}</div>
+              </div>
+              <div class="row">
+                <label class="col-md-5 control-label">Last Update Date:</label>
+                <div class="col-md-7">{{vm.lastOpDate}}</div>
+              </div>
+            </div>
+            <div class="col-md-5" style="padding:30px">
+              <div class="row">
+                <label class="col-md-3 control-label">IP:</label>
+                <div class="col-md-9">{{vm.vmNics[0].ip}}</div>
+              </div>
+              <div class="row">
+                <label class="col-md-3 control-label">Netmask:</label>
+                <div class="col-md-9">{{vm.vmNics[0].netmask}}</div>
+              </div>
+              <div class="row">
+                <label class="col-md-3 control-label">Gateway:</label>
+                <div class="col-md-9">{{vm.vmNics[0].gateway}}</div>
+              </div>
+              <div class="row">
+                <label class="col-md-3 control-label">MAC:</label>
+                <div class="col-md-9">{{vm.vmNics[0].mac}}</div>
+              </div>
+              <div class="row">
+                <label class="col-md-3 control-label">Volume:</label>
+              </div>
+              <div class="row" style="padding-left:15px">
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>State</th>
+                        <th>Status</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr ng-repeat="volume in vm.allVolumes">
+                        <td>{{volume.name}}</td>
+                        <td>{{volume.type}}</td>
+                        <td>{{volume.state}}</td>
+                        <td>{{volume.status}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div><a ng-click="onClickRow(vm)">Collapse</a></div>
+              <div><a>Start</a></div>
+              <div><a>Stop</a></div>
+              <div><a>Delete</a></div>
+            </div>
+          </div>
+        </td>
       </tr>
     </tbody>
   </table>

@@ -24,6 +24,10 @@ angular.module('zstackUI.instance', ['zstackUI.services.api'])
     .then(function(data) {
       $scope.safeApply(function() {
         $scope.vmList = data.inventories;
+        console.log(data)
+        for (var i in $scope.vmList) {
+          $scope.vmList[i].collapsed = true;
+        }
       });
     });
   }
@@ -34,6 +38,11 @@ angular.module('zstackUI.instance', ['zstackUI.services.api'])
   $scope.$on("update:vmlist", function() {
     $scope.queryVmList();
   })
+
+  $scope.onClickRow = function(vm) {
+    vm.collapsed = !vm.collapsed;
+  }
+
 }])
 
 .controller('CreateInstanceModalCtrl', function ($scope, $modal, $log) {
