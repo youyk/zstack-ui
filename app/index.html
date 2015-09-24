@@ -40,6 +40,17 @@
       </div>
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
+          <li style="padding:15px;">
+            <div dropdown dropdown-append-to-body>
+              <a href dropdown-toggle style="color:#999">
+                Language
+              </a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="btn-append-to-body" style="z-index:9999">
+                <li role="menuitem"><a href ng-click="changeLanguage('en')">English</a></li>
+                <li role="menuitem"><a href ng-click="changeLanguage('zh-CN')">中文</a></li>
+              </ul>
+            </div>
+          </li>
           <li><a href="#">Dashboard</a></li>
           <li><a href="#">Settings</a></li>
           <li><a href="#">Profile</a></li>
@@ -64,6 +75,7 @@
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
   <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+  <script src="bower_components/angular-translate/angular-translate.min.js"></script>
   <script src="bower_components/socket.io-client/dist/socket.io.min.js"></script>
   <script src="app.js"></script>
   <script src="main/main.js"></script>

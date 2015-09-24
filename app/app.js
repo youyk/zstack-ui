@@ -4,6 +4,7 @@
 angular.module('zstackUI', [
   'ui.bootstrap',
   'ui.router',
+  'pascalprecht.translate',
   'zstackUI.main',
   'zstackUI.login',
   'zstackUI.dashboard',
@@ -15,11 +16,34 @@ angular.module('zstackUI', [
   'zstackUI.network',
   'zstackUI.volume',
 ]).
-config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+config(['$stateProvider', '$urlRouterProvider', '$translateProvider', function($stateProvider, $urlRouterProvider, $translateProvider) {
   $urlRouterProvider.otherwise('/main');
+
+  $translateProvider.translations('en', {
+    DASHBOARD: 'Dashboard',
+    INSTANCE: 'Instance',
+    HOST: 'Host',
+    IMAGE: 'Image',
+    NETWORK: 'Network',
+    VOLUME: 'Volume',
+    INSTANCE_OFFERING: 'Instance Offering',
+    DATA_OFFERING: 'Data Offering'
+  })
+  .translations('zh-CN', {
+    DASHBOARD: '首页',
+    INSTANCE: '虚拟机',
+    HOST: '物理机',
+    IMAGE: '镜像',
+    NETWORK: '网络',
+    VOLUME: '存储',
+    INSTANCE_OFFERING: '系统模板',
+    DATA_OFFERING: '存储模板'
+  })
+
+  $translateProvider.preferredLanguage('en');
 }]);
 
-angular.module('ng').run(['$rootScope', function($rootScope) {
+angular.module('ng').run(['$rootScope', '$translate', function($rootScope, $translate) {
     $rootScope.safeApply = function(fn) {
         var phase = this.$root.$$phase;
         if(phase == '$apply' || phase == '$digest') {
@@ -30,4 +54,8 @@ angular.module('ng').run(['$rootScope', function($rootScope) {
             this.$apply(fn);
         }
     };
+
+    $rootScope.changeLanguage = function(langKey) {
+      $translate.use(langKey);
+    }
 }]);
