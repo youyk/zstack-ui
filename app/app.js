@@ -9,6 +9,8 @@ angular.module('zstackUI', [
   'zstackUI.login',
   'zstackUI.dashboard',
   'zstackUI.instance',
+  'zstackUI.instance.details',
+  'zstackUI.instance.details-directive',
   'zstackUI.host',
   'zstackUI.image',
   'zstackUI.offering.instance',
@@ -17,7 +19,7 @@ angular.module('zstackUI', [
   'zstackUI.volume',
 ]).
 config(['$stateProvider', '$urlRouterProvider', '$translateProvider', function($stateProvider, $urlRouterProvider, $translateProvider) {
-  $urlRouterProvider.otherwise('/main');
+  // $urlRouterProvider.otherwise('/main/dashboard');
 
   $translateProvider.translations('en', {
     DASHBOARD: 'Dashboard',
