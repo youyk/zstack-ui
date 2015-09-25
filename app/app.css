@@ -1,5 +1,7 @@
 /* app css stylesheet */
 
+a { cursor: pointer; cursor: hand; }
+
 /*
  * Style tweaks
  * --------------------------------------------------
