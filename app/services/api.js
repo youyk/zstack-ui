@@ -195,5 +195,75 @@ angular.module('zstackUI.services.api', ['zstackUI.services.util'])
     return self._getCapacityByAll("org.zstack.header.network.l3.APIGetIpAddressCapacityMsg");
   }
 
+  self.simpleMsg = function(msg) {
+    return $q(function(resolve, reject) {
+      self.call(msg, function(data) {
+        if (data.success)
+          resolve(data);
+        else
+          reject(data);
+      })
+    });
+  }
+
+  self.startVm = function(uuid) {
+    return self.simpleMsg({
+      "org.zstack.header.vm.APIStartVmInstanceMsg": {
+        "uuid": uuid
+      }
+    });
+  }
+
+  self.stopVm = function(uuid) {
+    return self.simpleMsg({
+      "org.zstack.header.vm.APIStopVmInstanceMsg": {
+        "uuid": uuid
+      }
+    });
+  }
+
+  self.rebootVm = function(uuid) {
+    return self.simpleMsg({
+      "org.zstack.header.vm.APIRebootVmInstanceMsg": {
+        "uuid": uuid
+      }
+    });
+  }
+
+  self.migrateVm = function(hostUuid, vmUuid) {
+    return self.simpleMsg({
+      "org.zstack.header.vm.APIRebootVmInstanceMsg": {
+        "vmInstanceUuid": vmUuid,
+        "hostUuid": hostUuid
+      }
+    });
+  }
+
+  self.attacheVolume = function(volumeUuid, vmUuid) {
+    return self.simpleMsg({
+      "org.zstack.header.volume.APIAttachDataVolumeToVmMsg": {
+        "volumeUuid": volumeUuid,
+        "vmInstanceUuid": vmUuid
+      }
+    });
+  }
+
+  self.detacheVolume = function(volumeUuid) {
+    return self.simpleMsg({
+      "org.zstack.header.volume.APIDetachDataVolumeFromVmMsg": {
+        "uuid": volumeUuid
+      }
+    });
+  }
+
+  self.detacheVolume = function(instanceOfferingUuid, vmUuid) {
+    return self.simpleMsg({
+      "org.zstack.header.vm.APIChangeInstanceOfferingMsg": {
+        "vmInstanceUuid": vmUuid,
+        "instanceOfferingUuid": instanceOfferingUuid
+      }
+    });
+  }
+
   return self;
 }])
