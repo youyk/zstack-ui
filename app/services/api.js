@@ -230,6 +230,15 @@ angular.module('zstackUI.services.api', ['zstackUI.services.util'])
     });
   }
 
+  self.destroyVm = function(uuid) {
+    return self.simpleMsg({
+      "org.zstack.header.vm.APIDestroyVmInstanceMsg": {
+        "uuid": uuid
+      }
+    });
+  }
+
+
   self.migrateVm = function(hostUuid, vmUuid) {
     return self.simpleMsg({
       "org.zstack.header.vm.APIRebootVmInstanceMsg": {
@@ -239,7 +248,16 @@ angular.module('zstackUI.services.api', ['zstackUI.services.util'])
     });
   }
 
-  self.attacheVolume = function(volumeUuid, vmUuid) {
+  self.changeInstanceOffering = function(instanceOfferingUuid, vmUuid) {
+    return self.simpleMsg({
+      "org.zstack.header.vm.APIChangeInstanceOfferingMsg": {
+        "vmInstanceUuid": vmUuid,
+        "instanceOfferingUuid": instanceOfferingUuid
+      }
+    });
+  }
+
+  self.attachVolume = function(volumeUuid, vmUuid) {
     return self.simpleMsg({
       "org.zstack.header.volume.APIAttachDataVolumeToVmMsg": {
         "volumeUuid": volumeUuid,
@@ -248,19 +266,10 @@ angular.module('zstackUI.services.api', ['zstackUI.services.util'])
     });
   }
 
-  self.detacheVolume = function(volumeUuid) {
+  self.detachVolume = function(volumeUuid) {
     return self.simpleMsg({
       "org.zstack.header.volume.APIDetachDataVolumeFromVmMsg": {
         "uuid": volumeUuid
-      }
-    });
-  }
-
-  self.detacheVolume = function(instanceOfferingUuid, vmUuid) {
-    return self.simpleMsg({
-      "org.zstack.header.vm.APIChangeInstanceOfferingMsg": {
-        "vmInstanceUuid": vmUuid,
-        "instanceOfferingUuid": instanceOfferingUuid
       }
     });
   }

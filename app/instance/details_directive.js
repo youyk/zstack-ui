@@ -1,9 +1,11 @@
 'use strict';
 
 angular.module('zstackUI.instance.details_directive',
-    ['zstackUI.services.api', 'zstackUI.instance.modal.controller'])
+    ['zstackUI.services.api',
+     'zstackUI.services.util',
+     'zstackUI.instance.modal.controller'])
 
-.directive('detailsDirective', ['ZStackApi', function(ZStackApi) {
+.directive('detailsDirective', ['ZStackApi', 'ZStackUtil', function(ZStackApi, ZStackUtil) {
   return {
     scope: {
       vm: '=ngModel',
@@ -11,14 +13,49 @@ angular.module('zstackUI.instance.details_directive',
     templateUrl: 'instance/details_directive.html',
     controller: function($scope) {
       $scope.ZStackApi = ZStackApi;
-      console.log("ZStackApi..........................")
-      console.log(ZStackApi)
 
       $scope.$on("child-dialog:close", function(_, msg) {
         console.log(msg)
-        // $scope.showDialog = true;
-        // if (ZStackUtil.notNullnotUndefined(msg))
-        //   $scope[msg.name] = msg.data;
+        if (!ZStackUtil.notNullnotUndefined(msg))
+          return;
+        switch (msg.name) {
+          case "host":
+            ZStackApi.migrateVm(msg.data.uuid, $scope.vm.uuid)
+            .then(function(result) {
+              console.log(result)
+            }, function(reason) {
+              console.log(reason)
+            });;
+            break;
+          case "instanceOffering":
+            ZStackApi.changeInstanceOffering(msg.data.uuid, $scope.vm.uuid)
+            .then(function(result) {
+              console.log(result)
+            }, function(reason) {
+              console.log(reason)
+            });;
+            break;
+          case "dataVolume":
+            ZStackApi.attachVolume(msg.data.uuid, $scope.vm.uuid)
+            .then(function(result) {
+              console.log(result)
+            }, function(reason) {
+              console.log(reason)
+            });
+            break;
+          case "currentDataOffering":
+            ZStackApi.detachVolume(msg.data.uuid)
+            .then(function(result) {
+              console.log(result)
+            }, function(reason) {
+              console.log(reason)
+            });;
+            break;
+          default:
+            break;
+        }
+
+        $scope.showDialog = true;
       })
     }
   };

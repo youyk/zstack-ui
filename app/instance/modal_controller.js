@@ -338,6 +338,70 @@ angular.module('zstackUI.instance.modal.controller', ['zstackUI.services.api'])
   };
 }])
 
+.controller('DataVolumeModalCtrl', function ($scope, $modal, $log) {
+
+  var self = $scope;
+  $scope.data = {};
+
+  $scope.open = function (size) {
+
+    var modalInstance = $modal.open({
+      animation: false,
+      templateUrl: 'instance/data_volume.html',
+      controller: 'DataVolumeModalInstanceCtrl',
+      backdrop: 'static',
+      size: "lg",
+      resolve: {
+        data: function () {
+          return $scope.data;
+        }
+      }
+    });
+
+    modalInstance.result.then(function (msg) {
+      $scope.$emit("child-dialog:close", msg);
+    }, function () {
+      $scope.$emit("child-dialog:close");
+      $log.info('Modal dismissed at: ' + new Date());
+    });
+
+    $scope.$emit("child-dialog:open");
+  };
+})
+
+.controller('DataVolumeModalInstanceCtrl', ['$scope', 'ZStackApi', '$modalInstance', 'data', function ($scope, ZStackApi, $modalInstance, data) {
+  ZStackApi.queryVolume(
+      {
+        // conditions: [{
+        //   name: 'state',
+        //   op: '=',
+        //   value: 'Enabled'
+        // }]
+      }
+    )
+    .then(function(data) {
+      $scope.safeApply(function() {
+        $scope.itemList = data.inventories;
+      });
+    });
+
+  $scope.select = function(selectedItem) {
+    console.log(selectedItem)
+    $scope.selectedItem = selectedItem;
+  }
+
+  $scope.ok = function () {
+    $modalInstance.close({
+      name: "dataVolume",
+      data: $scope.selectedItem
+    });
+  };
+
+  $scope.cancel = function() {
+    $modalInstance.dismiss('cancel');
+  };
+}])
+
 .controller('HostModalCtrl', function ($scope, $modal, $log) {
 
   var self = $scope;
