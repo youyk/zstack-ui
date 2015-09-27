@@ -153,7 +153,7 @@ angular.module('zstackUI.services.api', ['zstackUI.services.util'])
     return self.simpleQuery('org.zstack.header.vm.APIQueryVmInstanceMsg', msgBody);
   }
 
-  self.queryImageList = function(msgBody) {
+  self.queryImage = function(msgBody) {
     return self.simpleQuery('org.zstack.header.image.APIQueryImageMsg', msgBody);
   }
 
