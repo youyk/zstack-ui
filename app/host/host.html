@@ -14,13 +14,16 @@
     </thead>
     <tbody>
       <tr ng-repeat="item in itemList">
-        <td>{{item.name}}</td>
-        <td></td>
-        <td>{{item.managementIp}}</td>
-        <td>{{item.hypervisorType}}</td>
-        <td>{{item.state}}</td>
-        <td>{{item.status}}</td>
-        <td>{{item.uuid}}</td>
+        <td ng-if="item.collapsed"><a ng-click="item.collapsed = !item.collapsed">{{item.name}}</a></td>
+        <td ng-if="item.collapsed">{{item.description}}</td>
+        <td ng-if="item.collapsed">{{item.managementIp}}</td>
+        <td ng-if="item.collapsed">{{item.hypervisorType}}</td>
+        <td ng-if="item.collapsed">{{item.state}}</td>
+        <td ng-if="item.collapsed">{{item.status}}</td>
+        <td ng-if="item.collapsed">{{item.uuid}}</td>
+        <td colspan="7" ng-if="!item.collapsed">
+          <div instance-details-directive ng-model="item"></div>
+        </td>
       </tr>
     </tbody>
   </table>

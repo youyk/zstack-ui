@@ -12,11 +12,14 @@
     </thead>
     <tbody>
       <tr ng-repeat="item in itemList[0].ipRanges">
-        <td>{{item.name}}</td>
-        <td>{{item.startIp}}</td>
-        <td>{{item.endIp}}</td>
-        <td>{{item.netmask}}</td>
-        <td>{{item.gateway}}</td>
+        <td ng-if="item.collapsed"><a ng-click="item.collapsed=!item.collapsed">{{item.name}}</a></td>
+        <td ng-if="item.collapsed">{{item.startIp}}</td>
+        <td ng-if="item.collapsed">{{item.endIp}}</td>
+        <td ng-if="item.collapsed">{{item.netmask}}</td>
+        <td ng-if="item.collapsed">{{item.gateway}}</td>
+        <td colspan="5" ng-if="!item.collapsed">
+          <div network-details-directive ng-model="item"></div>
+        </td>
       </tr>
     </tbody>
   </table>

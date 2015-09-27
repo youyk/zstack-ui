@@ -1,23 +1,22 @@
 'use strict';
 
 angular.module('zstackUI.offering.data',
-    [
+  [
     'zstackUI.offering.data.modal.controller',
-    'zstackUI.services.api',
-    'zstackUI.services.util'
-    ])
+    'zstackUI.data_offering.details_directive',
+    'zstackUI.data_offering.details',
+    'zstackUI.services.api'
+  ])
 
 .config(['$stateProvider', function($stateProvider) {
   $stateProvider.state('main.data_offering', {
     url: '/data_offering',
-    templateUrl: 'offering/data_offering.html',
+    templateUrl: 'data_offering/offering.html',
     controller: 'DataOfferingCtrl'
   });
 }])
 
-
-.controller('DataOfferingCtrl', ['$scope', 'ZStackApi', 'ZStackUtil', 
-                                 function($scope, ZStackApi, ZStackUtil) {
+.controller('DataOfferingCtrl', ['$scope', 'ZStackApi', function($scope, ZStackApi) {
   $scope.queryList = function() {
     ZStackApi.queryDiskOffering(
       {
@@ -31,6 +30,9 @@ angular.module('zstackUI.offering.data',
     .then(function(data) {
       $scope.safeApply(function() {
         $scope.itemList = data.inventories;
+        for (var i in $scope.itemList) {
+          $scope.itemList[i].collapsed = true;
+        }
       });
     });
   }

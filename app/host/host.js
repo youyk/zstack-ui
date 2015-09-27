@@ -3,7 +3,8 @@
 angular.module('zstackUI.host',
   [
     'zstackUI.services.api',
-    'zstackUI.host.modal.controller'
+    'zstackUI.host.modal.controller',
+    'zstackUI.host.details'
   ])
 
 .config(['$stateProvider', function($stateProvider) {
@@ -21,6 +22,9 @@ angular.module('zstackUI.host',
     .then(function(data) {
       $scope.safeApply(function() {
         $scope.itemList = data.inventories;
+        for (var i in $scope.itemList) {
+          $scope.itemList[i].collapsed = true;
+        }
       });
     });
   }

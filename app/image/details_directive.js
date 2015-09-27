@@ -1,16 +1,15 @@
 'use strict';
 
-angular.module('zstackUI.instance.details_directive',
+angular.module('zstackUI.image.details_directive',
     ['zstackUI.services.api',
-     'zstackUI.services.util',
-     'zstackUI.instance.modal.controller'])
+     'zstackUI.services.util'])
 
-.directive('instanceDetailsDirective', ['ZStackApi', 'ZStackUtil', function(ZStackApi, ZStackUtil) {
+.directive('imageDetailsDirective', ['ZStackApi', 'ZStackUtil', function(ZStackApi, ZStackUtil) {
   return {
     scope: {
       data: '=ngModel',
     },
-    templateUrl: 'instance/details_directive.html',
+    templateUrl: 'image/details_directive.html',
     controller: function($scope) {
       $scope.ZStackApi = ZStackApi;
 

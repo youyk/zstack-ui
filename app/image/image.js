@@ -3,6 +3,7 @@
 angular.module('zstackUI.image',
     [
     'zstackUI.image.modal.controller',
+    'zstackUI.image.details',
     'zstackUI.services.api',
     'zstackUI.services.util'
     ])
@@ -22,7 +23,10 @@ angular.module('zstackUI.image',
     ZStackApi.queryImage()
     .then(function(data) {
       $scope.safeApply(function() {
-        $scope.imageList = data.inventories;
+        $scope.itemList = data.inventories;
+        for (var i in $scope.itemList) {
+          $scope.itemList[i].collapsed = true;
+        }
       });
     })
   }

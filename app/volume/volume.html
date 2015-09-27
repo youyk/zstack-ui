@@ -4,6 +4,7 @@
     <thead>
       <tr>
         <th>Name</th>
+        <th>Description</th>
         <th>Hypervisor</th>
         <th>Type</th>
         <th>State</th>
@@ -14,13 +15,16 @@
     </thead>
     <tbody>
       <tr ng-repeat="item in itemList">
-        <td>{{item.name}}</td>
-        <td></td>
-        <td>{{item.type}}</td>
-        <td>{{item.state}}</td>
-        <td>{{item.status}}</td>
-        <td>{{item.vmInstanceUuid}}</td>
-        <td>{{item.uuid}}</td>
+        <td ng-if="item.collapsed"><a ng-click="item.collapsed = !item.collapsed">{{item.name}}</a></td>
+        <td ng-if="item.collapsed">{{item.description}}</td>
+        <td ng-if="item.collapsed">{{item.type}}</td>
+        <td ng-if="item.collapsed">{{item.state}}</td>
+        <td ng-if="item.collapsed">{{item.status}}</td>
+        <td ng-if="item.collapsed">{{item.vmInstanceUuid}}</td>
+        <td ng-if="item.collapsed">{{item.uuid}}</td>
+        <td colspan="7" ng-if="!item.collapsed">
+          <div image-details-directive ng-model="item"></div>
+        </td>
       </tr>
     </tbody>
   </table>

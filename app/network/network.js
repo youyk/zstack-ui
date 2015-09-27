@@ -3,6 +3,7 @@
 angular.module('zstackUI.network',
   [
     'zstackUI.network.modal.controller',
+    'zstackUI.network.details_directive',
     'zstackUI.services.api'
   ])
 
@@ -20,6 +21,9 @@ angular.module('zstackUI.network',
     .then(function(data) {
       $scope.safeApply(function() {
         $scope.itemList = data.inventories;
+        for (var i in $scope.itemList[0].ipRanges) {
+          $scope.itemList[0].ipRanges[i].collapsed = true;
+        }
       });
     });
   }

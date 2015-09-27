@@ -5,66 +5,70 @@
       <div class="col-md-7">{{data.name}}</div>
     </div>
     <div class="row">
+      <label class="col-md-5 control-label">Name:</label>
+      <div class="col-md-7">{{vm.name}}</div>
+    </div>
+    <div class="row">
       <label class="col-md-5 control-label">State:</label>
-      <div class="col-md-7">{{data.state}}</div>
+      <div class="col-md-7">{{vm.state}}</div>
     </div>
     <div class="row">
       <label class="col-md-5 control-label">Hypervisor:</label>
-      <div class="col-md-7">{{data.hypervisorType}}</div>
+      <div class="col-md-7">{{vm.hypervisorType}}</div>
     </div>
     <div class="row">
       <label class="col-md-5 control-label">UUID:</label>
-      <div class="col-md-7">{{data.uuid}}</div>
+      <div class="col-md-7">{{vm.uuid}}</div>
     </div>
     <div class="row">
       <label class="col-md-5 control-label">CPU Number:</label>
-      <div class="col-md-7">{{data.cpuNum}}</div>
+      <div class="col-md-7">{{vm.cpuNum}}</div>
     </div>
     <div class="row">
       <label class="col-md-5 control-label">Memory Size:</label>
-      <div class="col-md-7">{{data.memorySize}}</div>
+      <div class="col-md-7">{{vm.memorySize}}</div>
     </div>
     <div class="row">
       <label class="col-md-5 control-label">Instance Offering UUID:</label>
-      <div class="col-md-7">{{data.instanceOfferingUuid}}</div>
+      <div class="col-md-7">{{vm.instanceOfferingUuid}}</div>
     </div>
     <div class="row">
       <label class="col-md-5 control-label">Image UUID:</label>
-      <div class="col-md-7">{{data.imageUuid}}</div>
+      <div class="col-md-7">{{vm.imageUuid}}</div>
     </div>
     <div class="row">
       <label class="col-md-5 control-label">Host UUID:</label>
-      <div class="col-md-7">{{data.hostUuid}}</div>
+      <div class="col-md-7">{{vm.hostUuid}}</div>
     </div>
     <div class="row">
       <label class="col-md-5 control-label">Last Host UUID:</label>
-      <div class="col-md-7">{{data.lastHostUuid}}</div>
+      <div class="col-md-7">{{vm.lastHostUuid}}</div>
     </div>
     <div class="row">
       <label class="col-md-5 control-label">Create Date:</label>
-      <div class="col-md-7">{{data.createDate}}</div>
+      <div class="col-md-7">{{vm.createDate}}</div>
     </div>
     <div class="row">
       <label class="col-md-5 control-label">Last Update Date:</label>
-      <div class="col-md-7">{{data.lastOpDate}}</div>
+      <div class="col-md-7">{{vm.lastOpDate}}</div>
     </div>
   </div>
   <div class="col-md-4" style="padding:30px">
     <div class="row">
       <label class="col-md-3 control-label">IP:</label>
-      <div class="col-md-9">{{data.vmNics[0].ip}}</div>
+      <div class="col-md-9">{{vm.vmNics[0].ip}}</div>
     </div>
     <div class="row">
       <label class="col-md-3 control-label">Netmask:</label>
-      <div class="col-md-9">{{data.vmNics[0].netmask}}</div>
+      <div class="col-md-9">{{vm.vmNics[0].netmask}}</div>
     </div>
     <div class="row">
       <label class="col-md-3 control-label">Gateway:</label>
-      <div class="col-md-9">{{data.vmNics[0].gateway}}</div>
+      <div class="col-md-9">{{vm.vmNics[0].gateway}}</div>
     </div>
     <div class="row">
       <label class="col-md-3 control-label">MAC:</label>
-      <div class="col-md-9">{{data.vmNics[0].mac}}</div>
+      <div class="col-md-9">{{vm.vmNics[0].mac}}</div>
     </div>
     <div class="row">
       <label class="col-md-3 control-label">Volume:</label>
@@ -81,7 +85,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr ng-repeat="volume in data.allVolumes">
+            <tr ng-repeat="volume in vm.allVolumes">
               <td>{{volume.name}}</td>
               <td>{{volume.type}}</td>
               <td>{{volume.state}}</td>
@@ -93,14 +97,14 @@
   </div>
   <div class="col-md-1">
     <div><a ng-click="collapse()">{{ 'INSTANCE_COLLAPSE' | translate }}</a></div>
-    <div><a ng-click="ZStackApi.startVm(data.uuid)">{{ 'INSTANCE_START' | translate }}</a></div>
-    <div><a ng-click="ZStackApi.stopVm(data.uuid)">{{ 'INSTANCE_STOP' | translate }}</a></div>
-    <div><a ng-click="ZStackApi.rebootVm(data.uuid)">{{ 'INSTANCE_REBOOT' | translate }}</a></div>
-    <div><a ng-click="ZStackApi.destroyVm(data.uuid)">{{ 'INSTANCE_DELETE' | translate }}</a></div>
+    <div><a ng-click="ZStackApi.startVm(vm.uuid)">{{ 'INSTANCE_START' | translate }}</a></div>
+    <div><a ng-click="ZStackApi.stopVm(vm.uuid)">{{ 'INSTANCE_STOP' | translate }}</a></div>
+    <div><a ng-click="ZStackApi.rebootVm(vm.uuid)">{{ 'INSTANCE_REBOOT' | translate }}</a></div>
+    <div><a ng-click="ZStackApi.destroyVm(vm.uuid)">{{ 'INSTANCE_DELETE' | translate }}</a></div>
     <div><a ng-controller="HostModalCtrl" ng-click="open()">{{ 'INSTANCE_MIGRATE' | translate }}</a></div>
     <div><a>{{ 'INSTANCE_CONSOLE' | translate }}</a></div>
     <div><a ng-controller="DataVolumeModalCtrl" ng-click="open()">{{ 'INSTANCE_ATTACH_VOLUME' | translate }}</a></div>
-    <div><a ng-controller="CurrentDataOfferingModalCtrl" ng-click="open(data.allVolumes)">{{ 'INSTANCE_DETACH_VOLUME' | translate }}</a></div>
+    <div><a ng-controller="CurrentDataOfferingModalCtrl" ng-click="open(vm.allVolumes)">{{ 'INSTANCE_DETACH_VOLUME' | translate }}</a></div>
     <div><a ng-controller="ImageModalCtrl" ng-click="open()">{{ 'INSTANCE_CHANGE_INSTANCE_OFFERING' | translate }}</a></div>
   </div>
 </div>

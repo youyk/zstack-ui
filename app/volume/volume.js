@@ -3,6 +3,7 @@
 angular.module('zstackUI.volume',
   [
     'zstackUI.volume.modal.controller',
+    'zstackUI.volume.details',
     'zstackUI.services.api'
   ])
 
@@ -20,6 +21,9 @@ angular.module('zstackUI.volume',
     .then(function(data) {
       $scope.safeApply(function() {
         $scope.itemList = data.inventories;
+        for (var i in $scope.itemList) {
+          $scope.itemList[i].collapsed = true;
+        }
       });
     });
   }

@@ -14,15 +14,18 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="image in imageList">
-        <td>{{image.name}}</td>
-        <td>{{image.mediaType}}</td>
-        <td>{{image.state}}</td>
-        <td>{{image.status}}</td>
-        <td>{{image.platform}}</td>
-        <td>{{ZStackUtil.bytesToSize(image.size)}}</td>
-        <td>{{image.format}}</td>
-        <td>{{image.uuid}}</td>
+      <tr ng-repeat="item in itemList">
+        <td ng-if="item.collapsed"><a ng-click="item.collapsed=!item.collapsed">{{item.name}}</a></td>
+        <td ng-if="item.collapsed">{{item.mediaType}}</td>
+        <td ng-if="item.collapsed">{{item.state}}</td>
+        <td ng-if="item.collapsed">{{item.status}}</td>
+        <td ng-if="item.collapsed">{{item.platform}}</td>
+        <td ng-if="item.collapsed">{{ZStackUtil.bytesToSize(item.size)}}</td>
+        <td ng-if="item.collapsed">{{item.format}}</td>
+        <td ng-if="item.collapsed">{{item.uuid}}</td>
+        <td colspan="8" ng-if="!item.collapsed">
+          <div image-details-directive ng-model="item"></div>
+        </td>
       </tr>
     </tbody>
   </table>
