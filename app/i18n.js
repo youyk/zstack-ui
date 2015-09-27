@@ -26,6 +26,8 @@ angular.module('zstackUI.i18n', ['pascalprecht.translate'])
     IMAGE_ADD: 'Add Image',
 
     HOST_ADD: 'Add Host',
+
+    NETWORK_ADD_IP_RANGE: 'Add IP Range',
   })
   .translations('zh-CN', {
     DASHBOARD: '首页',
@@ -50,6 +52,8 @@ angular.module('zstackUI.i18n', ['pascalprecht.translate'])
     IMAGE_ADD: '添加镜像',
 
     HOST_ADD: '添加物理机',
+
+    NETWORK_ADD_IP_RANGE: '添加地址空间',
   })
 
   $translateProvider.preferredLanguage('zh-CN');

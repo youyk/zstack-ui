@@ -1,6 +1,10 @@
 'use strict';
 
-angular.module('zstackUI.network', ['zstackUI.services.api'])
+angular.module('zstackUI.network',
+  [
+    'zstackUI.network.modal.controller',
+    'zstackUI.services.api'
+  ])
 
 .config(['$stateProvider', function($stateProvider) {
   $stateProvider.state('main.network', {
@@ -11,12 +15,20 @@ angular.module('zstackUI.network', ['zstackUI.services.api'])
 }])
 
 .controller('NetworkCtrl', ['$scope', 'ZStackApi', function($scope, ZStackApi) {
-  ZStackApi.debugLogin(function() {
+  $scope.queryList = function() {
     ZStackApi.queryL3Network()
     .then(function(data) {
       $scope.safeApply(function() {
         $scope.itemList = data.inventories;
       });
     });
+  }
+
+  ZStackApi.debugLogin(function() {
+    $scope.queryList();
   });
+
+  $scope.$on("update:list", function() {
+    $scope.queryList();
+  })
 }])
