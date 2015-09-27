@@ -14,6 +14,10 @@ angular.module('zstackUI.instance.details_directive',
     controller: function($scope) {
       $scope.ZStackApi = ZStackApi;
 
+      $scope.collapse = function() {
+        $scope.vm.collapsed = !$scope.vm.collapsed
+      }
+
       $scope.$on("child-dialog:close", function(_, msg) {
         console.log(msg)
         if (!ZStackUtil.notNullnotUndefined(msg))

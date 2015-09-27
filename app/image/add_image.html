@@ -1,0 +1,65 @@
+<div ng-show="showDialog">
+  <div class="modal-header">
+    <h3>{{ 'IMAGE_ADD' | translate}}</h3>
+  </div>
+  <div class="modal-body">
+    <form role="form">
+      <div class="form-group">
+        <label for="usr">Name:</label>
+        <input type="text" class="form-control" ng-model="name">
+      </div>
+      <div class="form-group">
+        <label for="usr">Description:</label>
+        <textarea class="form-control" rows="3" ng-model="description"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="usr">Format:</label>
+        <div class="btn-group" dropdown is-open="false">
+          <button id="format-button" type="button" class="btn" dropdown-toggle ng-disabled="disabled">
+            {{format}} <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="format-button">
+            <li role="menuitem" ng-repeat="item in formatList">
+              <a ng-click="select('format', item)">{{item}}</a>
+            </li>
+          </ul>
+        </div>
+      </div>  
+      <div class="form-group">
+        <label for="usr">Media Type:</label>
+        <div class="btn-group" dropdown is-open="false">
+          <button id="media-type-button" type="button" class="btn" dropdown-toggle ng-disabled="disabled">
+            {{mediaType}} <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="media-type-button">
+            <li role="menuitem" ng-repeat="item in mediaTypeList">
+              <a ng-click="select('mediaType', item)">{{item}}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="usr">Plateform:</label>
+        <div class="btn-group" dropdown is-open="false">
+          <button id="platform-button" type="button" class="btn" dropdown-toggle ng-disabled="disabled">
+            {{platform}} <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="platform-button">
+            <li role="menuitem" ng-repeat="item in platformList">
+              <a ng-click="select('platform', item)">{{item}}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="usr">URL:</label>
+        <input type="text" class="form-control" ng-model="url">
+      </div>
+    </form>
+
+  </div>
+  <div class="modal-footer">
+    <button class="btn" ng-click="cancel()">Cancel</button>
+    <button class="btn btn-primary" ng-click="ok()">OK</button>
+  </div>
+</div>

@@ -117,7 +117,7 @@ angular.module('zstackUI.instance.modal.controller', ['zstackUI.services.api'])
         instanceOfferingUuid: self.instanceOffering.uuid,
         imageUuid: self.image.uuid,
         l3NetworkUuids: [ZStackApi.defaultL3Network.uuid],
-        dataDiskOfferingUuids: [self.dataOffering.uuid],
+        dataDiskOfferingUuids: ZStackUtil.notNullnotUndefined(self.dataOffering) ? [self.dataOffering.uuid] : [],
         zoneUuid: ZStackApi.defaultZone.uuid,
         clusterUuid: ZStackApi.defaultCluster.uuid,
         hostUuid: self.host.uuid,

@@ -2,6 +2,7 @@
 
 angular.module('zstackUI.image',
     [
+    'zstackUI.image.modal.controller',
     'zstackUI.services.api',
     'zstackUI.services.util'
     ])
@@ -17,12 +18,21 @@ angular.module('zstackUI.image',
                                  function($scope, ZStackApi, ZStackUtil) {
   $scope.ZStackUtil = ZStackUtil;
 
-  ZStackApi.debugLogin(function() {
-    ZStackApi.queryImage()
+  $scope.queryList = function() {
+    ZStackApi.queryImageList()
     .then(function(data) {
       $scope.safeApply(function() {
         $scope.imageList = data.inventories;
       });
     })
+  }
+
+  ZStackApi.debugLogin(function() {
+    $scope.queryList();
   });
+
+  $scope.$on("update:list", function() {
+    $scope.queryList();
+  })
+
 }])

@@ -92,7 +92,7 @@
     </div>
   </div>
   <div class="col-md-1">
-    <div><a ng-click="onClickRow(vm)">{{ 'INSTANCE_COLLAPSE' | translate }}</a></div>
+    <div><a ng-click="collapse()">{{ 'INSTANCE_COLLAPSE' | translate }}</a></div>
     <div><a ng-click="ZStackApi.startVm(vm.uuid)">{{ 'INSTANCE_START' | translate }}</a></div>
     <div><a ng-click="ZStackApi.stopVm(vm.uuid)">{{ 'INSTANCE_STOP' | translate }}</a></div>
     <div><a ng-click="ZStackApi.rebootVm(vm.uuid)">{{ 'INSTANCE_REBOOT' | translate }}</a></div>

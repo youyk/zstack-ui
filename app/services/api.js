@@ -100,6 +100,21 @@ angular.module('zstackUI.services.api', ['zstackUI.services.util'])
     .then(function(data) {
       self.defaultL3Network = data.inventories[0];
     })
+
+    self.getVolumeFormat()
+    .then(function(result) {
+      self.formatList = result.formats;
+      console.log(result);
+    }, function(reason) {
+      console.log(reason)
+    })
+
+    self.queryBackupStorage()
+    .then(function(result) {
+      self.defaultBackupStorage = result.inventories[0]
+    }, function(reason) {
+      console.log(reason)
+    })
   }
 
   self.simpleQuery = function(apiName, msgBody) {
@@ -138,7 +153,7 @@ angular.module('zstackUI.services.api', ['zstackUI.services.util'])
     return self.simpleQuery('org.zstack.header.vm.APIQueryVmInstanceMsg', msgBody);
   }
 
-  self.queryImage = function(msgBody) {
+  self.queryImageList = function(msgBody) {
     return self.simpleQuery('org.zstack.header.image.APIQueryImageMsg', msgBody);
   }
 
@@ -162,6 +177,11 @@ angular.module('zstackUI.services.api', ['zstackUI.services.util'])
   self.queryHost = function (msgBody) {
     return self.simpleQuery('org.zstack.header.host.APIQueryHostMsg', msgBody);
   }
+
+  self.queryBackupStorage = function (msgBody) {
+    return self.simpleQuery('org.zstack.header.storage.backup.APIQueryBackupStorageMsg', msgBody);
+  }
+
 
   self._getCapacityByAll = function(apiName) {
     return $q(function(resolve, reject) {
@@ -270,6 +290,13 @@ angular.module('zstackUI.services.api', ['zstackUI.services.util'])
     return self.simpleMsg({
       "org.zstack.header.volume.APIDetachDataVolumeFromVmMsg": {
         "uuid": volumeUuid
+      }
+    });
+  }
+
+  self.getVolumeFormat = function() {
+    return self.simpleMsg({
+      "org.zstack.header.volume.APIGetVolumeFormatMsg": {
       }
     });
   }
