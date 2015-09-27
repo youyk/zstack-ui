@@ -1,0 +1,32 @@
+<div ng-show="showDialog">
+  <div class="modal-header">
+    <h3>{{ 'VOLUME_ADD' | translate}}</h3>
+  </div>
+  <div class="modal-body">
+    <form role="form">
+      <div class="form-group">
+        <label for="usr">Name:</label>
+        <input type="text" class="form-control" ng-model="name">
+      </div>
+      <div class="form-group">
+        <label>Description:</label>
+        <textarea class="form-control" rows="3" ng-model="description"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="usr">DataOffering:</label>
+        <input type="text" class="form-control" ng-model="dataOffering.name" disabled>
+        <a ng-controller="DataOfferingModalCtrl" ng-click="open()">Select</a>
+      </div>
+      <!--div class="form-group">
+        <label for="usr">Vm:</label>
+        <input type="text" class="form-control" ng-model="vm.name" disabled>
+        <a ng-controller="HostModalCtrl" ng-click="open()">Select</a>
+      </div-->
+    </form>
+
+  </div>
+  <div class="modal-footer">
+    <button class="btn" ng-click="cancel()">Cancel</button>
+    <button class="btn btn-default" ng-click="ok()">OK</button>
+  </div>
+</div>
