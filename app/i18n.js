@@ -23,7 +23,9 @@ angular.module('zstackUI.i18n', ['pascalprecht.translate'])
     INSTANCE_DETACH_VOLUME: 'Dettach Volume',
     INSTANCE_CHANGE_INSTANCE_OFFERING: 'Change Instance Offering',
 
-    IMAGE_ADD: 'Add Image'
+    IMAGE_ADD: 'Add Image',
+
+    HOST_ADD: 'Add Host',
   })
   .translations('zh-CN', {
     DASHBOARD: '首页',
@@ -45,7 +47,9 @@ angular.module('zstackUI.i18n', ['pascalprecht.translate'])
     INSTANCE_DETACH_VOLUME: '移除存储',
     INSTANCE_CHANGE_INSTANCE_OFFERING: '修改系统模板',
 
-    IMAGE_ADD: '添加镜像'
+    IMAGE_ADD: '添加镜像',
+
+    HOST_ADD: '添加物理机',
   })
 
   $translateProvider.preferredLanguage('zh-CN');

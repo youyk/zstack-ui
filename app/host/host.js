@@ -1,6 +1,10 @@
 'use strict';
 
-angular.module('zstackUI.host', ['zstackUI.services.api'])
+angular.module('zstackUI.host',
+  [
+    'zstackUI.services.api',
+    'zstackUI.host.modal.controller'
+  ])
 
 .config(['$stateProvider', function($stateProvider) {
   $stateProvider.state('main.host', {
@@ -12,12 +16,19 @@ angular.module('zstackUI.host', ['zstackUI.services.api'])
 
 .controller('HostCtrl', ['$scope', 'ZStackApi', function($scope, ZStackApi) {
   
-  ZStackApi.debugLogin(function() {
+  $scope.queryList = function() {
     ZStackApi.queryHost()
     .then(function(data) {
       $scope.safeApply(function() {
         $scope.itemList = data.inventories;
       });
     });
+  }
+  ZStackApi.debugLogin(function() {
+    $scope.queryList();
   });
+
+  $scope.$on("update:list", function() {
+    $scope.queryList();
+  })
 }])
