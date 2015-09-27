@@ -2,6 +2,7 @@
 
 angular.module('zstackUI.offering.data',
     [
+    'zstackUI.offering.data.modal.controller',
     'zstackUI.services.api',
     'zstackUI.services.util'
     ])
@@ -17,7 +18,7 @@ angular.module('zstackUI.offering.data',
 
 .controller('DataOfferingCtrl', ['$scope', 'ZStackApi', 'ZStackUtil', 
                                  function($scope, ZStackApi, ZStackUtil) {
-  ZStackApi.debugLogin(function() {
+  $scope.queryList = function() {
     ZStackApi.queryDiskOffering(
       {
         conditions: [{
@@ -32,5 +33,14 @@ angular.module('zstackUI.offering.data',
         $scope.itemList = data.inventories;
       });
     });
+  }
+
+  ZStackApi.debugLogin(function() {
+    $scope.queryList();
   });
+
+  $scope.$on("update:list", function() {
+    $scope.queryList();
+  })
+  
 }])

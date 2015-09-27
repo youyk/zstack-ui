@@ -111,5 +111,36 @@ angular.module('zstackUI.services.util', [])
     return input + ' MHZ';
   }
 
+  self.parseSize = function(sizeStr) {
+    var K = 1024;
+    var M = K * K;
+    var G = M * K;
+    var T = G * K;
+    var P = T * K;
+
+    var sizeMap = {
+        'K': K,
+        'M': M,
+        'G': G,
+        'T': T,
+        'P': P
+    };
+    var quantity = sizeStr.substr(sizeStr.length-1, 1);
+    var size = parseInt(sizeStr);
+    if (quantity == 'K' || quantity == 'k') {
+      return size * K;
+    } else if (quantity == 'M' || quantity == 'm') {
+      return size * M;
+    } else if (quantity == 'G' || quantity == 'g') {
+      return size * G;
+    } else if (quantity == 'T' || quantity == 't') {
+      return size * T;
+    } else if (quantity == 'P' || quantity == 'p') {
+      return size * P;
+    } else {
+      return parseInt(sizeStr);
+    }
+  }
+
   return self;
 })

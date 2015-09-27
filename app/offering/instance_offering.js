@@ -1,6 +1,10 @@
 'use strict';
 
-angular.module('zstackUI.offering.instance', ['zstackUI.services.api'])
+angular.module('zstackUI.offering.instance',
+  [
+    'zstackUI.offering.instance.modal.controller',
+    'zstackUI.services.api'
+  ])
 
 .config(['$stateProvider', function($stateProvider) {
   $stateProvider.state('main.instance_offering', {
@@ -11,7 +15,7 @@ angular.module('zstackUI.offering.instance', ['zstackUI.services.api'])
 }])
 
 .controller('InstanceOfferingCtrl', ['$scope', 'ZStackApi', function($scope, ZStackApi) {
-  ZStackApi.debugLogin(function() {
+  $scope.queryList = function() {
     ZStackApi.queryInstanceOffering(
       {
         conditions: [{
@@ -26,5 +30,12 @@ angular.module('zstackUI.offering.instance', ['zstackUI.services.api'])
         $scope.itemList = data.inventories;
       });
     });
+  }
+  ZStackApi.debugLogin(function() {
+    $scope.queryList();
   });
+
+  $scope.$on("update:list", function() {
+    $scope.queryList();
+  })
 }])

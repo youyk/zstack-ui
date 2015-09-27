@@ -30,6 +30,10 @@ angular.module('zstackUI.i18n', ['pascalprecht.translate'])
     NETWORK_ADD_IP_RANGE: 'Add IP Range',
 
     VOLUME_ADD: "Add Volume",
+
+    DATA_OFFERING_ADD: "Add Data Offering",
+
+    INSTANCE_OFFERING_ADD: "Add Instance Offering",
   })
   .translations('zh-CN', {
     DASHBOARD: '首页',
@@ -58,6 +62,10 @@ angular.module('zstackUI.i18n', ['pascalprecht.translate'])
     NETWORK_ADD_IP_RANGE: '添加地址空间',
 
     VOLUME_ADD: "添加存储",
+
+    DATA_OFFERING_ADD: "添加存储模板",
+
+    INSTANCE_OFFERING_ADD: "添加系统模板",
   })
 
   $translateProvider.preferredLanguage('zh-CN');
