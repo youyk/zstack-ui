@@ -2,6 +2,70 @@
 
 angular.module('zstackUI.select_modals', ['zstackUI.services.api'])
 
+.controller('InstanceModalCtrl', function ($scope, $modal, $log) {
+
+  var self = $scope;
+  $scope.data = {};
+
+  $scope.open = function (size) {
+
+    var modalInstance = $modal.open({
+      animation: false,
+      templateUrl: 'select_modals/instance.html',
+      controller: 'InstanceModalInstanceCtrl',
+      backdrop: 'static',
+      size: "lg",
+      resolve: {
+        data: function () {
+          return $scope.data;
+        }
+      }
+    });
+
+    modalInstance.result.then(function (msg) {
+      $scope.$emit("child-dialog:close", msg);
+    }, function () {
+      $scope.$emit("child-dialog:close");
+      $log.info('Modal dismissed at: ' + new Date());
+    });
+
+    $scope.$emit("child-dialog:open");
+  };
+})
+
+.controller('InstanceModalInstanceCtrl', ['$scope', 'ZStackApi', '$modalInstance', 'data', function ($scope, ZStackApi, $modalInstance, data) {
+  ZStackApi.queryVmInstance(
+    {
+      conditions: [{
+        name: "type",
+        op: "=",
+        value: "UserVm"
+      }]
+    }
+  )
+  .then(function(data) {
+    $scope.safeApply(function() {
+      $scope.itemList = data.inventories;
+    });
+  });
+
+  $scope.select = function(item) {
+    console.log(item)
+    $scope.selectedItem = item;
+  }
+
+  $scope.ok = function () {
+    $modalInstance.close({
+      name: "instance",
+      data: $scope.selectedItem
+    });
+  };
+
+  $scope.cancel = function() {
+    $modalInstance.dismiss('cancel');
+  };
+}])
+
 .controller('CurrentDataOfferingModalCtrl', function ($scope, $modal, $log) {
 
   var self = $scope;

@@ -61,8 +61,21 @@ angular.module('zstackUI.volume.modal.controller',
 
     ZStackApi.call(msg, function(data) {
       console.log(data)
-      if (ZStackUtil.notNullnotUndefined(cb))
-        cb(data);
+      if (data.success) {
+        var msg = {
+          'org.zstack.header.volume.APIAttachDataVolumeToVmMsg': {
+            vmInstanceUuid: $scope.instance.uuid,
+            volumeUuid: data.inventory.uuid
+          }
+        }
+
+        ZStackApi.call(msg, function(data) {
+          console.log(data)
+          if (ZStackUtil.notNullnotUndefined(cb))
+          cb(data);
+        });
+      };
+
     })
   }
   

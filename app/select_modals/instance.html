@@ -1,0 +1,32 @@
+<div class="modal-header">
+  Select item
+</div>
+<div class="modal-body">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Default IP</th>
+        <th>Host IP</th>
+        <th>State</th>
+        <th>UUID</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="item in itemList" ng-click="select(item)" ng-class="{'table-highlight': item.uuid == selectedItem.uuid}">
+        <td>{{item.name}}</td>
+        <td>{{item.description}}</td>
+        <td>{{item.vmNics[0].ip}}</td>
+        <td></td>
+        <td>{{item.state}}</td>
+        <td>{{item.uuid}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="modal-footer">
+  <button class="btn" ng-click="cancel()">Cancel</button>
+  <button class="btn btn-default" ng-click="ok()">OK</button>
+</div>
