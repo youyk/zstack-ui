@@ -26,6 +26,11 @@ angular.module('zstackUI.i18n', ['pascalprecht.translate'])
     IMAGE_ADD: 'Add Image',
 
     HOST_ADD: 'Add Host',
+    HOST_ENABLE: 'Enable',
+    HOST_DISABLE: 'Disable',
+    HOST_RECONNECT: 'Reconnect',
+    HOST_MAINTENANCE: 'Enter Maintenance Mode',
+    HOST_DELETE: 'Delete',
 
     NETWORK_ADD_IP_RANGE: 'Add IP Range',
 
@@ -58,6 +63,11 @@ angular.module('zstackUI.i18n', ['pascalprecht.translate'])
     IMAGE_ADD: '添加镜像',
 
     HOST_ADD: '添加物理机',
+    HOST_ENABLE: '启用',
+    HOST_DISABLE: '停用',
+    HOST_RECONNECT: '重连',
+    HOST_MAINTENANCE: '进入维护模式',
+    HOST_DELETE: '删除',
 
     NETWORK_ADD_IP_RANGE: '添加地址空间',
 
