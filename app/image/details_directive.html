@@ -96,15 +96,9 @@
     </div>
   </div>
   <div class="col-md-1">
-    <div><a ng-click="collapse()">{{ 'INSTANCE_COLLAPSE' | translate }}</a></div>
-    <div><a ng-click="ZStackApi.startVm(vm.uuid)">{{ 'INSTANCE_START' | translate }}</a></div>
-    <div><a ng-click="ZStackApi.stopVm(vm.uuid)">{{ 'INSTANCE_STOP' | translate }}</a></div>
-    <div><a ng-click="ZStackApi.rebootVm(vm.uuid)">{{ 'INSTANCE_REBOOT' | translate }}</a></div>
-    <div><a ng-click="ZStackApi.destroyVm(vm.uuid)">{{ 'INSTANCE_DELETE' | translate }}</a></div>
-    <div><a ng-controller="HostModalCtrl" ng-click="open()">{{ 'INSTANCE_MIGRATE' | translate }}</a></div>
-    <div><a>{{ 'INSTANCE_CONSOLE' | translate }}</a></div>
-    <div><a ng-controller="DataVolumeModalCtrl" ng-click="open()">{{ 'INSTANCE_ATTACH_VOLUME' | translate }}</a></div>
-    <div><a ng-controller="CurrentDataOfferingModalCtrl" ng-click="open(vm.allVolumes)">{{ 'INSTANCE_DETACH_VOLUME' | translate }}</a></div>
-    <div><a ng-controller="ImageModalCtrl" ng-click="open()">{{ 'INSTANCE_CHANGE_INSTANCE_OFFERING' | translate }}</a></div>
+    <div><a ng-click="collapse()">{{ 'COLLAPSE' | translate }}</a></div>
+    <div><a ng-click="ZStackApi.enableImage(vm.uuid)">{{ 'ENABLE' | translate }}</a></div>
+    <div><a ng-click="ZStackApi.disableImage(vm.uuid)">{{ 'DISABLE' | translate }}</a></div>
+    <div><a ng-click="ZStackApi.deleteImage(vm.uuid)">{{ 'DELETE' | translate }}</a></div>
   </div>
 </div>

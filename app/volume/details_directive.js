@@ -21,44 +21,8 @@ angular.module('zstackUI.volume.details_directive',
         console.log(msg)
         if (!ZStackUtil.notNullnotUndefined(msg))
           return;
-        switch (msg.name) {
-          case "host":
-            ZStackApi.migrateVm(msg.data.uuid, $scope.data.uuid)
-            .then(function(result) {
-              console.log(result)
-            }, function(reason) {
-              console.log(reason)
-            });;
-            break;
-          case "instanceOffering":
-            ZStackApi.changeInstanceOffering(msg.data.uuid, $scope.data.uuid)
-            .then(function(result) {
-              console.log(result)
-            }, function(reason) {
-              console.log(reason)
-            });;
-            break;
-          case "dataVolume":
-            ZStackApi.attachVolume(msg.data.uuid, $scope.data.uuid)
-            .then(function(result) {
-              console.log(result)
-            }, function(reason) {
-              console.log(reason)
-            });
-            break;
-          case "currentDataOffering":
-            ZStackApi.detachVolume(msg.data.uuid)
-            .then(function(result) {
-              console.log(result)
-            }, function(reason) {
-              console.log(reason)
-            });;
-            break;
-          default:
-            break;
-        }
+        ZStackApi.attachVolume($scope.data.uuid, msg.data.uuid);
 
-        $scope.showDialog = true;
       })
     }
   };

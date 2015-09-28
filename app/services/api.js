@@ -301,5 +301,161 @@ angular.module('zstackUI.services.api', ['zstackUI.services.util'])
     });
   }
 
+  self.enableHost = function(uuid) {
+    return self.simpleMsg({
+      "org.zstack.header.host.APIChangeHostStateMsg": {
+        uuid: uuid,
+        stateEvent: 'enable'
+      }
+    });
+  }
+
+  self.disableHost = function(uuid) {
+    return self.simpleMsg({
+      "org.zstack.header.host.APIChangeHostStateMsg": {
+        uuid: uuid,
+        stateEvent: 'disable'
+      }
+    });
+  }
+
+  self.reconnectHost = function(uuid) {
+    return self.simpleMsg({
+      "org.zstack.header.host.APIReconnectHostMsg": {
+        uuid: uuid,
+        status: 'Connecting'
+      }
+    });
+  }
+
+  self.maintainHost = function(uuid) {
+    return self.simpleMsg({
+      "org.zstack.header.host.APIChangeHostStateMsg": {
+        uuid: uuid,
+        status: 'maintain'
+      }
+    });
+  }
+
+  self.deleteHost = function(uuid) {
+    return self.simpleMsg({
+      "org.zstack.header.host.APIDeleteHostMsg": {
+        uuid: uuid
+      }
+    });
+  }
+
+  self.enableImage = function(uuid) {
+    return self.simpleMsg({
+      "org.zstack.header.image.APIChangeImageStateMsg": {
+        uuid: uuid,
+        stateEvent: 'enable'
+      }
+    });
+  }
+
+  self.disableImage = function(uuid) {
+    return self.simpleMsg({
+      "org.zstack.header.image.APIChangeImageStateMsg": {
+        uuid: uuid,
+        stateEvent: 'disable'
+      }
+    });
+  }
+
+  self.deleteImage = function(uuid) {
+    return self.simpleMsg({
+      "org.zstack.header.image.APIDeleteImageMsg": {
+        uuid: uuid
+      }
+    });
+  }
+
+  self.deleteIpRange = function(uuid) {
+    return self.simpleMsg({
+      "org.zstack.header.network.l3.APIDeleteIpRangeMsg": {
+        uuid: uuid
+      }
+    });
+  }
+
+  self.enableVolume = function(uuid) {
+    return self.simpleMsg({
+      "org.zstack.header.volume.APIChangeVolumeStateMsg": {
+        uuid: uuid,
+        stateEvent: 'enable'
+      }
+    });
+  }
+
+  self.disableVolume = function(uuid) {
+    return self.simpleMsg({
+      "org.zstack.header.volume.APIChangeVolumeStateMsg": {
+        uuid: uuid,
+        stateEvent: 'disable'
+      }
+    });
+  }
+
+  self.deleteVolume = function(uuid) {
+    return self.simpleMsg({
+      "org.zstack.header.volume.APIDeleteDataVolumeMsg": {
+        uuid: uuid
+      }
+    });
+  }
+
+  self.enableInstanceOffering = function(uuid) {
+    return self.simpleMsg({
+      "org.zstack.header.configuration.APIChangeInstanceOfferingStateMsg": {
+        uuid: uuid,
+        stateEvent: 'enable'
+      }
+    });
+  }
+
+  self.disableInstanceOffering = function(uuid) {
+    return self.simpleMsg({
+      "org.zstack.header.configuration.APIChangeInstanceOfferingStateMsg": {
+        uuid: uuid,
+        stateEvent: 'disable'
+      }
+    });
+  }
+
+  self.deleteInstanceOffering = function(uuid) {
+    return self.simpleMsg({
+      "org.zstack.header.configuration.APIDeleteInstanceOfferingMsg": {
+        uuid: uuid
+      }
+    });
+  }
+
+  self.enableDataOffering = function(uuid) {
+    return self.simpleMsg({
+      "org.zstack.header.configuration.APIChangeDiskOfferingStateMsg": {
+        uuid: uuid,
+        stateEvent: 'enable'
+      }
+    });
+  }
+
+  self.disableDataOffering = function(uuid) {
+    return self.simpleMsg({
+      "org.zstack.header.configuration.APIChangeDiskOfferingStateMsg": {
+        uuid: uuid,
+        stateEvent: 'disable'
+      }
+    });
+  }
+
+  self.deleteDataOffering = function(uuid) {
+    return self.simpleMsg({
+      "org.zstack.header.configuration.APIDeleteDiskOfferingMsg": {
+        uuid: uuid
+      }
+    });
+  }
+
   return self;
 }])

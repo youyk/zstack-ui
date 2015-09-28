@@ -12,7 +12,15 @@ angular.module('zstackUI.i18n', ['pascalprecht.translate'])
     VOLUME: 'Volume',
     INSTANCE_OFFERING: 'Instance Offering',
     DATA_OFFERING: 'Data Offering',
-    INSTANCE_COLLAPSE: 'Collapse',
+
+    ATTACH: "Attach",
+    DETACH: "Detach",
+    COLLAPSE: 'Collapse',
+    ENABLE: 'Enable',
+    DISABLE: 'Disable',
+    DELETE: 'Delete',
+
+
     INSTANCE_START: 'Start',
     INSTANCE_STOP: 'Stop',
     INSTANCE_REBOOT: 'Reboot',
@@ -24,17 +32,18 @@ angular.module('zstackUI.i18n', ['pascalprecht.translate'])
     INSTANCE_CHANGE_INSTANCE_OFFERING: 'Change Instance Offering',
 
     IMAGE_ADD: 'Add Image',
+    IMAGE_ENABLE: 'Enable',
+    IMAGE_DISABLE: 'Disable',
+    IMAGE_DELETE: 'Delete',
 
     HOST_ADD: 'Add Host',
-    HOST_ENABLE: 'Enable',
-    HOST_DISABLE: 'Disable',
     HOST_RECONNECT: 'Reconnect',
     HOST_MAINTENANCE: 'Enter Maintenance Mode',
-    HOST_DELETE: 'Delete',
 
     NETWORK_ADD_IP_RANGE: 'Add IP Range',
 
     VOLUME_ADD: "Add Volume",
+    VOLUME_CREATE_IMAGE: "Create Image",
 
     DATA_OFFERING_ADD: "Add Data Offering",
 
@@ -49,7 +58,16 @@ angular.module('zstackUI.i18n', ['pascalprecht.translate'])
     VOLUME: '存储',
     INSTANCE_OFFERING: '系统模板',
     DATA_OFFERING: '存储模板',
-    INSTANCE_COLLAPSE: '收起',
+
+
+    ATTACH: "加载",
+    DETACH: "卸载",
+    COLLAPSE: '收起',
+    ENABLE: '启用',
+    DISABLE: '停用',
+    DELETE: '删除',
+
+
     INSTANCE_START: '启动',
     INSTANCE_STOP: '停止',
     INSTANCE_REBOOT: '重启',
@@ -61,17 +79,19 @@ angular.module('zstackUI.i18n', ['pascalprecht.translate'])
     INSTANCE_CHANGE_INSTANCE_OFFERING: '修改系统模板',
 
     IMAGE_ADD: '添加镜像',
+    IMAGE_ENABLE: '启用',
+    IMAGE_DISABLE: '停用',
+    IMAGE_DELETE: '删除',
+
 
     HOST_ADD: '添加物理机',
-    HOST_ENABLE: '启用',
-    HOST_DISABLE: '停用',
     HOST_RECONNECT: '重连',
     HOST_MAINTENANCE: '进入维护模式',
-    HOST_DELETE: '删除',
 
     NETWORK_ADD_IP_RANGE: '添加地址空间',
 
     VOLUME_ADD: "添加存储",
+    VOLUME_CREATE_IMAGE: "创建镜像",
 
     DATA_OFFERING_ADD: "添加存储模板",
 
