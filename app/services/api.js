@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('zstackUI.services.api', ['zstackUI.services.util'])
+angular.module('zstackUI.services.api', ['zstackUI.services.util', 'ui.router',])
 
-.factory('ZStackApi', ['$q', 'ZStackUtil', function($q, ZStackUtil) {
+.factory('ZStackApi', ['$q', 'ZStackUtil', '$state', function($q, ZStackUtil, $state) {
   var self = {}
   self.debugLogin = function(cb) {
     console.log("debugLogin")
@@ -59,6 +59,10 @@ angular.module('zstackUI.services.api', ['zstackUI.services.util'])
       self.socket.on('call_ret', function(data) {
         var ret = JSON.parse(data.msg);
         var msg = ZStackUtil.firstItem(ret);
+        if (!msg.success && ZStackUtil.notNullnotUndefined(msg.error) && msg.error.code == 'ID.1001') {
+          $state.go('login');
+          return;
+        }
         self.cbList[msg.session.callid](msg);
         delete self.cbList[msg.session.callid];
         self.broadcast(msg);
@@ -77,6 +81,10 @@ angular.module('zstackUI.services.api', ['zstackUI.services.util'])
   }
 
   self.call = function(msg, cb) {
+    if (!ZStackUtil.notNullnotUndefined(self.session)) {
+      $state.go('login');
+      return;
+    };
     var msgBody = ZStackUtil.firstItem(msg);
     msgBody.session = {};
     msgBody.session.uuid = self.session.uuid;

@@ -37,9 +37,7 @@ angular.module('zstackUI.offering.data',
     });
   }
 
-  ZStackApi.debugLogin(function() {
-    $scope.queryList();
-  });
+  $scope.queryList();
 
   $scope.$on("update:list", function() {
     $scope.queryList();

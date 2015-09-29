@@ -31,7 +31,5 @@ angular.module('zstackUI.instance.details', ['zstackUI.services.api'])
     });
   }
 
-  ZStackApi.debugLogin(function() {
-    $scope.queryVm();
-  });
+  $scope.queryVm();
 }]);

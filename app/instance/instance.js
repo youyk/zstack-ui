@@ -35,9 +35,8 @@ angular.module('zstackUI.instance',
       });
     });
   }
-  ZStackApi.debugLogin(function() {
-    $scope.queryVmList();
-  });
+
+  $scope.queryVmList();
 
   $scope.$on("update:vmlist", function() {
     $scope.queryVmList();

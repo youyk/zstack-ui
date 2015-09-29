@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('zstackUI.login', ['zstackUI.services.api'])
+angular.module('zstackUI.login', ['zstackUI.services.api', 'ui.router'])
 
 .config(['$stateProvider', function($stateProvider) {
   $stateProvider.state('login', {
@@ -10,8 +10,10 @@ angular.module('zstackUI.login', ['zstackUI.services.api'])
   });
 }])
 
-.controller('LoginCtrl', ['$scope', 'ZStackApi', function($scope, ZStackApi) {
+.controller('LoginCtrl', ['$scope', 'ZStackApi', '$state', function($scope, ZStackApi, $state) {
   $scope.login = function() {
-    ZStackApi.debugLogin();
+    ZStackApi.login($scope.username, CryptoJS.SHA512($scope.password).toString(), function() {
+      $state.go('main.dashboard');
+    });
   }
 }]);

@@ -34,7 +34,5 @@ angular.module('zstackUI.host.details',
     });
   }
 
-  ZStackApi.debugLogin(function() {
-    $scope.query();
-  });
+  $scope.query();
 }]);
