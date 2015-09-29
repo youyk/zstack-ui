@@ -101,6 +101,7 @@
     <div><a ng-click="ZStackApi.disableVolume(data.uuid)">{{ 'DISABLE' | translate }}</a></div>
     <div><a ng-controller="InstanceModalCtrl" ng-click="open()">{{ 'ATTACH' | translate }}</a></div>
     <div><a ng-click="ZStackApi.detachVolume(data.uuid)">{{ 'DETACH' | translate }}</a></div>
+    <div><a ng-controller="CreateImageModalCtrl" ng-click="open()">{{ 'VOLUME_CREATE_IMAGE' | translate }}</a></div>
     <div><a ng-click="ZStackApi.deleteVolume(data.uuid)">{{ 'DELETE' | translate }}</a></div>
   </div>
 </div>
