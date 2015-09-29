@@ -30,6 +30,13 @@ angular.module('zstackUI.services.api', ['zstackUI.services.util'])
     })
   }
 
+  self.broadcast = function(msg) {
+    if (ZStackUtil.notNullnotUndefined(self.rootScope))
+      self.rootScope.broadcast("call_ret", msg);
+    console.log("broadcast")
+    console.log(msg)
+  }
+
   self.login = function(userName, password, cb) {
     console.log("login")
     var msg = {
@@ -54,6 +61,7 @@ angular.module('zstackUI.services.api', ['zstackUI.services.util'])
         var msg = ZStackUtil.firstItem(ret);
         self.cbList[msg.session.callid](msg);
         delete self.cbList[msg.session.callid];
+        self.broadcast(msg);
       });
 
       self.socket.on('admin_broadcast', function(data) {

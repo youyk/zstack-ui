@@ -1,106 +1,106 @@
-<div class="row">
-  <div class="col-md-4">
-    <div class="row">
-      <label class="col-md-5 control-label">Name:</label>
-      <div class="col-md-7">{{data.name}}</div>
-    </div>
-    <div class="row">
-      <label class="col-md-5 control-label">State:</label>
-      <div class="col-md-7">{{data.state}}</div>
-    </div>
-    <div class="row">
-      <label class="col-md-5 control-label">Hypervisor:</label>
-      <div class="col-md-7">{{data.hypervisorType}}</div>
-    </div>
-    <div class="row">
-      <label class="col-md-5 control-label">UUID:</label>
-      <div class="col-md-7">{{data.uuid}}</div>
-    </div>
-    <div class="row">
-      <label class="col-md-5 control-label">CPU Number:</label>
-      <div class="col-md-7">{{data.cpuNum}}</div>
-    </div>
-    <div class="row">
-      <label class="col-md-5 control-label">Memory Size:</label>
-      <div class="col-md-7">{{data.memorySize}}</div>
-    </div>
-    <div class="row">
-      <label class="col-md-5 control-label">Instance Offering UUID:</label>
-      <div class="col-md-7">{{data.instanceOfferingUuid}}</div>
-    </div>
-    <div class="row">
-      <label class="col-md-5 control-label">Image UUID:</label>
-      <div class="col-md-7">{{data.imageUuid}}</div>
-    </div>
-    <div class="row">
-      <label class="col-md-5 control-label">Host UUID:</label>
-      <div class="col-md-7">{{data.hostUuid}}</div>
-    </div>
-    <div class="row">
-      <label class="col-md-5 control-label">Last Host UUID:</label>
-      <div class="col-md-7">{{data.lastHostUuid}}</div>
-    </div>
-    <div class="row">
-      <label class="col-md-5 control-label">Create Date:</label>
-      <div class="col-md-7">{{data.createDate}}</div>
-    </div>
-    <div class="row">
-      <label class="col-md-5 control-label">Last Update Date:</label>
-      <div class="col-md-7">{{data.lastOpDate}}</div>
-    </div>
+<div class="form-horizontal">
+  <div>
+    <span><a ng-click="collapse()">{{ 'COLLAPSE' | translate }}</a></span>
+    <span><a ng-click="ZStackApi.startVm(data.uuid)">{{ 'INSTANCE_START' | translate }}</a></span>
+    <span><a ng-click="ZStackApi.stopVm(data.uuid)">{{ 'INSTANCE_STOP' | translate }}</a></span>
+    <span><a ng-click="ZStackApi.rebootVm(data.uuid)">{{ 'INSTANCE_REBOOT' | translate }}</a></span>
+    <span><a ng-click="ZStackApi.destroyVm(data.uuid)">{{ 'INSTANCE_DELETE' | translate }}</a></span>
+    <span><a ng-controller="HostModalCtrl" ng-click="open()">{{ 'INSTANCE_MIGRATE' | translate }}</a></span>
+    <span><a ng-click="console()">{{ 'INSTANCE_CONSOLE' | translate }}</a></span>
+    <span><a ng-controller="DataVolumeModalCtrl" ng-click="open()">{{ 'INSTANCE_ATTACH_VOLUME' | translate }}</a></span>
+    <span><a ng-controller="CurrentDataOfferingModalCtrl" ng-click="open(data.allVolumes)">{{ 'INSTANCE_DETACH_VOLUME' | translate }}</a></span>
+    <span><a ng-controller="ImageModalCtrl" ng-click="open()">{{ 'INSTANCE_CHANGE_INSTANCE_OFFERING' | translate }}</a></span>
   </div>
-  <div class="col-md-4" style="padding:30px">
-    <div class="row">
-      <label class="col-md-3 control-label">IP:</label>
-      <div class="col-md-9">{{data.vmNics[0].ip}}</div>
-    </div>
-    <div class="row">
-      <label class="col-md-3 control-label">Netmask:</label>
-      <div class="col-md-9">{{data.vmNics[0].netmask}}</div>
-    </div>
-    <div class="row">
-      <label class="col-md-3 control-label">Gateway:</label>
-      <div class="col-md-9">{{data.vmNics[0].gateway}}</div>
-    </div>
-    <div class="row">
-      <label class="col-md-3 control-label">MAC:</label>
-      <div class="col-md-9">{{data.vmNics[0].mac}}</div>
-    </div>
-    <div class="row">
-      <label class="col-md-3 control-label">Volume:</label>
-    </div>
-    <div class="row" style="padding-left:15px">
-        <table class="table table-hover">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Type</th>
-              <th>State</th>
-              <th>Status</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr ng-repeat="volume in data.allVolumes">
-              <td>{{volume.name}}</td>
-              <td>{{volume.type}}</td>
-              <td>{{volume.state}}</td>
-              <td>{{volume.status}}</td>
-            </tr>
-          </tbody>
-        </table>
-    </div>
+  <div class="row">
+    <label class="col-md-3 control-label">Name:</label>
+    <div class="form-control-static">{{data.name}}</div>
   </div>
-  <div class="col-md-1">
-    <div><a ng-click="collapse()">{{ 'COLLAPSE' | translate }}</a></div>
-    <div><a ng-click="ZStackApi.startVm(vm.uuid)">{{ 'INSTANCE_START' | translate }}</a></div>
-    <div><a ng-click="ZStackApi.stopVm(vm.uuid)">{{ 'INSTANCE_STOP' | translate }}</a></div>
-    <div><a ng-click="ZStackApi.rebootVm(vm.uuid)">{{ 'INSTANCE_REBOOT' | translate }}</a></div>
-    <div><a ng-click="ZStackApi.destroyVm(vm.uuid)">{{ 'INSTANCE_DELETE' | translate }}</a></div>
-    <div><a ng-controller="HostModalCtrl" ng-click="open()">{{ 'INSTANCE_MIGRATE' | translate }}</a></div>
-    <div><a ng-click="console()">{{ 'INSTANCE_CONSOLE' | translate }}</a></div>
-    <div><a ng-controller="DataVolumeModalCtrl" ng-click="open()">{{ 'INSTANCE_ATTACH_VOLUME' | translate }}</a></div>
-    <div><a ng-controller="CurrentDataOfferingModalCtrl" ng-click="open(vm.allVolumes)">{{ 'INSTANCE_DETACH_VOLUME' | translate }}</a></div>
-    <div><a ng-controller="ImageModalCtrl" ng-click="open()">{{ 'INSTANCE_CHANGE_INSTANCE_OFFERING' | translate }}</a></div>
+  <div class="row">
+    <label class="col-md-3 control-label">Description:</label>
+    <div class="form-control-static">{{data.description}}</div>
+  </div>
+  <div class="row">
+    <label class="col-md-3 control-label">State:</label>
+    <div class="form-control-static">{{data.state}}</div>
+  </div>
+  <div class="row">
+    <label class="col-md-3 control-label">Hypervisor:</label>
+    <div class="form-control-static">{{data.hypervisorType}}</div>
+  </div>
+  <div class="row">
+    <label class="col-md-3 control-label">UUID:</label>
+    <div class="form-control-static">{{data.uuid}}</div>
+  </div>
+  <div class="row">
+    <label class="col-md-3 control-label">CPU Number:</label>
+    <div class="form-control-static">{{data.cpuNum}}</div>
+  </div>
+  <div class="row">
+    <label class="col-md-3 control-label">Memory Size:</label>
+    <div class="form-control-static">{{data.memorySize}}</div>
+  </div>
+  <div class="row">
+    <label class="col-md-3 control-label">Instance Offering UUID:</label>
+    <div class="form-control-static">{{data.instanceOfferingUuid}}</div>
+  </div>
+  <div class="row">
+    <label class="col-md-3 control-label">Image UUID:</label>
+    <div class="form-control-static">{{data.imageUuid}}</div>
+  </div>
+  <div class="row">
+    <label class="col-md-3 control-label">Host UUID:</label>
+    <div class="form-control-static">{{data.hostUuid}}</div>
+  </div>
+  <div class="row">
+    <label class="col-md-3 control-label">Last Host UUID:</label>
+    <div class="form-control-static">{{data.lastHostUuid}}</div>
+  </div>
+  <div class="row">
+    <label class="col-md-3 control-label">Create Date:</label>
+    <div class="form-control-static">{{data.createDate}}</div>
+  </div>
+  <div class="row">
+    <label class="col-md-3 control-label">Last Update Date:</label>
+    <div class="form-control-static">{{data.lastOpDate}}</div>
+  </div>
+  <div class="row">
+    <label class="col-md-3 control-label">IP:</label>
+    <div class="form-control-static">{{data.vmNics[0].ip}}</div>
+  </div>
+  <div class="row">
+    <label class="col-md-3 control-label">Netmask:</label>
+    <div class="form-control-static">{{data.vmNics[0].netmask}}</div>
+  </div>
+  <div class="row">
+    <label class="col-md-3 control-label">Gateway:</label>
+    <div class="form-control-static">{{data.vmNics[0].gateway}}</div>
+  </div>
+  <div class="row">
+    <label class="col-md-3 control-label">MAC:</label>
+    <div class="form-control-static">{{data.vmNics[0].mac}}</div>
+  </div>
+  <div class="row">
+    <label class="col-md-3 control-label">Volume:</label>
+  </div>
+  <div class="row" style="padding-left:15px">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>State</th>
+            <th>Status</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="volume in data.allVolumes">
+            <td>{{volume.name}}</td>
+            <td>{{volume.type}}</td>
+            <td>{{volume.state}}</td>
+            <td>{{volume.status}}</td>
+          </tr>
+        </tbody>
+      </table>
   </div>
 </div>

@@ -17,8 +17,8 @@
         <td ng-if="item.collapsed"><a ng-click="item.collapsed=!item.collapsed">{{item.name}}</a></td>
         <td ng-if="item.collapsed">{{item.description}}</td>
         <td ng-if="item.collapsed">{{item.cpuNum}}</td>
-        <td ng-if="item.collapsed">{{item.cpuSpeed}}</td>
-        <td ng-if="item.collapsed">{{item.memorySize}}</td>
+        <td ng-if="item.collapsed">{{item.cpuSpeed}} MHZ</td>
+        <td ng-if="item.collapsed">{{ZStackUtil.bytesToSize(item.memorySize)}}</td>
         <td ng-if="item.collapsed">{{item.state}}</td>
         <td ng-if="item.collapsed">{{item.uuid}}</td>
         <td colspan="7" ng-if="!item.collapsed">

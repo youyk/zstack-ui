@@ -12,6 +12,7 @@ angular.module('zstackUI.volume.details_directive',
     templateUrl: 'volume/details_directive.html',
     controller: function($scope) {
       $scope.ZStackApi = ZStackApi;
+      $scope.ZStackUtil = ZStackUtil;
 
       $scope.collapse = function() {
         $scope.data.collapsed = !$scope.data.collapsed

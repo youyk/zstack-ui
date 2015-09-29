@@ -26,7 +26,7 @@ angular.module('zstackUI.instance.details', ['zstackUI.services.api'])
     .then(function(data) {
       console.log(data)
       $scope.safeApply(function() {
-        $scope.vm = data.inventories[0];
+        $scope.data = data.inventories[0];
       });
     });
   }
