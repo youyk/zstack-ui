@@ -5,7 +5,7 @@ angular.module('zstackUI.instance.details_directive',
      'zstackUI.services.util',
      'zstackUI.instance.modal.controller'])
 
-.directive('instanceDetailsDirective', ['ZStackApi', 'ZStackUtil', function(ZStackApi, ZStackUtil) {
+.directive('instanceDetailsDirective', ['ZStackApi', 'ZStackUtil', '$window', function(ZStackApi, ZStackUtil, $window) {
   return {
     scope: {
       data: '=ngModel',
@@ -16,6 +16,18 @@ angular.module('zstackUI.instance.details_directive',
 
       $scope.collapse = function() {
         $scope.data.collapsed = !$scope.data.collapsed
+      }
+
+      $scope.console = function() {
+        ZStackApi.getConsole($scope.data.uuid)
+        .then(function(result) {
+          console.log(result)
+          $window.open("console/vnc_auto.html?host=" + result.inventory.hostname +
+              "&port=" + result.inventory.port + 
+              "&token=" + result.inventory.token)
+        }, function(reason) {
+          console.log(reason)
+        })
       }
 
       $scope.$on("child-dialog:close", function(_, msg) {

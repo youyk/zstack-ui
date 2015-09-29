@@ -457,5 +457,13 @@ angular.module('zstackUI.services.api', ['zstackUI.services.util'])
     });
   }
 
+  self.getConsole = function(uuid) {
+    return self.simpleMsg({
+      "org.zstack.header.console.APIRequestConsoleAccessMsg": {
+        vmInstanceUuid: uuid
+      }
+    });
+  }
+
   return self;
 }])
