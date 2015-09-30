@@ -4,6 +4,7 @@ angular.module('zstackUI.host',
   [
     'zstackUI.services.api',
     'zstackUI.host.modal.controller',
+    'zstackUI.host.directive',
     'zstackUI.host.details'
   ])
 
@@ -16,22 +17,5 @@ angular.module('zstackUI.host',
 }])
 
 .controller('HostCtrl', ['$scope', 'ZStackApi', function($scope, ZStackApi) {
-  
-  $scope.queryList = function() {
-    ZStackApi.queryHost()
-    .then(function(data) {
-      $scope.safeApply(function() {
-        $scope.itemList = data.inventories;
-        for (var i in $scope.itemList) {
-          $scope.itemList[i].collapsed = true;
-        }
-      });
-    });
-  }
 
-  $scope.queryList();
-
-  $scope.$on("update:list", function() {
-    $scope.queryList();
-  })
 }])

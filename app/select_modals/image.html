@@ -2,32 +2,7 @@
   Select item
 </div>
 <div class="modal-body">
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Media Type</th>
-        <th>State</th>
-        <th>Status</th>
-        <th>Guest OS</th>
-        <th>Size</th>
-        <th>Format</th>
-        <th>UUID</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat="item in itemList" ng-click="select(item)" ng-class="{'table-highlight': item.uuid == image.uuid}">
-        <td>{{item.name}}</td>
-        <td>{{item.mediaType}}</td>
-        <td>{{item.state}}</td>
-        <td>{{item.status}}</td>
-        <td>{{item.platform}}</td>
-        <td>{{ZStackUtil.bytesToSize(item.size)}}</td>
-        <td>{{item.format}}</td>
-        <td>{{item.uuid}}</td>
-      </tr>
-    </tbody>
-  </table>
+  <div image-directive></div>
 </div>
 <div class="modal-footer">
   <button class="btn" ng-click="cancel()">Cancel</button>

@@ -3,6 +3,7 @@
 angular.module('zstackUI.volume',
   [
     'zstackUI.volume.modal.controller',
+    'zstackUI.volume.directive',
     'zstackUI.volume.details',
     'zstackUI.services.api'
   ])
@@ -16,21 +17,4 @@ angular.module('zstackUI.volume',
 }])
 
 .controller('VolumeCtrl', ['$scope', 'ZStackApi', function($scope, ZStackApi) {
-  $scope.queryList = function() {
-    ZStackApi.queryVolume()
-    .then(function(data) {
-      $scope.safeApply(function() {
-        $scope.itemList = data.inventories;
-        for (var i in $scope.itemList) {
-          $scope.itemList[i].collapsed = true;
-        }
-      });
-    });
-  }
-  
-  $scope.queryList();
-
-  $scope.$on("update:list", function() {
-    $scope.queryList();
-  })
 }])

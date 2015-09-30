@@ -4,6 +4,7 @@ angular.module('zstackUI.offering.data',
   [
     'zstackUI.offering.data.modal.controller',
     'zstackUI.data_offering.details_directive',
+    'zstackUI.data_offering.directive',
     'zstackUI.data_offering.details',
     'zstackUI.services.api'
   ])
@@ -17,30 +18,4 @@ angular.module('zstackUI.offering.data',
 }])
 
 .controller('DataOfferingCtrl', ['$scope', 'ZStackApi', function($scope, ZStackApi) {
-  $scope.queryList = function() {
-    ZStackApi.queryDiskOffering(
-      {
-        conditions: [{
-          name: 'state',
-          op: '=',
-          value: 'Enabled'
-        }]
-      }
-    )
-    .then(function(data) {
-      $scope.safeApply(function() {
-        $scope.itemList = data.inventories;
-        for (var i in $scope.itemList) {
-          $scope.itemList[i].collapsed = true;
-        }
-      });
-    });
-  }
-
-  $scope.queryList();
-
-  $scope.$on("update:list", function() {
-    $scope.queryList();
-  })
-  
 }])

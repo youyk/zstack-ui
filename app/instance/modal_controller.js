@@ -92,7 +92,7 @@ angular.module('zstackUI.instance.modal.controller', ['zstackUI.services.api'])
   $scope.ok = function() {
     self.create(function(ret) {
       console.log(ret)
-      modalScope.$emit("update:vmlist");
+      modalScope.$emit("update:list");
     })
     $modalInstance.close('ok');
   };

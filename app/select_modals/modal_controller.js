@@ -1,6 +1,10 @@
 'use strict';
 
-angular.module('zstackUI.select_modals', ['zstackUI.services.api'])
+angular.module('zstackUI.select_modals',
+    [
+      'zstackUI.services.api',
+      'zstackUI.image.directive',
+    ])
 
 .controller('InstanceModalCtrl', function ($scope, $modal, $log) {
 
@@ -49,15 +53,12 @@ angular.module('zstackUI.select_modals', ['zstackUI.services.api'])
     });
   });
 
-  $scope.select = function(item) {
-    console.log(item)
-    $scope.selectedItem = item;
-  }
+  $scope.selectList = [];
 
   $scope.ok = function () {
     $modalInstance.close({
       name: "instance",
-      data: $scope.selectedItem
+      data: $scope.selectList[0]
     });
   };
 
@@ -157,15 +158,12 @@ angular.module('zstackUI.select_modals', ['zstackUI.services.api'])
       });
     });
 
-  $scope.select = function(image) {
-    console.log(image)
-    $scope.image = image;
-  }
+  $scope.selectList = [];
 
   $scope.ok = function () {
     $modalInstance.close({
       name: "image",
-      data: $scope.image
+      data: $scope.selectList[0]
     });
   };
 
@@ -221,15 +219,12 @@ angular.module('zstackUI.select_modals', ['zstackUI.services.api'])
       });
     });
 
-  $scope.select = function(instanceOffering) {
-    console.log(instanceOffering)
-    $scope.instanceOffering = instanceOffering;
-  }
+  $scope.selectList = [];
 
   $scope.ok = function () {
     $modalInstance.close({
       name: "instanceOffering",
-      data: $scope.instanceOffering
+      data: $scope.selectList[0]
     });
   };
 
@@ -285,15 +280,12 @@ angular.module('zstackUI.select_modals', ['zstackUI.services.api'])
       });
     });
 
-  $scope.select = function(dataOffering) {
-    console.log(dataOffering)
-    $scope.dataOffering = dataOffering;
-  }
+  $scope.selectList = [];
 
   $scope.ok = function () {
     $modalInstance.close({
       name: "dataOffering",
-      data: $scope.dataOffering
+      data: $scope.selectList[0]
     });
   };
 
@@ -349,15 +341,12 @@ angular.module('zstackUI.select_modals', ['zstackUI.services.api'])
       });
     });
 
-  $scope.select = function(selectedItem) {
-    console.log(selectedItem)
-    $scope.selectedItem = selectedItem;
-  }
+  $scope.selectList = [];
 
   $scope.ok = function () {
     $modalInstance.close({
       name: "dataVolume",
-      data: $scope.selectedItem
+      data: $scope.selectList[0]
     });
   };
 
@@ -405,15 +394,12 @@ angular.module('zstackUI.select_modals', ['zstackUI.services.api'])
       });
     });
 
-  $scope.select = function(host) {
-    console.log(host)
-    $scope.host = host;
-  }
+  $scope.selectList = []; 
 
   $scope.ok = function () {
     $modalInstance.close({
       name: "host",
-      data: $scope.host
+      data: $scope.selectList[0]
     });
   };
 

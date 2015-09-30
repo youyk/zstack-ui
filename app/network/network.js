@@ -3,6 +3,7 @@
 angular.module('zstackUI.network',
   [
     'zstackUI.network.modal.controller',
+    'zstackUI.network.directive',
     'zstackUI.network.details_directive',
     'zstackUI.services.api'
   ])
@@ -16,21 +17,4 @@ angular.module('zstackUI.network',
 }])
 
 .controller('NetworkCtrl', ['$scope', 'ZStackApi', function($scope, ZStackApi) {
-  $scope.queryList = function() {
-    ZStackApi.queryL3Network()
-    .then(function(data) {
-      $scope.safeApply(function() {
-        $scope.itemList = data.inventories;
-        for (var i in $scope.itemList[0].ipRanges) {
-          $scope.itemList[0].ipRanges[i].collapsed = true;
-        }
-      });
-    });
-  }
-
-  $scope.queryList();
-
-  $scope.$on("update:list", function() {
-    $scope.queryList();
-  })
 }])
