@@ -20,7 +20,7 @@ angular.module('zstackUI.network.directive',
           $scope.safeApply(function() {
             for (var i in data.inventories[0].ipRanges) {
               data.inventories[0].ipRanges[i].collapsed = true;
-              data.inventories[0].ipRanges[i].selected = true;
+              data.inventories[0].ipRanges[i].selected = false;
             }
             $scope.itemList = data.inventories;
           });
@@ -41,8 +41,8 @@ angular.module('zstackUI.network.directive',
         } else {
           $scope.selectList.length = 0;
           $scope.selectList.push(item);
-          for (var i in $scope.itemList) {
-            $scope.itemList[i].selected = false;
+          for (var i in $scope.itemList[0].ipRanges) {
+            $scope.itemList[0].ipRanges[i].selected = false;
           }
           item.selected = true;
         }

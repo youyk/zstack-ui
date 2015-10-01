@@ -10,22 +10,48 @@ angular.module('zstackUI.instance.directive',
     controller: function($scope) {
       $scope.ZStackApi = ZStackApi;
       $scope.ZStackUtil = ZStackUtil;
+
       if (!$scope.selectList) {
         $scope.selectList = [];
       };
 
+      ZStackUtil.initListToolbar($scope);
+
+      $scope.sortByFieldList = [
+        'name',
+        'createDate',
+        'lastOpDate',
+        'memorySize',
+        'platform',
+        'state'
+      ];
+      $scope.sortByField = $scope.sortByFieldList[0];
+      $scope.defaultConditions = [{
+          name: "type",
+          op: "=",
+          value: "UserVm"
+        }];
+      $scope.searchFieldList = [
+        'name',
+        'uuid'
+      ];
+      $scope.searchField = $scope.searchFieldList[0];
+
       $scope.queryList = function() {
+        var conditions = $scope.defaultConditions.concat($scope.conditions);
         ZStackApi.queryVmInstance(
           {
-            conditions: [{
-              name: "type",
-              op: "=",
-              value: "UserVm"
-            }]
+            start: $scope.pageItemCount * ($scope.pageIndex - 1),
+            limit: $scope.pageItemCount,
+            replyWithCount: true,
+            sortBy: $scope.sortByField,
+            sortDirection: $scope.sortDirection,
+            conditions: conditions
           }
         )
         .then(function(data) {
           $scope.safeApply(function() {
+            $scope.pageCount = Math.ceil(data.total / $scope.pageItemCount);
             for (var i in data.inventories) {
               data.inventories[i].collapsed = true;
               data.inventories[i].selected = false;

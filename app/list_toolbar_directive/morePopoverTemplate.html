@@ -1,0 +1,34 @@
+<label for="usr">Count:</label>
+<div class="btn-group" dropdown is-open="false">
+  <button id="media-type-button" type="button" class="btn btn-default" dropdown-toggle ng-disabled="disabled">
+    {{pageItemCount}} <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu" aria-labelledby="media-type-button">
+    <li role="menuitem" ng-repeat="item in pageItemCountList">
+      <a ng-click="selectPageItemCount(item)">{{item}}</a>
+    </li>
+  </ul>
+</div>
+<br>
+<label for="usr">Sort By:</label>
+<div class="btn-group" dropdown is-open="false">
+  <button id="media-type-button" type="button" class="btn btn-default" dropdown-toggle ng-disabled="disabled">
+    {{sortByField}} <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu" aria-labelledby="media-type-button">
+    <li role="menuitem" ng-repeat="item in sortByFieldList">
+      <a ng-click="selectSortBy(item)">{{item}}</a>
+    </li>
+  </ul>
+</div>
+<br>
+<div class="btn-group" dropdown is-open="false">
+  <button id="media-type-button" type="button" class="btn btn-default" dropdown-toggle ng-disabled="disabled">
+    {{sortDirection}} <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu" aria-labelledby="media-type-button">
+    <li role="menuitem" ng-repeat="item in sortDirectionList">
+      <a ng-click="selectSortDirection(item)">{{item}}</a>
+    </li>
+  </ul>
+</div>

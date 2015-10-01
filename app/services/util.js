@@ -142,5 +142,18 @@ angular.module('zstackUI.services.util', [])
     }
   }
 
+  self.initListToolbar = function(scope) {
+      scope.pageIndex = 1;
+      scope.pageItemCountList = [5, 10, 20, 50];
+      scope.pageItemCount = scope.pageItemCountList[2];
+      scope.pageCount = 0;
+      scope.sortDirectionList = [
+        'asc',
+        'desc'
+      ];
+      scope.sortDirection = scope.sortDirectionList[0];
+      scope.conditions = [];
+  }
+
   return self;
 })
