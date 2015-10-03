@@ -14,7 +14,7 @@ angular.module('zstackUI.host.directive',
         $scope.selectList = [];
       };
 
-      ZStackUtil.initListToolbar($scope);
+      ZStackUtil.initListScope($scope);
 
       $scope.sortByFieldList = [
         'name',
@@ -57,20 +57,33 @@ angular.module('zstackUI.host.directive',
         $scope.queryList();
       });
 
-      $scope.$on("update:list", function() {
-        $scope.queryList();
-      })
+      $scope.enable = function() {
+        for (var i in $scope.selectList) {
+          ZStackApi.enableHost($scope.selectList[i].uuid)
+        }
+      }
 
-      $scope.select = function(event, item) {
-        if (event.ctrlKey) {
+      $scope.disable = function() {
+        for (var i in $scope.selectList) {
+          ZStackApi.disableHost($scope.selectList[i].uuid)
+        }
+      }
 
-        } else {
-          $scope.selectList.length = 0;
-          $scope.selectList.push(item);
-          for (var i in $scope.itemList) {
-            $scope.itemList[i].selected = false;
-          }
-          item.selected = true;
+      $scope.reconnect = function() {
+        for (var i in $scope.selectList) {
+          ZStackApi.reconnectHost($scope.selectList[i].uuid)
+        }
+      }
+
+      $scope.maintain = function() {
+        for (var i in $scope.selectList) {
+          ZStackApi.maintainHost($scope.selectList[i].uuid)
+        }
+      }
+
+      $scope.delete = function() {
+        for (var i in $scope.selectList) {
+          ZStackApi.deleteHost($scope.selectList[i].uuid)
         }
       }
     }

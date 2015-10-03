@@ -14,7 +14,7 @@ angular.module('zstackUI.data_offering.directive',
         $scope.selectList = [];
       };
 
-      ZStackUtil.initListToolbar($scope);
+      ZStackUtil.initListScope($scope);
 
       $scope.sortByFieldList = [
         'name',
@@ -24,11 +24,7 @@ angular.module('zstackUI.data_offering.directive',
         'status'
       ];
       $scope.sortByField = $scope.sortByFieldList[0];
-      $scope.defaultConditions = [{
-          name: 'state',
-          op: '=',
-          value: 'Enabled'
-        }];
+      $scope.defaultConditions = [];
       $scope.searchFieldList = [
         'name',
         'uuid'
@@ -63,20 +59,21 @@ angular.module('zstackUI.data_offering.directive',
         $scope.queryList();
       });
 
-      $scope.$on("update:list", function() {
-        $scope.queryList();
-      })
+      $scope.enable = function() {
+        for (var i in $scope.selectList) {
+          ZStackApi.enableDataOffering($scope.selectList[i].uuid)
+        }
+      }
 
-      $scope.select = function(event, item) {
-        if (event.ctrlKey) {
+      $scope.disable = function() {
+        for (var i in $scope.selectList) {
+          ZStackApi.disableDataOffering($scope.selectList[i].uuid)
+        }
+      }
 
-        } else {
-          $scope.selectList.length = 0;
-          $scope.selectList.push(item);
-          for (var i in $scope.itemList) {
-            $scope.itemList[i].selected = false;
-          }
-          item.selected = true;
+      $scope.delete = function() {
+        for (var i in $scope.selectList) {
+          ZStackApi.deleteDataOffering($scope.selectList[i].uuid)
         }
       }
     }

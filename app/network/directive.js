@@ -37,14 +37,24 @@ angular.module('zstackUI.network.directive',
 
       $scope.select = function(event, item) {
         if (event.ctrlKey) {
-
+          item.selected = !item.selected;
         } else {
-          $scope.selectList.length = 0;
-          $scope.selectList.push(item);
           for (var i in $scope.itemList[0].ipRanges) {
             $scope.itemList[0].ipRanges[i].selected = false;
           }
           item.selected = true;
+        }
+        $scope.selectList.length = 0;
+        for (var i in $scope.itemList[0].ipRanges) {
+          if ($scope.itemList[0].ipRanges[i].selected) {
+            $scope.selectList.push($scope.itemList[0].ipRanges[i]);
+          }
+        }
+      }
+
+      $scope.delete = function() {
+        for (var i in $scope.selectList) {
+          ZStackApi.deleteIpRange($scope.selectList[i].uuid)
         }
       }
     }

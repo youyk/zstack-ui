@@ -1,5 +1,9 @@
 <div>
   <button type="button" class="btn btn-default" ng-controller="CreateInstanceModalCtrl" ng-click="open()">Create item</button>
+  <button ng-if="selectList.length > 0" type="button" class="btn btn-default" ng-click="start()">{{ 'INSTANCE_START' | translate }}</button>
+  <button ng-if="selectList.length > 0" type="button" class="btn btn-default" ng-click="stop()">{{ 'INSTANCE_STOP' | translate }}</button>
+  <button ng-if="selectList.length > 0" type="button" class="btn btn-default" ng-click="reboot()">{{ 'INSTANCE_REBOOT' | translate }}</button>
+  <button ng-if="selectList.length > 0" type="button" class="btn btn-default" ng-click="destroy()">{{ 'INSTANCE_DELETE' | translate }}</button>
   <br>
   <div list-toolbar-directive></div>
 

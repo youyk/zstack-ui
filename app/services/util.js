@@ -142,7 +142,7 @@ angular.module('zstackUI.services.util', [])
     }
   }
 
-  self.initListToolbar = function(scope) {
+  self.initListScope = function(scope) {
       scope.pageIndex = 1;
       scope.pageItemCountList = [5, 10, 20, 50];
       scope.pageItemCount = scope.pageItemCountList[2];
@@ -153,7 +153,30 @@ angular.module('zstackUI.services.util', [])
       ];
       scope.sortDirection = scope.sortDirectionList[0];
       scope.conditions = [];
+
+      scope.$on("update:list", function() {
+        scope.queryList();
+      })
+
+      scope.select = function(event, item) {
+        if (event.ctrlKey) {
+          item.selected = !item.selected;
+        } else {
+          for (var i in scope.itemList) {
+            scope.itemList[i].selected = false;
+          }
+          item.selected = true;
+        }
+        scope.selectList.length = 0;
+        for (var i in scope.itemList) {
+          if (scope.itemList[i].selected) {
+            scope.selectList.push(scope.itemList[i]);
+          }
+        }
+      }
   }
+
+
 
   return self;
 })

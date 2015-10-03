@@ -15,7 +15,7 @@ angular.module('zstackUI.instance.directive',
         $scope.selectList = [];
       };
 
-      ZStackUtil.initListToolbar($scope);
+      ZStackUtil.initListScope($scope);
 
       $scope.sortByFieldList = [
         'name',
@@ -65,20 +65,27 @@ angular.module('zstackUI.instance.directive',
         $scope.queryList();
       });
 
-      $scope.$on("update:list", function() {
-        $scope.queryList();
-      })
+      $scope.start = function() {
+        for (var i in $scope.selectList) {
+          ZStackApi.startVm($scope.selectList[i].uuid)
+        }
+      }
 
-      $scope.select = function(event, item) {
-        if (event.ctrlKey) {
+      $scope.stop = function() {
+        for (var i in $scope.selectList) {
+          ZStackApi.stopVm($scope.selectList[i].uuid)
+        }
+      }
 
-        } else {
-          $scope.selectList.length = 0;
-          $scope.selectList.push(item);
-          for (var i in $scope.itemList) {
-            $scope.itemList[i].selected = false;
-          }
-          item.selected = true;
+      $scope.reboot = function() {
+        for (var i in $scope.selectList) {
+          ZStackApi.rebootVm($scope.selectList[i].uuid)
+        }
+      }
+
+      $scope.destroy = function() {
+        for (var i in $scope.selectList) {
+          ZStackApi.destroyVm($scope.selectList[i].uuid)
         }
       }
     }

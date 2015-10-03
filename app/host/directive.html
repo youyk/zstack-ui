@@ -1,5 +1,10 @@
 <div>
   <button type="button" class="btn btn-default" ng-controller="AddHostModalCtrl" ng-click="open()">{{ 'HOST_ADD' | translate}}</button>
+  <button ng-if="selectList.length > 0" type="button" class="btn btn-default" ng-click="enable()">{{ 'ENABLE' | translate }}</button>
+  <button ng-if="selectList.length > 0" type="button" class="btn btn-default" ng-click="disable()">{{ 'DISABLE' | translate }}</button>
+  <button ng-if="selectList.length > 0" type="button" class="btn btn-default" ng-click="reconnect()">{{ 'HOST_RECONNECT' | translate }}</button>
+  <button ng-if="selectList.length > 0" type="button" class="btn btn-default" ng-click="maintain()">{{ 'HOST_MAINTENANCE' | translate }}</button>
+  <button ng-if="selectList.length > 0" type="button" class="btn btn-default" ng-click="delete()">{{ 'DELETE' | translate }}</button>
   <br>
   <div list-toolbar-directive></div>
   <table class="table table-hover">
