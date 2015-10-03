@@ -59,9 +59,7 @@ angular.module('zstackUI.instance_offering.directive',
         })
       }
       
-      ZStackApi.debugLogin(function() {
-        $scope.queryList();
-      });
+      $scope.queryList();
 
       $scope.enable = function() {
         for (var i in $scope.selectList) {

@@ -18,8 +18,13 @@ angular.module('zstackUI', [
   'zstackUI.offering.data',
   'zstackUI.network',
   'zstackUI.volume',
-]).
-config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+  'zstackUI.services.api'
+])
+.run(['ZStackApi', function(ZStackApi) {
+  ZStackApi.connectWebsocket();
+  ZStackApi.initGlobalValue();
+}])
+.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 }]);
 
 angular.module('ng').run(['$rootScope', '$translate', function($rootScope, $translate) {

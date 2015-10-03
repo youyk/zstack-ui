@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('zstackUI.services.api', ['zstackUI.services.util', 'ui.router',])
+angular.module('zstackUI.services.api', ['zstackUI.services.util', 'ui.router', 'ngCookies'])
 
-.factory('ZStackApi', ['$q', 'ZStackUtil', '$state', function($q, ZStackUtil, $state) {
+.factory('ZStackApi', ['$q', 'ZStackUtil', '$state', '$cookies', function($q, ZStackUtil, $state, $cookies) {
   var self = {}
   self.debugLogin = function(cb) {
     console.log("debugLogin")
@@ -30,6 +30,32 @@ angular.module('zstackUI.services.api', ['zstackUI.services.util', 'ui.router',]
     })
   }
 
+self.isInitGlobalValue = false;
+self.initGlobalValue = function() {
+    if (self.isInitGlobalValue) {
+      return;
+    }
+    self.isInitGlobalValue = true;
+    self.socket.on('call_ret', function(data) {
+      console.log(data)
+      var ret = JSON.parse(data.msg);
+      var msg = ZStackUtil.firstItem(ret);
+      if (!msg.success && ZStackUtil.notNullnotUndefined(msg.error) && msg.error.code == 'ID.1001') {
+        $state.go('login');
+        return;
+      }
+      self.cbList[msg.session.callid](msg);
+      delete self.cbList[msg.session.callid];
+      self.broadcast(msg);
+    });
+
+    self.socket.on('admin_broadcast', function(data) {
+      console.log(data)
+    });
+
+    self.getSystemInfo();
+  }
+
   self.broadcast = function(msg) {
     if (ZStackUtil.notNullnotUndefined(self.rootScope))
       self.rootScope.broadcast("call_ret", msg);
@@ -48,31 +74,20 @@ angular.module('zstackUI.services.api', ['zstackUI.services.util', 'ui.router',]
 
     var data = {'msg' : JSON.stringify(msg)};
     console.log(JSON.stringify(data, null, 2));
+    self.socket = null;
+    $cookies.remove('sessionId');
     self.connectWebsocket();
     self.socket.emit('login', data);
+    console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
     self.socket.on('login_ret', function(ret) {
       var retMsg = ZStackUtil.firstItem(JSON.parse(ret.msg));
       console.log(retMsg)
-      self.session = {};
-      self.session.uuid = retMsg.inventory.uuid;
-      console.log(JSON.stringify(self.session));
-      self.socket.on('call_ret', function(data) {
-        var ret = JSON.parse(data.msg);
-        var msg = ZStackUtil.firstItem(ret);
-        if (!msg.success && ZStackUtil.notNullnotUndefined(msg.error) && msg.error.code == 'ID.1001') {
-          $state.go('login');
-          return;
-        }
-        self.cbList[msg.session.callid](msg);
-        delete self.cbList[msg.session.callid];
-        self.broadcast(msg);
-      });
+      // self.session = {};
+      // self.session.uuid = retMsg.inventory.uuid;
+      $cookies.put('sessionId', retMsg.inventory.uuid);
+      console.log(retMsg.inventory.uuid);
 
-      self.socket.on('admin_broadcast', function(data) {
-        console.log(data)
-      });
-
-      self.getSystemInfo();
+      self.initGlobalValue();
 
       if (ZStackUtil.notNullnotUndefined(cb)) {
         cb();
@@ -81,13 +96,15 @@ angular.module('zstackUI.services.api', ['zstackUI.services.util', 'ui.router',]
   }
 
   self.call = function(msg, cb) {
-    if (!ZStackUtil.notNullnotUndefined(self.session)) {
+    var sessionId = $cookies.get('sessionId');
+    if (!sessionId) {
       $state.go('login');
       return;
     };
+    
     var msgBody = ZStackUtil.firstItem(msg);
     msgBody.session = {};
-    msgBody.session.uuid = self.session.uuid;
+    msgBody.session.uuid = sessionId;
     msgBody.session.callid = ZStackUtil.genUniqueId();
     var data = {'msg' : JSON.stringify(msg)};
     self.socket.emit('call', data);

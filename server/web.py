@@ -405,6 +405,9 @@ class Server(object):
 
         msgJson = json.loads(msg_str);
         sessionJson = msgJson.values()[0]['session']
+        if 'id' not in session or session['id'] != sessionJson['uuid']:
+            join_room(sessionJson['uuid'])
+            session['id'] = sessionJson['uuid']
 
         # receipt = self.Receipt()
         def cb(evt):
@@ -472,8 +475,6 @@ def handle_json(json):
 
 @socketio.on('login')
 def handle_login(data):
-    if 'id' in session:
-        return
     log.debug('login ' + str(data['msg']))
     msg = data['msg']
     retMsg = server.api_sync_call(msg)
@@ -496,7 +497,7 @@ def handle_call(data):
 
 @socketio.on('disconnect')
 def disconnect():
-    if session['id'] is not None:
+    if 'id' in session:
         leave_room(session['id'])
         close_room(session['id'])
     leave_room('admin')
