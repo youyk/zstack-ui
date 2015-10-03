@@ -9,6 +9,7 @@ angular.module('zstackUI', [
   'pascalprecht.translate',
   'zstackUI.main',
   'zstackUI.login',
+  'zstackUI.init_wizard',
   'zstackUI.list_toolbar_directive',
   'zstackUI.dashboard',
   'zstackUI.instance',
