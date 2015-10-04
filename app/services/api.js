@@ -25,17 +25,7 @@ angular.module('zstackUI.services.api', ['zstackUI.services.util', 'ui.router', 
     // self.socket = io.connect('http://192.168.1.107:5000');
     // self.socket = io.connect('http://10.238.145.58:5000');
 
-    self.socket.on('disconnect', function() {
-      self.socket = null;
-    })
-  }
 
-self.isInitGlobalValue = false;
-self.initGlobalValue = function() {
-    if (self.isInitGlobalValue) {
-      return;
-    }
-    self.isInitGlobalValue = true;
     self.socket.on('call_ret', function(data) {
       console.log(data)
       var ret = JSON.parse(data.msg);
@@ -53,7 +43,21 @@ self.initGlobalValue = function() {
       console.log(data)
     });
 
-    self.getSystemInfo();
+    self.socket.on('disconnect', function() {
+      console.log("disconnect!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+      self.socket = null;
+    })
+  }
+
+  self.isInitGlobalValue = false;
+  self.initGlobalValue = function() {
+    if (self.isInitGlobalValue) {
+      return;
+    }
+    
+    self.getSystemInfo(function() {
+      self.isInitGlobalValue = true;
+    });
   }
 
   self.broadcast = function(msg) {
@@ -74,9 +78,9 @@ self.initGlobalValue = function() {
 
     var data = {'msg' : JSON.stringify(msg)};
     console.log(JSON.stringify(data, null, 2));
-    self.socket = null;
     $cookies.remove('sessionId');
-    self.connectWebsocket();
+    // self.socket = null;
+    // self.connectWebsocket();
     self.socket.emit('login', data);
     console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
     self.socket.on('login_ret', function(ret) {
@@ -112,42 +116,67 @@ self.initGlobalValue = function() {
     self.cbList[msgBody.session.callid] = cb;
   }
 
-  self.getSystemInfo = function() {
+  self.getSystemInfo = function(cb) {
     self.queryZone()
     .then(function(data) {
-      self.defaultZone = data.inventories[0];
-      return self.queryCluster(
-        {
-          conditions: [{
-            name: "zoneUuid",
-            op: "=",
-            value: data.inventories[0].uuid
-          }]
-        }
-      );
+      if (data.inventories.length <= 0) {
+        $state.go('init_wizard');
+      } else {
+        self.defaultZone = data.inventories[0];
+        return self.queryCluster(
+          {
+            conditions: [{
+              name: "zoneUuid",
+              op: "=",
+              value: data.inventories[0].uuid
+            }]
+          }
+        );
+      }
     })
     .then(function(data) {
+      if (!data) return;
       self.defaultCluster = data.inventories[0];
       return self.queryL3Network();
     })
     .then(function(data) {
+      if (!data) return;
       self.defaultL3Network = data.inventories[0];
+      return self.getVolumeFormat();
     })
-
-    self.getVolumeFormat()
     .then(function(result) {
+      if (!result) return;
       self.formatList = result.formats;
-      console.log(result);
+      return self.queryBackupStorage()
+    }, function(reason) {
+      console.log(reason)
+    })
+    .then(function(result) {
+      if (!result) return;
+      self.defaultBackupStorage = result.inventories[0]
+      if (ZStackUtil.notNullnotUndefined(cb)) {
+        cb();
+      };
     }, function(reason) {
       console.log(reason)
     })
 
-    self.queryBackupStorage()
-    .then(function(result) {
-      self.defaultBackupStorage = result.inventories[0]
-    }, function(reason) {
-      console.log(reason)
-    })
+  }
+
+  self.simpleCall = function(apiName, msgBody) {
+    return $q(function(resolve, reject) {
+      var msg = {};
+      if (!ZStackUtil.notNullnotUndefined(msgBody))
+        msgBody = {};
+      msg[apiName] = msgBody;
+
+      self.call(msg, function(data) {
+        if (data.success)
+          resolve(data);
+        else
+          reject(data);
+      })
+    });
   }
 
   self.simpleQuery = function(apiName, msgBody) {
@@ -174,8 +203,16 @@ self.initGlobalValue = function() {
     });
   }
 
+  self.createZone = function (msgBody) {
+    return self.simpleQuery('org.zstack.header.zone.APICreateZoneMsg', msgBody);
+  }
+
   self.queryZone = function (msgBody) {
     return self.simpleQuery('org.zstack.header.zone.APIQueryZoneMsg', msgBody);
+  }
+
+  self.createCluster = function (msgBody) {
+    return self.simpleQuery('org.zstack.header.cluster.APICreateClusterMsg', msgBody);
   }
 
   self.queryCluster = function (msgBody) {
@@ -188,6 +225,22 @@ self.initGlobalValue = function() {
 
   self.queryImage = function(msgBody) {
     return self.simpleQuery('org.zstack.header.image.APIQueryImageMsg', msgBody);
+  }
+
+  self.createL2NoVlanNetwork = function (msgBody) {
+    return self.simpleQuery('org.zstack.header.network.l2.APICreateL2NoVlanNetworkMsg', msgBody);
+  }
+
+  self.createL2VlanNetwork = function (msgBody) {
+    return self.simpleQuery('org.zstack.header.network.l2.APICreateL2VlanNetworkMsg', msgBody);
+  }
+
+  self.attachL2NetworkToCluster = function (msgBody) {
+    return self.simpleQuery('org.zstack.header.network.l2.APIAttachL2NetworkToClusterMsg', msgBody);
+  }
+
+  self.createL3Network = function (msgBody) {
+    return self.simpleQuery('org.zstack.header.network.l3.APICreateL3NetworkMsg', msgBody);
   }
 
   self.queryL3Network = function (msgBody) {
@@ -215,6 +268,17 @@ self.initGlobalValue = function() {
     return self.simpleQuery('org.zstack.header.storage.backup.APIQueryBackupStorageMsg', msgBody);
   }
 
+  self.addDns = function (msgBody) {
+    return self.simpleCall('org.zstack.header.network.l3.APIAddDnsToL3NetworkMsg', msgBody);
+  }
+
+  self.attachNetworkService = function (msgBody) {
+    return self.simpleCall('org.zstack.header.network.service.APIAttachNetworkServiceToL3NetworkMsg', msgBody);
+  }
+
+  self.queryNetworkServiceProvider = function (msgBody) {
+    return self.simpleQuery('org.zstack.header.network.service.APIQueryNetworkServiceProviderMsg', msgBody);
+  }
 
   self._getCapacityByAll = function(apiName) {
     return $q(function(resolve, reject) {
@@ -334,6 +398,10 @@ self.initGlobalValue = function() {
     });
   }
 
+  self.addHost = function(msgBody) {
+    return self.simpleCall('org.zstack.kvm.APIAddKVMHostMsg', msgBody);
+  }
+
   self.enableHost = function(uuid) {
     return self.simpleMsg({
       "org.zstack.header.host.APIChangeHostStateMsg": {
@@ -378,6 +446,10 @@ self.initGlobalValue = function() {
     });
   }
 
+  self.addImage = function(msgBody) {
+    return self.simpleCall('org.zstack.header.image.APIAddImageMsg', msgBody);
+  }
+
   self.enableImage = function(uuid) {
     return self.simpleMsg({
       "org.zstack.header.image.APIChangeImageStateMsg": {
@@ -402,6 +474,10 @@ self.initGlobalValue = function() {
         uuid: uuid
       }
     });
+  }
+
+  self.addIpRange = function (msgBody) {
+    return self.simpleQuery('org.zstack.header.network.l3.APIAddIpRangeMsg', msgBody);
   }
 
   self.deleteIpRange = function(uuid) {
@@ -436,6 +512,10 @@ self.initGlobalValue = function() {
         uuid: uuid
       }
     });
+  }
+
+  self.addInstanceOffering = function(msgBody) {
+    return self.simpleCall('org.zstack.header.configuration.APICreateInstanceOfferingMsg', msgBody);
   }
 
   self.enableInstanceOffering = function(uuid) {
@@ -496,6 +576,22 @@ self.initGlobalValue = function() {
         vmInstanceUuid: uuid
       }
     });
+  }
+
+  self.addLocalPrimaryStorage = function (msgBody) {
+    return self.simpleCall('org.zstack.storage.primary.local.APIAddLocalPrimaryStorageMsg', msgBody);
+  }
+
+  self.attachPrimaryStorage = function (msgBody) {
+    return self.simpleCall('org.zstack.header.storage.primary.APIAttachPrimaryStorageToClusterMsg', msgBody);
+  }
+
+  self.addSftpBackupStorage = function (msgBody) {
+    return self.simpleCall('org.zstack.storage.backup.sftp.APIAddSftpBackupStorageMsg', msgBody);
+  }
+
+  self.attachBackupStorage = function (msgBody) {
+    return self.simpleCall('org.zstack.header.storage.backup.APIAttachBackupStorageToZoneMsg', msgBody);
   }
 
   return self;

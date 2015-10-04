@@ -6,6 +6,7 @@ angular.module('zstackUI', [
   'zstackUI.select_modals',
   'ui.bootstrap',
   'ui.router',
+  'ngCookies',
   'pascalprecht.translate',
   'zstackUI.main',
   'zstackUI.login',
@@ -21,7 +22,7 @@ angular.module('zstackUI', [
   'zstackUI.volume',
   'zstackUI.services.api'
 ])
-.run(['ZStackApi', function(ZStackApi) {
+.run(['ZStackApi', '$cookies', function(ZStackApi, $cookies) {
   ZStackApi.connectWebsocket();
   ZStackApi.initGlobalValue();
 }])

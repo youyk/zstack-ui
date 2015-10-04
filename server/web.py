@@ -402,10 +402,16 @@ class Server(object):
             return str(e), 400
 
     def api_call(self, msg_str):
-
         msgJson = json.loads(msg_str);
         sessionJson = msgJson.values()[0]['session']
+        print 'session[id]:', 'id' in session
+        if 'id' in session:
+            print 'session[id]:', session['id']
+        print "sessionJson['uuid']", sessionJson['uuid']
+        if 'id' in session:
+            print session['id'] == sessionJson['uuid']
         if 'id' not in session or session['id'] != sessionJson['uuid']:
+            print 'Join Room: ', sessionJson['uuid'], '  ...............................'
             join_room(sessionJson['uuid'])
             session['id'] = sessionJson['uuid']
 
@@ -498,9 +504,13 @@ def handle_call(data):
 @socketio.on('disconnect')
 def disconnect():
     if 'id' in session:
-        leave_room(session['id'])
-        close_room(session['id'])
-    leave_room('admin')
+        print "disconnect, ", session['id'], '.............................................'
+        sessionId = session['id']
+        if 'id' in session: del session['id']
+        print "leave room:", sessionId, '...............................................'
+        #leave_room(sessionId)
+        #close_room(sessionId)
+    #leave_room('admin')
 
 @socketio.on('admin_broadcast')
 def handle_admin_broadcast(json):

@@ -17,6 +17,8 @@ angular.module('zstackUI.network.directive',
       $scope.queryList = function() {
         ZStackApi.queryL3Network()
         .then(function(data) {
+          if (data.inventories.length <= 0)
+            return;
           $scope.safeApply(function() {
             for (var i in data.inventories[0].ipRanges) {
               data.inventories[0].ipRanges[i].collapsed = true;
