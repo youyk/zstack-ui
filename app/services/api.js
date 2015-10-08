@@ -18,10 +18,12 @@ angular.module('zstackUI.services.api', ['zstackUI.services.util', 'ui.router', 
 
   self.cbList = []
 
+  self.server_url = 'http://123.183.211.57:5000';
+
   self.connectWebsocket = function() {
     if (self.socket) return;
 
-    self.socket = io.connect('http://123.183.211.57:5000');
+    self.socket = io.connect(self.server_url);
     // self.socket = io.connect('http://192.168.1.107:5000');
     // self.socket = io.connect('http://10.238.145.58:5000');
 
@@ -34,9 +36,10 @@ angular.module('zstackUI.services.api', ['zstackUI.services.util', 'ui.router', 
         $state.go('login');
         return;
       }
-      self.cbList[msg.session.callid](msg);
-      delete self.cbList[msg.session.callid];
-      self.broadcast(msg);
+      if (ZStackUtil.notNullnotUndefined(self.cbList[msg.session.callid])) {
+        self.cbList[msg.session.callid](msg);
+        delete self.cbList[msg.session.callid];
+      }
     });
 
     self.socket.on('admin_broadcast', function(data) {
@@ -45,7 +48,7 @@ angular.module('zstackUI.services.api', ['zstackUI.services.util', 'ui.router', 
 
     self.socket.on('disconnect', function() {
       console.log("disconnect!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-      self.socket = null;
+      self.socket = io.connect(self.server_url);
     })
   }
 
@@ -58,13 +61,6 @@ angular.module('zstackUI.services.api', ['zstackUI.services.util', 'ui.router', 
     self.getSystemInfo(function() {
       self.isInitGlobalValue = true;
     });
-  }
-
-  self.broadcast = function(msg) {
-    if (ZStackUtil.notNullnotUndefined(self.rootScope))
-      self.rootScope.broadcast("call_ret", msg);
-    console.log("broadcast")
-    console.log(msg)
   }
 
   self.login = function(userName, password, cb) {
