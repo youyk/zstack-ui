@@ -27,6 +27,10 @@ angular.module('zstackUI.list_toolbar_directive',
         }
       }
 
+      $scope.pageChanged = function() {
+        $scope.queryList();
+      }
+
       $scope.go = function() {
         $scope.queryList();
       }

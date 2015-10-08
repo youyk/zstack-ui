@@ -10,8 +10,10 @@
     </ul>
   </div>
   <input type="text" ng-model="searchString" ng-trim="true" ng-keyup="search()"></input>
-  <button type="button" class="btn btn-default" ng-click="prev()">Prev</button>
+<!--   <button type="button" class="btn btn-default" ng-click="prev()">Prev</button>
   <button type="button" class="btn btn-default" ng-click="next()">Next</button>
   <input type="number" ng-model="pageIndex"></input> / {{pageCount}}
-  <button type="button" class="btn btn-default" ng-click="go()">Go</button>
+  <button type="button" class="btn btn-default" ng-click="go()">Go</button> -->
   <button popover-template="templateUrl" popover-placement="bottom" type="button" class="btn btn-default">More</button>
+  <br>
+  <pagination total-items="pageItemCount*pageCount" ng-model="pageIndex" max-size="2" items-per-page="pageItemCount" ng-change="pageChanged()" class="pagination-sm" boundary-links="true" rotate="false" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
