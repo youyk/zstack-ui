@@ -1,83 +1,152 @@
 /* app css stylesheet */
 
-a { cursor: pointer; cursor: hand; }
+a { cursor: pointer; cursor: hand; text-decoration: none;}
 
+/* some basic styles. nothing to do with flexbox */
+header, footer, nav, article, aside {
+  overflow: auto;
+}
 /*
- * Style tweaks
- * --------------------------------------------------
- */
-body {
-  padding-top: 50px;
-  background-color: #f5f5f5;
+  Force full width & height.
+  If this block is removed, the layout height/length will be determined by
+  the amount of content in the page. That might result in a page which has
+  a footer only a few inches from the top of the viewport, or one which
+  scrolls beyond the viewport.
+  This forces the layout to always be full screen regardless of how much,
+  or how little, content is in place. Neither is "right" or "wrong", there
+  are valid cases for each. I just want to be clear what's controlling the
+  page/viewport height.
+*/
+html, body, .viewport {
+  width: 100%;
+  height: 100%;
+  margin: 0;
 }
-footer {
-  padding-left: 15px;
-  padding-right: 15px;
-  background-color: #fff;
+/* encapsulate the various syntax in helper clases */
+/* inspired by http://infrequently.org/2009/08/css-3-brogress/ */
+/* items flex/expand vertically */
+.vbox {
+  /* brevious syntax */
+  display: -webkit-box;
+  display:    -moz-box;
+  display:         box;
+  -webkit-box-orient: vertical;
+     -moz-box-orient: vertical;
+      -ms-box-orient: vertical;
+          box-orient: vertical;
+  /* current syntax */
+  display: -webkit-flex;
+  display:    -moz-flex;
+  display:     -ms-flex;
+  display:         flex;
+  -webkit-flex-direction: column;
+     -moz-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
-
-/*
- * Off Canvas
- * --------------------------------------------------
- */
-@media screen and (max-width: 768px) {
-  .row-offcanvas {
-    position: relative;
-    -webkit-transition: all 0.25s ease-out;
-    -moz-transition: all 0.25s ease-out;
-    transition: all 0.25s ease-out;
-  }
-
-  .row-offcanvas-left
-  .sidebar-offcanvas {
-    left: -33%;
-  }
-
-  .row-offcanvas-left.active {
-    left: 33%;
-  }
-
-  .sidebar-offcanvas {
-    position: absolute;
-    top: 0;
-    width: 33%;
-    margin-left: 10px;
-  }
+/* items flex/expand horizontally */
+.hbox {
+  /* brevious syntax */
+  display: -webkit-box;
+  display:    -moz-box;
+  display:     -ms-box;
+  display:         box;
+  -webkit-box-orient: horizontal;
+     -moz-box-orient: horizontal;
+      -ms-box-orient: horizontal;
+          box-orient: horizontal;
+  /* current syntax */
+  display: -webkit-flex;
+  display:    -moz-flex;
+  display:     -ms-flex;
+  display:         flex;
+  -webkit-flex-direction: row;
+     -moz-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
 }
-
-
-/* Sidebar navigation */
-.nav-sidebar {
-  background-color: #f5f5f5;
-  margin-right: -15px;
-  margin-bottom: 20px;
-  margin-left: -15px;
+.space-between {
+  /* brevious syntax */
+  -webkit-box-pack: justify;
+     -moz-box-pack: justify;
+      -ms-box-pack: justify;
+          box-pack: justify;
+  /* current syntax */
+  -webkit-justify-content: space-between;
+     -moz-justify-content: space-between;
+      -ms-justify-content: space-between;
+          justify-content: space-between;
 }
-.nav-sidebar > li > a {
-  padding-right: 20px;
-  padding-left: 20px;
-}
-.nav-sidebar > .active > a {
+/* I went with a fixed height header & footer because it's a common case.
+  This could easily be altered to flex broportionally with the page.
+*/
+header{
   color: #fff;
-  background-color: #428bca;
+  background-color: rgb(32, 80, 129);
+  min-height: 50px;
 }
 
-/*
- * Main content
- */
+header a, header a:hover, header a:focus, header .nav>li>a:hover, header .nav>li>a:focus {
+  color: #fff;
+  text-decoration: none;
+}
+
+.navbar-nav>li>.header-button {
+  line-height: 20px;
+  position: relative;
+  display: block;
+  padding: 15px 15px;
+ cursor: pointer;
+ cursor: hand; 
+}
+
+header .nav>li>.header-button:hover, header .nav>li>.header-button:focus {
+  background-color: #3b73af;;
+}
+
+footer {
+  min-height: 25px;
+}
 
 .main {
-  padding: 20px;
-  background-color: #fff;
+min-height: 1px;
+  /* brevious syntax */
+  -webkit-box-flex: 1;
+     -moz-box-flex: 1;
+      -ms-box-flex: 1;
+          box-flex: 1;
+  /* current syntax */
+  -webkit-flex: 1;
+     -moz-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
 }
-@media (min-width: 768px) {
-  .main {
-    padding-right: 40px;
-    padding-left: 40px;
-  }
+article {
+  /* brevious syntax */
+  -webkit-box-flex: 5;
+     -moz-box-flex: 5;
+      -ms-box-flex: 5;
+          box-flex: 5;
+  /* current syntax */
+  -webkit-flex: 5;
+     -moz-flex: 5;
+      -ms-flex: 5;
+          flex: 5;
 }
-.main .page-header {
-  margin-top: 0;
+aside, nav {
+  min-width: 200px;
+  max-width: 200px;
+  border-right: 1px solid #ccc;
+  /* brevious syntax */
+  -webkit-box-flex: 1;
+     -moz-box-flex: 1;
+      -ms-box-flex: 1;
+          box-flex: 1;
+  /* current syntax */
+  -webkit-flex: 1;
+     -moz-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
 }
 
 .table-hover tbody tr.table-highlight:hover td, .table-hover tbody tr.table-highlight:hover th {

@@ -1,20 +1,13 @@
-<div class="container-fluid">
-  <div class="row row-offcanvas row-offcanvas-left">
-    <div class="col-sm-3 col-md-2 sidebar-offcanvas" id="sidebar" role="navigation">
-      <ul class="nav nav-sidebar">
-        <li><a href="#/main/dashboard">{{ 'DASHBOARD' | translate }}</a></li>
-        <li><a href="#/main/instance">{{ 'INSTANCE' | translate }}</a></li>
-        <li><a href="#/main/host">{{ 'HOST' | translate }}</a></li>
-        <li><a href="#/main/image">{{ 'IMAGE' | translate }}</a></li>
-        <li><a href="#/main/network">{{ 'NETWORK' | translate }}</a></li>
-        <li><a href="#/main/volume">{{ 'VOLUME' | translate }}</a></li>
-        <li><a href="#/main/instance_offering">{{ 'INSTANCE_OFFERING' | translate }}</a></li>
-        <li><a href="#/main/data_offering">{{ 'DATA_OFFERING' | translate }}</a></li>
-      </ul>
-    </div><!--/span-->
-    
-    <!-- <div ng-view></div> -->
-    <div ui-view></div>
-
-  </div><!--/row-->
-</div><!--/.container-->
+<nav>
+  <ul class="nav nav-sidebar">
+    <li><a href="#/main/dashboard">{{ 'DASHBOARD' | translate }}</a></li>
+    <li><a href="#/main/instance">{{ 'INSTANCE' | translate }}</a></li>
+    <li><a href="#/main/host">{{ 'HOST' | translate }}</a></li>
+    <li><a href="#/main/image">{{ 'IMAGE' | translate }}</a></li>
+    <li><a href="#/main/network">{{ 'NETWORK' | translate }}</a></li>
+    <li><a href="#/main/volume">{{ 'VOLUME' | translate }}</a></li>
+    <li><a href="#/main/instance_offering">{{ 'INSTANCE_OFFERING' | translate }}</a></li>
+    <li><a href="#/main/data_offering">{{ 'DATA_OFFERING' | translate }}</a></li>
+  </ul>
+</nav>
+<article ui-view></article>
