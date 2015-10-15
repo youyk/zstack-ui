@@ -174,6 +174,20 @@ angular.module('zstackUI.services.util', [])
           }
         }
       }
+
+      scope.onClickTableHeader = function(column) {
+        if (column != scope.sortByField) {
+          scope.sortByField = column;
+          scope.sortDirection = 'asc';
+        } else {
+          if ('asc' == scope.sortDirection) {
+            scope.sortDirection = 'desc';
+          } else {
+            scope.sortDirection = 'asc';
+          }
+        }
+        scope.queryList();
+      }
   }
 
 

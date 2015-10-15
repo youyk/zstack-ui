@@ -1,21 +1,21 @@
 <div>
-  <div ng-if="!simple">
+  <span ng-if="!simple">
     <button type="button" class="btn btn-default" ng-controller="CreateInstanceModalCtrl" ng-click="open()">Create item</button>
     <button ng-if="selectList.length > 0" type="button" class="btn btn-default" ng-click="start()">{{ 'INSTANCE_START' | translate }}</button>
     <button ng-if="selectList.length > 0" type="button" class="btn btn-default" ng-click="stop()">{{ 'INSTANCE_STOP' | translate }}</button>
     <button ng-if="selectList.length > 0" type="button" class="btn btn-default" ng-click="reboot()">{{ 'INSTANCE_REBOOT' | translate }}</button>
     <button ng-if="selectList.length > 0" type="button" class="btn btn-default" ng-click="destroy()">{{ 'INSTANCE_DELETE' | translate }}</button>
-  </div>
-  <div list-toolbar-directive></div>
+  </span>
+  <span list-toolbar-directive style="float: right;"></span>
 
   <table class="table table-hover">
     <thead>
       <tr>
-        <th>Name</th>
+        <th ng-click="onClickTableHeader('name')">Name<span class="caret" ng-class="{'caret-reversed': sortDirection=='desc'}" ng-show="sortByField=='name'"></span></th>
         <th>Description</th>
         <th>Default IP</th>
         <th>Host IP</th>
-        <th>State</th>
+        <th ng-click="onClickTableHeader('state')">State<span class="caret" ng-class="{'caret-reversed': sortDirection=='desc'}" ng-show="sortByField=='state'"></th>
         <th></th>
       </tr>
     </thead>
@@ -32,4 +32,9 @@
       </tr>
     </tbody>
   </table>
+  <div>
+    <span style="float: right;">
+      <pagination total-items="pageItemCount*pageCount" ng-model="pageIndex" max-size="2" items-per-page="pageItemCount" ng-change="pageChanged()" class="pagination-sm" boundary-links="true" rotate="false" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
+    </span>
+  </div>
 </div>

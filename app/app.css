@@ -156,3 +156,14 @@ aside, nav {
 .table-highlight {
     background-color: #ebf2f9;
 }
+
+.open .dropdown-toggle.btn-default {
+  color: #333;
+  background-color: #fff;
+  border-color: #ccc;
+}
+
+.caret.caret-reversed {
+    border-top-width: 0;
+    border-bottom: 4px solid #000000;
+}
