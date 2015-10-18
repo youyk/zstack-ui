@@ -1,0 +1,12 @@
+<input class="form-control" style="display: inline; width: auto;" type="text" ng-model="searchString" ng-trim="true" ng-keyup="search()" placeholder="Search..."></input>
+By
+<div class="btn-group" dropdown is-open="false">
+  <button type="button" class="btn btn-default" dropdown-toggle ng-disabled="disabled">
+    {{searchField}} <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu" aria-labelledby="media-type-button">
+    <li role="menuitem" ng-repeat="item in searchFieldList">
+      <a ng-click="selectSearchField(item)">{{item}}</a>
+    </li>
+  </ul>
+</div>

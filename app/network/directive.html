@@ -1,6 +1,7 @@
 <div>
   <button type="button" class="btn btn-default" ng-controller="AddIpRangeModalCtrl" ng-click="open()">{{ 'NETWORK_ADD_IP_RANGE' | translate}}</button>
   <button ng-if="selectList.length > 0" type="button" class="btn btn-default" ng-click="delete()">{{ 'DELETE' | translate }}</button>
+  <search_directive style="float: right;"></search_directive>
   <table class="table table-hover">
     <thead>
       <tr>
@@ -24,4 +25,5 @@
       </tr>
     </tbody>
   </table>
+  <pagination_directive></pagination_directive>
 </div>

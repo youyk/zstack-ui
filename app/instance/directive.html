@@ -6,8 +6,7 @@
     <button ng-if="selectList.length > 0" type="button" class="btn btn-default" ng-click="reboot()">{{ 'INSTANCE_REBOOT' | translate }}</button>
     <button ng-if="selectList.length > 0" type="button" class="btn btn-default" ng-click="destroy()">{{ 'INSTANCE_DELETE' | translate }}</button>
   </span>
-  <span list-toolbar-directive style="float: right;"></span>
-
+  <search_directive style="float: right;"></search_directive>
   <table class="table table-hover">
     <thead>
       <tr>
@@ -32,9 +31,5 @@
       </tr>
     </tbody>
   </table>
-  <div>
-    <span style="float: right;">
-      <pagination total-items="pageItemCount*pageCount" ng-model="pageIndex" max-size="2" items-per-page="pageItemCount" ng-change="pageChanged()" class="pagination-sm" boundary-links="true" rotate="false" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
-    </span>
-  </div>
+  <pagination_directive></pagination_directive>
 </div>

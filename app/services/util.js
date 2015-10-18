@@ -188,6 +188,16 @@ angular.module('zstackUI.services.util', [])
         }
         scope.queryList();
       }
+
+      scope.selectSortBy = function(item) {
+        scope.sortByField = item;
+        scope.queryList();
+      }
+
+      scope.selectSortDirection = function(item) {
+        scope.sortDirection = item;
+        scope.queryList();
+      }
   }
 
 

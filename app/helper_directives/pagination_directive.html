@@ -1,0 +1,18 @@
+<div>
+  <span style="float: left;">
+    <div class="btn-group" dropdown is-open="false">
+      <button type="button" class="btn btn-default" dropdown-toggle ng-disabled="disabled">
+        {{pageItemCount}} Items / Page
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu">
+        <li role="menuitem" ng-repeat="item in pageItemCountList">
+          <a ng-click="selectPageItemCount(item)">{{item}}</a>
+        </li>
+      </ul>
+    </div>
+  </span>
+  <span style="float: right;">
+    <pagination style ="display: inline;" total-items="pageItemCount*pageCount" ng-model="pageIndex" max-size="2" items-per-page="pageItemCount" ng-change="pageChanged()" class="pagination-sm" boundary-links="true" rotate="false" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
+  </span>
+</div>
