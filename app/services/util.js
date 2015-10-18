@@ -153,22 +153,30 @@ angular.module('zstackUI.services.util', [])
       ];
       scope.sortDirection = scope.sortDirectionList[0];
       scope.conditions = [];
+      scope.selectAllItems = false;
 
       scope.$on("update:list", function() {
         scope.queryList();
       })
 
-      scope.select = function(event, item) {
-        if (event.ctrlKey) {
-          item.selected = !item.selected;
-        } else {
-          for (var i in scope.itemList) {
-            scope.itemList[i].selected = false;
-          }
-          item.selected = true;
-        }
+      scope.select = function(item) {
         scope.selectList.length = 0;
         for (var i in scope.itemList) {
+          if (scope.itemList[i].selected) {
+            scope.selectList.push(scope.itemList[i]);
+          }
+        }
+        if (scope.selectList.length == scope.itemList.length) {
+          scope.selectAllItems = true;
+        } else {
+          scope.selectAllItems = false;
+        }
+      }
+
+      scope.selectAll = function() {
+        scope.selectList.length = 0;
+        for (var i in scope.itemList) {
+          scope.itemList[i].selected = scope.selectAllItems
           if (scope.itemList[i].selected) {
             scope.selectList.push(scope.itemList[i]);
           }

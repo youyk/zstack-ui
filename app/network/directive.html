@@ -5,6 +5,7 @@
   <table class="table table-hover">
     <thead>
       <tr>
+        <th><input type="checkbox" ng-model="selectAllItems" ng-click="selectAll()"></input></th>
         <th>Name</th>
         <th>Start IP</th>
         <th>End IP</th>
@@ -14,6 +15,7 @@
     </thead>
     <tbody>
       <tr ng-repeat="item in itemList[0].ipRanges" ng-click="select($event, item)" ng-class="{'table-highlight': item.selected}">
+        <td><input type="checkbox" ng-model="item.selected" ng-click="select(item)"></input></td>
         <td ng-if="item.collapsed"><a ng-click="item.collapsed=!item.collapsed">{{item.name}}</a></td>
         <td ng-if="item.collapsed">{{item.startIp}}</td>
         <td ng-if="item.collapsed">{{item.endIp}}</td>
