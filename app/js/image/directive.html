@@ -1,0 +1,41 @@
+<div>
+  <span ng-if="!simple" style="float: left;">
+    <button type="button" class="btn btn-default" ng-controller="AddImageModalCtrl" ng-click="open()">{{ 'IMAGE_ADD' | translate}}</button>
+    <button ng-if="selectList.length > 0" type="button" class="btn btn-default" ng-click="enable()">{{ 'ENABLE' | translate }}</button>
+    <button ng-if="selectList.length > 0" type="button" class="btn btn-default" ng-click="disable()">{{ 'DISABLE' | translate }}</button>
+    <button ng-if="selectList.length > 0" type="button" class="btn btn-default" ng-click="delete()">{{ 'DELETE' | translate }}</button>
+  </span>
+  <search_directive style="float: right;"></search_directive>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th><input type="checkbox" ng-model="selectAllItems" ng-click="selectAll()"></input></th>
+        <th>Name</th>
+        <th>Media Type</th>
+        <th>State</th>
+        <th>Status</th>
+        <th>Guest OS</th>
+        <th>Size</th>
+        <th>Format</th>
+        <th>UUID</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="item in itemList" ng-click="select($event, item)" ng-class="{'table-highlight': item.selected}">
+        <td><input type="checkbox" ng-model="item.selected" ng-click="select(item)"></input></td>
+        <td ng-if="item.collapsed"><a ng-click="item.collapsed=!item.collapsed">{{item.name}}</a></td>
+        <td ng-if="item.collapsed">{{item.mediaType}}</td>
+        <td ng-if="item.collapsed">{{item.state}}</td>
+        <td ng-if="item.collapsed">{{item.status}}</td>
+        <td ng-if="item.collapsed">{{item.platform}}</td>
+        <td ng-if="item.collapsed">{{ZStackUtil.bytesToSize(item.size)}}</td>
+        <td ng-if="item.collapsed">{{item.format}}</td>
+        <td ng-if="item.collapsed">{{item.uuid}}</td>
+        <td colspan="8" ng-if="!item.collapsed">
+          <div image-details-directive ng-model="item"></div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <pagination_directive></pagination_directive>
+</div>

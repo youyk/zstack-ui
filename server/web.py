@@ -21,8 +21,9 @@ import kombu
 import json
 
 template_dir = os.path.join(os.path.dirname(__file__), 'static/templates')
-static_dir = os.path.join(os.path.dirname(__file__), 'static_new')
-app = Flask(__name__, template_folder=template_dir)
+static_dir = os.path.join(os.path.dirname(__file__), 'static')
+#app = Flask(__name__, template_folder=template_dir)
+app = Flask(__name__, static_url_path='')
 app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(app)
 
@@ -253,7 +254,7 @@ class CloudBus(object):
                 return
             log.debug("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
 
-            socketio.emit('admin_broadcast', evt, 'admin')
+            socketio.emit('canonical_event', evt, 'admin')
 
             log.debug('received a canonical event: %s' % body)
             evt_body = evt.values()[0]
@@ -463,13 +464,14 @@ def api_async_call():
 def api_query():
     return server.api_query(request.data)
 
-@app.route("/")
-def index():
-    return render_template("index.html")
+#@app.route("/")
+#def index():
+#    return render_template("index.html")
 
-@app.route('/new/<path:path>')
-def root(path):
-    return send_from_directory(static_dir, path)
+#@app.route('/')
+#def index(path):
+#    return app.send_static_file('index.html')
+#    return send_from_directory(static_dir, path)
 
 @socketio.on('message')
 def handle_my_custom_event(message):
