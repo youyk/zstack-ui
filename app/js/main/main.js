@@ -10,5 +10,6 @@ angular.module('zstackUI.main', [])
   });
 }])
 
-.controller('MainCtrl', ['$scope', function($scope) {
+.controller('MainCtrl', ['$scope', '$state', function($scope, $state) {
+  $state.go('main.dashboard')
 }]);

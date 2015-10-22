@@ -33,7 +33,7 @@ angular.module('zstackUI', [
 
 angular.module("templates", []);
 
-angular.module('ng').run(['$rootScope', '$translate', function($rootScope, $translate) {
+angular.module('ng').run(['$rootScope', '$translate', '$state', function($rootScope, $translate, $state) {
     $rootScope.safeApply = function(fn) {
         var phase = this.$root.$$phase;
         if(phase == '$apply' || phase == '$digest') {
@@ -48,4 +48,6 @@ angular.module('ng').run(['$rootScope', '$translate', function($rootScope, $tran
     $rootScope.changeLanguage = function(langKey) {
       $translate.use(langKey);
     }
+
+    $state.go('main.dashboard')
 }]);

@@ -12,7 +12,7 @@ var rename = require('gulp-rename');
 // var app = angular.module('appname', [ ... , 'templates']);
 
 gulp.task('templates', function () {
-  gulp.src([
+  return gulp.src([
       './app/**/*.html',
       './app/index.html',
       '!./app/bower_components/**',
@@ -65,6 +65,7 @@ gulp.task('dist', ['clean', 'templates', 'css', 'vendor', 'index'], function() {
       './app/bower_components/angular-translate/angular-translate.min.js',
       './app/bower_components/socket.io-client/dist/socket.io.min.js',
       './app/bower_components/cryptojslib/rollups/sha512.js',
+      './app/js/app.js',
       './tmp/templates.js',
       './app/js/**/*.js'
     ])
