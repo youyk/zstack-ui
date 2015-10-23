@@ -31,7 +31,7 @@
         <td ng-if="item.collapsed">{{item.state}}</td>
         <td ng-if="item.collapsed">{{item.status}}</td>
         <td ng-if="item.collapsed">{{item.uuid}}</td>
-        <td colspan="7" ng-if="!item.collapsed">
+        <td colspan="7" ng-if="!item.collapsed" style="display: none;">
           <div host-details-directive ng-model="item"></div>
         </td>
       </tr>

@@ -23,7 +23,7 @@
         <td ng-if="item.collapsed">{{item.endIp}}</td>
         <td ng-if="item.collapsed">{{item.netmask}}</td>
         <td ng-if="item.collapsed">{{item.gateway}}</td>
-        <td colspan="5" ng-if="!item.collapsed">
+        <td colspan="5" ng-if="!item.collapsed" style="display: none;">
           <div network-details-directive ng-model="item"></div>
         </td>
       </tr>

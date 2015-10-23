@@ -31,7 +31,7 @@
         <td ng-if="item.collapsed">{{ZStackUtil.bytesToSize(item.size)}}</td>
         <td ng-if="item.collapsed">{{item.format}}</td>
         <td ng-if="item.collapsed">{{item.uuid}}</td>
-        <td colspan="8" ng-if="!item.collapsed">
+        <td colspan="8" ng-if="!item.collapsed" style="display: none;">
           <div image-details-directive ng-model="item"></div>
         </td>
       </tr>
