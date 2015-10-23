@@ -29,7 +29,7 @@
         <td ng-if="item.collapsed">{{item.vmNics[0].ip}}</td>
         <td ng-if="item.collapsed"></td>
         <td ng-if="item.collapsed">{{item.state}}</td>
-        <td colspan="6" ng-if="!item.collapsed" style="display: none;">
+        <td colspan="6" ng-if="!item.collapsed">
           <div instance-details-directive ng-model="item"></div>
         </td>
       </tr>
