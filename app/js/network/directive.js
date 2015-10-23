@@ -7,6 +7,9 @@ angular.module('zstackUI.network.directive',
 .directive('networkDirective', ['ZStackApi', 'ZStackUtil', function(ZStackApi, ZStackUtil) {
   return {
     templateUrl: 'js/network/directive.html',
+    link: function (scope, element, attrs) {
+      scope.simple = !!attrs.simple;
+    },
     controller: ['$scope', function($scope) {
       $scope.ZStackApi = ZStackApi;
       $scope.ZStackUtil = ZStackUtil;

@@ -7,6 +7,9 @@ angular.module('zstackUI.host.directive',
 .directive('hostDirective', ['ZStackApi', 'ZStackUtil', function(ZStackApi, ZStackUtil) {
   return {
     templateUrl: 'js/host/directive.html',
+    link: function (scope, element, attrs) {
+      scope.simple = !!attrs.simple;
+    },
     controller: ['$scope', function($scope) {
       $scope.ZStackApi = ZStackApi;
       $scope.ZStackUtil = ZStackUtil;

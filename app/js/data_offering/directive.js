@@ -7,6 +7,9 @@ angular.module('zstackUI.data_offering.directive',
 .directive('aaaOfferingDirective', ['ZStackApi', 'ZStackUtil', function(ZStackApi, ZStackUtil) {
   return {
     templateUrl: 'js/data_offering/directive.html',
+    link: function (scope, element, attrs) {
+      scope.simple = !!attrs.simple;
+    },
     controller: ['$scope', function($scope) {
       $scope.ZStackApi = ZStackApi;
       $scope.ZStackUtil = ZStackUtil;

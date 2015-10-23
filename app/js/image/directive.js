@@ -7,6 +7,9 @@ angular.module('zstackUI.image.directive',
 .directive('imageDirective', ['ZStackApi', 'ZStackUtil', function(ZStackApi, ZStackUtil) {
   return {
     templateUrl: 'js/image/directive.html',
+    link: function (scope, element, attrs) {
+      scope.simple = !!attrs.simple;
+    },
     controller: ['$scope', function($scope) {
       $scope.ZStackApi = ZStackApi;
       $scope.ZStackUtil = ZStackUtil;
