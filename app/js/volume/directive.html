@@ -7,7 +7,7 @@
     <button ng-if="selectList.length > 0" type="button" class="btn btn-default" ng-click="delete()">{{ 'DELETE' | translate }}</button>
   </span>
   <search_directive style="float: right;"></search_directive>
-  <table class="table table-hover">
+  <table class="table table-hover" style="clear: both;">
     <thead>
       <tr>
         <th><input type="checkbox" ng-model="selectAllItems" ng-click="selectAll()"></input></th>
