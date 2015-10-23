@@ -34,7 +34,7 @@
           <li>
             <div dropdown dropdown-append-to-body class="header-button">
               <a href dropdown-toggle>
-                Language
+                {{ 'LANGUAGE' | translate }}
               </a>
               <ul class="dropdown-menu" role="menu" style="z-index:9999">
                 <li role="menuitem"><a href ng-click="changeLanguage('en')">English</a></li>
@@ -42,7 +42,8 @@
               </ul>
             </div>
           </li>
-          <li><a href="#login" class="header-button">Login</a></li>
+          <li ng-if="$window.loggedin"><a href="#settings" class="header-button">{{ 'SETTINGS' | translate }}</a></li>
+          <li ng-if="$window.loggedin"><a href class="header-button" ng-click="logout()">{{ 'LOGOUT' | translate }}</a></li>
         </ul>
       </div>
     </div>
@@ -50,9 +51,9 @@
 
   <section ui-view class="main hbox space-between"></section>
 
-  <footer>
+<!--   <footer>
     ©2015 ZStack.org
-  </footer>
+  </footer> -->
 
   <!-- In production use:
   <script src="js///ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
@@ -109,5 +110,7 @@
   <script src="js/volume/details_directive.js"></script>
   <script src="js/services/api.js"></script>
   <script src="js/services/util.js"></script>
+  <script src="js/log/log.js"></script>
+  <script src="js/settings/settings.js"></script>
 </body>
 </html>

@@ -4,6 +4,10 @@ angular.module('zstackUI.i18n', ['pascalprecht.translate'])
 
 .config(['$translateProvider', function($translateProvider) {
   $translateProvider.translations('en', {
+    LANGUAGE: "Language",
+    SETTINGS: "Settings",
+    LOGOUT: "Logut",
+
     DASHBOARD: 'Dashboard',
     INSTANCE: 'Instance',
     HOST: 'Host',
@@ -50,6 +54,10 @@ angular.module('zstackUI.i18n', ['pascalprecht.translate'])
     INSTANCE_OFFERING_ADD: "Add Instance Offering",
   })
   .translations('zh-CN', {
+    LANGUAGE: "语言",
+    SETTINGS: "设置",
+    LOGOUT: "退出",
+
     DASHBOARD: '首页',
     INSTANCE: '虚拟机',
     HOST: '物理机',

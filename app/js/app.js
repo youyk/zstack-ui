@@ -22,7 +22,9 @@ angular.module('zstackUI', [
   'zstackUI.offering.data',
   'zstackUI.network',
   'zstackUI.volume',
-  'zstackUI.services.api'
+  'zstackUI.services.api',
+  'zstackUI.settings',
+  'zstackUI.log'
 ])
 .run(['ZStackApi', '$cookies', function(ZStackApi, $cookies) {
   ZStackApi.connectWebsocket();
@@ -33,21 +35,29 @@ angular.module('zstackUI', [
 
 angular.module("templates", []);
 
-angular.module('ng').run(['$rootScope', '$translate', '$state', function($rootScope, $translate, $state) {
-    $rootScope.safeApply = function(fn) {
-        var phase = this.$root.$$phase;
-        if(phase == '$apply' || phase == '$digest') {
-            if(fn && (typeof(fn) === 'function')) {
-                fn();
-            }
-        } else {
-            this.$apply(fn);
-        }
-    };
+angular.module('ng').run(['$rootScope', '$translate', '$state', '$cookies', function($rootScope, $translate, $state, $cookies) {
+  $rootScope.$window = window;
+  window.loggedin = !!$cookies.get('sessionId');
+  $rootScope.safeApply = function(fn) {
+      var phase = this.$root.$$phase;
+      if(phase == '$apply' || phase == '$digest') {
+          if(fn && (typeof(fn) === 'function')) {
+              fn();
+          }
+      } else {
+          this.$apply(fn);
+      }
+  };
 
-    $rootScope.changeLanguage = function(langKey) {
-      $translate.use(langKey);
-    }
+  $rootScope.changeLanguage = function(langKey) {
+    $translate.use(langKey);
+  }
 
-    $state.go('main.dashboard')
+  $rootScope.logout = function() {
+    window.loggedin = false;
+    $cookies.remove('sessionId');
+    $state.go('login');
+  }
+
+  $state.go('main.dashboard')
 }]);

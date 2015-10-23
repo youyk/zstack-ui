@@ -32,7 +32,11 @@ angular.module('zstackUI.services.api', ['zstackUI.services.util', 'ui.router', 
       console.log(data)
       var ret = JSON.parse(data.msg);
       var msg = ZStackUtil.firstItem(ret);
+      if (!window.msgList)
+        window.msgList = [];
+      window.msgList.push(JSON.stringify(msg));
       if (!msg.success && ZStackUtil.notNullnotUndefined(msg.error) && msg.error.code == 'ID.1001') {
+        window.loggedin = false;
         $state.go('login');
         return;
       }
@@ -64,6 +68,7 @@ angular.module('zstackUI.services.api', ['zstackUI.services.util', 'ui.router', 
   }
 
   self.login = function(userName, password, cb) {
+    window.loggedin = false;
     console.log("login")
     var msg = {
       'org.zstack.header.identity.APILogInByAccountMsg': {
@@ -80,6 +85,7 @@ angular.module('zstackUI.services.api', ['zstackUI.services.util', 'ui.router', 
     self.socket.emit('login', data);
     console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
     self.socket.on('login_ret', function(ret) {
+      window.loggedin = true;
       var retMsg = ZStackUtil.firstItem(JSON.parse(ret.msg));
       console.log(retMsg)
       // self.session = {};
@@ -106,6 +112,9 @@ angular.module('zstackUI.services.api', ['zstackUI.services.util', 'ui.router', 
     msgBody.session = {};
     msgBody.session.uuid = sessionId;
     msgBody.session.callid = ZStackUtil.genUniqueId();
+    if (!window.msgList)
+      window.msgList = [];
+    window.msgList.push(JSON.stringify(msg));
     var data = {'msg' : JSON.stringify(msg)};
     self.socket.emit('call', data);
     console.log(JSON.stringify(data, null, 2));
