@@ -1,4 +1,4 @@
-<div>
+<div style="height: 35px;">
   <span style="float: left;">
     <div class="btn-group" dropdown is-open="false">
       <button type="button" class="btn btn-default" dropdown-toggle ng-disabled="disabled">
@@ -12,7 +12,7 @@
       </ul>
     </div>
   </span>
-  <span style="float: right;">
+  <span style="float: right; margin-top: 3px;">
     <pagination style ="display: inline;" total-items="pageItemCount*pageCount" ng-model="pageIndex" max-size="2" items-per-page="pageItemCount" ng-change="pageChanged()" class="pagination-sm" boundary-links="true" rotate="false" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
   </span>
 </div>
