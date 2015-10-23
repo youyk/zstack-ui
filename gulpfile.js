@@ -6,6 +6,8 @@ var minifyHTML = require('gulp-minify-html');
 var sourcemaps = require('gulp-sourcemaps');
 var del = require('del');
 var rename = require('gulp-rename');
+var minifyCSS = require('gulp-minify-css');
+// var autoprefixer = require('gulp-autoprefixer');
 
 // Minify and templateCache your Angular Templates
 // Add a 'templates' module dependency to your app:
@@ -32,9 +34,14 @@ gulp.task('css', function() {
       './app/bower_components/bootstrap/dist/css/bootstrap.min.css',
       './app/css/app.css'
     ])
-    // .pipe(minifyCSS())
-    // .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9'))
+    .pipe(sourcemaps.init())
+    // .pipe(autoprefixer({
+    //   browsers: ['last 2 versions'],
+    //   cascade: false
+    // }))
     .pipe(concat('app.css'))
+    .pipe(minifyCSS())
+    .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest('dist'))
 })
 
