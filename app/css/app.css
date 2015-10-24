@@ -6,6 +6,11 @@ a { cursor: pointer; cursor: hand; text-decoration: none;}
 header, footer, nav, article, aside {
   overflow: auto;
 }
+
+input[type="checkbox"] {
+  cursor: pointer;
+  cursor: hand; 
+}
 /*
   Force full width & height.
   If this block is removed, the layout height/length will be determined by
@@ -166,4 +171,27 @@ aside, nav {
 .caret.caret-reversed {
     border-top-width: 0;
     border-bottom: 4px solid #000000;
+}
+
+.zs-tab thead tr th:first-child {
+  width: 35px;
+}
+
+.zs-btn-noborder {
+  border-color: white;
+  color: black;
+  box-shadow: none;
+}
+
+.zs-details {
+}
+
+.zs-details .operations {
+  margin-bottom: 10px;
+}
+
+.zs-details .row label {
+  margin-left: 20px;
+  float: left;
+  width: 300px;
 }

@@ -19,7 +19,7 @@ angular.module('zstackUI.i18n', ['pascalprecht.translate'])
 
     ATTACH: "Attach",
     DETACH: "Detach",
-    COLLAPSE: 'Collapse',
+    COLLAPSE: '^',
     ENABLE: 'Enable',
     DISABLE: 'Disable',
     DELETE: 'Delete',
@@ -70,7 +70,7 @@ angular.module('zstackUI.i18n', ['pascalprecht.translate'])
 
     ATTACH: "加载",
     DETACH: "卸载",
-    COLLAPSE: '收起',
+    COLLAPSE: '^',
     ENABLE: '启用',
     DISABLE: '停用',
     DELETE: '删除',

@@ -1,15 +1,15 @@
 <div>
   <div>
     <span ng-if="!simple" style="float: left;">
-      <button type="button" class="btn btn-default" ng-controller="CreateInstanceModalCtrl" ng-click="open()">Create item</button>
-      <button ng-if="selectList.length > 0" type="button" class="btn btn-default" ng-click="start()">{{ 'INSTANCE_START' | translate }}</button>
-      <button ng-if="selectList.length > 0" type="button" class="btn btn-default" ng-click="stop()">{{ 'INSTANCE_STOP' | translate }}</button>
-      <button ng-if="selectList.length > 0" type="button" class="btn btn-default" ng-click="reboot()">{{ 'INSTANCE_REBOOT' | translate }}</button>
-      <button ng-if="selectList.length > 0" type="button" class="btn btn-default" ng-click="destroy()">{{ 'INSTANCE_DELETE' | translate }}</button>
+      <a class="btn btn-primary" ng-controller="CreateInstanceModalCtrl" ng-click="open()">Create item</a>
+      <a class="btn btn-default" ng-if="selectList.length > 0" type="button" class="btn btn-default" ng-click="start()">{{ 'INSTANCE_START' | translate }}</a>
+      <a class="btn btn-default" ng-if="selectList.length > 0" type="button" class="btn btn-default" ng-click="stop()">{{ 'INSTANCE_STOP' | translate }}</a>
+      <a class="btn btn-default"  ng-if="selectList.length > 0" type="button" class="btn btn-default" ng-click="reboot()">{{ 'INSTANCE_REBOOT' | translate }}</a>
+      <a class="btn btn-danger" ng-if="selectList.length > 0" type="button" class="btn btn-default" ng-click="destroy()">{{ 'INSTANCE_DELETE' | translate }}</a>
     </span>
     <search_directive style="float: right;"></search_directive>
   </div>
-  <table class="table table-hover" style="clear: both;">
+  <table class="table zs-tab" style="clear: both;">
     <thead>
       <tr>
         <th><input type="checkbox" ng-model="selectAllItems" ng-click="selectAll()"></input></th>
@@ -18,7 +18,6 @@
         <th>Default IP</th>
         <th>Host IP</th>
         <th ng-click="onClickTableHeader('state')">State<span class="caret" ng-class="{'caret-reversed': sortDirection=='desc'}" ng-show="sortByField=='state'"></th>
-        <th></th>
       </tr>
     </thead>
     <tbody>
