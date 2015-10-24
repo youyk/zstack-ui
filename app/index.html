@@ -12,52 +12,6 @@
   <link rel="stylesheet" href="bower_components/angular-bootstrap/ui-bootstrap-csp.css">
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/app.css">
-</head>
-<body class="vbox viewport">
-<!--   <ul class="menu">
-    <li><a href="#/login">Login</a></li>
-    <li><a href="#/vminstance">VmInstance</a></li>
-    <li><a href="#/view1">view1</a></li>
-    <li><a href="#/view2">view2</a></li>
-  </ul> -->
-
-  <!--[if lt IE 7]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-  <![endif]-->
-  <header>
-    <div>
-      <div>
-        <a class="navbar-brand" href="#/main/dashboard">ZStack</a>
-      </div>
-      <div class="navbar-collapse collapse">
-        <ul class="nav navbar-nav navbar-right">
-          <li>
-            <div dropdown dropdown-append-to-body class="header-button">
-              <a href dropdown-toggle>
-                {{ 'LANGUAGE' | translate }}
-              </a>
-              <ul class="dropdown-menu" role="menu" style="z-index:9999">
-                <li role="menuitem"><a href ng-click="changeLanguage('en')">English</a></li>
-                <li role="menuitem"><a href ng-click="changeLanguage('zh-CN')">中文</a></li>
-              </ul>
-            </div>
-          </li>
-          <li ng-if="$window.loggedin"><a href="#settings" class="header-button">{{ 'SETTINGS' | translate }}</a></li>
-          <li ng-if="$window.loggedin"><a href class="header-button" ng-click="logout()">{{ 'LOGOUT' | translate }}</a></li>
-        </ul>
-      </div>
-    </div>
-  </header>
-
-  <section ui-view class="main hbox space-between"></section>
-
-<!--   <footer>
-    ©2015 ZStack.org
-  </footer> -->
-
-  <!-- In production use:
-  <script src="js///ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
-  -->
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
   <script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
@@ -112,5 +66,47 @@
   <script src="js/services/util.js"></script>
   <script src="js/log/log.js"></script>
   <script src="js/settings/settings.js"></script>
+</head>
+<body class="vbox viewport">
+<!--   <ul class="menu">
+    <li><a href="#/login">Login</a></li>
+    <li><a href="#/vminstance">VmInstance</a></li>
+    <li><a href="#/view1">view1</a></li>
+    <li><a href="#/view2">view2</a></li>
+  </ul> -->
+
+  <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+  <header>
+    <div>
+      <div>
+        <a class="navbar-brand" href="#/main/dashboard">ZStack</a>
+      </div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <div dropdown dropdown-append-to-body class="header-button">
+              <a class="ng-cloak" href dropdown-toggle>
+                {{ 'LANGUAGE' | translate }}
+              </a>
+              <ul class="dropdown-menu" role="menu" style="z-index:9999">
+                <li role="menuitem"><a href ng-click="changeLanguage('en')">English</a></li>
+                <li role="menuitem"><a href ng-click="changeLanguage('zh-CN')">中文</a></li>
+              </ul>
+            </div>
+          </li>
+          <li ng-if="$window.loggedin"><a href="#settings" class="header-button">{{ 'SETTINGS' | translate }}</a></li>
+          <li ng-if="$window.loggedin"><a href class="header-button" ng-click="logout()">{{ 'LOGOUT' | translate }}</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <section ui-view class="main hbox space-between"></section>
+
+<!--   <footer>
+    ©2015 ZStack.org
+  </footer> -->
 </body>
 </html>
