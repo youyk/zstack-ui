@@ -11,6 +11,29 @@ input[type="checkbox"] {
   cursor: pointer;
   cursor: hand; 
 }
+
+.hand {
+  cursor: pointer;
+  cursor: hand; 
+}
+
+body {
+    margin: 0;
+    font-family: Arial, "Microsoft YaHei", "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 14px;
+    line-height: 17px;
+}
+
+.zs-sidebar {
+  font-size: 14px;
+  /*line-height: 38px;*/
+}
+
+* {
+  -webkit-border-radius: 0 !important;
+     -moz-border-radius: 0 !important;
+          border-radius: 0 !important;
+}
 /*
   Force full width & height.
   If this block is removed, the layout height/length will be determined by
@@ -154,12 +177,10 @@ aside, nav {
           flex: 1;
 }
 
-.table-hover tbody tr.table-highlight:hover td, .table-hover tbody tr.table-highlight:hover th {
-  background-color: #ebf2f9;
-}
 
-.table-highlight {
-    background-color: #ebf2f9;
+.table-highlight,
+.table-striped>tbody>.table-highlight>td {
+    background-color: #ebf2f9  !important;
 }
 
 .open .dropdown-toggle.btn-default {
@@ -174,7 +195,12 @@ aside, nav {
 }
 
 .zs-tab thead tr th:first-child {
-  width: 35px;
+  width: 34px;
+}
+
+.zs-tab thead tr th:first-child input, 
+.zs-tab tbody tr td:first-child input {
+  margin: 5px;
 }
 
 .zs-btn-noborder {
@@ -186,12 +212,26 @@ aside, nav {
 .zs-details {
 }
 
-.zs-details .operations {
-  margin-bottom: 10px;
+.zs-toolbar {
+  height: 50px;
+}
+
+.zs-details .row {
+  min-width: 480px;
 }
 
 .zs-details .row label {
   margin-left: 20px;
   float: left;
-  width: 300px;
+  min-width: 170px;
+  padding-top: 7px;
+  margin-bottom: 0;
+  color: rgb(112, 112, 112);
+  font-weight: normal;
+}
+
+.zs-details .row label,
+.zs-details .row div, {
+  line-height: 20px;
+  font-size: 14px;
 }

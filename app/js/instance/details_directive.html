@@ -1,101 +1,108 @@
 <div class="form-horizontal zs-details">
-  <div class="operations">
-    <span><a class="btn btn-default" ng-if="data.state=='Stopped'" ng-click="ZStackApi.startVm(data.uuid)">{{ 'INSTANCE_START' | translate }}</a></span>
-    <span><a class="btn btn-default" ng-if="data.state=='Running'" ng-click="ZStackApi.stopVm(data.uuid)">{{ 'INSTANCE_STOP' | translate }}</a></span>
-    <span><a class="btn btn-default" ng-if="data.state=='Running'" ng-click="ZStackApi.rebootVm(data.uuid)">{{ 'INSTANCE_REBOOT' | translate }}</a></span>
-    <span><a class="btn btn-default" ng-controller="HostModalCtrl" ng-click="open()">{{ 'INSTANCE_MIGRATE' | translate }}</a></span>
-    <span><a class="btn btn-default" ng-click="console()">{{ 'INSTANCE_CONSOLE' | translate }}</a></span>
-    <span><a class="btn btn-default" ng-controller="DataVolumeModalCtrl" ng-click="open()">{{ 'INSTANCE_ATTACH_VOLUME' | translate }}</a></span>
-    <span><a class="btn btn-default" ng-controller="CurrentDataOfferingModalCtrl" ng-click="open(data.allVolumes)">{{ 'INSTANCE_DETACH_VOLUME' | translate }}</a></span>
-    <span><a class="btn btn-default" ng-controller="ImageModalCtrl" ng-click="open()">{{ 'INSTANCE_CHANGE_INSTANCE_OFFERING' | translate }}</a></span>
-    <span><a class="btn btn-danger" ng-click="ZStackApi.destroyVm(data.uuid)">{{ 'INSTANCE_DELETE' | translate }}</a></span>
-    <span style="float: right"><a class="btn zs-btn-noborder" ng-click="collapse()"><span class="caret caret-reversed"></span></a></span>
+  <div class="btn-toolbar">
+    <span class="btn-group">
+      <a class="btn btn-default" ng-if="data.state=='Stopped'" ng-click="ZStackApi.startVm(data.uuid)">{{ 'INSTANCE_START' | translate }}</a>
+      <a class="btn btn-default" ng-if="data.state=='Running'" ng-click="ZStackApi.stopVm(data.uuid)">{{ 'INSTANCE_STOP' | translate }}</a>
+      <a class="btn btn-default" ng-if="data.state=='Running'" ng-click="ZStackApi.rebootVm(data.uuid)">{{ 'INSTANCE_REBOOT' | translate }}</a>
+      <a class="btn btn-default" ng-controller="HostModalCtrl" ng-click="open()">{{ 'INSTANCE_MIGRATE' | translate }}</a>
+      <a class="btn btn-default" ng-click="console()">{{ 'INSTANCE_CONSOLE' | translate }}</a>
+      <a class="btn btn-default" ng-controller="DataVolumeModalCtrl" ng-click="open()">{{ 'INSTANCE_ATTACH_VOLUME' | translate }}</a>
+      <a class="btn btn-default" ng-controller="CurrentDataOfferingModalCtrl" ng-click="open(data.allVolumes)">{{ 'INSTANCE_DETACH_VOLUME' | translate }}</a>
+      <a class="btn btn-default" ng-controller="ImageModalCtrl" ng-click="open()">{{ 'INSTANCE_CHANGE_INSTANCE_OFFERING' | translate }}</a>
+    </span>
+    <a class="btn btn-danger" ng-click="ZStackApi.destroyVm(data.uuid)">{{ 'INSTANCE_DELETE' | translate }}</a>
   </div>
   <div class="row">
-    <label>Name:</label>
-    <div class="form-control-static">{{data.name}}</div>
-  </div>
-  <div class="row">
-    <label>Description:</label>
-    <div class="form-control-static">{{data.description}}</div>
-  </div>
-  <div class="row">
-    <label>State:</label>
-    <div class="form-control-static">{{data.state}}</div>
-  </div>
-  <div class="row">
-    <label>Hypervisor:</label>
-    <div class="form-control-static">{{data.hypervisorType}}</div>
-  </div>
-  <div class="row">
-    <label>UUID:</label>
-    <div class="form-control-static">{{data.uuid}}</div>
-  </div>
-  <div class="row">
-    <label>CPU Number:</label>
-    <div class="form-control-static">{{data.cpuNum}}</div>
-  </div>
-  <div class="row">
-    <label>Memory Size:</label>
-    <div class="form-control-static">{{data.memorySize}}</div>
-  </div>
-  <div class="row">
-    <label>Instance Offering UUID:</label>
-    <div class="form-control-static">{{data.instanceOfferingUuid}}</div>
-  </div>
-  <div class="row">
-    <label>Image UUID:</label>
-    <div class="form-control-static">{{data.imageUuid}}</div>
-  </div>
-  <div class="row">
-    <label>Host UUID:</label>
-    <div class="form-control-static">{{data.hostUuid}}</div>
-  </div>
-  <div class="row">
-    <label>Create Date:</label>
-    <div class="form-control-static">{{data.createDate}}</div>
-  </div>
-  <div class="row">
-    <label>Last Update Date:</label>
-    <div class="form-control-static">{{data.lastOpDate}}</div>
-  </div>
-  <div class="row">
-    <label>IP:</label>
-    <div class="form-control-static">{{data.vmNics[0].ip}}</div>
-  </div>
-  <div class="row">
-    <label>Netmask:</label>
-    <div class="form-control-static">{{data.vmNics[0].netmask}}</div>
-  </div>
-  <div class="row">
-    <label>Gateway:</label>
-    <div class="form-control-static">{{data.vmNics[0].gateway}}</div>
-  </div>
-  <div class="row">
-    <label>MAC:</label>
-    <div class="form-control-static">{{data.vmNics[0].mac}}</div>
+    <div class="col-md-6">
+      <div class="row">
+        <label>Name:</label>
+        <div class="form-control-static">{{data.name}}</div>
+      </div>
+      <div class="row">
+        <label>Description:</label>
+        <div class="form-control-static">{{data.description}}</div>
+      </div>
+      <div class="row">
+        <label>State:</label>
+        <div class="form-control-static">{{data.state}}</div>
+      </div>
+      <div class="row">
+        <label>Hypervisor:</label>
+        <div class="form-control-static">{{data.hypervisorType}}</div>
+      </div>
+      
+      <div class="row">
+        <label>CPU Number:</label>
+        <div class="form-control-static">{{data.cpuNum}}</div>
+      </div>
+      <div class="row">
+        <label>Memory Size:</label>
+        <div class="form-control-static">{{data.memorySize}}</div>
+      </div>
+      <div class="row">
+        <label>Create Date:</label>
+        <div class="form-control-static">{{data.createDate}}</div>
+      </div>
+      <div class="row">
+        <label>Last Update Date:</label>
+        <div class="form-control-static">{{data.lastOpDate}}</div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="row">
+        <label>UUID:</label>
+        <div class="form-control-static">{{data.uuid}}</div>
+      </div>
+      <div class="row">
+        <label>IP:</label>
+        <div class="form-control-static">{{data.vmNics[0].ip}}</div>
+      </div>
+      <div class="row">
+        <label>Netmask:</label>
+        <div class="form-control-static">{{data.vmNics[0].netmask}}</div>
+      </div>
+      <div class="row">
+        <label>Gateway:</label>
+        <div class="form-control-static">{{data.vmNics[0].gateway}}</div>
+      </div>
+      <div class="row">
+        <label>MAC:</label>
+        <div class="form-control-static">{{data.vmNics[0].mac}}</div>
+      </div>
+      <div class="row">
+        <label>Instance Offering UUID:</label>
+        <div class="form-control-static">{{data.instanceOfferingUuid}}</div>
+      </div>
+      <div class="row">
+        <label>Image UUID:</label>
+        <div class="form-control-static">{{data.imageUuid}}</div>
+      </div>
+      <div class="row">
+        <label>Host UUID:</label>
+        <div class="form-control-static">{{data.hostUuid}}</div>
+      </div>
+    </div>
   </div>
   <div class="row">
     <label>Volume:</label>
   </div>
-  <div class="row" style="padding: 5px 20px; width: 350px;">
-    <table class="table" style="border: 1px solid rgb(204, 204, 204);">
+  <div class="row" style="padding: 5px 20px;">
+    <table class="table" style="border: 1px solid rgb(204, 204, 204); background-color: transparent">
       <thead>
-        <tr>
-          <th style="min-width:300px;">Name</th>
-          <th style="min-width:80px;">Type</th>
-          <th style="min-width:80px;">State</th>
-          <th style="min-width:80px;">Status</th>
+        <tr style="color: rgb(112, 112, 112);">
+          <th style="min-width:300px; font-weight: normal;">Name</th>
+          <th style="min-width:100px; font-weight: normal;">Size</th>
+          <th style="min-width:80px; font-weight: normal;">Type</th>
         </tr>
       </thead>
       <tbody>
         <tr ng-repeat="volume in data.allVolumes">
           <td>{{volume.name}}</td>
+          <td>{{volume.size}}</td>
           <td>{{volume.type}}</td>
-          <td>{{volume.state}}</td>
-          <td>{{volume.status}}</td>
         </tr>
       </tbody>
     </table>
   </div>
+  <span><a class="btn zs-btn-noborder" ng-click="collapse()"><span class="glyphicon glyphicon-chevron-up"></span></a>
 </div>

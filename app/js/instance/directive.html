@@ -1,23 +1,25 @@
 <div>
-  <div>
+  <div class="zs-toolbar">
     <span ng-if="!simple" style="float: left;">
       <a class="btn btn-primary" ng-controller="CreateInstanceModalCtrl" ng-click="open()">Create item</a>
-      <a class="btn btn-default" ng-if="selectList.length > 0" type="button" class="btn btn-default" ng-click="start()">{{ 'INSTANCE_START' | translate }}</a>
-      <a class="btn btn-default" ng-if="selectList.length > 0" type="button" class="btn btn-default" ng-click="stop()">{{ 'INSTANCE_STOP' | translate }}</a>
-      <a class="btn btn-default"  ng-if="selectList.length > 0" type="button" class="btn btn-default" ng-click="reboot()">{{ 'INSTANCE_REBOOT' | translate }}</a>
+      <span class="btn-group">
+        <a class="btn btn-default" ng-if="selectList.length > 0" type="button" class="btn btn-default" ng-click="start()">{{ 'INSTANCE_START' | translate }}</a>
+        <a class="btn btn-default" ng-if="selectList.length > 0" type="button" class="btn btn-default" ng-click="stop()">{{ 'INSTANCE_STOP' | translate }}</a>
+        <a class="btn btn-default"  ng-if="selectList.length > 0" type="button" class="btn btn-default" ng-click="reboot()">{{ 'INSTANCE_REBOOT' | translate }}</a>
+      </span>
       <a class="btn btn-danger" ng-if="selectList.length > 0" type="button" class="btn btn-default" ng-click="destroy()">{{ 'INSTANCE_DELETE' | translate }}</a>
     </span>
     <search_directive style="float: right;"></search_directive>
   </div>
-  <table class="table zs-tab" style="clear: both;">
+  <table class="table table-striped table-bordered zs-tab" style="clear: both;">
     <thead>
       <tr>
         <th><input type="checkbox" ng-model="selectAllItems" ng-click="selectAll()"></input></th>
-        <th ng-click="onClickTableHeader('name')">Name<span class="caret" ng-class="{'caret-reversed': sortDirection=='desc'}" ng-show="sortByField=='name'"></span></th>
+        <th class="hand" ng-click="onClickTableHeader('name')">Name<span class="caret" ng-class="{'caret-reversed': sortDirection=='desc'}" ng-show="sortByField=='name'"></span></th>
         <th>Description</th>
         <th>Default IP</th>
         <th>Host IP</th>
-        <th ng-click="onClickTableHeader('state')">State<span class="caret" ng-class="{'caret-reversed': sortDirection=='desc'}" ng-show="sortByField=='state'"></th>
+        <th class="hand" ng-click="onClickTableHeader('state')">State<span class="caret" ng-class="{'caret-reversed': sortDirection=='desc'}" ng-show="sortByField=='state'"></th>
       </tr>
     </thead>
     <tbody>

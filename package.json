@@ -30,6 +30,7 @@
     "postinstall": "bower install",
     "prestart": "npm install",
     "start": "cd app && http-server -a 0.0.0.0 -p 8000 -c-1 || cd -",
+    "start-dev": "cd app && http-server -a 0.0.0.0 -p 8000 -c-1 || cd -",
     "start-dist": "cd dist && http-server -a 0.0.0.0 -p 8000 -c-1 || cd -",
     "pretest": "npm install",
     "test": "karma start karma.conf.js",
