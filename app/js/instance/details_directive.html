@@ -13,7 +13,7 @@
     </span>
     <span class="btn-group">
       <a class="btn btn-default" ng-if="data.state=='Running'" ng-controller="HostModalCtrl" ng-click="open()">{{ 'INSTANCE_MIGRATE' | translate }}</a>
-      <a class="btn btn-danger" ng-controller="ConfirmModalCtrl" ng-init="cb=destroy" ng-click="open(destroy)">{{ 'INSTANCE_DELETE' | translate }}</a>
+      <a class="btn btn-danger" ng-controller="ConfirmModalCtrl" ng-click="open(destroy)">{{ 'INSTANCE_DELETE' | translate }}</a>
     </span>
     
   </div>
@@ -42,7 +42,7 @@
       </div>
       <div class="row">
         <label>Memory Size:</label>
-        <div class="form-control-static">{{data.memorySize}}</div>
+        <div class="form-control-static">{{ZStackUtil.bytesToSize(data.memorySize)}}</div>
       </div>
       <div class="row">
         <label>Create Date:</label>
@@ -103,7 +103,7 @@
       <tbody>
         <tr ng-repeat="volume in data.allVolumes">
           <td>{{volume.name}}</td>
-          <td>{{volume.size}}</td>
+          <td>{{ZStackUtil.bytesToSize(volume.size)}}</td>
           <td>{{volume.type}}</td>
         </tr>
       </tbody>
