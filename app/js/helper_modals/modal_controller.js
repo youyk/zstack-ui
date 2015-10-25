@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('zstackUI.select_modals',
+angular.module('zstackUI.helper_modals',
     [
       'zstackUI.services.api',
       'zstackUI.image.directive',
@@ -15,7 +15,7 @@ angular.module('zstackUI.select_modals',
 
     var modalInstance = $modal.open({
       animation: false,
-      templateUrl: 'js/select_modals/instance.html',
+      templateUrl: 'js/helper_modals/instance.html',
       controller: 'InstanceModalInstanceCtrl',
       backdrop: 'static',
       size: "lg",
@@ -58,7 +58,7 @@ angular.module('zstackUI.select_modals',
 
     var modalInstance = $modal.open({
       animation: false,
-      templateUrl: 'js/select_modals/current_data_offering.html',
+      templateUrl: 'js/helper_modals/current_data_offering.html',
       controller: 'CurrentDataOfferingModalInstanceCtrl',
       backdrop: 'static',
       size: "lg",
@@ -111,7 +111,7 @@ angular.module('zstackUI.select_modals',
 
     var modalInstance = $modal.open({
       animation: false,
-      templateUrl: 'js/select_modals/image.html',
+      templateUrl: 'js/helper_modals/image.html',
       controller: 'ImageModalInstanceCtrl',
       backdrop: 'static',
       size: "lg",
@@ -155,7 +155,7 @@ angular.module('zstackUI.select_modals',
 
     var modalInstance = $modal.open({
       animation: false,
-      templateUrl: 'js/select_modals/instance_offering.html',
+      templateUrl: 'js/helper_modals/instance_offering.html',
       controller: 'InstanceOfferingModalInstanceCtrl',
       backdrop: 'static',
       size: "lg",
@@ -199,7 +199,7 @@ angular.module('zstackUI.select_modals',
 
     var modalInstance = $modal.open({
       animation: false,
-      templateUrl: 'js/select_modals/data_offering.html',
+      templateUrl: 'js/helper_modals/data_offering.html',
       controller: 'DataOfferingModalInstanceCtrl',
       backdrop: 'static',
       size: "lg",
@@ -243,7 +243,7 @@ angular.module('zstackUI.select_modals',
 
     var modalInstance = $modal.open({
       animation: false,
-      templateUrl: 'js/select_modals/data_volume.html',
+      templateUrl: 'js/helper_modals/data_volume.html',
       controller: 'DataVolumeModalInstanceCtrl',
       backdrop: 'static',
       size: "lg",
@@ -287,7 +287,7 @@ angular.module('zstackUI.select_modals',
 
     var modalInstance = $modal.open({
       animation: false,
-      templateUrl: 'js/select_modals/host.html',
+      templateUrl: 'js/helper_modals/host.html',
       controller: 'HostModalInstanceCtrl',
       backdrop: 'static',
       size: "lg",
@@ -315,6 +315,49 @@ angular.module('zstackUI.select_modals',
       name: "host",
       data: $scope.selectList[0]
     });
+  };
+
+  $scope.cancel = function() {
+    $modalInstance.dismiss('cancel');
+  };
+}])
+
+.controller('ConfirmModalCtrl', ['$scope', '$modal', '$log', function ($scope, $modal, $log) {
+
+  var self = $scope;
+  $scope.data = {};
+
+  $scope.open = function (cb) {
+
+    var modalInstance = $modal.open({
+      animation: false,
+      templateUrl: 'js/helper_modals/confirm.html',
+      controller: 'ConfirmModalInstanceCtrl',
+      backdrop: 'static',
+      size: "sm",
+      resolve: {
+        data: function () {
+          return $scope.data;
+        }
+      }
+    });
+
+    modalInstance.result.then(function (msg) {
+      $scope.$emit("child-dialog:close", msg);
+      cb();
+    }, function () {
+      $scope.$emit("child-dialog:close");
+      $log.info('Modal dismissed at: ' + new Date());
+    });
+
+    $scope.$emit("child-dialog:open");
+  };
+}])
+
+.controller('ConfirmModalInstanceCtrl', ['$scope', 'ZStackApi', '$modalInstance', 'data', function ($scope, ZStackApi, $modalInstance, data) {
+  $scope.ok = function () {
+    if ('ok' == $scope.confirm)
+      $modalInstance.close({});
   };
 
   $scope.cancel = function() {

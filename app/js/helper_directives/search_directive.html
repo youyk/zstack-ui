@@ -2,11 +2,11 @@
 By
 <div class="btn-group" dropdown is-open="false">
   <button type="button" class="btn btn-default" dropdown-toggle ng-disabled="disabled">
-    {{searchField}} <span class="caret"></span>
+    {{searchField | translate}} <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" role="menu" aria-labelledby="media-type-button">
     <li role="menuitem" ng-repeat="item in searchFieldList">
-      <a ng-click="selectSearchField(item)">{{item}}</a>
+      <a ng-click="selectSearchField(item)">{{item | translate}}</a>
     </li>
   </ul>
 </div>

@@ -19,10 +19,17 @@ angular.module('zstackUI.i18n', ['pascalprecht.translate'])
 
     ATTACH: "Attach",
     DETACH: "Detach",
-    COLLAPSE: '^',
     ENABLE: 'Enable',
     DISABLE: 'Disable',
     DELETE: 'Delete',
+    CREATE: 'Create',
+    ITEMS_PER_PAGE: 'Items/Page',
+
+    name: 'Name',
+    uuid: 'UUID',
+
+    CONFIRM: 'Confirm',
+    CONFIRM_STR: "Please type 'ok' to confirm.",
 
 
     INSTANCE_START: 'Start',
@@ -70,10 +77,17 @@ angular.module('zstackUI.i18n', ['pascalprecht.translate'])
 
     ATTACH: "加载",
     DETACH: "卸载",
-    COLLAPSE: '^',
     ENABLE: '启用',
     DISABLE: '停用',
     DELETE: '删除',
+    CREATE: '新建',
+    ITEMS_PER_PAGE: '项/页',
+
+    name: '名称',
+    uuid: 'UUID',
+
+    CONFIRM: '确认',
+    CONFIRM_STR: "请输入'ok'确认操作.",
 
 
     INSTANCE_START: '启动',
@@ -81,10 +95,10 @@ angular.module('zstackUI.i18n', ['pascalprecht.translate'])
     INSTANCE_REBOOT: '重启',
     INSTANCE_DELETE: '删除',
     INSTANCE_MIGRATE: '迁移',
-    INSTANCE_CONSOLE: '打开控制台',
+    INSTANCE_CONSOLE: '控制台',
     INSTANCE_ATTACH_VOLUME: '添加存储',
     INSTANCE_DETACH_VOLUME: '移除存储',
-    INSTANCE_CHANGE_INSTANCE_OFFERING: '修改系统模板',
+    INSTANCE_CHANGE_INSTANCE_OFFERING: '修改配置',
 
     IMAGE_ADD: '添加镜像',
     IMAGE_ENABLE: '启用',

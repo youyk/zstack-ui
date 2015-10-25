@@ -55,10 +55,30 @@ angular.module('zstackUI.instance.directive',
         .then(function(data) {
           $scope.safeApply(function() {
             $scope.pageCount = Math.ceil(data.total / $scope.pageItemCount);
+            var hostUuids = [];
             for (var i in data.inventories) {
               data.inventories[i].collapsed = true;
               data.inventories[i].selected = false;
+              if (data.inventories[i].state = "Running")
+                hostUuids.push(data.inventories[i].hostUuid)
             }
+
+            ZStackApi.queryHost({
+                start: 0,
+                replyWithCount: true,
+                conditions: [{name: 'uuid', op: 'in', value: hostUuids.join()}]
+              })
+            .then(function(result) {
+              var vms = $scope.itemList;
+              var hosts = result.inventories;
+              for(var i in vms) {
+                for (var j in hosts) {
+                  if (vms[i].hostUuid == hosts[j].uuid) {
+                    vms[i].managementIp = hosts[j].managementIp;
+                  }
+                }
+              }
+            })
             $scope.itemList = data.inventories;
           });
         });
@@ -66,27 +86,49 @@ angular.module('zstackUI.instance.directive',
       
       $scope.queryList();
 
+      function operationCb(result) {
+        for (var i in $scope.itemList) {
+          if (result.inventory.uuid == $scope.itemList[i].uuid)
+            $scope.itemList[i].state = result.inventory.state;
+        } 
+      }
+
       $scope.start = function() {
         for (var i in $scope.selectList) {
+          if ($scope.selectList[i].state != "Stopped")
+            continue;
           ZStackApi.startVm($scope.selectList[i].uuid)
+          .then(operationCb);
+          $scope.selectList[i].state = "Starting";
         }
       }
 
       $scope.stop = function() {
         for (var i in $scope.selectList) {
+          if ($scope.selectList[i].state != "Running")
+            continue;
           ZStackApi.stopVm($scope.selectList[i].uuid)
+          .then(operationCb);
+          $scope.selectList[i].state = "Stopping";
         }
       }
 
       $scope.reboot = function() {
         for (var i in $scope.selectList) {
+          if ($scope.selectList[i].state != "Running")
+            continue;
           ZStackApi.rebootVm($scope.selectList[i].uuid)
+          .then(operationCb);
+          $scope.selectList[i].state = "Rebooting";
         }
       }
 
       $scope.destroy = function() {
         for (var i in $scope.selectList) {
           ZStackApi.destroyVm($scope.selectList[i].uuid)
+          .then(function(result) {
+            $scope.queryList();
+          })
         }
       }
     }]

@@ -3,7 +3,7 @@
 // Declare app level module which depends on views, and components
 angular.module('zstackUI', [
   'zstackUI.i18n',
-  'zstackUI.select_modals',
+  'zstackUI.helper_modals',
   'ui.bootstrap',
   'ui.router',
   'ngCookies',

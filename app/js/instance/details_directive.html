@@ -1,16 +1,21 @@
 <div class="form-horizontal zs-details">
   <div class="btn-toolbar">
     <span class="btn-group">
-      <a class="btn btn-default" ng-if="data.state=='Stopped'" ng-click="ZStackApi.startVm(data.uuid)">{{ 'INSTANCE_START' | translate }}</a>
-      <a class="btn btn-default" ng-if="data.state=='Running'" ng-click="ZStackApi.stopVm(data.uuid)">{{ 'INSTANCE_STOP' | translate }}</a>
-      <a class="btn btn-default" ng-if="data.state=='Running'" ng-click="ZStackApi.rebootVm(data.uuid)">{{ 'INSTANCE_REBOOT' | translate }}</a>
-      <a class="btn btn-default" ng-controller="HostModalCtrl" ng-click="open()">{{ 'INSTANCE_MIGRATE' | translate }}</a>
-      <a class="btn btn-default" ng-click="console()">{{ 'INSTANCE_CONSOLE' | translate }}</a>
+      <a class="btn btn-default" ng-if="data.state=='Stopped'" ng-click="start()">{{ 'INSTANCE_START' | translate }}</a>
+      <a class="btn btn-default" ng-if="data.state=='Running'" ng-click="stop()">{{ 'INSTANCE_STOP' | translate }}</a>
+      <a class="btn btn-default" ng-if="data.state=='Running'" ng-click="reboot()">{{ 'INSTANCE_REBOOT' | translate }}</a>
+      <a class="btn btn-default" ng-if="data.state=='Running'" ng-click="console()">{{ 'INSTANCE_CONSOLE' | translate }}</a>
+      <a class="btn btn-default" ng-if="data.state=='Stopped'" ng-controller="ImageModalCtrl" ng-click="open()">{{ 'INSTANCE_CHANGE_INSTANCE_OFFERING' | translate }}</a>
+    </span>
+    <span class="btn-group">
       <a class="btn btn-default" ng-controller="DataVolumeModalCtrl" ng-click="open()">{{ 'INSTANCE_ATTACH_VOLUME' | translate }}</a>
       <a class="btn btn-default" ng-controller="CurrentDataOfferingModalCtrl" ng-click="open(data.allVolumes)">{{ 'INSTANCE_DETACH_VOLUME' | translate }}</a>
-      <a class="btn btn-default" ng-controller="ImageModalCtrl" ng-click="open()">{{ 'INSTANCE_CHANGE_INSTANCE_OFFERING' | translate }}</a>
     </span>
-    <a class="btn btn-danger" ng-click="ZStackApi.destroyVm(data.uuid)">{{ 'INSTANCE_DELETE' | translate }}</a>
+    <span class="btn-group">
+      <a class="btn btn-default" ng-if="data.state=='Running'" ng-controller="HostModalCtrl" ng-click="open()">{{ 'INSTANCE_MIGRATE' | translate }}</a>
+      <a class="btn btn-danger" ng-controller="ConfirmModalCtrl" ng-init="cb=destroy" ng-click="open(destroy)">{{ 'INSTANCE_DELETE' | translate }}</a>
+    </span>
+    
   </div>
   <div class="row">
     <div class="col-md-6">
@@ -24,7 +29,7 @@
       </div>
       <div class="row">
         <label>State:</label>
-        <div class="form-control-static">{{data.state}}</div>
+        <div class="form-control-static zs-state"><span class="label" ng-class="{'label-success': data.state=='Running', 'label-default': data.state!='Running'}">{{data.state}}</span></div>
       </div>
       <div class="row">
         <label>Hypervisor:</label>
@@ -71,15 +76,15 @@
       </div>
       <div class="row">
         <label>Instance Offering UUID:</label>
-        <div class="form-control-static">{{data.instanceOfferingUuid}}</div>
+        <div class="form-control-static"><a ng-href="#/main/instance_offering/{{data.instanceOfferingUuid}}">{{data.instanceOfferingUuid}}</a></div>
       </div>
       <div class="row">
         <label>Image UUID:</label>
-        <div class="form-control-static">{{data.imageUuid}}</div>
+        <div class="form-control-static"><a ng-href="#/main/instance_offering/{{data.imageUuid}}">{{data.imageUuid}}</a></div>
       </div>
       <div class="row">
         <label>Host UUID:</label>
-        <div class="form-control-static">{{data.hostUuid}}</div>
+        <div class="form-control-static"><a ng-href="#/main/instance_offering/{{data.hostUuid}}">{{data.hostUuid}}</a></div>
       </div>
     </div>
   </div>

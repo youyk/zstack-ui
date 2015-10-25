@@ -30,6 +30,36 @@ angular.module('zstackUI.instance.details_directive',
         })
       }
 
+      function operationCb(result) {
+        $scope.data.state = result.inventory.state;
+      }
+
+      $scope.start = function() {
+        ZStackApi.startVm($scope.data.uuid)
+        .then(operationCb)
+        $scope.data.state = "Starting";
+      }
+
+      $scope.stop = function() {
+        ZStackApi.stopVm($scope.data.uuid)
+        .then(operationCb)
+        $scope.data.state = "Stopping";
+      }
+
+      $scope.reboot = function() {
+        ZStackApi.rebootVm($scope.data.uuid)
+        .then(operationCb)
+        $scope.data.state = "Rebooting";
+      }
+
+      $scope.destroy = function() {
+        ZStackApi.destroyVm($scope.data.uuid)
+        .then(function(result) {
+          $scope.$emit("update:list");
+        });
+        $scope.data.state = "Removing";
+      }
+
       $scope.$on("child-dialog:close", function(_, msg) {
         console.log(msg)
         if (!ZStackUtil.notNullnotUndefined(msg))

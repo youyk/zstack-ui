@@ -183,6 +183,10 @@ aside, nav {
     background-color: #ebf2f9  !important;
 }
 
+.table thead {
+  /*background-color: #f0f0f0;*/
+}
+
 .open .dropdown-toggle.btn-default {
   color: #333;
   background-color: #fff;
@@ -204,7 +208,7 @@ aside, nav {
 }
 
 .zs-btn-noborder {
-  border-color: white;
+  border-color: transparent;
   color: black;
   box-shadow: none;
 }
@@ -234,4 +238,14 @@ aside, nav {
 .zs-details .row div, {
   line-height: 20px;
   font-size: 14px;
+}
+
+.zs-state {
+  padding-top: 4px !important;
+}
+
+.label-default,
+.label-success {
+  border-radius: 4px !important;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
 }

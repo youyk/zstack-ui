@@ -45,6 +45,7 @@ angular.module('zstackUI.instance.modal.controller', ['zstackUI.services.api'])
   $scope.dataOffering = null;
   $scope.l3Network = [];
   $scope.ip = "";
+  $scope.description
 
   $scope.$on("child-dialog:open", function() {
     $scope.showDialog = false;
@@ -62,6 +63,7 @@ angular.module('zstackUI.instance.modal.controller', ['zstackUI.services.api'])
     var msg = {
       'org.zstack.header.vm.APICreateVmInstanceMsg': {
         name: self.name,
+        description: self.description,
         instanceOfferingUuid: self.instanceOffering.uuid,
         imageUuid: self.image.uuid,
         l3NetworkUuids: [ZStackApi.defaultL3Network.uuid],

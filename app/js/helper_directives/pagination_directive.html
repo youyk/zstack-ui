@@ -2,7 +2,7 @@
   <span style="float: left;">
     <div class="btn-group" dropdown is-open="false">
       <button type="button" class="btn btn-default" dropdown-toggle ng-disabled="disabled">
-        {{pageItemCount}} Items / Page
+        {{pageItemCount}} {{ 'ITEMS_PER_PAGE' | translate }}
         <span class="caret"></span>
       </button>
       <ul class="dropdown-menu">
