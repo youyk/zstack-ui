@@ -451,27 +451,33 @@ class Server(object):
 
 server = Server()
 
-@app.route("/api/sync", methods=['POST', 'GET'])
-def api_sync_call():
-    print request.data
-    return server.api_sync_call(request.data)
+#@app.route("/api/sync", methods=['POST', 'GET'])
+#def api_sync_call():
+#    print request.data
+#    return server.api_sync_call(request.data)
 
-@app.route("/api/async", methods=['POST', 'GET'])
-def api_async_call():
-    return server.api_async_call(request.data)
+#@app.route("/api/async", methods=['POST', 'GET'])
+#def api_async_call():
+#    return server.api_async_call(request.data)
 
-@app.route("/api/query", methods=['POST', 'GET'])
-def api_query():
-    return server.api_query(request.data)
+#@app.route("/api/query", methods=['POST', 'GET'])
+#def api_query():
+#    return server.api_query(request.data)
 
 #@app.route("/")
 #def index():
 #    return render_template("index.html")
 
-#@app.route('/')
-#def index(path):
-#    return app.send_static_file('index.html')
+@app.route('/', methods=['POST', 'GET'])
+def root():
+    print "aaaaa"
+    return app.send_static_file('index.html')
 #    return send_from_directory(static_dir, path)
+
+#@app.route('/<path:path>', methods=['POST', 'GET'])
+#def send_js(path):
+#    print path
+#    return send_from_directory('js', path)
 
 @socketio.on('message')
 def handle_my_custom_event(message):
