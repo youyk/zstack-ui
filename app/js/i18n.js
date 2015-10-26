@@ -17,6 +17,7 @@ angular.module('zstackUI.i18n', ['pascalprecht.translate'])
     INSTANCE_OFFERING: 'Instance Offering',
     DATA_OFFERING: 'Data Offering',
 
+    ADD: "Add",
     ATTACH: "Attach",
     DETACH: "Detach",
     ENABLE: 'Enable',
@@ -24,6 +25,7 @@ angular.module('zstackUI.i18n', ['pascalprecht.translate'])
     DELETE: 'Delete',
     CREATE: 'Create',
     ITEMS_PER_PAGE: 'Items/Page',
+    SEARCH: "Search",
 
     name: 'Name',
     uuid: 'UUID',
@@ -32,6 +34,7 @@ angular.module('zstackUI.i18n', ['pascalprecht.translate'])
     CONFIRM_STR: "Please type 'ok' to confirm.",
 
 
+    INSTANCE_CREATE: "Create Instance",
     INSTANCE_START: 'Start',
     INSTANCE_STOP: 'Stop',
     INSTANCE_REBOOT: 'Reboot',
@@ -75,6 +78,7 @@ angular.module('zstackUI.i18n', ['pascalprecht.translate'])
     DATA_OFFERING: '存储模板',
 
 
+    ADD: "添加",
     ATTACH: "加载",
     DETACH: "卸载",
     ENABLE: '启用',
@@ -82,6 +86,7 @@ angular.module('zstackUI.i18n', ['pascalprecht.translate'])
     DELETE: '删除',
     CREATE: '新建',
     ITEMS_PER_PAGE: '项/页',
+    SEARCH: "搜索",
 
     name: '名称',
     uuid: 'UUID',
@@ -90,6 +95,7 @@ angular.module('zstackUI.i18n', ['pascalprecht.translate'])
     CONFIRM_STR: "请输入'ok'确认操作.",
 
 
+    INSTANCE_CREATE: "新建虚拟机",
     INSTANCE_START: '启动',
     INSTANCE_STOP: '停止',
     INSTANCE_REBOOT: '重启',
@@ -106,7 +112,7 @@ angular.module('zstackUI.i18n', ['pascalprecht.translate'])
     IMAGE_DELETE: '删除',
 
 
-    HOST_ADD: '添加物理机',
+    HOST_ADD: '添加主机',
     HOST_RECONNECT: '重连',
     HOST_MAINTENANCE: '进入维护模式',
 

@@ -3,11 +3,11 @@
     <span ng-if="!simple" style="float: left;">
       <a class="btn btn-primary" ng-controller="CreateInstanceModalCtrl" ng-click="open()">{{ 'CREATE' | translate }}</a>
       <span class="btn-group">
-        <a class="btn btn-default" ng-if="selectList.length > 0" class="btn btn-default" ng-click="start()">{{ 'INSTANCE_START' | translate }}</a>
-        <a class="btn btn-default" ng-if="selectList.length > 0" class="btn btn-default" ng-click="stop()">{{ 'INSTANCE_STOP' | translate }}</a>
-        <a class="btn btn-default"  ng-if="selectList.length > 0" class="btn btn-default" ng-click="reboot()">{{ 'INSTANCE_REBOOT' | translate }}</a>
+        <a class="btn btn-default" ng-if="selectList.length > 0" ng-click="start()">{{ 'INSTANCE_START' | translate }}</a>
+        <a class="btn btn-default" ng-if="selectList.length > 0" ng-click="stop()">{{ 'INSTANCE_STOP' | translate }}</a>
+        <a class="btn btn-default" ng-if="selectList.length > 0" ng-click="reboot()">{{ 'INSTANCE_REBOOT' | translate }}</a>
       </span>
-      <a class="btn btn-danger" ng-if="selectList.length > 0" ng-controller="ConfirmModalCtrl" ng-init="cb=destroy" ng-click="open(destroy)">{{ 'INSTANCE_DELETE' | translate }}</a>
+      <a class="btn btn-danger" ng-if="selectList.length > 0" ng-controller="ConfirmModalCtrl" ng-click="open(destroy)">{{ 'INSTANCE_DELETE' | translate }}</a>
     </span>
     <search_directive style="float: right;"></search_directive>
   </div>

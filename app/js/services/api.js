@@ -438,7 +438,7 @@ angular.module('zstackUI.services.api', ['zstackUI.services.util', 'ui.router', 
     return self.simpleMsg({
       "org.zstack.header.host.APIChangeHostStateMsg": {
         uuid: uuid,
-        status: 'maintain'
+        stateEvent: 'maintain'
       }
     });
   }

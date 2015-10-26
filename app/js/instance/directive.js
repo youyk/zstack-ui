@@ -20,15 +20,6 @@ angular.module('zstackUI.instance.directive',
 
       ZStackUtil.initListScope($scope);
 
-      $scope.sortByFieldList = [
-        'name',
-        'createDate',
-        'lastOpDate',
-        'memorySize',
-        'platform',
-        'state'
-      ];
-      $scope.sortByField = $scope.sortByFieldList[0];
       $scope.defaultConditions = [{
           name: "type",
           op: "=",

@@ -152,6 +152,7 @@ angular.module('zstackUI.services.util', [])
         'desc'
       ];
       scope.sortDirection = scope.sortDirectionList[0];
+      scope.sortByField = 'name';
       scope.conditions = [];
       scope.selectAllItems = false;
 

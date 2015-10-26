@@ -17,6 +17,41 @@ angular.module('zstackUI.host.details_directive',
         $scope.data.collapsed = !$scope.data.collapsed
       }
 
+      function operationCb(result) {
+        $scope.data.state = result.inventory.state;
+        $scope.data.status = result.inventory.status;
+      }
+
+      $scope.enable = function() {
+        ZStackApi.enableHost($scope.data.uuid)
+        .then(operationCb);
+        $scope.data.state = "Enabling";
+      }
+
+      $scope.disable = function() {
+        ZStackApi.disableHost($scope.data.uuid)
+        .then(operationCb);
+        $scope.data.state = "Disabling";
+      }
+
+      $scope.reconnect = function() {
+        ZStackApi.reconnectHost($scope.data.uuid)
+        .then(function() {
+          $scope.data.status = "Connected";
+        })
+        $scope.data.status = "Reconnecting";
+      }
+
+      $scope.maintain = function() {
+        ZStackApi.maintainHost($scope.data.uuid)
+        .then(operationCb);
+        $scope.data.state = "PreMaintenance";
+      }
+
+      $scope.delete = function() {
+        ZStackApi.deleteHost($scope.data.uuid);
+      }
+
       $scope.$on("child-dialog:close", function(_, msg) {
         console.log(msg)
         if (!ZStackUtil.notNullnotUndefined(msg))

@@ -58,27 +58,46 @@ angular.module('zstackUI.host.directive',
       
       $scope.queryList();
 
+      function operationCb(result) {
+        for (var i in $scope.itemList) {
+          if (result.inventory.uuid == $scope.itemList[i].uuid)
+            $scope.itemList[i].state = result.inventory.state;
+            $scope.itemList[i].status = result.inventory.status;
+        } 
+      }
+
+
       $scope.enable = function() {
         for (var i in $scope.selectList) {
           ZStackApi.enableHost($scope.selectList[i].uuid)
+          .then(operationCb);
+          $scope.selectList[i].state = "Enabling";
         }
       }
 
       $scope.disable = function() {
         for (var i in $scope.selectList) {
           ZStackApi.disableHost($scope.selectList[i].uuid)
+          .then(operationCb);
+          $scope.selectList[i].state = "Disabling";
         }
       }
 
       $scope.reconnect = function() {
         for (var i in $scope.selectList) {
           ZStackApi.reconnectHost($scope.selectList[i].uuid)
+          .then(function() {
+            $scope.selectList[i].status = "Connected";
+          });
+          $scope.selectList[i].status = "Reconnecting";
         }
       }
 
       $scope.maintain = function() {
         for (var i in $scope.selectList) {
           ZStackApi.maintainHost($scope.selectList[i].uuid)
+          .then(operationCb);
+          $scope.selectList[i].state = "PreMaintenance";
         }
       }
 
