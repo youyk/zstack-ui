@@ -38,6 +38,7 @@ angular.module('zstackUI', [
     ZStackApi.connectWebsocket();
     ZStackApi.initGlobalValue();
   }, function errorCallback(response) {
+    console.log(response)
     ZStackApi.server_url = window.location.protocol + '//' + window.location.host;
     ZStackApi.connectWebsocket();
     ZStackApi.initGlobalValue();

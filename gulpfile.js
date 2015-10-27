@@ -30,7 +30,7 @@ gulp.task('templates', function () {
 
 gulp.task('font', function() {
   gulp.src(['./app/bower_components/bootstrap/dist/fonts/**/*'], {base: './app/bower_components/bootstrap/dist/'})
-  .pipe(gulp.dest('dist'))
+  .pipe(gulp.dest('zstack_dashboard/static/'))
 })
 
 gulp.task('css', function() {
@@ -48,17 +48,17 @@ gulp.task('css', function() {
     .pipe(concat('app.css'))
     .pipe(minifyCSS())
     .pipe(sourcemaps.write('./'))
-    .pipe(gulp.dest('dist/css'))
+    .pipe(gulp.dest('zstack_dashboard/static/css'))
 })
 
 gulp.task('vendor', function() {
   gulp.src(['./app/vendor/**/*'], {base: './app'})
-  .pipe(gulp.dest('dist'))
+  .pipe(gulp.dest('zstack_dashboard/static'))
 })
 
 gulp.task('clean', function() {
   return del.sync([
-      './dist/**',
+      './zstack_dashboard/static/**',
       './tmp/**'
     ]);
 });
@@ -66,10 +66,10 @@ gulp.task('clean', function() {
 gulp.task('index', function() {
   gulp.src('./app/index_dist.html')
     .pipe(rename('index.html'))
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest('zstack_dashboard/static'));
 })
 
-gulp.task('dist', ['clean', 'templates', 'font', 'css', 'vendor', 'index'], function() {
+gulp.task('static', ['clean', 'templates', 'font', 'css', 'vendor', 'index'], function() {
   gulp.src([
       './app/bower_components/angular/angular.js',
       './app/bower_components/angular-ui-router/release/angular-ui-router.js',
@@ -87,7 +87,7 @@ gulp.task('dist', ['clean', 'templates', 'font', 'css', 'vendor', 'index'], func
     .pipe(concat('app.js'))
     .pipe(uglify())
     .pipe(sourcemaps.write('./'))
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest('zstack_dashboard/static'));
 });
 
-gulp.task('default', ['dist']);
+gulp.task('default', ['static']);
