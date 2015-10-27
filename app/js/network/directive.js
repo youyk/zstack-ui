@@ -50,6 +50,7 @@ angular.module('zstackUI.network.directive',
             $scope.queryList();
           })
         }
+        $scope.selectList = [];
       }
       
       $scope.queryList = function() {

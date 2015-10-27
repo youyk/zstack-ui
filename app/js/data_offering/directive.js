@@ -90,6 +90,7 @@ angular.module('zstackUI.data_offering.directive',
             $scope.queryList();
           })
         }
+        $scope.selectList = [];
       }
     }]
   };

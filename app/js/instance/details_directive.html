@@ -12,6 +12,10 @@
       <a class="btn btn-default" ng-controller="CurrentDataOfferingModalCtrl" ng-click="open(data.allVolumes)">{{ 'INSTANCE_DETACH_VOLUME' | translate }}</a>
     </span>
     <span class="btn-group">
+      <a class="btn btn-default" ng-controller="DataVolumeModalCtrl" ng-click="open()">{{ 'INSTANCE_ATTACH_ISO' | translate }}</a>
+      <a class="btn btn-default" ng-click="detachIso()">{{ 'INSTANCE_DETACH_ISO' | translate }}</a>
+    </span>
+    <span class="btn-group">
       <a class="btn btn-default" ng-if="data.state=='Running'" ng-controller="HostModalCtrl" ng-click="open()">{{ 'INSTANCE_MIGRATE' | translate }}</a>
       <a class="btn btn-danger" ng-controller="ConfirmModalCtrl" ng-click="open(destroy)">{{ 'INSTANCE_DELETE' | translate }}</a>
     </span>

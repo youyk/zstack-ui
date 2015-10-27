@@ -88,6 +88,7 @@ angular.module('zstackUI.image.directive',
             $scope.queryList();
           });
         }
+        $scope.selectList = [];
       }
     }]
   };

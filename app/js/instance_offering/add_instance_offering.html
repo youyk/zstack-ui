@@ -24,10 +24,21 @@
         <label>Memory:</label>
         <input type="text" class="form-control" ng-model="memorySize">
       </div>
+      <form role="form">
+      <div class="form-group">
+        <label>Disk IOPS:</label>
+        <input type="text" class="form-control" ng-model="volumeTotalIops">
+      </div>
+      <div class="form-group">
+        <label>Disk Bandwidth:</label>
+        <input type="text" class="form-control" ng-model="volumeTotalBandwidth">
+      </div>
+      <div class="form-group">
+        <label>Network Bandwidth:</label>
+        <input type="text" class="form-control" ng-model="networkOutboundBandwidth">
+      </div>
+    </form>
     </form>
   </div>
-  <div class="modal-footer">
-    <button class="btn" ng-click="cancel()">Cancel</button>
-    <button class="btn btn-primary" ng-click="ok()">OK</button>
-  </div>
+  <div ng-include="'js/helper_modals/footer.html'"></div>
 </div>  

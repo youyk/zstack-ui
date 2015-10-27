@@ -5,8 +5,8 @@
       <span class="btn-group">
         <a ng-if="selectList.length > 0" class="btn btn-default" ng-click="enable()">{{ 'ENABLE' | translate }}</a>
         <a ng-if="selectList.length > 0" class="btn btn-default" ng-click="disable()">{{ 'DISABLE' | translate }}</a>
-        </span>
-      <a ng-if="selectList.length > 0" class="btn btn-danger" ng-click="delete()">{{ 'DELETE' | translate }}</a>
+      </span>
+      <a class="btn btn-danger" ng-if="selectList.length > 0" ng-controller="ConfirmModalCtrl" ng-click="open(delete)">{{ 'INSTANCE_DELETE' | translate }}</a>
     </span>
     <search_directive style="float: right;"></search_directive>
   </div>

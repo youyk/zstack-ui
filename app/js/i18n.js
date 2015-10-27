@@ -26,6 +26,7 @@ angular.module('zstackUI.i18n', ['pascalprecht.translate'])
     CREATE: 'Create',
     ITEMS_PER_PAGE: 'Items/Page',
     SEARCH: "Search",
+    QOS: 'QoS',
 
     name: 'Name',
     uuid: 'UUID',
@@ -43,7 +44,9 @@ angular.module('zstackUI.i18n', ['pascalprecht.translate'])
     INSTANCE_CONSOLE: 'Console',
     INSTANCE_ATTACH_VOLUME: 'Attach Volume',
     INSTANCE_DETACH_VOLUME: 'Dettach Volume',
-    INSTANCE_CHANGE_INSTANCE_OFFERING: 'Change Instance Offering',
+    INSTANCE_CHANGE_INSTANCE_OFFERING: 'Change Config',
+    INSTANCE_ATTACH_ISO: "Attach ISO",
+    INSTANCE_DETACH_ISO: "Detach ISO",
 
     IMAGE_ADD: 'Add Image',
     IMAGE_ENABLE: 'Enable',
@@ -87,6 +90,7 @@ angular.module('zstackUI.i18n', ['pascalprecht.translate'])
     CREATE: '新建',
     ITEMS_PER_PAGE: '项/页',
     SEARCH: "搜索",
+    QOS: '带宽',
 
     name: '名称',
     uuid: 'UUID',
@@ -105,6 +109,8 @@ angular.module('zstackUI.i18n', ['pascalprecht.translate'])
     INSTANCE_ATTACH_VOLUME: '添加存储',
     INSTANCE_DETACH_VOLUME: '移除存储',
     INSTANCE_CHANGE_INSTANCE_OFFERING: '修改配置',
+    INSTANCE_ATTACH_ISO: "加载ISO",
+    INSTANCE_DETACH_ISO: "卸载ISO",
 
     IMAGE_ADD: '添加镜像',
     IMAGE_ENABLE: '启用',

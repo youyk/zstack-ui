@@ -599,5 +599,48 @@ angular.module('zstackUI.services.api', ['zstackUI.services.util', 'ui.router', 
     return self.simpleCall('org.zstack.header.storage.backup.APIAttachBackupStorageToZoneMsg', msgBody);
   }
 
+  self.attachIsoToVmInstance  = function (isoUuid, vmInstanceUuid) {
+    return self.simpleMsg({
+      "org.zstack.header.vm.APIAttachIsoToVmInstanceMsg": {
+        vmInstanceUuid: vmInstanceUuid,
+        isoUuid: isoUuid
+      }
+    });
+  }
+
+  self.detachIsoToVmInstance  = function (vmInstanceUuid) {
+    return self.simpleMsg({
+      "org.zstack.header.vm.APIDetachIsoFromVmInstanceMsg": {
+        vmInstanceUuid: vmInstanceUuid
+      }
+    });
+  }
+
+  self.createSystemTag  = function (resourceType, resourceUuid, tag) {
+    return self.simpleMsg({
+      "org.zstack.header.tag.APICreateSystemTagMsg": {
+        resourceType: resourceType,
+        resourceUuid: resourceUuid,
+        tag: tag
+      }
+    });
+  }
+
+  self.querySystemTag  = function (resourceType, resourceUuid) {
+    return self.simpleMsg({
+      "org.zstack.header.tag.APIQuerySystemTagMsg": {
+        conditions: [{
+                name: 'resourceType',
+                op: '=',
+                value: resourceType
+            }, {
+                name: 'resourceUuid',
+                op: '=',
+                value: resourceUuid
+            }]
+      }
+    });
+  }
+
   return self;
 }])

@@ -99,6 +99,7 @@ angular.module('zstackUI.volume.directive',
             $scope.queryList();
           })
         }
+        $scope.selectList = [];
       }
     }]
   };

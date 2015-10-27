@@ -2,7 +2,7 @@
   <div class="btn-toolbar">
     <a class="btn btn-default" ng-if="data.state!='Enabled'" ng-click="enable()">{{ 'ENABLE' | translate }}</a></span>
     <a class="btn btn-default" ng-if="data.state=='Enabled'" ng-click="disable()">{{ 'DISABLE' | translate }}</a></span>
-    <a class="btn btn-danger"  ng-click="delete()">{{ 'DELETE' | translate }}</a></span>
+    <a class="btn btn-danger" ng-controller="ConfirmModalCtrl" ng-click="open(delete)">{{ 'INSTANCE_DELETE' | translate }}</a>
   </div>
   <div class="row">
     <div class="col-md-6">
@@ -22,8 +22,6 @@
         <label>UUID:</label>
         <div class="form-control-static">{{data.uuid}}</div>
       </div>
-    </div>
-    <div class="col-md-6">
       <div class="row">
         <label>CPU Number:</label>
         <div class="form-control-static">{{data.cpuNum}}</div>
@@ -35,6 +33,23 @@
       <div class="row">
         <label>Memory Size:</label>
         <div class="form-control-static">{{ZStackUtil.bytesToSize(data.memorySize)}}</div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="row">
+        <label>Disk IOPS:</label>
+        <div ng-if="data.volumeTotalIops!=''" class="form-control-static">{{data.volumeTotalIops}}</div>
+        <div ng-if="data.volumeTotalIops==''" class="form-control-static">Unlimited</div>
+      </div>
+      <div class="row">
+        <label>Disk Bandwidth:</label>
+        <div ng-if="data.volumeTotalBandwidth!=''" class="form-control-static">{{ZStackUtil.bytesToSize(data.volumeTotalBandwidth)}}</div>
+        <div ng-if="data.volumeTotalBandwidth==''" class="form-control-static">Unlimited</div>
+      </div>
+      <div class="row">
+        <label>Network Bandwidth:</label>
+        <div ng-if="data.networkOutboundBandwidth!=''" class="form-control-static">{{ZStackUtil.bytesToSize(data.networkOutboundBandwidth)}}</div>
+        <div ng-if="data.networkOutboundBandwidth==''" class="form-control-static">Unlimited</div>
       </div>
       <div class="row">
         <label>Create Date:</label>

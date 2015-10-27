@@ -40,6 +40,9 @@ angular.module('zstackUI.offering.instance.modal.controller',
   $scope.cpuNum = "";
   $scope.cpuSpeed = "";
   $scope.memorySize = "";
+  $scope.volumeTotalIops = "";
+  $scope.volumeTotalBandwidth = "";
+  $scope.networkOutboundBandwidth = "";
 
   $scope.action = function(cb) {
     var systemTags = [];
@@ -56,6 +59,12 @@ angular.module('zstackUI.offering.instance.modal.controller',
 
     ZStackApi.call(msg, function(data) {
       console.log(data)
+      if ($scope.volumeTotalIops != "")
+        ZStackApi.createSystemTag('InstanceOfferingVO', data.inventory.uuid, 'volumeTotalIops::' + $scope.volumeTotalIops)
+      if ($scope.volumeTotalBandwidth != "")
+        ZStackApi.createSystemTag('InstanceOfferingVO', data.inventory.uuid, 'volumeTotalBandwidth::' + ZStackUtil.parseSize($scope.volumeTotalBandwidth))
+      if ($scope.networkOutboundBandwidth != "")
+        ZStackApi.createSystemTag('InstanceOfferingVO', data.inventory.uuid, 'networkOutboundBandwidth::' + ZStackUtil.parseSize($scope.networkOutboundBandwidth))
       if (ZStackUtil.notNullnotUndefined(cb))
         cb(data);
     })

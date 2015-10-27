@@ -121,6 +121,7 @@ angular.module('zstackUI.instance.directive',
             $scope.queryList();
           })
         }
+        $scope.selectList = [];
       }
     }]
   };

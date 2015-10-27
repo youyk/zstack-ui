@@ -56,6 +56,22 @@ angular.module('zstackUI.instance_offering.directive',
             for (var i in data.inventories) {
               data.inventories[i].collapsed = true;
               data.inventories[i].selected = false;
+              data.inventories[i].volumeTotalIops = "";
+              data.inventories[i].volumeTotalBandwidth = "";
+              data.inventories[i].networkOutboundBandwidth = "";
+              ZStackApi.querySystemTag('InstanceOfferingVO', data.inventories[i].uuid)
+              .then(function(result) {
+                console.log(result);
+                for (var j in result.inventories) {
+                  var values = result.inventories[j].tag.split('::');
+                  for (var k in data.inventories) {
+                    if (data.inventories[k].uuid == result.inventories[j].resourceUuid) {
+                      data.inventories[k][values[0]] = values[1];
+                      break;
+                    }
+                  }
+                }
+              })
             }
             $scope.itemList = data.inventories;
           });
@@ -94,6 +110,7 @@ angular.module('zstackUI.instance_offering.directive',
             $scope.queryList();
           });
         }
+        $scope.selectList = [];
       }
     }]
   };

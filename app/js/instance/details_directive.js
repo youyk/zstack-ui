@@ -61,6 +61,11 @@ angular.module('zstackUI.instance.details_directive',
         $scope.data.state = "Removing";
       }
 
+      $scope.detachIso = function() {
+        ZStackApi.detachIsoToVmInstance($scope.data.uuid)
+        .then(function(){})
+      }
+
       $scope.$on("child-dialog:close", function(_, msg) {
         console.log(msg)
         if (!ZStackUtil.notNullnotUndefined(msg))
@@ -76,6 +81,14 @@ angular.module('zstackUI.instance.details_directive',
             break;
           case "instanceOffering":
             ZStackApi.changeInstanceOffering(msg.data.uuid, $scope.data.uuid)
+            .then(function(result) {
+              console.log(result)
+            }, function(reason) {
+              console.log(reason)
+            });;
+            break;
+          case "dataOffering":
+            ZStackApi.attachIsoToVmInstance(msg.data.uuid, $scope.data.uuid)
             .then(function(result) {
               console.log(result)
             }, function(reason) {
