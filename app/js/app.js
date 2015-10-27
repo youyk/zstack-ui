@@ -26,9 +26,20 @@ angular.module('zstackUI', [
   'zstackUI.settings',
   'zstackUI.log'
 ])
-.run(['ZStackApi', '$cookies', function(ZStackApi, $cookies) {
-  ZStackApi.connectWebsocket();
-  ZStackApi.initGlobalValue();
+.run(['ZStackApi', '$cookies', '$http', function(ZStackApi, $cookies, $http) {
+  $http({
+    method: 'GET',
+    url: '/config.json'
+  })
+  .then(function successCallback(response) {
+    ZStackApi.server_url = response.data.server_url;
+    ZStackApi.connectWebsocket();
+    ZStackApi.initGlobalValue();
+  }, function errorCallback(response) {
+    ZStackApi.server_url = window.location.protocol + '//' + window.location.host;
+    ZStackApi.connectWebsocket();
+    ZStackApi.initGlobalValue();
+  });
 }])
 .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 }]);

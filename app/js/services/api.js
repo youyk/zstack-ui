@@ -18,7 +18,7 @@ angular.module('zstackUI.services.api', ['zstackUI.services.util', 'ui.router', 
 
   self.cbList = []
 
-  self.server_url = 'http://123.183.211.57:5000';
+  self.server_url = window.location.protocol + '//' + window.location.host;
 
   self.connectWebsocket = function() {
     if (self.socket) return;
