@@ -1,48 +1,60 @@
-<div class="form-horizontal">
-  <div>
-    <span><a ng-click="collapse()">{{ 'COLLAPSE' | translate }}</a></span>
-    <span><a ng-click="ZStackApi.enableImage(data.uuid)">{{ 'ENABLE' | translate }}</a></span>
-    <span><a ng-click="ZStackApi.disableImage(data.uuid)">{{ 'DISABLE' | translate }}</a></span>
-    <span><a ng-click="ZStackApi.deleteImage(data.uuid)">{{ 'DELETE' | translate }}</a></span>
+<div class="form-horizontal zs-details">
+  <div class="btn-toolbar">
+    <span class="btn-group">
+      <a class="btn btn-default" ng-if="data.state!='Enabled'" ng-click="enable()">{{ 'ENABLE' | translate }}</a>
+      <a class="btn btn-default" ng-if="data.state=='Enabled'" ng-click="disable()">{{ 'DISABLE' | translate }}</a>
+    </span>
+    <a class="btn btn-default" ng-click="delete()">{{ 'DELETE' | translate }}</a>
   </div>
   <div class="row">
-    <label class="col-md-3 control-label">Name:</label>
-    <div class="form-control-static">{{data.name}}</div>
+    <div class="col-md-6">
+      <div class="row">
+        <label>Name:</label>
+        <div class="form-control-static">{{data.name}}</div>
+      </div>
+      <div class="row">
+        <label>Description:</label>
+        <div class="form-control-static" style="min-height:27px">{{data.description}}</div>
+      </div>
+      <div class="row">
+        <label>State:</label>
+        <div class="form-control-static zs-state"><span class="label" ng-class="{'label-success': data.state=='Enabled', 'label-default': data.state!='Enabled'}">{{data.state}}</span></div>
+      </div>
+      <div class="row">
+        <label>Status:</label>
+        <div class="form-control-static zs-state"><span class="label" ng-class="{'label-success': data.status=='Ready', 'label-default': data.status!='Ready'}">{{data.status}}</span></div>
+      </div>
+      <div class="row">
+        <label>UUID:</label>
+        <div class="form-control-static">{{data.uuid}}</div>
+      </div>
+      <div class="row">
+        <label>URL:</label>
+        <div class="form-control-static">{{data.url}}</div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="row">
+        <label>Size:</label>
+        <div class="form-control-static">{{ZStackUtil.bytesToSize(data.size)}}</div>
+      </div>
+      <div class="row">
+        <label>Format:</label>
+        <div class="form-control-static">{{data.format}}</div>
+      </div>
+      <div class="row">
+        <label>Media Type:</label>
+        <div class="form-control-static">{{data.mediaType}}</div>
+      </div>
+      <div class="row">
+        <label>Create Date:</label>
+        <div class="form-control-static">{{data.createDate}}</div>
+      </div>
+      <div class="row">
+        <label>Last Update Date:</label>
+        <div class="form-control-static">{{data.lastOpDate}}</div>
+      </div>
+    </div>
   </div>
-  <div class="row">
-    <label class="col-md-3 control-label">Description:</label>
-    <div class="form-control-static" style="min-height:27px">{{data.description}}</div>
-  </div>
-  <div class="row">
-    <label class="col-md-3 control-label">State:</label>
-    <div class="form-control-static">{{data.state}}</div>
-  </div>
-  <div class="row">
-    <label class="col-md-3 control-label">Status:</label>
-    <div class="form-control-static">{{data.status}}</div>
-  </div>
-  <div class="row">
-    <label class="col-md-3 control-label">URL:</label>
-    <div class="form-control-static">{{data.url}}</div>
-  </div>
-  <div class="row">
-    <label class="col-md-3 control-label">Size:</label>
-    <div class="form-control-static">{{ZStackUtil.bytesToSize(data.size)}}</div>
-  </div>
-  <div class="row">
-    <label class="col-md-3 control-label">Format:</label>
-    <div class="form-control-static">{{data.format}}</div>
-  </div>
-  <div class="row">
-    <label class="col-md-3 control-label">Media Type:</label>
-    <div class="form-control-static">{{data.mediaType}}</div>
-  </div>
-  <div class="row">
-    <label class="col-md-3 control-label">Create Date:</label>
-    <div class="form-control-static">{{data.createDate}}</div>
-  </div>
-  <div class="row">
-    <label class="col-md-3 control-label">Last Update Date:</label>
-    <div class="form-control-static">{{data.lastOpDate}}</div>
-  </div>
+  <a class="btn btn-default" class="btn zs-btn-noborder" ng-click="collapse()"><span class="glyphicon glyphicon-chevron-up"></span></a>
 </div>

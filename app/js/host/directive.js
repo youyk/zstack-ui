@@ -63,7 +63,7 @@ angular.module('zstackUI.host.directive',
           if (result.inventory.uuid == $scope.itemList[i].uuid)
             $scope.itemList[i].state = result.inventory.state;
             $scope.itemList[i].status = result.inventory.status;
-        } 
+        }
       }
 
 

@@ -1,23 +1,26 @@
 <div>
-  <span ng-if="!simple" style="float: left;">
-    <button type="button" class="btn btn-default" ng-controller="AddImageModalCtrl" ng-click="open()">{{ 'IMAGE_ADD' | translate}}</button>
-    <button ng-if="selectList.length > 0" type="button" class="btn btn-default" ng-click="enable()">{{ 'ENABLE' | translate }}</button>
-    <button ng-if="selectList.length > 0" type="button" class="btn btn-default" ng-click="disable()">{{ 'DISABLE' | translate }}</button>
-    <button ng-if="selectList.length > 0" type="button" class="btn btn-default" ng-click="delete()">{{ 'DELETE' | translate }}</button>
-  </span>
-  <search_directive style="float: right;"></search_directive>
-  <table class="table table-hover" style="clear: both;">
+  <div class="zs-toolbar">
+    <span ng-if="!simple" style="float: left;">
+      <a type="button" class="btn btn-primary" ng-controller="AddImageModalCtrl" ng-click="open()">{{ 'ADD' | translate}}</a>
+      <span class="btn-group">
+        <a class="btn btn-default" ng-if="selectList.length > 0" ng-click="enable()">{{ 'ENABLE' | translate }}</a>
+        <a class="btn btn-default" ng-if="selectList.length > 0" ng-click="disable()">{{ 'DISABLE' | translate }}</a>
+      </span>
+      <a class="btn btn-danger" ng-if="selectList.length > 0" ng-controller="ConfirmModalCtrl" ng-click="open(delete)">{{ 'INSTANCE_DELETE' | translate }}</a>
+    </span>
+    <search_directive style="float: right;"></search_directive>
+  </div>
+  <table class="table table-striped table-bordered zs-tab" style="clear: both;">
     <thead>
       <tr>
         <th><input type="checkbox" ng-model="selectAllItems" ng-click="selectAll()"></input></th>
-        <th>Name</th>
-        <th>Media Type</th>
-        <th>State</th>
-        <th>Status</th>
-        <th>Guest OS</th>
-        <th>Size</th>
-        <th>Format</th>
-        <th>UUID</th>
+        <th class="hand" ng-click="onClickTableHeader('name')">Name<span class="caret" ng-class="{'caret-reversed': sortDirection=='desc'}" ng-show="sortByField=='name'"></span></th>
+        <th class="hand" ng-click="onClickTableHeader('mediaType')">Media Type<span class="caret" ng-class="{'caret-reversed': sortDirection=='desc'}" ng-show="sortByField=='mediaType'"></span></th>
+        <th class="hand" ng-click="onClickTableHeader('state')">State<span class="caret" ng-class="{'caret-reversed': sortDirection=='desc'}" ng-show="sortByField=='state'"></span></th>
+        <th class="hand" ng-click="onClickTableHeader('status')">Status<span class="caret" ng-class="{'caret-reversed': sortDirection=='desc'}" ng-show="sortByField=='status'"></span></th>
+        <th class="hand" ng-click="onClickTableHeader('guestOS')">Guest OS<span class="caret" ng-class="{'caret-reversed': sortDirection=='desc'}" ng-show="sortByField=='guestOS'"></span></th>
+        <th class="hand" ng-click="onClickTableHeader('size')">Size<span class="caret" ng-class="{'caret-reversed': sortDirection=='desc'}" ng-show="sortByField=='size'"></span></th>
+        <th class="hand" ng-click="onClickTableHeader('format')">Format<span class="caret" ng-class="{'caret-reversed': sortDirection=='desc'}" ng-show="sortByField=='format'"></span></th>
       </tr>
     </thead>
     <tbody>
@@ -25,13 +28,12 @@
         <td><input type="checkbox" ng-model="item.selected" ng-click="select(item)"></input></td>
         <td ng-if="item.collapsed"><a ng-click="item.collapsed=!item.collapsed">{{item.name}}</a></td>
         <td ng-if="item.collapsed">{{item.mediaType}}</td>
-        <td ng-if="item.collapsed">{{item.state}}</td>
-        <td ng-if="item.collapsed">{{item.status}}</td>
+        <td ng-if="item.collapsed"><span class="label"  ng-class="{'label-success': item.state=='Enabled', 'label-default': item.state!='Enabled'}">{{item.state}}</span></td>
+        <td ng-if="item.collapsed"><span class="label"  ng-class="{'label-success': item.status=='Ready', 'label-default': item.status!='Ready'}">{{item.status}}</span></td>
         <td ng-if="item.collapsed">{{item.platform}}</td>
         <td ng-if="item.collapsed">{{ZStackUtil.bytesToSize(item.size)}}</td>
         <td ng-if="item.collapsed">{{item.format}}</td>
-        <td ng-if="item.collapsed">{{item.uuid}}</td>
-        <td colspan="8" ng-if="!item.collapsed">
+        <td colspan="7" ng-if="!item.collapsed">
           <div image-details-directive ng-model="item"></div>
         </td>
       </tr>

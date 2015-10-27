@@ -58,21 +58,33 @@ angular.module('zstackUI.image.directive',
       
       $scope.queryList();
 
+      function operationCb(result) {
+        for (var i in $scope.itemList) {
+          if (result.inventory.uuid == $scope.itemList[i].uuid)
+            $scope.itemList[i].state = result.inventory.state;
+        } 
+      }
+
       $scope.enable = function() {
         for (var i in $scope.selectList) {
           ZStackApi.enableImage($scope.selectList[i].uuid)
+          .then(operationCb);
+          $scope.selectList[i].state = "Enabling";
         }
       }
 
       $scope.disable = function() {
         for (var i in $scope.selectList) {
           ZStackApi.disableImage($scope.selectList[i].uuid)
+          .then(operationCb);
+          $scope.selectList[i].state = "Disabling";
         }
       }
 
       $scope.delete = function() {
         for (var i in $scope.selectList) {
           ZStackApi.deleteImage($scope.selectList[i].uuid)
+          .then(operationCb);
         }
       }
     }]
