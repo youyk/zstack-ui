@@ -49,7 +49,11 @@ angular.module('zstackUI.host.details_directive',
       }
 
       $scope.delete = function() {
-        ZStackApi.deleteHost($scope.data.uuid);
+        ZStackApi.deleteHost($scope.data.uuid)
+        .then(function(result) {
+          $scope.$emit("update:list");
+        });
+        $scope.data.state = "Removing";
       }
 
       $scope.$on("child-dialog:close", function(_, msg) {
