@@ -1,6 +1,16 @@
-<form>
-<div>Settings</div>
-<ul>
-  <li><a href="#log">Log<a></li>
-</ul>
-</form>
+<div>
+  <div>Settings</div>
+  <div class="form-horizontal zs-details">
+    <div class="row">
+      <label>Over Provisioning Memory:</label>
+      <a href editable-text="gs.overProvisioning.memory">{{ gs.overProvisioning.memory || "empty" }}</a>
+    </div>
+    <div class="row">
+      <label>Over Provisioning PrimaryStorage:</label>
+      <input class="form-control" rows="3" ng-model="gs.overProvisioning.primaryStorage">
+    </div>
+  </div>
+  <ul>
+    <li><a href="#log">Log<a></li>
+  </ul>
+</div>

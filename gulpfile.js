@@ -37,6 +37,7 @@ gulp.task('css', function() {
   gulp.src([
       './app/bower_components/angular-bootstrap/ui-bootstrap-csp.css',
       './app/bower_components/bootstrap/dist/css/bootstrap.min.css',
+      'bower_components/angular-xeditable/dist/css/xeditable.css',
       './app/css/app.css'
     ])
     .pipe(sourcemaps.init())
@@ -77,6 +78,7 @@ gulp.task('dist', ['clean', 'templates', 'font', 'css', 'vendor', 'index'], func
       './app/bower_components/angular-translate/angular-translate.min.js',
       './app/bower_components/socket.io-client/dist/socket.io.min.js',
       './app/bower_components/cryptojslib/rollups/sha512.js',
+      './app/bower_components/angular-xeditable/dist/js/xeditable.js',
       './app/js/app.js',
       './tmp/templates.js',
       './app/js/**/*.js'

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('zstackUI.settings', ['zstackUI.services.api', 'ui.router'])
+angular.module('zstackUI.settings', ['zstackUI.services.api', 'ui.router', 'xeditable'])
 
 .config(['$stateProvider', function($stateProvider) {
   $stateProvider.state('settings', {
@@ -11,5 +11,10 @@ angular.module('zstackUI.settings', ['zstackUI.services.api', 'ui.router'])
 }])
 
 .controller('SettingsCtrl', ['$scope', 'ZStackApi', '$state', function($scope, ZStackApi, $state) {
-
+  $scope.gs = {
+    overProvisioning: {
+      memory: '1.2',
+      primaryStorage: '1.2'
+    }
+  }
 }]);

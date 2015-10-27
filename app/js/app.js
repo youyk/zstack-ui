@@ -8,6 +8,7 @@ angular.module('zstackUI', [
   'ui.router',
   'ngCookies',
   'pascalprecht.translate',
+  'xeditable',
   'templates',
   'zstackUI.main',
   'zstackUI.login',
@@ -26,7 +27,8 @@ angular.module('zstackUI', [
   'zstackUI.settings',
   'zstackUI.log'
 ])
-.run(['ZStackApi', '$cookies', '$http', function(ZStackApi, $cookies, $http) {
+.run(['ZStackApi', '$cookies', '$http', 'editableOptions', function(ZStackApi, $cookies, $http, editableOptions) {
+  editableOptions.theme = 'bs3';
   $http({
     method: 'GET',
     url: '/config.json'
