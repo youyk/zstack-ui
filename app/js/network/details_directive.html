@@ -1,26 +1,32 @@
-<div class="form-horizontal">
-  <div>
-    <span><a ng-click="collapse()">{{ 'COLLAPSE' | translate }}</a></span>
-    <span><a ng-click="ZStackApi.deleteIpRange(data.uuid)">{{ 'DELETE' | translate }}</a></span>
+<div class="form-horizontal zs-details">
+  <div class="btn-toolbar">
+    <a class="btn btn-danger" ng-controller="ConfirmModalCtrl" ng-click="open(delete)">{{ 'INSTANCE_DELETE' | translate }}</a>
   </div>
   <div class="row">
-    <label class="col-md-3 control-label">Name:</label>
-    <div class="form-control-static">{{data.name}}</div>
+    <div class="col-md-6">
+      <div class="row">
+        <label>Name:</label>
+        <div class="form-control-static">{{data.name}}</div>
+      </div>
+      <div class="row">
+        <label>Start IP:</label>
+        <div class="form-control-static">{{data.startIp}}</div>
+      </div>
+      <div class="row">
+        <label>End IP:</label>
+        <div class="form-control-static">{{data.endIp}}</div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="row">
+        <label>Netmask:</label>
+        <div class="form-control-static">{{data.netmask}}</div>
+      </div>
+      <div class="row">
+        <label>Gateway:</label>
+        <div class="form-control-static">{{data.gateway}}</div>
+      </div>
+    </div>
   </div>
-  <div class="row">
-    <label class="col-md-3 control-label">Start IP:</label>
-    <div class="form-control-static">{{data.startIp}}</div>
-  </div>
-  <div class="row">
-    <label class="col-md-3 control-label">End IP:</label>
-    <div class="form-control-static">{{data.endIp}}</div>
-  </div>
-  <div class="row">
-    <label class="col-md-3 control-label">Netmask:</label>
-    <div class="form-control-static">{{data.netmask}}</div>
-  </div>
-  <div class="row">
-    <label class="col-md-3 control-label">Gateway:</label>
-    <div class="form-control-static">{{data.gateway}}</div>
-  </div>
+  <span><a class="btn zs-btn-noborder" ng-click="collapse()"><span class="glyphicon glyphicon-chevron-up"></span></a>
 </div>

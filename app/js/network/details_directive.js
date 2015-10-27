@@ -17,6 +17,13 @@ angular.module('zstackUI.network.details_directive',
         $scope.data.collapsed = !$scope.data.collapsed
       }
 
+      $scope.delete = function() {
+        ZStackApi.deleteIpRange($scope.data.uuid)
+        .then(function(result) {
+          $scope.$emit("update:list");
+        });
+      }
+
       $scope.$on("child-dialog:close", function(_, msg) {
         console.log(msg)
         if (!ZStackUtil.notNullnotUndefined(msg))

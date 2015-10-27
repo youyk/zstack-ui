@@ -16,6 +16,41 @@ angular.module('zstackUI.network.directive',
       if (!$scope.selectList) {
         $scope.selectList = [];
       };
+
+      ZStackUtil.initListScope($scope);
+
+      $scope.select = function(item) {
+        $scope.selectList.length = 0;
+        for (var i in $scope.itemList[0].ipRanges) {
+          if ($scope.itemList[0].ipRanges[i].selected) {
+            $scope.selectList.push($scope.itemList[0].ipRanges[i]);
+          }
+        }
+        if ($scope.selectList.length == $scope.itemList[0].ipRanges.length) {
+          $scope.selectAllItems = true;
+        } else {
+          $scope.selectAllItems = false;
+        }
+      }
+
+      $scope.selectAll = function() {
+        $scope.selectList.length = 0;
+        for (var i in $scope.itemList[0].ipRanges) {
+          $scope.itemList[0].ipRanges[i].selected = $scope.selectAllItems
+          if ($scope.itemList[0].ipRanges[i].selected) {
+            $scope.selectList.push($scope.itemList[0].ipRanges[i]);
+          }
+        }
+      }
+
+      $scope.delete = function() {
+        for (var i in $scope.selectList) {
+          ZStackApi.deleteIpRange($scope.selectList[i].uuid)
+          .then(function(result) {
+            $scope.queryList();
+          })
+        }
+      }
       
       $scope.queryList = function() {
         ZStackApi.queryL3Network()
@@ -37,29 +72,6 @@ angular.module('zstackUI.network.directive',
       $scope.$on("update:list", function() {
         $scope.queryList();
       })
-
-      $scope.select = function(event, item) {
-        if (event.ctrlKey) {
-          item.selected = !item.selected;
-        } else {
-          for (var i in $scope.itemList[0].ipRanges) {
-            $scope.itemList[0].ipRanges[i].selected = false;
-          }
-          item.selected = true;
-        }
-        $scope.selectList.length = 0;
-        for (var i in $scope.itemList[0].ipRanges) {
-          if ($scope.itemList[0].ipRanges[i].selected) {
-            $scope.selectList.push($scope.itemList[0].ipRanges[i]);
-          }
-        }
-      }
-
-      $scope.delete = function() {
-        for (var i in $scope.selectList) {
-          ZStackApi.deleteIpRange($scope.selectList[i].uuid)
-        }
-      }
     }]
   };
 }])
