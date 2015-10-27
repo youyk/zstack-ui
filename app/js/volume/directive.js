@@ -68,7 +68,7 @@ angular.module('zstackUI.volume.directive',
 
       $scope.enable = function() {
         for (var i in $scope.selectList) {
-          ZStackApi.enableImage($scope.selectList[i].uuid)
+          ZStackApi.enableVolume($scope.selectList[i].uuid)
           .then(operationCb);
           $scope.selectList[i].state = "Enabling";
         }
@@ -76,7 +76,7 @@ angular.module('zstackUI.volume.directive',
 
       $scope.disable = function() {
         for (var i in $scope.selectList) {
-          ZStackApi.disableImage($scope.selectList[i].uuid)
+          ZStackApi.disableVolume($scope.selectList[i].uuid)
           .then(function() {
             $scope.selectList[i].state = 'Disabled'
           });

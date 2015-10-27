@@ -24,19 +24,26 @@ angular.module('zstackUI.volume.details_directive',
       }
 
       $scope.enable = function() {
-        ZStackApi.enableImage($scope.data.uuid)
+        ZStackApi.enableVolume($scope.data.uuid)
         .then(operationCb)
         $scope.data.state = "Enabling";
       }
 
       $scope.disable = function() {
-        ZStackApi.disableImage($scope.data.uuid)
+        ZStackApi.disableVolume($scope.data.uuid)
         .then(operationCb)
         $scope.data.state = "Disabling";
       }
 
+      $scope.detach = function() {
+        ZStackApi.detachVolume($scope.data.uuid)
+        .then(function() {
+          $scope.data.vmInstanceUuid = undefined;
+        });
+      }
+
       $scope.delete = function() {
-        ZStackApi.deleteImage($scope.data.uuid)
+        ZStackApi.deleteVolume($scope.data.uuid)
         .then(function() {
           $scope.$emit("update:list");
         })

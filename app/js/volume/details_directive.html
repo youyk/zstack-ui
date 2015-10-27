@@ -1,13 +1,13 @@
 <div class="form-horizontal zs-details">
   <div class="btn-toolbar">
     <span class="btn-group">
-      <a class="btn btn-default" ng-if="data.state!='Enabled'" ng-click="ZStackApi.enableVolume(data.uuid)">{{ 'ENABLE' | translate }}</a>
-      <a class="btn btn-default" ng-if="data.state=='Enabled'" ng-click="ZStackApi.disableVolume(data.uuid)">{{ 'DISABLE' | translate }}</a>
+      <a class="btn btn-default" ng-if="data.state!='Enabled'" ng-click="enable()">{{ 'ENABLE' | translate }}</a>
+      <a class="btn btn-default" ng-if="data.state=='Enabled'" ng-click="disable()">{{ 'DISABLE' | translate }}</a>
       <a class="btn btn-default" ng-if="data.status!='Ready'" ng-controller="InstanceModalCtrl" ng-click="open()">{{ 'ATTACH' | translate }}</a>
-      <a class="btn btn-default" ng-if="data.status=='Ready'" ng-click="ZStackApi.detachVolume(data.uuid)">{{ 'DETACH' | translate }}</a>
+      <a class="btn btn-default" ng-if="data.status=='Ready'" ng-click="detach()">{{ 'DETACH' | translate }}</a>
       <a class="btn btn-default" ng-controller="CreateImageModalCtrl" ng-click="open()">{{ 'VOLUME_CREATE_IMAGE' | translate }}</a>
     </span>
-    <a class="btn btn-danger" ng-click="ZStackApi.deleteVolume(data.uuid)">{{ 'DELETE' | translate }}</a>
+    <a class="btn btn-danger" ng-click="delete()">{{ 'DELETE' | translate }}</a>
   </div>
   <div class="row">
     <div class="col-md-6">
@@ -21,11 +21,11 @@
       </div>
       <div class="row">
         <label>State:</label>
-        <div class="form-control-static">{{data.state}}</div>
+        <div class="form-control-static zs-state"><span class="label" ng-class="{'label-success': data.state=='Enabled', 'label-default': data.state!='Enabled'}">{{data.state}}</span></div>
       </div>
       <div class="row">
         <label>Status:</label>
-        <div class="form-control-static">{{data.status}}</div>
+        <div class="form-control-static zs-state"><span class="label" ng-class="{'label-success': data.status=='Ready', 'label-default': data.status!='Ready'}">{{data.status}}</span></div>
       </div>
       <div class="row">
         <label>Vm UUID:</label>
