@@ -18,6 +18,30 @@ angular.module('zstackUI.data_offering.details_directive',
         $scope.data.collapsed = !$scope.data.collapsed
       }
 
+      function operationCb(result) {
+        $scope.data.state = result.inventory.state;
+      }
+
+      $scope.enable = function() {
+        ZStackApi.enableDataOffering($scope.data.uuid)
+        .then(operationCb);
+        $scope.data.state = "Enabling";
+      }
+
+      $scope.disable = function() {
+        ZStackApi.disableDataOffering($scope.data.uuid)
+        .then(operationCb);
+        $scope.data.state = "Disabling";
+      }
+
+      $scope.delete = function() {
+        ZStackApi.deleteDataOffering($scope.data.uuid)
+        .then(function(result) {
+          $scope.$emit("update:list");
+        });
+        $scope.data.state = "Removing";
+      }
+
       $scope.$on("child-dialog:close", function(_, msg) {
         console.log(msg)
         if (!ZStackUtil.notNullnotUndefined(msg))

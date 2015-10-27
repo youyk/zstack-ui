@@ -60,21 +60,35 @@ angular.module('zstackUI.data_offering.directive',
       
       $scope.queryList();
 
+      function operationCb(result) {
+        for (var i in $scope.itemList) {
+          if (result.inventory.uuid == $scope.itemList[i].uuid)
+            $scope.itemList[i].state = result.inventory.state;
+        }
+      }
+
       $scope.enable = function() {
         for (var i in $scope.selectList) {
           ZStackApi.enableDataOffering($scope.selectList[i].uuid)
+          .then(operationCb);
+          $scope.selectList[i].state = "Enabling";
         }
       }
 
       $scope.disable = function() {
         for (var i in $scope.selectList) {
           ZStackApi.disableDataOffering($scope.selectList[i].uuid)
+          .then(operationCb);
+          $scope.selectList[i].state = "Disabling";
         }
       }
 
       $scope.delete = function() {
         for (var i in $scope.selectList) {
           ZStackApi.deleteDataOffering($scope.selectList[i].uuid)
+          .then(function(result) {
+            $scope.queryList();
+          })
         }
       }
     }]

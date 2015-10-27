@@ -16,7 +16,7 @@
       </div>
       <div class="row">
         <label>State:</label>
-        <div class="form-control-static">{{data.state}}</div>
+        <div class="form-control-static zs-state"><span class="label" ng-class="{'label-success': data.state=='Enabled', 'label-default': data.state!='Enabled'}">{{data.state}}</span></div>
       </div>
       <div class="row">
         <label>UUID:</label>
