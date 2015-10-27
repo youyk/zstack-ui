@@ -28,6 +28,11 @@ gulp.task('templates', function () {
     .pipe(gulp.dest('./tmp'));
 });
 
+gulp.task('font', function() {
+  gulp.src(['./app/bower_components/bootstrap/dist/fonts/**/*'], {base: './app/bower_components/bootstrap/dist/'})
+  .pipe(gulp.dest('dist'))
+})
+
 gulp.task('css', function() {
   gulp.src([
       './app/bower_components/angular-bootstrap/ui-bootstrap-csp.css',
@@ -42,7 +47,7 @@ gulp.task('css', function() {
     .pipe(concat('app.css'))
     .pipe(minifyCSS())
     .pipe(sourcemaps.write('./'))
-    .pipe(gulp.dest('dist'))
+    .pipe(gulp.dest('dist/css'))
 })
 
 gulp.task('vendor', function() {
@@ -63,7 +68,7 @@ gulp.task('index', function() {
     .pipe(gulp.dest('dist'));
 })
 
-gulp.task('dist', ['clean', 'templates', 'css', 'vendor', 'index'], function() {
+gulp.task('dist', ['clean', 'templates', 'font', 'css', 'vendor', 'index'], function() {
   gulp.src([
       './app/bower_components/angular/angular.js',
       './app/bower_components/angular-ui-router/release/angular-ui-router.js',
