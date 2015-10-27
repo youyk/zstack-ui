@@ -1,7 +1,7 @@
 <div>
   <div class="zs-toolbar">
     <span ng-if="!simple" style="float: left;">
-      <a class="btn btn-default" ng-controller="AddVolumeModalCtrl" ng-click="open()">{{ 'ADD' | translate}}</a>
+      <a class="btn btn-primary" ng-controller="AddVolumeModalCtrl" ng-click="open()">{{ 'ADD' | translate}}</a>
       <span class="btn-group">
         <a class="btn btn-default" ng-if="selectList.length > 0" ng-click="enable()">{{ 'ENABLE' | translate }}</a>
         <a class="btn btn-default" ng-if="selectList.length > 0" ng-click="disable()">{{ 'DISABLE' | translate }}</a>
