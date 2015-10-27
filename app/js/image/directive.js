@@ -84,7 +84,9 @@ angular.module('zstackUI.image.directive',
       $scope.delete = function() {
         for (var i in $scope.selectList) {
           ZStackApi.deleteImage($scope.selectList[i].uuid)
-          .then(operationCb);
+          .then(function(result) {
+            $scope.queryList();
+          });
         }
       }
     }]

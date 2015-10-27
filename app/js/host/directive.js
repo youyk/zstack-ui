@@ -104,6 +104,9 @@ angular.module('zstackUI.host.directive',
       $scope.delete = function() {
         for (var i in $scope.selectList) {
           ZStackApi.deleteHost($scope.selectList[i].uuid)
+          .then(function(result) {
+            $scope.queryList();
+          });
         }
       }
     }]

@@ -4,7 +4,7 @@
       <a class="btn btn-default" ng-if="data.state!='Enabled'" ng-click="enable()">{{ 'ENABLE' | translate }}</a>
       <a class="btn btn-default" ng-if="data.state=='Enabled'" ng-click="disable()">{{ 'DISABLE' | translate }}</a>
     </span>
-    <a class="btn btn-default" ng-click="delete()">{{ 'DELETE' | translate }}</a>
+    <a class="btn btn-danger" ng-controller="ConfirmModalCtrl" ng-click="open(delete)">{{ 'DELETE' | translate }}</a>
   </div>
   <div class="row">
     <div class="col-md-6">
@@ -56,5 +56,5 @@
       </div>
     </div>
   </div>
-  <a class="btn btn-default" class="btn zs-btn-noborder" ng-click="collapse()"><span class="glyphicon glyphicon-chevron-up"></span></a>
+  <span><a class="btn zs-btn-noborder" ng-click="collapse()"><span class="glyphicon glyphicon-chevron-up"></span></a>
 </div>

@@ -58,27 +58,46 @@ angular.module('zstackUI.volume.directive',
       
       $scope.queryList();
 
+      function operationCb(result) {
+        for (var i in $scope.itemList) {
+          if (result.inventory.uuid == $scope.itemList[i].uuid)
+            $scope.itemList[i].state = result.inventory.state;
+            $scope.itemList[i].status = result.inventory.status; 
+        } 
+      }
+
       $scope.enable = function() {
         for (var i in $scope.selectList) {
-          ZStackApi.enableVolume($scope.selectList[i].uuid)
+          ZStackApi.enableImage($scope.selectList[i].uuid)
+          .then(operationCb);
+          $scope.selectList[i].state = "Enabling";
         }
       }
 
       $scope.disable = function() {
         for (var i in $scope.selectList) {
-          ZStackApi.disableVolume($scope.selectList[i].uuid)
+          ZStackApi.disableImage($scope.selectList[i].uuid)
+          .then(function() {
+            $scope.selectList[i].state = 'Disabled'
+          });
+          $scope.selectList[i].state = "Disabling";
         }
       }
 
       $scope.detach = function() {
         for (var i in $scope.selectList) {
           ZStackApi.detachVolume($scope.selectList[i].uuid)
+          .then(operationCb);
+          $scope.selectList[i].status = "Detaching";
         }
       }
 
       $scope.delete = function() {
         for (var i in $scope.selectList) {
           ZStackApi.deleteVolume($scope.selectList[i].uuid)
+          .then(function(result) {
+            $scope.queryList();
+          })
         }
       }
     }]
