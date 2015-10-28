@@ -179,6 +179,7 @@
           <input type="text" class="form-control" ng-model="ipRange.gateway">
         </div>
       </form>
+      <progressbar value="realStep/(realStepCount-1)*100"></progressbar>
     </div>
   </div>
   <button class="btn btn-default" ng-if="currentStep!=0" ng-click="prev()">Prev</button>

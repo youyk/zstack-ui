@@ -184,6 +184,12 @@ angular.module('zstackUI.services.api', ['zstackUI.services.util', 'ui.router', 
     });
   }
 
+  self.dummyPromise = function(result) {
+    return $q(function(resolve, reject) {
+      resolve(result);
+    });
+  }
+
   self.simpleQuery = function(apiName, msgBody) {
     return $q(function(resolve, reject) {
       var msg = {};
@@ -216,6 +222,12 @@ angular.module('zstackUI.services.api', ['zstackUI.services.util', 'ui.router', 
     return self.simpleQuery('org.zstack.header.zone.APIQueryZoneMsg', msgBody);
   }
 
+  self.deleteZone = function (uuid) {
+    return self.simpleQuery('org.zstack.header.zone.APIDeleteZoneMsg', {
+      uuid: uuid
+    });
+  }
+
   self.createCluster = function (msgBody) {
     return self.simpleQuery('org.zstack.header.cluster.APICreateClusterMsg', msgBody);
   }
@@ -224,12 +236,24 @@ angular.module('zstackUI.services.api', ['zstackUI.services.util', 'ui.router', 
     return self.simpleQuery('org.zstack.header.cluster.APIQueryClusterMsg', msgBody);
   }
 
+  self.queryPrimaryStorage = function (msgBody) {
+    return self.simpleQuery('org.zstack.header.storage.primary.APIQueryPrimaryStorageMsg', msgBody);
+  }
+
+  self.querySftpBackupStorag = function (msgBody) {
+    return self.simpleQuery('org.zstack.storage.backup.sftp.APIQuerySftpBackupStorageMsg', msgBody);
+  }
+
   self.queryVmInstance = function(msgBody) {
     return self.simpleQuery('org.zstack.header.vm.APIQueryVmInstanceMsg', msgBody);
   }
 
   self.queryImage = function(msgBody) {
     return self.simpleQuery('org.zstack.header.image.APIQueryImageMsg', msgBody);
+  }
+
+  self.queryL2Network = function (msgBody) {
+    return self.simpleQuery('org.zstack.header.network.l2.APIQueryL2NetworkMsg', msgBody);
   }
 
   self.createL2NoVlanNetwork = function (msgBody) {

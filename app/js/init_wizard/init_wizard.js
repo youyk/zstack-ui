@@ -17,8 +17,10 @@ angular.module('zstackUI.init_wizard',
 
 .controller('InitWizardCtrl', ['$scope', 'ZStackApi', 'ZStackUtil', '$state', function($scope, ZStackApi, ZStackUtil, $state) {
 
-  $scope.stepCount = 6;
+  $scope.stepCount = 7;
   $scope.currentStep = 0;
+  $scope.realStep = 0;
+  $scope.realStepCount = 16;
 
   $scope.zone = {};
   $scope.zone.name = "ZONE-1";
@@ -90,10 +92,22 @@ angular.module('zstackUI.init_wizard',
   }
 
   $scope.finish = function() {
-    ZStackApi.createZone({
-      name: $scope.zone.name
+    ZStackApi.queryZone()
+    .then(function(result) {
+      $scope.realStep++;
+      if (result.inventories.length > 0)
+        return ZStackApi.deleteZone(result.inventories[0].uuid);
+      else 
+        return ZStackApi.dummyPromise({});
     })
     .then(function(result) {
+      $scope.realStep++;
+      return ZStackApi.createZone({
+        name: $scope.zone.name
+      })
+    })
+    .then(function(result) {
+      $scope.realStep++;
       $scope.zone.uuid = result.inventory.uuid;
       return ZStackApi.createCluster(
           {
@@ -104,6 +118,7 @@ angular.module('zstackUI.init_wizard',
         );
     })
     .then(function(result) {
+      $scope.realStep++;
       $scope.cluster.uuid = result.inventory.uuid;
       return ZStackApi.addHost({
         name: $scope.host.name,
@@ -114,6 +129,7 @@ angular.module('zstackUI.init_wizard',
       });
     })
     .then(function(result) {
+      $scope.realStep++;
       return ZStackApi.addLocalPrimaryStorage({
         name: $scope.primaryStorage.name,
         zoneUuid: $scope.zone.uuid,
@@ -121,6 +137,7 @@ angular.module('zstackUI.init_wizard',
       });
     })
     .then(function(result) {
+      $scope.realStep++;
       $scope.primaryStorage.uuid = result.inventory.uuid;
       return ZStackApi.attachPrimaryStorage({
         clusterUuid: $scope.cluster.uuid,
@@ -128,6 +145,7 @@ angular.module('zstackUI.init_wizard',
       });
     })
     .then(function(result) {
+      $scope.realStep++;
       return ZStackApi.addSftpBackupStorage({
         name: $scope.backupStorage.name,
         hostname: $scope.backupStorage.hostname,
@@ -138,6 +156,7 @@ angular.module('zstackUI.init_wizard',
       });
     })
     .then(function(result) {
+      $scope.realStep++;
       $scope.backupStorage.uuid = result.inventory.uuid;
       return ZStackApi.attachBackupStorage({
         zoneUuid: $scope.zone.uuid,
@@ -145,6 +164,7 @@ angular.module('zstackUI.init_wizard',
       });
     })
     .then(function(result) {
+      $scope.realStep++;
       $scope.backupStorage.uuid = result.inventory.uuid;
       return ZStackApi.addInstanceOffering({
         name: $scope.instance_offering.name,
@@ -154,6 +174,7 @@ angular.module('zstackUI.init_wizard',
       });
     })
     .then(function(result) {
+      $scope.realStep++;
       var msg = {
         name: $scope.image.name,
         url: $scope.image.url,
@@ -172,6 +193,7 @@ angular.module('zstackUI.init_wizard',
       return ZStackApi.addImage(msg);
     })
     .then(function(result) {
+      $scope.realStep++;
       var msg = {
         name: $scope.l2Network.name,
         type: $scope.l2Network.type,
@@ -185,6 +207,7 @@ angular.module('zstackUI.init_wizard',
       return ZStackApi.createL2NoVlanNetwork(msg);
     })
     .then(function(result) {
+      $scope.realStep++;
       $scope.l2Network.uuid = result.inventory.uuid;
       return ZStackApi.attachL2NetworkToCluster({
         clusterUuid: $scope.cluster.uuid,
@@ -192,6 +215,7 @@ angular.module('zstackUI.init_wizard',
       })
     })
     .then(function(result) {
+      $scope.realStep++;
       return ZStackApi.createL3Network({
         name: $scope.l3Network.name,
         type: "L3BasicNetwork",
@@ -201,6 +225,7 @@ angular.module('zstackUI.init_wizard',
       })
     })
     .then(function(result) {
+      $scope.realStep++;
       $scope.l3Network.uuid = result.inventory.uuid;
       return ZStackApi.addDns({
         dns: $scope.l3Network.dns,
@@ -208,6 +233,7 @@ angular.module('zstackUI.init_wizard',
       })
     })
     .then(function(result) {
+      $scope.realStep++;
       return ZStackApi.addIpRange({
         l3NetworkUuid: $scope.l3Network.uuid,
         name: $scope.ipRange.name,
@@ -218,9 +244,11 @@ angular.module('zstackUI.init_wizard',
       })
     })
     .then(function(result) {
+      $scope.realStep++;
       return ZStackApi.queryNetworkServiceProvider();
     })
     .then(function(result) {
+      $scope.realStep++;
       var networkServiceProviderUuid = "";
       for (var i in result.inventories) {
         if (result.inventories[i].name == "Flat Network Service Provider") {
@@ -237,6 +265,7 @@ angular.module('zstackUI.init_wizard',
       })
     })
     .then(function(result) {
+      $scope.realStep++;
       $state.go('main.dashboard')
     });
   }
