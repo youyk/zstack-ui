@@ -117,7 +117,7 @@ angular.module('zstackUI.services.api', ['zstackUI.services.util', 'ui.router', 
     window.msgList.push(JSON.stringify(msg));
     var data = {'msg' : JSON.stringify(msg)};
     self.socket.emit('call', data);
-    console.log(JSON.stringify(data, null, 2));
+    console.log(JSON.stringify(msg, null, 2));
     self.cbList[msgBody.session.callid] = cb;
   }
 
@@ -638,6 +638,32 @@ angular.module('zstackUI.services.api', ['zstackUI.services.util', 'ui.router', 
                 op: '=',
                 value: resourceUuid
             }]
+      }
+    });
+  }
+
+  self.queryGlobalConfig = function(category, name) {
+    return self.simpleQuery("org.zstack.core.config.APIQueryGlobalConfigMsg",
+      {
+        conditions: [{
+                name: 'category',
+                op: '=',
+                value: category
+            }, {
+                name: 'name',
+                op: '=',
+                value: name
+            }]
+      }
+    );
+  }
+
+    self.updateGlobalConfig = function(category, name, value) {
+    return self.simpleMsg({
+      "org.zstack.core.config.APIUpdateGlobalConfigMsg": {
+        category: category,
+        name: name,
+        value: value
       }
     });
   }

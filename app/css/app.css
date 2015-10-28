@@ -1,5 +1,10 @@
 /* app css stylesheet */
 
+* {
+  margin: 0;
+  padding: 0;
+}
+
 a { cursor: pointer; cursor: hand; text-decoration: none;}
 
 /* some basic styles. nothing to do with flexbox */
@@ -224,15 +229,30 @@ aside, nav {
   min-width: 480px;
 }
 
-.zs-details .row label {
+.zs-details .row label,
+.zs-settings .row label,
+.zs-settings .row > span {
   margin-left: 20px;
   float: left;
   min-width: 170px;
   padding-top: 7px;
   margin-bottom: 0;
-  color: rgb(112, 112, 112);
   font-weight: normal;
 }
+
+.zs-details .row label {
+  color: rgb(112, 112, 112);
+}
+
+.zs-details .row label,
+.zs-settings .row label,
+.zs-settings .row > span {
+  padding-top: 7px
+}
+
+/*.zs-settings .row > span {
+  padding-top: 8px
+}*/
 
 .zs-details .row label,
 .zs-details .row div, {
@@ -248,4 +268,75 @@ aside, nav {
 .label-success {
   border-radius: 4px !important;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+}
+
+.ng-inline-edit a:hover {
+  text-decoration: none;
+}
+
+.ng-inline-edit__text,
+.ng-inline-edit__input {
+  float: left;
+  width: 100px;
+}
+
+.ng-inline-edit__text {
+  border: 1px solid transparent;
+}
+
+.ng-inline-edit__input,
+.ng-inline-edit__text:hover {
+  border: 1px solid #ccc;
+}
+
+.ng-inline-edit--validating:after {
+  content: "";
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: url(ajax-loader.gif);
+}
+
+.ng-inline-edit--validating .ng-inline-edit__input {
+  background: #fff;
+  opacity: .4;
+}
+
+.ng-inline-edit--error .ng-inline-edit__input {
+  color: #f00;
+}
+
+.ng-inline-edit__button {
+  font-size: 0;
+  margin-left: 5px;
+  visibility: hidden;
+  opacity: .6;
+}
+
+.ng-inline-edit__button:hover {
+  opacity: 1;
+}
+
+.ng-inline-edit:hover .ng-inline-edit__button,
+.ng-inline-edit .ng-inline-edit__button--save,
+.ng-inline-edit .ng-inline-edit__button--cancel {
+  visibility: visible;
+}
+
+.ng-inline-edit__button:after {
+  font-family: 'Glyphicons Halflings';
+  font-size: 18px;
+  line-height: 18px;
+}
+
+.ng-inline-edit__button--edit:after {
+  content: "\e065";
+}
+
+.ng-inline-edit__button--save:after {
+  content: "\e013";
+}
+
+.ng-inline-edit__button--cancel:after {
+  content: "\e014";
 }

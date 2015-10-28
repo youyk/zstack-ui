@@ -1,13 +1,21 @@
 <div>
   <div>Settings</div>
-  <div class="form-horizontal zs-details">
+  <div class="zs-settings">
     <div class="row">
       <label>Over Provisioning Memory:</label>
-      <a href editable-text="gs.overProvisioning.memory">{{ gs.overProvisioning.memory || "empty" }}</a>
+      <span
+        inline-edit="gs.mevoco['overProvisioning.memory']"
+        inline-edit-validation="update('mevoco', 'overProvisioning.memory', newValue)"
+        inline-edit-btn-save="Save"
+        inline-edit-btn-cancel="Cancel"></span>
     </div>
     <div class="row">
       <label>Over Provisioning PrimaryStorage:</label>
-      <input class="form-control" rows="3" ng-model="gs.overProvisioning.primaryStorage">
+      <span
+        inline-edit="gs.mevoco['overProvisioning.primaryStorage']"
+        inline-edit-validation="update('mevoco', 'overProvisioning.primaryStorage', newValue)"
+        inline-edit-btn-save="Save"
+        inline-edit-btn-cancel="Cancel"></span>
     </div>
   </div>
   <ul>

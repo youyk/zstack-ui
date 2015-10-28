@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('zstackUI.settings', ['zstackUI.services.api', 'ui.router', 'xeditable'])
+angular.module('zstackUI.settings', ['zstackUI.services.api', 'ui.router', 'angularInlineEdit'])
 
 .config(['$stateProvider', function($stateProvider) {
   $stateProvider.state('settings', {
@@ -11,10 +11,33 @@ angular.module('zstackUI.settings', ['zstackUI.services.api', 'ui.router', 'xedi
 }])
 
 .controller('SettingsCtrl', ['$scope', 'ZStackApi', '$state', function($scope, ZStackApi, $state) {
-  $scope.gs = {
-    overProvisioning: {
-      memory: '1.2',
-      primaryStorage: '1.2'
-    }
+  $scope.gs = {};
+
+  function updateLocalValue(result) {
+    if (!$scope.gs[result.inventories[0].category])
+      $scope.gs[result.inventories[0].category] = {};
+    $scope.gs[result.inventories[0].category][result.inventories[0].name] = result.inventories[0].value;
+  }
+
+  ZStackApi.queryGlobalConfig('mevoco', 'overProvisioning.memory')
+  .then(function(result) {
+    console.log(result);
+    updateLocalValue(result);
+  })
+
+  ZStackApi.queryGlobalConfig('mevoco', 'overProvisioning.primaryStorage')
+  .then(function(result) {
+    console.log(result);
+    updateLocalValue(result);
+  })
+
+
+  $scope.update = function(category, name, newValue) {
+    // console.log(name +"   "+ newValue + "  " + $scope.gs.overProvisioning.memory)
+
+    ZStackApi.updateGlobalConfig(category, name, newValue)
+    .then(function(result) {
+      console.log(result);
+    })
   }
 }]);
