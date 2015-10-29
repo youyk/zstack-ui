@@ -92,6 +92,7 @@ angular.module('zstackUI.init_wizard',
   }
 
   $scope.finish = function() {
+    $scope.realStep = 0;
     ZStackApi.queryZone()
     .then(function(result) {
       $scope.realStep++;

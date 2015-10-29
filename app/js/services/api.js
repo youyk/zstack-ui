@@ -34,7 +34,10 @@ angular.module('zstackUI.services.api', ['zstackUI.services.util', 'ui.router', 
       var msg = ZStackUtil.firstItem(ret);
       if (!window.msgList)
         window.msgList = [];
-      window.msgList.push(JSON.stringify(msg));
+      window.msgList.push(JSON.stringify(msg, null, 2));
+      if (!msg.success) {
+        self.rootScope.alert = JSON.stringify(msg, null, 2);
+      }
       if (!msg.success && ZStackUtil.notNullnotUndefined(msg.error) && msg.error.code == 'ID.1001') {
         window.loggedin = false;
         $state.go('login');
@@ -114,7 +117,7 @@ angular.module('zstackUI.services.api', ['zstackUI.services.util', 'ui.router', 
     msgBody.session.callid = ZStackUtil.genUniqueId();
     if (!window.msgList)
       window.msgList = [];
-    window.msgList.push(JSON.stringify(msg));
+    window.msgList.push(JSON.stringify(msg, null, 2));
     var data = {'msg' : JSON.stringify(msg)};
     self.socket.emit('call', data);
     console.log(JSON.stringify(msg, null, 2));

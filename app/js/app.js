@@ -48,7 +48,8 @@ angular.module('zstackUI', [
 
 angular.module("templates", []);
 
-angular.module('ng').run(['$rootScope', '$translate', '$state', '$cookies', function($rootScope, $translate, $state, $cookies) {
+angular.module('ng').run(['$rootScope', '$translate', '$state', '$cookies', 'ZStackApi', function($rootScope, $translate, $state, $cookies, ZStackApi) {
+  ZStackApi.rootScope = $rootScope;
   $rootScope.$window = window;
   window.loggedin = !!$cookies.get('sessionId');
   $rootScope.safeApply = function(fn) {
@@ -71,6 +72,12 @@ angular.module('ng').run(['$rootScope', '$translate', '$state', '$cookies', func
     $cookies.remove('sessionId');
     $state.go('login');
   }
+
+  $rootScope.alert = null;
+
+  $rootScope.closeAlert = function() {
+    $rootScope.alert = null
+  };
 
   $state.go('main.dashboard')
 }]);

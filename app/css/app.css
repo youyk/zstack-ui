@@ -340,3 +340,14 @@ aside, nav {
 .ng-inline-edit__button--cancel:after {
   content: "\e014";
 }
+
+.zs-alert {
+  float: left; max-width: 400px; 
+}
+
+.zs-alert > div > span {
+  word-wrap: break-word; /* IE>=5.5 */
+  white-space: pre; /* IE>=6 */
+  white-space: -moz-pre-wrap; /* For Fx<=2 */
+  white-space: pre-wrap; /* Fx>3, Opera>8, Safari>3*/
+}

@@ -106,6 +106,7 @@
   </header>
 
   <section ui-view class="main hbox space-between"></section>
+  <alert class="zs-alert" ng-if="!!alert" ng-model="alert" type="danger" close="closeAlert()">{{alert}}</alert>
 
 <!--   <footer>
     ©2015 ZStack.org
