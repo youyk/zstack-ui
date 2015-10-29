@@ -342,7 +342,8 @@ aside, nav {
 }
 
 .zs-alert {
-  float: left; max-width: 400px; 
+  float: left; max-width: 400px;
+  z-index: 9999;
 }
 
 .zs-alert > div > span {
@@ -350,4 +351,30 @@ aside, nav {
   white-space: pre; /* IE>=6 */
   white-space: -moz-pre-wrap; /* For Fx<=2 */
   white-space: pre-wrap; /* Fx>3, Opera>8, Safari>3*/
+}
+
+.zs-wizard {
+  padding: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+}
+
+.zs-wizard form {
+  width: 500px;
+}
+
+.glyphicon.spinning {
+    animation: spin 1s infinite linear;
+    -webkit-animation: spin2 1s infinite linear;
+}
+
+@keyframes spin {
+    from { transform: scale(1) rotate(0deg); }
+    to { transform: scale(1) rotate(360deg); }
+}
+
+@-webkit-keyframes spin2 {
+    from { -webkit-transform: rotate(0deg); }
+    to { -webkit-transform: rotate(360deg); }
 }

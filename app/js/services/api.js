@@ -267,6 +267,10 @@ angular.module('zstackUI.services.api', ['zstackUI.services.util', 'ui.router', 
     return self.simpleQuery('org.zstack.header.network.l2.APIQueryL2NetworkMsg', msgBody);
   }
 
+  self.queryL2VlanNetwork = function (msgBody) {
+    return self.simpleQuery('org.zstack.header.network.l2.APIQueryL2VlanNetworkMsg', msgBody);
+  }
+
   self.createL2NoVlanNetwork = function (msgBody) {
     return self.simpleQuery('org.zstack.header.network.l2.APICreateL2NoVlanNetworkMsg', msgBody);
   }

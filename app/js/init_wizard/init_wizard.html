@@ -1,9 +1,9 @@
-<div style="padding: 50px; margin-left: auto; margin-right: auto; margin-top: 50px;">
+<div class="zs-wizard">
   {{currentStep+1}} / {{stepCount}}
   <div ng-switch="currentStep">
     <div ng-switch-when="0">
       <h2>{{ 'HOST' | translate }}</h2>
-      <form class="form-horizontal">
+      <form>
         <div class="form-group">
           <label for="usr">Name:</label>
           <input type="text" class="form-control" ng-model="host.name">
@@ -20,9 +20,26 @@
           <label for="usr">Root's Password:</label>
           <input type="password" class="form-control" ng-model="host.password">
         </div>
+        <button class="btn btn-primary" ng-if="!addingHost" ng-click="addHost()">Create</button>
+        <span ng-if="addingHost" class="help-block">This operation will take several minutes.<span class="glyphicon glyphicon-cog spinning"></span></span>
       </form>
     </div>
     <div ng-switch-when="1">
+      <h2>Storage</h2>
+      <form role="form">
+        <div class="form-group">
+          <label>Host Ip:</label>
+          <input type="text" class="form-control" ng-model="backupStorage.hostname">
+        </div>
+        <div class="form-group">
+          <label>Backup Storage Password:</label>
+          <input type="password" class="form-control" ng-model="backupStorage.password">
+        </div>
+        <button class="btn btn-primary" ng-if="!addingStorage" ng-click="addStorage()">Create</button>
+        <span ng-if="addingStorage" class="help-block">This operation will take several minutes.<span class="glyphicon glyphicon-cog spinning"></span></span>
+      </form>
+    </div>
+    <div ng-switch-when="2">
       <h2>{{ 'INSTANCE_OFFERING' | translate }}</h2>
       <form>
         <div class="form-group">
@@ -46,19 +63,8 @@
           <label>Memory:</label>
           <input type="text" class="form-control" ng-model="instance_offering.memorySize">
         </div>
-      </form>
-    </div>
-    <div ng-switch-when="2">
-      <h2>Storage</h2>
-      <form role="form">
-        <div class="form-group">
-          <label>Host Ip:</label>
-          <input type="text" class="form-control" ng-model="backupStorage.hostname">
-        </div>
-        <div class="form-group">
-          <label>Backup Storage Password:</label>
-          <input type="password" class="form-control" ng-model="backupStorage.password">
-        </div>
+        <button class="btn btn-primary" ng-if="!creatingInstanceOffering" ng-click="createInstanceOffering()">Create</button>
+        <span ng-if="creatingInstanceOffering" class="help-block">This operation will take several minutes.<span class="glyphicon glyphicon-cog spinning"></span></span>
       </form>
     </div>
     <div ng-switch-when="3">
@@ -102,6 +108,8 @@
           <label for="usr">URL:</label>
           <input type="text" class="form-control" ng-model="image.url">
         </div>
+        <button class="btn btn-primary" ng-if="!creatingImage" ng-click="createImage()">Create</button>
+        <span ng-if="creatingImage" class="help-block">This operation will take several minutes.<span class="glyphicon glyphicon-cog spinning"></span></span>
       </form>
     </div>
     <div ng-switch-when="4">
@@ -128,6 +136,8 @@
           <label>Physical Interface:</label>
           <input type="text" class="form-control" ng-model="l2Network.physicalInterface">
         </div>
+        <button class="btn btn-primary" ng-if="!creatingL2Network" ng-click="createL2Network()">Create</button>
+        <span ng-if="creatingL2Network" class="help-block">This operation will take several minutes.<span class="glyphicon glyphicon-cog spinning"></span></span>
       </form>
     </div>
     <div ng-switch-when="5">
@@ -137,11 +147,6 @@
           <label>DNS:</label>
           <input type="text" class="form-control" ng-model="l3Network.dns">
         </div>
-      </form>
-    </div>
-    <div ng-switch-when="6">
-      <h2>IP Range</h2>
-      <form role="form">
         <div class="form-group">
           <label>Name:</label>
           <input type="text" class="form-control" ng-model="ipRange.name">
@@ -166,11 +171,9 @@
           <label>Gateway:</label>
           <input type="text" class="form-control" ng-model="ipRange.gateway">
         </div>
+        <button class="btn btn-primary" ng-if="!creatingL3Network" ng-click="createL3Network()">Create</button>
+        <span ng-if="creatingL3Network" class="help-block">This operation will take several minutes.<span class="glyphicon glyphicon-cog spinning"></span></span>
       </form>
-      <progressbar class="progress-striped active" value="realStep/(realStepCount-1)*100"></progressbar>
     </div>
   </div>
-  <button class="btn btn-default" ng-if="currentStep!=0" ng-click="prev()">Prev</button>
-  <button class="btn btn-primary" ng-if="currentStep==stepCount-1" ng-click="finish()">Finish</button>
-  <button class="btn btn-primary" ng-if="currentStep!=stepCount-1" ng-click="next()">Next</button>
 </div>
