@@ -38,7 +38,7 @@ angular.module('zstackUI.host.modal.controller',
   $scope.name = "";
   $scope.description = "";
   $scope.hostIp = "";
-  $scope.userName = "";
+  $scope.userName = "root";
   $scope.password = "";
 
   $scope.action = function(cb) {
