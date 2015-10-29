@@ -37,7 +37,7 @@ gulp.task('css', function() {
   gulp.src([
       './app/bower_components/angular-bootstrap/ui-bootstrap-csp.css',
       './app/bower_components/bootstrap/dist/css/bootstrap.min.css',
-      'bower_components/angular-xeditable/dist/css/xeditable.css',
+      './app/bower_components/ng-inline-edit/dist/ng-inline-edit.min.css',
       './app/css/app.css'
     ])
     .pipe(sourcemaps.init())
@@ -78,7 +78,7 @@ gulp.task('static', ['clean', 'templates', 'font', 'css', 'vendor', 'index'], fu
       './app/bower_components/angular-translate/angular-translate.min.js',
       './app/bower_components/socket.io-client/dist/socket.io.min.js',
       './app/bower_components/cryptojslib/rollups/sha512.js',
-      './app/bower_components/angular-xeditable/dist/js/xeditable.js',
+      './app/bower_components/ng-inline-edit/dist/ng-inline-edit.min.js',
       './app/js/app.js',
       './tmp/templates.js',
       './app/js/**/*.js'

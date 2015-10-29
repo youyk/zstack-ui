@@ -628,6 +628,12 @@ angular.module('zstackUI.services.api', ['zstackUI.services.util', 'ui.router', 
     return self.simpleCall('org.zstack.storage.backup.sftp.APIAddSftpBackupStorageMsg', msgBody);
   }
 
+  self.deleteSftpBackupStorage = function (uuid) {
+    return self.simpleCall('org.zstack.storage.backup.sftp.APIAddSftpBackupStorageMsg', {
+      uuid: uuid
+    });
+  }
+
   self.attachBackupStorage = function (msgBody) {
     return self.simpleCall('org.zstack.header.storage.backup.APIAttachBackupStorageToZoneMsg', msgBody);
   }
