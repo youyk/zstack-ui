@@ -68,7 +68,6 @@ angular.module('zstackUI.init_wizard',
   $scope.l2Network.physicalInterface = "eno1";
   $scope.l3Network = {};
   $scope.l3Network.name = "PUBLIC-L3-1";
-  $scope.l3Network.dnsDomain = "my.zstack.org";
   $scope.l3Network.dns = "8.8.8.8";
   $scope.ipRange = {};
   $scope.ipRange.name = "PUBLIC-L3-IPRANGE-1";
@@ -261,8 +260,7 @@ angular.module('zstackUI.init_wizard',
         name: $scope.l3Network.name,
         type: "L3BasicNetwork",
         l2NetworkUuid: $scope.l2Network.uuid,
-        system: false,
-        dnsDomain: $scope.dnsDomain
+        system: false
       })
     })
     .then(function(result) {
