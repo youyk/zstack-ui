@@ -232,6 +232,12 @@ angular.module('zstackUI.services.api', ['zstackUI.services.util', 'ui.router', 
     return self.simpleQuery('org.zstack.header.cluster.APICreateClusterMsg', msgBody);
   }
 
+  self.deleteCluster = function (uuid) {
+    return self.simpleQuery('org.zstack.header.cluster.APIDeleteClusterMsg', {
+      uuid: uuid
+    });
+  }
+
   self.queryCluster = function (msgBody) {
     return self.simpleQuery('org.zstack.header.cluster.APIQueryClusterMsg', msgBody);
   }

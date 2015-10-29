@@ -109,6 +109,25 @@ angular.module('zstackUI.init_wizard',
     .then(function(result) {
       $scope.realStep++;
       $scope.zone.uuid = result.inventory.uuid;
+      return ZStackApi.queryCluster(
+          {
+            conditions: [{
+              name: "zoneUuid",
+              op: "=",
+              value: result.inventory.uuid
+            }]
+          }
+        )
+    })
+    .then(function(result) {
+      $scope.realStep++;
+      if (result.inventories.length > 0)
+        return ZStackApi.deleteCluster(result.inventories[0].uuid);
+      else 
+        return ZStackApi.dummyPromise({});
+    })
+    .then(function(result) {
+      $scope.realStep++;
       return ZStackApi.createCluster(
           {
              name: $scope.cluster.name,
