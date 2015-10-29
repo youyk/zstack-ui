@@ -35,12 +35,12 @@ angular.module('zstackUI', [
   .then(function successCallback(response) {
     ZStackApi.server_url = response.data.server_url;
     ZStackApi.connectWebsocket();
-    ZStackApi.initGlobalValue();
+    ZStackApi.getSystemInfo();
   }, function errorCallback(response) {
     console.log(response)
     ZStackApi.server_url = window.location.protocol + '//' + window.location.host;
     ZStackApi.connectWebsocket();
-    ZStackApi.initGlobalValue();
+    ZStackApi.getSystemInfo();
   });
 }])
 .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {

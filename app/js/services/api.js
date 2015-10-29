@@ -59,7 +59,7 @@ angular.module('zstackUI.services.api', ['zstackUI.services.util', 'ui.router', 
     })
   }
 
-  self.isInitGlobalValue = false;
+  // self.isInitGlobalValue = false;
   self.initGlobalValue = function() {
     if (self.isInitGlobalValue) {
       return;
@@ -96,7 +96,9 @@ angular.module('zstackUI.services.api', ['zstackUI.services.util', 'ui.router', 
       $cookies.put('sessionId', retMsg.inventory.uuid);
       console.log(retMsg.inventory.uuid);
 
-      self.initGlobalValue();
+      self.getSystemInfo();
+
+      // self.initGlobalValue();
 
       if (ZStackUtil.notNullnotUndefined(cb)) {
         cb();
@@ -629,7 +631,7 @@ angular.module('zstackUI.services.api', ['zstackUI.services.util', 'ui.router', 
   }
 
   self.deleteSftpBackupStorage = function (uuid) {
-    return self.simpleCall('org.zstack.storage.backup.sftp.APIAddSftpBackupStorageMsg', {
+    return self.simpleCall('org.zstack.header.storage.backup.APIDeleteBackupStorageMsg', {
       uuid: uuid
     });
   }

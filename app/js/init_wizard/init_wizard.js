@@ -20,7 +20,7 @@ angular.module('zstackUI.init_wizard',
   $scope.stepCount = 7;
   $scope.currentStep = 0;
   $scope.realStep = 0;
-  $scope.realStepCount = 16;
+  $scope.realStepCount = 17;
 
   $scope.zone = {};
   $scope.zone.name = "ZONE-1";
@@ -96,9 +96,19 @@ angular.module('zstackUI.init_wizard',
     ZStackApi.queryZone()
     .then(function(result) {
       $scope.realStep++;
-      if (result.inventories.length > 0)
-        return ZStackApi.deleteZone(result.inventories[0].uuid);
-      else 
+      if (result.inventories.length > 0) {
+        var currPromise = ZStackApi.dummyPromise({})
+        for (var i = result.inventories.length-1; i > 0; i--) {
+          currPromise = ZStackApi.deleteZone(result.inventories[i].uuid).then(function(result) {
+              $scope.realStep++;
+              return currPromise;
+            });
+        };
+
+        return currPromise;
+        
+        // return ZStackApi.deleteZone(result.inventories[0].uuid);
+      } else 
         return ZStackApi.dummyPromise({});
     })
     .then(function(result) {
@@ -163,6 +173,17 @@ angular.module('zstackUI.init_wizard',
         clusterUuid: $scope.cluster.uuid,
         primaryStorageUuid: $scope.primaryStorage.uuid
       });
+    })
+    .then(function(result) {
+      $scope.realStep++;
+      return ZStackApi.queryBackupStorage();
+    })
+    .then(function(result) {
+      $scope.realStep++;
+      if (result.inventories.length > 0)
+        return ZStackApi.deleteSftpBackupStorage(result.inventories[0].uuid);
+      else 
+        return ZStackApi.dummyPromise({});
     })
     .then(function(result) {
       $scope.realStep++;
@@ -286,6 +307,7 @@ angular.module('zstackUI.init_wizard',
     })
     .then(function(result) {
       $scope.realStep++;
+      ZStackApi.getSystemInfo();
       $state.go('main.dashboard')
     });
   }
