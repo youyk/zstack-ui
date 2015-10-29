@@ -3,9 +3,9 @@ import sys, os
 
 version = 'pre-alpha'
 
-setup(name='mevoco_ui',
+setup(name='zstack_dashboard',
       version=version,
-      description="zstack ui",
+      description="zstack_dashboard",
       long_description="""\
 zstack""",
       classifiers=[], # Get strings from http://pypi.python.org/pypi?%3Aaction=list_classifiers
