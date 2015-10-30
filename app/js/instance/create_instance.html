@@ -4,41 +4,41 @@
   </div>
   <div class="modal-body">
     <form role="form">
-      <div class="form-group">
+      <div class="form-group required">
         <label>Name:</label>
         <input type="text" class="form-control" ng-model="name">
       </div>
-      <div class="form-group">
-        <label>Host Name:</label>
-        <input type="text" class="form-control" ng-model="hostname">
+      <div class="form-group required">
+        <label>InstanceOffering:</label>
+        <input type="text" class="form-control" ng-model="instanceOffering.name" readonly>
+        <a ng-controller="InstanceOfferingModalCtrl" ng-click="open()">Select</a>
       </div>
-      <div class="form-group">
+      <div class="form-group required">
         <label>Image:</label>
         <input type="text" class="form-control" ng-model="image.name" readonly>
         <a ng-controller="ImageModalCtrl" href="" ng-click="open()">Select</a>
       </div>
       <div class="form-group">
-        <label>InstanceOffering:</label>
-        <input type="text" class="form-control" ng-model="instanceOffering.name" readonly>
-        <a ng-controller="InstanceOfferingModalCtrl" ng-click="open()">Select</a>
-      </div>
-      <div class="form-group">
         <label>DataOffering:</label>
-        <input type="text" class="form-control" ng-model="dataOffering.name" readonly>
+        <input type="text" class="form-control" ng-model="dataOffering.name" readonly placeholder="Optional">
         <a ng-controller="DataOfferingModalCtrl" ng-click="open()">Select</a>
       </div>
       <div class="form-group">
+        <label>VM Host Name:</label>
+        <input type="text" class="form-control" ng-model="hostname" placeholder="Optional">
+      </div>
+      <div class="form-group">
+        <label>Static Ip:</label>
+        <input type="text" class="form-control" ng-model="ip" placeholder="Optional">
+      </div>
+      <div class="form-group">
         <label>Host:</label>
-        <input type="text" class="form-control" ng-model="host.name" readonly>
+        <input type="text" class="form-control" ng-model="host.name" readonly placeholder="Optional">
         <a ng-controller="HostModalCtrl" ng-click="open()">Select</a>
       </div>
       <div class="form-group">
-        <label>Ip:</label>
-        <input type="text" class="form-control" ng-model="ip">
-      </div>
-      <div class="form-group">
         <label>Description:</label>
-        <input type="text" class="form-control" ng-model="description">
+        <input type="text" class="form-control" ng-model="description" placeholder="Optional">
       </div>
     </form>
   </div>

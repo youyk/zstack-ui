@@ -378,3 +378,12 @@ aside, nav {
     from { -webkit-transform: rotate(0deg); }
     to { -webkit-transform: rotate(360deg); }
 }
+
+.form-group.required label:after {
+  content:"*";
+  color:red;
+}
+
+.form-control[readonly] {
+  background-color: #fff;
+}
