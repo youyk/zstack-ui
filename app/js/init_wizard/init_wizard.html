@@ -1,8 +1,8 @@
 <div class="zs-wizard">
-  {{currentStep+1}} / {{stepCount}}
+  <h2>Preparation {{currentStep+1}} / {{stepCount}}</h2>
   <div ng-switch="currentStep">
     <div ng-switch-when="0">
-      <h2>{{ 'HOST' | translate }}</h2>
+      <h3>{{ 'HOST' | translate }}</h3>
       <form>
         <div class="form-group">
           <label for="usr">Name:</label>
@@ -17,30 +17,30 @@
           <input type="text" class="form-control" ng-model="host.hostIp">
         </div>
         <div class="form-group">
-          <label for="usr">Root's Password:</label>
+          <label for="usr">Root Password:</label>
           <input type="password" class="form-control" ng-model="host.password">
         </div>
         <button class="btn btn-primary" ng-if="!addingHost" ng-click="addHost()">Create</button>
-        <span ng-if="addingHost" class="help-block">This operation will take several minutes.<span class="glyphicon glyphicon-cog spinning"></span></span>
+        <span ng-if="addingHost" class="help-block">This operation might take several minutes.<span class="glyphicon glyphicon-cog spinning"></span></span>
       </form>
     </div>
     <div ng-switch-when="1">
-      <h2>Storage</h2>
+      <h2>Backup Storage</h3>
       <form role="form">
         <div class="form-group">
           <label>Host Ip:</label>
           <input type="text" class="form-control" ng-model="backupStorage.hostname">
         </div>
         <div class="form-group">
-          <label>Backup Storage Password:</label>
+          <label>Root Password:</label>
           <input type="password" class="form-control" ng-model="backupStorage.password">
         </div>
         <button class="btn btn-primary" ng-if="!addingStorage" ng-click="addStorage()">Create</button>
-        <span ng-if="addingStorage" class="help-block">This operation will take several minutes.<span class="glyphicon glyphicon-cog spinning"></span></span>
+        <span ng-if="addingStorage" class="help-block">This operation might take several minutes.<span class="glyphicon glyphicon-cog spinning"></span></span>
       </form>
     </div>
     <div ng-switch-when="2">
-      <h2>{{ 'INSTANCE_OFFERING' | translate }}</h2>
+      <h3>{{ 'INSTANCE_OFFERING' | translate }}</h3>
       <form>
         <div class="form-group">
           <label>Name:</label>
@@ -64,11 +64,11 @@
           <input type="text" class="form-control" ng-model="instance_offering.memorySize">
         </div>
         <button class="btn btn-primary" ng-if="!creatingInstanceOffering" ng-click="createInstanceOffering()">Create</button>
-        <span ng-if="creatingInstanceOffering" class="help-block">This operation will take several minutes.<span class="glyphicon glyphicon-cog spinning"></span></span>
+        <span ng-if="creatingInstanceOffering" class="help-block">This operation might take several minutes.<span class="glyphicon glyphicon-cog spinning"></span></span>
       </form>
     </div>
     <div ng-switch-when="3">
-      <h2>{{ 'IMAGE' | translate }}</h2>
+      <h3>{{ 'IMAGE' | translate }}</h3>
       <form role="form">
         <div class="form-group">
           <label for="usr">Name:</label>
@@ -81,7 +81,7 @@
         <div class="form-group">
           <label for="usr">Media Type:</label>
           <div class="btn-group" dropdown is-open="false">
-            <button id="media-type-button" type="button" class="btn" dropdown-toggle ng-disabled="disabled">
+            <button id="media-type-button" type="button" class="btn btn-default" dropdown-toggle ng-disabled="disabled">
               {{image.mediaType}} <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu" aria-labelledby="media-type-button">
@@ -94,7 +94,7 @@
         <div class="form-group">
           <label for="usr">Plateform:</label>
           <div class="btn-group" dropdown is-open="false">
-            <button id="platform-button" type="button" class="btn" dropdown-toggle ng-disabled="disabled">
+            <button id="platform-button" type="button" class="btn btn-default" dropdown-toggle ng-disabled="disabled">
               {{image.platform}} <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu" aria-labelledby="platform-button">
@@ -109,16 +109,16 @@
           <input type="text" class="form-control" ng-model="image.url">
         </div>
         <button class="btn btn-primary" ng-if="!creatingImage" ng-click="createImage()">Create</button>
-        <span ng-if="creatingImage" class="help-block">This operation will take several minutes.<span class="glyphicon glyphicon-cog spinning"></span></span>
+        <span ng-if="creatingImage" class="help-block">This operation might take several minutes.<span class="glyphicon glyphicon-cog spinning"></span></span>
       </form>
     </div>
     <div ng-switch-when="4">
-      <h2>L2 Network</h2>
+      <h3>L2 Network</h3>
       <form role="form">
         <div class="form-group">
           <label for="usr">Type:</label>
           <div class="btn-group" dropdown is-open="false">
-            <button id="media-type-button" type="button" class="btn" dropdown-toggle ng-disabled="disabled">
+            <button id="media-type-button" type="button" class="btn btn-default" dropdown-toggle ng-disabled="disabled">
               {{l2Network.type}} <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu" aria-labelledby="media-type-button">
@@ -137,11 +137,11 @@
           <input type="text" class="form-control" ng-model="l2Network.physicalInterface">
         </div>
         <button class="btn btn-primary" ng-if="!creatingL2Network" ng-click="createL2Network()">Create</button>
-        <span ng-if="creatingL2Network" class="help-block">This operation will take several minutes.<span class="glyphicon glyphicon-cog spinning"></span></span>
+        <span ng-if="creatingL2Network" class="help-block">This operation might take several minutes.<span class="glyphicon glyphicon-cog spinning"></span></span>
       </form>
     </div>
     <div ng-switch-when="5">
-      <h2>L3 Network</h2>
+      <h3>L3 Network</h3>
       <form role="form">
         <div class="form-group">
           <label>DNS:</label>
@@ -172,7 +172,7 @@
           <input type="text" class="form-control" ng-model="ipRange.gateway">
         </div>
         <button class="btn btn-primary" ng-if="!creatingL3Network" ng-click="createL3Network()">Create</button>
-        <span ng-if="creatingL3Network" class="help-block">This operation will take several minutes.<span class="glyphicon glyphicon-cog spinning"></span></span>
+        <span ng-if="creatingL3Network" class="help-block">This operation might take several minutes.<span class="glyphicon glyphicon-cog spinning"></span></span>
       </form>
     </div>
   </div>

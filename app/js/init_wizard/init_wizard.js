@@ -42,7 +42,7 @@ angular.module('zstackUI.init_wizard',
   $scope.image.name = "IMAGE-1";
   $scope.image.description = "";
   $scope.image.url = "http://download.zstack.org/templates/ttylinux.qcow2"
-  $scope.image.mediaTypeList = ["ISO", "Image"];
+  $scope.image.mediaTypeList = ["Image", "ISO"];
   $scope.image.mediaType = $scope.image.mediaTypeList[0];
   $scope.image.platformList = [
       'Linux',
@@ -65,7 +65,8 @@ angular.module('zstackUI.init_wizard',
   $scope.l2Network.typeList = ["L2VlanNetwork", "L2NoVlanNetwork"];
   $scope.l2Network.type = $scope.l2Network.typeList[1];
   $scope.l2Network.vlan = "";
-  $scope.l2Network.physicalInterface = "eno1";
+  // $scope.l2Network.physicalInterface = "eno1";
+  $scope.l2Network.physicalInterface = "eth0";
   $scope.l3Network = {};
   $scope.l3Network.name = "PUBLIC-L3-1";
   $scope.l3Network.dns = "8.8.8.8";
