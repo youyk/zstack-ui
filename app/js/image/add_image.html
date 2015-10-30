@@ -13,19 +13,6 @@
         <textarea class="form-control" rows="3" ng-model="description"></textarea>
       </div>
       <div class="form-group">
-        <label for="usr">Format:</label>
-        <div class="btn-group" dropdown is-open="false">
-          <button id="format-button" type="button" class="btn" dropdown-toggle ng-disabled="disabled">
-            {{format}} <span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu" role="menu" aria-labelledby="format-button">
-            <li role="menuitem" ng-repeat="item in formatList">
-              <a ng-click="select('format', item)">{{item}}</a>
-            </li>
-          </ul>
-        </div>
-      </div>  
-      <div class="form-group">
         <label for="usr">Media Type:</label>
         <div class="btn-group" dropdown is-open="false">
           <button id="media-type-button" type="button" class="btn" dropdown-toggle ng-disabled="disabled">

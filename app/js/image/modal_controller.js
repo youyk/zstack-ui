@@ -43,14 +43,15 @@ angular.module('zstackUI.image.modal.controller',
   for (var i in ZStackApi.formatList) {
     $scope.formatList.push(ZStackApi.formatList[i].format);
   }
-  $scope.mediaTypeList = ['RootVolumeTemplate', 'DataVolumeTemplate', 'ISO'];
+  $scope.mediaTypeList = ["Image", "ISO"];
+  $scope.mediaType = $scope.mediaTypeList[0];
   $scope.platformList = [
                           'Linux',
                           'Windows',
                           'Other',
                           'Paravirtualization'
                         ];
-  $scope.system = "";
+  $scope.system = false;
   $scope.name = "";
   $scope.description = "";
   $scope.url = "";
@@ -93,6 +94,13 @@ angular.module('zstackUI.image.modal.controller',
       }
     }
 
+    if ("ISO" == self.mediaType) {
+      msg.format = "iso";
+      msg.mediaType = "ISO";
+    } else {
+      msg.format = "qcow2";
+      msg.meidaType = "RootVolumeTemplate";
+    }
 
     ZStackApi.call(msg, function(data) {
       console.log(data)
