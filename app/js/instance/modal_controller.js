@@ -60,20 +60,25 @@ angular.module('zstackUI.instance.modal.controller', ['zstackUI.services.api'])
 
   $scope.create = function(cb) {
     var systemTags = [];
+    var msgBody = {
+      name: self.name,
+      description: self.description,
+      instanceOfferingUuid: self.instanceOffering.uuid,
+      imageUuid: self.image.uuid,
+      l3NetworkUuids: [ZStackApi.defaultL3Network.uuid],
+      dataDiskOfferingUuids: ZStackUtil.notNullnotUndefined(self.dataOffering) ? [self.dataOffering.uuid] : [],
+      zoneUuid: ZStackApi.defaultZone.uuid,
+      clusterUuid: ZStackApi.defaultCluster.uuid,
+      defaultL3NetworkUuid: ZStackApi.defaultL3Network.uuid,
+      systemTags: systemTags
+    }
+
+    if (self.host) {
+      msgBody.hostUuid = self.host.uuid;
+    }
+
     var msg = {
-      'org.zstack.header.vm.APICreateVmInstanceMsg': {
-        name: self.name,
-        description: self.description,
-        instanceOfferingUuid: self.instanceOffering.uuid,
-        imageUuid: self.image.uuid,
-        l3NetworkUuids: [ZStackApi.defaultL3Network.uuid],
-        dataDiskOfferingUuids: ZStackUtil.notNullnotUndefined(self.dataOffering) ? [self.dataOffering.uuid] : [],
-        zoneUuid: ZStackApi.defaultZone.uuid,
-        clusterUuid: ZStackApi.defaultCluster.uuid,
-        hostUuid: self.host.uuid,
-        defaultL3NetworkUuid: ZStackApi.defaultL3Network.uuid,
-        systemTags: systemTags
-      }
+      'org.zstack.header.vm.APICreateVmInstanceMsg': msgBody
     }
 
     if ($scope.ip) {
