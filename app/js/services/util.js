@@ -160,6 +160,17 @@ angular.module('zstackUI.services.util', [])
         scope.queryList();
       })
 
+      scope.click = function(item) {
+        scope.selectList.length = 0;
+        for (var i in scope.itemList) {
+          if (scope.itemList[i].uuid == item.uuid)
+            scope.itemList[i].selected = true;
+          else
+            scope.itemList[i].selected = false;
+        }
+        scope.select(item);
+      }
+
       scope.select = function(item) {
         scope.selectList.length = 0;
         for (var i in scope.itemList) {

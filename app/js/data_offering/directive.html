@@ -21,7 +21,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="item in itemList" ng-click="select($event, item)" ng-class="{'table-highlight': item.selected}">
+      <tr ng-repeat="item in itemList" ng-class="{'table-highlight': item.selected}">
         <td><input type="checkbox" ng-model="item.selected" ng-click="select(item)"></input></td>
         <td ng-if="item.collapsed"><a ng-click="item.collapsed=!item.collapsed">{{item.name}}</td>
         <td ng-if="item.collapsed">{{item.description}}</td>

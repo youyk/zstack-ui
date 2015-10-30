@@ -81,25 +81,24 @@ angular.module('zstackUI.image.modal.controller',
 
   $scope.action = function(cb) {
     var systemTags = [];
+    var msgBody = {
+      name: self.name,
+      description: self.description,
+      url: self.url,
+      backupStorageUuids: self.backupStorageList,
+      system: self.system,
+      platform: self.platform,
+    };
     var msg = {
-      'org.zstack.header.image.APIAddImageMsg': {
-        name: self.name,
-        description: self.description,
-        url: self.url,
-        backupStorageUuids: self.backupStorageList,
-        format: self.format,
-        system: self.system,
-        platform: self.platform,
-        mediaType: self.mediaType,
-      }
+      'org.zstack.header.image.APIAddImageMsg': msgBody
     }
 
     if ("ISO" == self.mediaType) {
-      msg.format = "iso";
-      msg.mediaType = "ISO";
+      msgBody.format = "iso";
+      msgBody.mediaType = "ISO";
     } else {
-      msg.format = "qcow2";
-      msg.meidaType = "RootVolumeTemplate";
+      msgBody.format = "qcow2";
+      msgBody.meidaType = "RootVolumeTemplate";
     }
 
     ZStackApi.call(msg, function(data) {
