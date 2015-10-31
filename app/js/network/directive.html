@@ -17,11 +17,11 @@
     <tbody>
       <tr ng-repeat="item in itemList[0].ipRanges" ng-class="{'table-highlight': item.selected}">
         <td><input type="checkbox" ng-model="item.selected" ng-click="select(item)"></input></td>
-        <td ng-if="item.collapsed"><a ng-click="item.collapsed=!item.collapsed">{{item.name}}</a></td>
-        <td ng-if="item.collapsed">{{item.startIp}}</td>
-        <td ng-if="item.collapsed">{{item.endIp}}</td>
-        <td ng-if="item.collapsed">{{item.netmask}}</td>
-        <td ng-if="item.collapsed">{{item.gateway}}</td>
+        <td ng-if="item.collapsed" ng-click="click(item)"><a ng-click="item.collapsed=!item.collapsed">{{item.name}}</a></td>
+        <td ng-if="item.collapsed" ng-click="click(item)">{{item.startIp}}</td>
+        <td ng-if="item.collapsed" ng-click="click(item)">{{item.endIp}}</td>
+        <td ng-if="item.collapsed" ng-click="click(item)">{{item.netmask}}</td>
+        <td ng-if="item.collapsed" ng-click="click(item)">{{item.gateway}}</td>
         <td colspan="5" ng-if="!item.collapsed">
           <div network-details-directive ng-model="item"></div>
         </td>

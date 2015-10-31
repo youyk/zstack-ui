@@ -25,11 +25,11 @@
     <tbody>
       <tr ng-repeat="item in itemList" ng-class="{'table-highlight': item.selected}">
         <td><input type="checkbox" ng-model="item.selected" ng-click="select(item)"></input></td>
-        <td ng-if="item.collapsed"><a ng-click="item.collapsed=!item.collapsed">{{item.name}}</a></td>
-        <td ng-if="item.collapsed">{{item.description}}</td>
-        <td ng-if="item.collapsed">{{item.vmNics[0].ip}}</td>
-        <td ng-if="item.collapsed">{{item.managementIp}}</td>
-        <td ng-if="item.collapsed"><span class="label"  ng-class="{'label-success': item.state=='Running', 'label-default': item.state!='Running'}">{{item.state}}</span></td>
+        <td ng-if="item.collapsed" ng-click="click(item)"><a ng-click="item.collapsed=!item.collapsed">{{item.name}}</a></td>
+        <td ng-if="item.collapsed" ng-click="click(item)">{{item.description}}</td>
+        <td ng-if="item.collapsed" ng-click="click(item)">{{item.vmNics[0].ip}}</td>
+        <td ng-if="item.collapsed" ng-click="click(item)">{{item.managementIp}}</td>
+        <td ng-if="item.collapsed" ng-click="click(item)"><span class="label"  ng-class="{'label-success': item.state=='Running', 'label-default': item.state!='Running'}">{{item.state}}</span></td>
         <td colspan="6" ng-if="!item.collapsed">
           <div instance-details-directive ng-model="item"></div>
         </td>
