@@ -118,7 +118,7 @@ angular.module('zstackUI.instance.modal.controller', ['zstackUI.services.api'])
     .then(function(result) {
       var hostCount = result.total;
       var curreCount = 0;
-      var curreCount = 0;
+      var errorCount = 0;
       var terminateCreate = false;
       function _createVm() {
         if (curreCount < self.createCount && !terminateCreate) {
