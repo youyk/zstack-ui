@@ -145,7 +145,7 @@ angular.module('zstackUI.services.util', [])
   self.initListScope = function(scope) {
       scope.pageIndex = 1;
       scope.pageItemCountList = [5, 10, 20, 50];
-      scope.pageItemCount = scope.pageItemCountList[0];
+      scope.pageItemCount = scope.pageItemCountList[2];
       scope.pageCount = 0;
       scope.sortDirectionList = [
         'asc',
