@@ -3,7 +3,7 @@
     <h3>{{ 'INSTANCE_CREATE' | translate }}</h3>
   </div>
   <div class="modal-body">
-    <form role="form">
+    <form>
       <div class="form-group required">
         <label>Name:</label>
         <input type="text" class="form-control" ng-model="name">
@@ -27,18 +27,28 @@
         <label>VM Host Name:</label>
         <input type="text" class="form-control" ng-model="hostname" placeholder="Optional">
       </div>
-      <div class="form-group">
+      <div class="form-group" ng-if="!multiHost">
         <label>Static Ip:</label>
         <input type="text" class="form-control" ng-model="ip" placeholder="Optional">
       </div>
-      <div class="form-group">
+      <div class="form-group" ng-if="!multiHost">
         <label>Host:</label>
         <input type="text" class="form-control" ng-model="host.name" readonly placeholder="Optional">
         <a ng-controller="HostModalCtrl" ng-click="open()">Select</a>
       </div>
-      <div class="form-group">
+      <div class="form-group" ng-if="!multiHost">
         <label>Description:</label>
         <input type="text" class="form-control" ng-model="description" placeholder="Optional">
+      </div>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" ng-model="multiHost">
+          Create multiple hosts
+        </label>
+      </div>
+      <div class="form-group required">
+        <label>Name:</label>
+        <input type="number" class="form-control" ng-model="createCount">
       </div>
     </form>
   </div>

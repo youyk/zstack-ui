@@ -383,3 +383,7 @@ aside, nav {
   content:"*";
   color:red;
 }
+
+.checkbox input[type="checkbox"] {
+  margin-top: 2px;
+}

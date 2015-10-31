@@ -706,7 +706,7 @@ angular.module('zstackUI.services.api', ['zstackUI.services.util', 'ui.router', 
     );
   }
 
-    self.updateGlobalConfig = function(category, name, value) {
+  self.updateGlobalConfig = function(category, name, value) {
     return self.simpleMsg({
       "org.zstack.core.config.APIUpdateGlobalConfigMsg": {
         category: category,
@@ -714,6 +714,10 @@ angular.module('zstackUI.services.api', ['zstackUI.services.util', 'ui.router', 
         value: value
       }
     });
+  }
+
+  self.createVm = function (msgBody) {
+    return self.simpleCall('org.zstack.header.vm.APICreateVmInstanceMsg', msgBody);
   }
 
   return self;

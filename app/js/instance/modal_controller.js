@@ -45,7 +45,9 @@ angular.module('zstackUI.instance.modal.controller', ['zstackUI.services.api'])
   $scope.dataOffering = null;
   $scope.l3Network = [];
   $scope.ip = "";
-  $scope.description
+  $scope.description = "";
+  $scope.multiHost = false;
+  $scope.name1 = "";
 
   $scope.$on("child-dialog:open", function() {
     $scope.showDialog = false;
@@ -85,22 +87,74 @@ angular.module('zstackUI.instance.modal.controller', ['zstackUI.services.api'])
       systemTags.push('staticIp::' + ZStackApi.defaultL3Network.uuid + '::' + $scope.ip);
     }
 
-    if ($scope.hostname) {
+    if ($scope.hostname && $scope.hostname.length > 0) {
       systemTags.push('hostname::' + $scope.hostname);
     }
 
-    ZStackApi.call(msg, function(data) {
-      console.log(data)
-      if (ZStackUtil.notNullnotUndefined(cb))
-        cb(data);
+    ZStackApi.createVm(msgBody).then(cb)
+
+    // ZStackApi.call(msg, function(data) {
+    //   console.log(data)
+    //   if (ZStackUtil.notNullnotUndefined(cb))
+    //     cb(data);
+    // })
+  }
+
+  $scope.createMultipleInstances =  function() {
+    var msgBody = {
+      instanceOfferingUuid: self.instanceOffering.uuid,
+      imageUuid: self.image.uuid,
+      l3NetworkUuids: [ZStackApi.defaultL3Network.uuid],
+      dataDiskOfferingUuids: ZStackUtil.notNullnotUndefined(self.dataOffering) ? [self.dataOffering.uuid] : [],
+      zoneUuid: ZStackApi.defaultZone.uuid,
+      clusterUuid: ZStackApi.defaultCluster.uuid,
+      defaultL3NetworkUuid: ZStackApi.defaultL3Network.uuid,
+    };
+
+    ZStackApi.queryHost({
+      count: true,
+      replyWithCount: true
+    })
+    .then(function(result) {
+      var hostCount = result.total;
+      var curreCount = 0;
+      var curreCount = 0;
+      var terminateCreate = false;
+      function _createVm() {
+        if (curreCount < self.createCount && !terminateCreate) {
+          var index = curreCount+1;
+          msgBody.name = self.name + "-" + index;
+          msgBody.systemTags = [];
+          if (self.hostname && self.hostname.length > 0) {
+            msgBody.systemTags.push('hostname::' + self.hostname + "-" + index);
+          }
+          curreCount++;
+          return ZStackApi.createVm(msgBody)
+          .then(_createVm,  function(reason) {
+            errorCount++;
+            if (errorCount >= hostCount)
+              terminateCreate = true;
+          });
+        } else {
+          modalScope.$emit("update:list");
+          return;
+        }
+      }
+      for (var i = 0; i < hostCount*10; i++) {
+        _createVm();
+      }
     })
   }
   
   $scope.ok = function() {
-    self.create(function(ret) {
-      console.log(ret)
-      modalScope.$emit("update:list");
-    })
+    if (!self.multiHost) {
+      self.create(function(ret) {
+        console.log(ret)
+        modalScope.$emit("update:list");
+      })
+    } else {
+      self.createMultipleInstances();
+    }
     $modalInstance.close('ok');
   };
 
