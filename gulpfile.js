@@ -131,4 +131,22 @@ gulp.task('staticWithMap', ['clean', 'templates', 'font', 'css', 'vendor', 'inde
     .pipe(gulp.dest('zstack_dashboard/static'));
 });
 
+gulp.task('staticWithoutMinify', ['clean', 'templates', 'font', 'css', 'vendor', 'index'], function() {
+  gulp.src([
+      './app/bower_components/angular/angular.js',
+      './app/bower_components/angular-ui-router/release/angular-ui-router.js',
+      './app/bower_components/angular-cookies/angular-cookies.min.js',
+      './app/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
+      './app/bower_components/angular-translate/angular-translate.min.js',
+      './app/bower_components/socket.io-client/dist/socket.io.min.js',
+      './app/bower_components/cryptojslib/rollups/sha512.js',
+      './app/bower_components/ng-inline-edit/dist/ng-inline-edit.min.js',
+      './app/js/app.js',
+      './tmp/templates.js',
+      './app/js/**/*.js'
+    ])
+    .pipe(concat('app.js'))
+    .pipe(gulp.dest('zstack_dashboard/static'));
+});
+
 gulp.task('default', ['static']);

@@ -2,7 +2,7 @@
 
 angular.module('zstackUI.services.api', ['zstackUI.services.util', 'ui.router', 'ngCookies'])
 
-.factory('ZStackApi', ['$q', 'ZStackUtil', '$state', '$cookies', function($q, ZStackUtil, $state, $cookies) {
+.factory('ZStackApi', ['$q', 'ZStackUtil', '$state', '$cookies', 'config', function($q, ZStackUtil, $state, $cookies, config) {
   var self = {}
   self.debugLogin = function(cb) {
     console.log("debugLogin")
@@ -18,7 +18,8 @@ angular.module('zstackUI.services.api', ['zstackUI.services.util', 'ui.router', 
 
   self.cbList = []
 
-  self.server_url = window.location.protocol + '//' + window.location.host;
+  // self.server_url = window.location.protocol + '//' + window.location.host;
+  self.server_url = config.server_url;
 
   self.connectWebsocket = function() {
     if (self.socket) return;
@@ -58,6 +59,8 @@ angular.module('zstackUI.services.api', ['zstackUI.services.util', 'ui.router', 
       self.socket = io.connect(self.server_url);
     })
   }
+
+  self.connectWebsocket();
 
   // self.isInitGlobalValue = false;
   self.initGlobalValue = function() {
