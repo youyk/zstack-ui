@@ -3,7 +3,7 @@
     <a class="btn btn-primary" ng-controller="AddIpRangeModalCtrl" ng-click="open()">{{ 'ADD' | translate}}</a>
     <a class="btn btn-danger" ng-if="selectList.length > 0" ng-click="delete()">{{ 'DELETE' | translate }}</a>
   </div>
-  <table class="table table-hover" style="clear: both;">
+  <table class="table table-striped table-bordered zs-tab" style="clear: both;">
     <thead>
       <tr>
         <th><input type="checkbox" ng-model="selectAllItems" ng-click="selectAll()"></input></th>

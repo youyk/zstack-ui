@@ -46,8 +46,8 @@
           Create multiple hosts
         </label>
       </div>
-      <div class="form-group required">
-        <label>Name:</label>
+      <div class="form-group" ng-if="multiHost">
+        <label>Create Count:</label>
         <input type="number" class="form-control" ng-model="createCount">
       </div>
     </form>

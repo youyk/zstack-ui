@@ -5,7 +5,6 @@
 (function() {
     // Declare app level module which depends on views, and components
   var zstackUI = angular.module('zstackUI', [
-    'zstackUI.i18n',
     'zstackUI.helper_modals',
     'ui.bootstrap',
     'ui.router',
@@ -70,20 +69,7 @@
       $rootScope.alert = null
     };
 
-    $http({
-      method: 'GET',
-      url: '/config.json'
-    })
-    .then(function successCallback(response) {
-      ZStackApi.server_url = response.data.server_url;
-      ZStackApi.connectWebsocket();
-      ZStackApi.getSystemInfo();
-    }, function errorCallback(response) {
-      console.log(response)
-      ZStackApi.server_url = window.location.protocol + '//' + window.location.host;
-      ZStackApi.connectWebsocket();
-      ZStackApi.getSystemInfo();
-    });
+    ZStackApi.getSystemInfo();
   }])
   .controller('ZStackUIControl', function(config) {
     console.log(config);
