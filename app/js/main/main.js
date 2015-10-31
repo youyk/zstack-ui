@@ -2,7 +2,8 @@
 
 angular.module('zstackUI.main', [])
 
-.config(['$stateProvider', function($stateProvider) {
+.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+  $urlRouterProvider.when('/main', '/main/dashboard');
   $stateProvider.state('main', {
     url: '/main',
     templateUrl: 'js/main/main.html',
@@ -11,5 +12,5 @@ angular.module('zstackUI.main', [])
 }])
 
 .controller('MainCtrl', ['$scope', '$state', function($scope, $state) {
-  $state.go('main.dashboard')
+  // $state.go('main.dashboard')
 }]);

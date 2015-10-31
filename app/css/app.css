@@ -383,7 +383,3 @@ aside, nav {
   content:"*";
   color:red;
 }
-
-.form-control[readonly] {
-  background-color: #fff;
-}

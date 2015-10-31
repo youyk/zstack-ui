@@ -27,6 +27,10 @@ angular.module('zstackUI', [
   'zstackUI.settings',
   'zstackUI.log'
 ])
+.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+  $urlRouterProvider.when('', '/main');
+  $urlRouterProvider.when('/', '/main');
+}])
 .run(['ZStackApi', '$cookies', '$http', function(ZStackApi, $cookies, $http) {
   $http({
     method: 'GET',
@@ -43,8 +47,6 @@ angular.module('zstackUI', [
     ZStackApi.getSystemInfo();
   });
 }])
-.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
-}]);
 
 angular.module("templates", []);
 
@@ -79,5 +81,5 @@ angular.module('ng').run(['$rootScope', '$translate', '$state', '$cookies', 'ZSt
     $rootScope.alert = null
   };
 
-  $state.go('main.dashboard')
+  // $state.go('main.dashboard')
 }]);
