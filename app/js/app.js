@@ -30,9 +30,14 @@
     'zstackUI.settings',
     'zstackUI.log'
   ])
-  .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+  .config(['$stateProvider', '$urlRouterProvider', '$translateProvider', function($stateProvider, $urlRouterProvider, $translateProvider) {
     $urlRouterProvider.when('', '/main');
     $urlRouterProvider.when('/', '/main');
+    $translateProvider.useStaticFilesLoader({
+      prefix: 'i18n/locale-',
+      suffix: '.json'
+    });
+    $translateProvider.preferredLanguage('zh-CN');
   }])
   .run(['$rootScope', '$translate', '$state', '$cookies', 'ZStackApi', '$http', function($rootScope, $translate, $state, $cookies, ZStackApi, $http) {
     ZStackApi.rootScope = $rootScope;

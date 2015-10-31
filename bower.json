@@ -19,6 +19,7 @@
     "cryptojslib": "~3.1.2",
     "angular-cookies": "1.4.5",
     "angular-xeditable": "~0.1.9",
-    "ng-inline-edit": "~0.6.0"
+    "ng-inline-edit": "~0.6.0",
+    "angular-translate-loader-static-files": "~2.8.1"
   }
 }

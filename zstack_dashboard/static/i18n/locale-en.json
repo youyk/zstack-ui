@@ -1,0 +1,63 @@
+{
+    "LANGUAGE": "Language",
+    "SETTINGS": "Settings",
+    "LOGOUT": "Logut",
+
+    "DASHBOARD": "Dashboard",
+    "INSTANCE": "Instance",
+    "HOST": "Host",
+    "IMAGE": "Image",
+    "NETWORK": "Network",
+    "VOLUME": "Volume",
+    "INSTANCE_OFFERING": "Instance Offering",
+    "DATA_OFFERING": "Data Offering",
+
+    "ADD": "Add",
+    "ATTACH": "Attach",
+    "DETACH": "Detach",
+    "ENABLE": "Enable",
+    "DISABLE": "Disable",
+    "DELETE": "Delete",
+    "CREATE": "Create",
+    "ITEMS_PER_PAGE": "Items/Page",
+    "SEARCH": "Search",
+    "QOS": "QoS",
+
+    "name": "Name",
+    "uuid": "UUID",
+
+    "CONFIRM": "Confirm",
+    "CONFIRM_STR": "Please type \"ok\" to confirm.",
+
+
+    "INSTANCE_CREATE": "Create Instance",
+    "INSTANCE_START": "Start",
+    "INSTANCE_STOP": "Stop",
+    "INSTANCE_REBOOT": "Reboot",
+    "INSTANCE_DELETE": "Delete",
+    "INSTANCE_MIGRATE": "Migrate",
+    "INSTANCE_CONSOLE": "Console",
+    "INSTANCE_ATTACH_VOLUME": "Attach Volume",
+    "INSTANCE_DETACH_VOLUME": "Dettach Volume",
+    "INSTANCE_CHANGE_INSTANCE_OFFERING": "Change Config",
+    "INSTANCE_ATTACH_ISO": "Attach ISO",
+    "INSTANCE_DETACH_ISO": "Detach ISO",
+
+    "IMAGE_ADD": "Add Image",
+    "IMAGE_ENABLE": "Enable",
+    "IMAGE_DISABLE": "Disable",
+    "IMAGE_DELETE": "Delete",
+
+    "HOST_ADD": "Add Host",
+    "HOST_RECONNECT": "Reconnect",
+    "HOST_MAINTENANCE": "Enter Maintenance Mode",
+
+    "NETWORK_ADD_IP_RANGE": "Add IP Range",
+
+    "VOLUME_ADD": "Add Volume",
+    "VOLUME_CREATE_IMAGE": "Create Image",
+
+    "DATA_OFFERING_ADD": "Add Data Offering",
+
+    "INSTANCE_OFFERING_ADD": "Add Instance Offering"
+  }

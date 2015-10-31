@@ -91,7 +91,12 @@ gulp.task('copyConfig', function() {
     .pipe(gulp.dest('zstack_dashboard/static'));
 })
 
-gulp.task('static', ['clean', 'templates', 'font', 'css', 'vendor', 'index'], function() {
+gulp.task('copyi18n', function() {
+  gulp.src('./app/i18n/**/*')
+    .pipe(gulp.dest('zstack_dashboard/static/i18n'));
+})
+
+gulp.task('static', ['clean', 'templates', 'font', 'css', 'vendor', 'index', 'copyi18n'], function() {
   gulp.src([
       './app/bower_components/angular/angular.js',
       './app/bower_components/angular-ui-router/release/angular-ui-router.js',
@@ -101,6 +106,7 @@ gulp.task('static', ['clean', 'templates', 'font', 'css', 'vendor', 'index'], fu
       './app/bower_components/socket.io-client/dist/socket.io.min.js',
       './app/bower_components/cryptojslib/rollups/sha512.js',
       './app/bower_components/ng-inline-edit/dist/ng-inline-edit.min.js',
+      './app/bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js',
       './app/js/app.js',
       './tmp/templates.js',
       './app/js/**/*.js'
@@ -110,7 +116,7 @@ gulp.task('static', ['clean', 'templates', 'font', 'css', 'vendor', 'index'], fu
     .pipe(gulp.dest('zstack_dashboard/static'));
 });
 
-gulp.task('staticWithMap', ['clean', 'templates', 'font', 'css', 'vendor', 'index'], function() {
+gulp.task('staticWithMap', ['clean', 'templates', 'font', 'css', 'vendor', 'index', 'copyi18n'], function() {
   gulp.src([
       './app/bower_components/angular/angular.js',
       './app/bower_components/angular-ui-router/release/angular-ui-router.js',
@@ -120,6 +126,7 @@ gulp.task('staticWithMap', ['clean', 'templates', 'font', 'css', 'vendor', 'inde
       './app/bower_components/socket.io-client/dist/socket.io.min.js',
       './app/bower_components/cryptojslib/rollups/sha512.js',
       './app/bower_components/ng-inline-edit/dist/ng-inline-edit.min.js',
+      './app/bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js',
       './app/js/app.js',
       './tmp/templates.js',
       './app/js/**/*.js'
@@ -131,7 +138,7 @@ gulp.task('staticWithMap', ['clean', 'templates', 'font', 'css', 'vendor', 'inde
     .pipe(gulp.dest('zstack_dashboard/static'));
 });
 
-gulp.task('staticWithoutMinify', ['clean', 'templates', 'font', 'css', 'vendor', 'index'], function() {
+gulp.task('staticWithoutMinify', ['clean', 'templates', 'font', 'css', 'vendor', 'index', 'copyi18n'], function() {
   gulp.src([
       './app/bower_components/angular/angular.js',
       './app/bower_components/angular-ui-router/release/angular-ui-router.js',
@@ -141,6 +148,7 @@ gulp.task('staticWithoutMinify', ['clean', 'templates', 'font', 'css', 'vendor',
       './app/bower_components/socket.io-client/dist/socket.io.min.js',
       './app/bower_components/cryptojslib/rollups/sha512.js',
       './app/bower_components/ng-inline-edit/dist/ng-inline-edit.min.js',
+      './app/bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js',
       './app/js/app.js',
       './tmp/templates.js',
       './app/js/**/*.js'

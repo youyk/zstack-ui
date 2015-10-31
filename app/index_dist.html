@@ -32,7 +32,7 @@
         <ul class="nav navbar-nav navbar-right">
           <li>
             <div dropdown dropdown-append-to-body class="header-button">
-              <a href dropdown-toggle>
+              <a class="ng-cloak" href dropdown-toggle>
                 {{ 'LANGUAGE' | translate }}
               </a>
               <ul class="dropdown-menu" role="menu" style="z-index:9999">
@@ -41,8 +41,8 @@
               </ul>
             </div>
           </li>
-          <li ng-if="$window.loggedin"><a href="#settings" class="header-button">{{ 'SETTINGS' | translate }}</a></li>
-          <li ng-if="$window.loggedin"><a href class="header-button" ng-click="logout()">{{ 'LOGOUT' | translate }}</a></li>
+          <li ng-if="$window.loggedin"><a class="ng-cloak" href="#settings" class="header-button">{{ 'SETTINGS' | translate }}</a></li>
+          <li ng-if="$window.loggedin"><a class="ng-cloak" href class="header-button" ng-click="logout()">{{ 'LOGOUT' | translate }}</a></li>
         </ul>
       </div>
     </div>
