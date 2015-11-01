@@ -35,7 +35,8 @@ angular.module('zstackUI.instance.modal.controller', ['zstackUI.services.api'])
 
 }])
 
-.controller('CreateInstanceModalInstanceCtrl', ['$scope', 'ZStackApi', 'ZStackUtil', '$modalInstance', 'modalScope', function ($scope, ZStackApi, ZStackUtil, $modalInstance, modalScope) {
+.controller('CreateInstanceModalInstanceCtrl', ['$scope', 'ZStackApi', 'ZStackUtil', '$modalInstance', 'modalScope', '$interval',
+    function ($scope, ZStackApi, ZStackUtil, $modalInstance, modalScope, $interval) {
   var self = $scope;
   $scope.showDialog = true;
   $scope.name = "";
@@ -119,9 +120,9 @@ angular.module('zstackUI.instance.modal.controller', ['zstackUI.services.api'])
       var hostCount = result.total;
       var curreCount = 0;
       var errorCount = 0;
-      var terminateCreate = false;
+      var stop = false;
       function _createVm() {
-        if (curreCount < self.createCount && !terminateCreate) {
+        if (curreCount < self.createCount && !stop) {
           var index = curreCount+1;
           msgBody.name = self.name + "-" + index;
           msgBody.systemTags = [];
@@ -133,13 +134,21 @@ angular.module('zstackUI.instance.modal.controller', ['zstackUI.services.api'])
           .then(_createVm,  function(reason) {
             errorCount++;
             if (errorCount >= hostCount)
-              terminateCreate = true;
+              stop = true;
           });
         } else {
           modalScope.$emit("update:list");
+          stop = true;
           return;
         }
       }
+
+      var timer = $interval(function() {
+        if (!stop)
+          modalScope.$emit("update:list");
+        else
+          $interval.cancel(timer);
+      }, 3*1000);
       for (var i = 0; i < hostCount*10; i++) {
         _createVm();
       }

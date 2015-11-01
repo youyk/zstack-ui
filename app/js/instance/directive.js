@@ -44,34 +44,32 @@ angular.module('zstackUI.instance.directive',
           }
         )
         .then(function(data) {
-          $scope.safeApply(function() {
-            $scope.pageCount = Math.ceil(data.total / $scope.pageItemCount);
-            var hostUuids = [];
-            for (var i in data.inventories) {
-              data.inventories[i].collapsed = true;
-              data.inventories[i].selected = false;
-              if (data.inventories[i].state = "Running")
-                hostUuids.push(data.inventories[i].hostUuid)
-            }
+          $scope.pageCount = Math.ceil(data.total / $scope.pageItemCount);
+          var hostUuids = [];
+          for (var i in data.inventories) {
+            data.inventories[i].collapsed = true;
+            data.inventories[i].selected = false;
+            if (data.inventories[i].state = "Running")
+              hostUuids.push(data.inventories[i].hostUuid)
+          }
 
-            ZStackApi.queryHost({
-                start: 0,
-                replyWithCount: true,
-                conditions: [{name: 'uuid', op: 'in', value: hostUuids.join()}]
-              })
-            .then(function(result) {
-              var vms = $scope.itemList;
-              var hosts = result.inventories;
-              for(var i in vms) {
-                for (var j in hosts) {
-                  if (vms[i].hostUuid == hosts[j].uuid) {
-                    vms[i].managementIp = hosts[j].managementIp;
-                  }
+          ZStackApi.queryHost({
+              start: 0,
+              replyWithCount: true,
+              conditions: [{name: 'uuid', op: 'in', value: hostUuids.join()}]
+            })
+          .then(function(result) {
+            var vms = $scope.itemList;
+            var hosts = result.inventories;
+            for(var i in vms) {
+              for (var j in hosts) {
+                if (vms[i].hostUuid == hosts[j].uuid) {
+                  vms[i].managementIp = hosts[j].managementIp;
                 }
               }
-            })
-            $scope.itemList = data.inventories;
-          });
+            }
+          })
+          $scope.itemList = data.inventories;
         });
       }
       
