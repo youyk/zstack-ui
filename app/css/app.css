@@ -387,3 +387,33 @@ aside, nav {
 .checkbox input[type="checkbox"] {
   margin-top: 2px;
 }
+
+.zs-tree-branch-head-expanded,
+.zs-tree-branch-head-collapsed,
+.zs-tree-leaf-head {
+  background: transparent !important;
+  float: left;
+  height: 20px;
+}
+
+/*treecontrol.tree-light li.tree-collapsed i.tree-branch-head,
+treecontrol.tree-light li.tree-expanded i.tree-branch-head{
+  background: transparent;
+}
+*/
+.zs-tree-branch-head-expanded:before{
+  content: "\2212";
+}
+
+.zs-tree-branch-head-collapsed:before{
+  content: "\2b";
+}
+
+.zs-tree-leaf-head:before{
+  content: "\25CF";
+}
+
+.zs-tree-node-expanded {
+  display: inline-block !important;
+  border: 1px solid #ccc;
+}

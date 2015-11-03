@@ -307,6 +307,14 @@ angular.module('zstackUI.services.api', ['zstackUI.services.util', 'ui.router', 
     return self.simpleQuery('org.zstack.header.volume.APIQueryVolumeMsg', msgBody);
   }
 
+  self.createVolumeSnapshot = function (msgBody) {
+    return self.simpleCall('org.zstack.header.volume.APICreateVolumeSnapshotMsg', msgBody);
+  }
+
+  self.queryVolumeSnapshotTree = function (msgBody) {
+    return self.simpleCall('org.zstack.header.storage.snapshot.APIQueryVolumeSnapshotTreeMsg', msgBody);
+  }
+
   self.queryHost = function (msgBody) {
     return self.simpleQuery('org.zstack.header.host.APIQueryHostMsg', msgBody);
   }

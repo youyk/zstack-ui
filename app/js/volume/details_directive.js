@@ -49,6 +49,32 @@ angular.module('zstackUI.volume.details_directive',
         })
       }
 
+      $scope.createSnapShoot = function() {
+        ZStackApi.createVolumeSnapshot({
+          name: "test",
+          volumeUuid: $scope.data.uuid
+        })
+        .then(function(result) {
+          console.log(result)
+        })
+      }
+
+      $scope.treeOptions = {
+          nodeChildren: "children",
+          // dirSelectable: true,
+          isSelectable: false,
+          injectClasses: {
+              ul: "a1",
+              li: "a2",
+              liSelected: "a7",
+              iExpanded: "zs-tree-branch-head-expanded",
+              iCollapsed: "zs-tree-branch-head-collapsed",
+              iLeaf: "zs-tree-leaf-head",
+              label: "zs-tree-node",
+              labelSelected: "a8"
+          }
+      };
+
       $scope.$on("child-dialog:close", function(_, msg) {
         console.log(msg)
         if (!ZStackUtil.notNullnotUndefined(msg))

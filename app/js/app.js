@@ -11,6 +11,7 @@
     'ngCookies',
     'pascalprecht.translate',
     'angularInlineEdit',
+    'treeControl',
     'templates',
     'zstackUI.main',
     'zstackUI.login',
