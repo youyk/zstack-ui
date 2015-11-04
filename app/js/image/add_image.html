@@ -5,17 +5,17 @@
   <div class="modal-body">
     <form role="form">
       <div class="form-group">
-        <label for="usr">Name:</label>
+        <label>{{ 'Name' | translate }}:</label>
         <input type="text" class="form-control" ng-model="name">
       </div>
       <div class="form-group">
-        <label for="usr">Description:</label>
+        <label>{{ 'Description' | translate }}:</label>
         <textarea class="form-control" rows="3" ng-model="description"></textarea>
       </div>
       <div class="form-group">
-        <label for="usr">Media Type:</label>
+        <label>{{ 'Media Type' | translate }}:</label>
         <div class="btn-group" dropdown is-open="false">
-          <button id="media-type-button" type="button" class="btn" dropdown-toggle ng-disabled="disabled">
+          <button id="media-type-button" type="button" class="btn btn-default" dropdown-toggle ng-disabled="disabled">
             {{mediaType}} <span class="caret"></span>
           </button>
           <ul class="dropdown-menu" role="menu" aria-labelledby="media-type-button">
@@ -26,9 +26,9 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="usr">Plateform:</label>
+        <label>{{ 'Platform' | translate }}:</label>
         <div class="btn-group" dropdown is-open="false">
-          <button id="platform-button" type="button" class="btn" dropdown-toggle ng-disabled="disabled">
+          <button id="platform-button" type="button" class="btn btn-default" dropdown-toggle ng-disabled="disabled">
             {{platform}} <span class="caret"></span>
           </button>
           <ul class="dropdown-menu" role="menu" aria-labelledby="platform-button">
@@ -39,14 +39,11 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="usr">URL:</label>
+        <label>{{ 'URL' | translate }}:</label>
         <input type="text" class="form-control" ng-model="url">
       </div>
     </form>
 
   </div>
-  <div class="modal-footer">
-    <button class="btn" ng-click="cancel()">Cancel</button>
-    <button class="btn btn-primary" ng-click="ok()">OK</button>
-  </div>
+  <div ng-include="'js/helper_modals/footer.html'"></div>
 </div>

@@ -76,8 +76,6 @@ angular.module('zstackUI.dashboard', ['zstackUI.services.api'])
   $scope.resList = [
     {name: "VM Instance"},
     {name: "Volume"},
-    {name: "Zone"},
-    {name: "Cluster"},
     {name: "Host"},
     {name: "Image"},
     {name: "Instance Offering"},
@@ -109,30 +107,6 @@ angular.module('zstackUI.dashboard', ['zstackUI.services.api'])
     $scope.safeApply(function() {
       for(var i in $scope.resList) {
         if ($scope.resList[i].name == "Volume") {
-          $scope.resList[i].count = data.total;
-          break;
-        }
-      }
-    });
-  });
-
-  ZStackApi.queryZone()
-  .then(function(data) {
-    $scope.safeApply(function() {
-      for(var i in $scope.resList) {
-        if ($scope.resList[i].name == "Zone") {
-          $scope.resList[i].count = data.total;
-          break;
-        }
-      }
-    });
-  });
-
-  ZStackApi.queryCluster()
-  .then(function(data) {
-    $scope.safeApply(function() {
-      for(var i in $scope.resList) {
-        if ($scope.resList[i].name == "Cluster") {
           $scope.resList[i].count = data.total;
           break;
         }

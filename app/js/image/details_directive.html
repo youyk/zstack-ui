@@ -9,49 +9,49 @@
   <div class="row">
     <div class="col-md-6">
       <div class="row">
-        <label>Name:</label>
+        <label>{{ 'Name' | translate }}:</label>
         <div class="form-control-static">{{data.name}}</div>
       </div>
       <div class="row">
-        <label>Description:</label>
+        <label>{{ 'Description' | translate }}:</label>
         <div class="form-control-static" style="min-height:27px">{{data.description}}</div>
       </div>
       <div class="row">
-        <label>State:</label>
+        <label>{{ 'State' | translate }}:</label>
         <div class="form-control-static zs-state"><span class="label" ng-class="{'label-success': data.state=='Enabled', 'label-default': data.state!='Enabled'}">{{data.state}}</span></div>
       </div>
       <div class="row">
-        <label>Status:</label>
+        <label>{{ 'IMAGE_STATUS' | translate }}:</label>
         <div class="form-control-static zs-state"><span class="label" ng-class="{'label-success': data.status=='Ready', 'label-default': data.status!='Ready'}">{{data.status}}</span></div>
       </div>
       <div class="row">
-        <label>UUID:</label>
+        <label>{{ 'UUID' | translate }}:</label>
         <div class="form-control-static">{{data.uuid}}</div>
       </div>
       <div class="row">
-        <label>URL:</label>
+        <label>{{ 'URL' | translate }}:</label>
         <div class="form-control-static">{{data.url}}</div>
       </div>
     </div>
     <div class="col-md-6">
       <div class="row">
-        <label>Size:</label>
+        <label>{{ 'Size' | translate }}:</label>
         <div class="form-control-static">{{ZStackUtil.bytesToSize(data.size)}}</div>
       </div>
       <div class="row">
-        <label>Format:</label>
+        <label>{{ 'Format' | translate }}:</label>
         <div class="form-control-static">{{data.format}}</div>
       </div>
       <div class="row">
-        <label>Media Type:</label>
+        <label>{{ 'Media Type' | translate }}:</label>
         <div class="form-control-static">{{data.mediaType}}</div>
       </div>
       <div class="row">
-        <label>Create Date:</label>
+        <label>{{ 'Create Date' | translate }}:</label>
         <div class="form-control-static">{{data.createDate}}</div>
       </div>
       <div class="row">
-        <label>Last Update Date:</label>
+        <label>{{ 'Last Update Date' | translate }}:</label>
         <div class="form-control-static">{{data.lastOpDate}}</div>
       </div>
     </div>

@@ -5,28 +5,25 @@
   <div class="modal-body">
     <form role="form">
       <div class="form-group">
-        <label for="usr">Name:</label>
+        <label>{{ 'Name' | translate }}:</label>
         <input type="text" class="form-control" ng-model="name">
       </div>
       <div class="form-group">
-        <label>Description:</label>
+        <label>{{ 'Description' | translate }}:</label>
         <textarea class="form-control" rows="3" ng-model="description"></textarea>
       </div>
       <div class="form-group">
-        <label for="usr">DataOffering:</label>
+        <label>{{ 'Data Offering' | translate }}:</label>
         <input type="text" class="form-control" ng-model="dataOffering.name" disabled>
         <a ng-controller="DataOfferingModalCtrl" ng-click="open()">Select</a>
       </div>
       <div class="form-group">
-        <label for="usr">Vm:</label>
+        <label>{{ 'VM Instance' | translate }}:</label>
         <input type="text" class="form-control" ng-model="instance.name" disabled>
         <a ng-controller="InstanceModalCtrl" ng-click="open()">Select</a>
       </div>
     </form>
 
   </div>
-  <div class="modal-footer">
-    <button class="btn" ng-click="cancel()">Cancel</button>
-    <button class="btn btn-default" ng-click="ok()">OK</button>
-  </div>
+  <div ng-include="'js/helper_modals/footer.html'"></div>
 </div>

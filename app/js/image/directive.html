@@ -14,13 +14,13 @@
     <thead>
       <tr>
         <th><input type="checkbox" ng-model="selectAllItems" ng-click="selectAll()"></input></th>
-        <th class="hand" ng-click="onClickTableHeader('name')">Name<span class="caret" ng-class="{'caret-reversed': sortDirection=='desc'}" ng-show="sortByField=='name'"></span></th>
-        <th class="hand" ng-click="onClickTableHeader('mediaType')">Media Type<span class="caret" ng-class="{'caret-reversed': sortDirection=='desc'}" ng-show="sortByField=='mediaType'"></span></th>
-        <th class="hand" ng-click="onClickTableHeader('state')">State<span class="caret" ng-class="{'caret-reversed': sortDirection=='desc'}" ng-show="sortByField=='state'"></span></th>
-        <th class="hand" ng-click="onClickTableHeader('status')">Status<span class="caret" ng-class="{'caret-reversed': sortDirection=='desc'}" ng-show="sortByField=='status'"></span></th>
-        <th class="hand" ng-click="onClickTableHeader('guestOS')">Guest OS<span class="caret" ng-class="{'caret-reversed': sortDirection=='desc'}" ng-show="sortByField=='guestOS'"></span></th>
-        <th class="hand" ng-click="onClickTableHeader('size')">Size<span class="caret" ng-class="{'caret-reversed': sortDirection=='desc'}" ng-show="sortByField=='size'"></span></th>
-        <th class="hand" ng-click="onClickTableHeader('format')">Format<span class="caret" ng-class="{'caret-reversed': sortDirection=='desc'}" ng-show="sortByField=='format'"></span></th>
+        <th class="hand" ng-click="onClickTableHeader('name')">{{ 'Name' | translate }}<span class="caret" ng-class="{'caret-reversed': sortDirection=='desc'}" ng-show="sortByField=='name'"></span></th>
+        <th class="hand" ng-click="onClickTableHeader('mediaType')">{{ 'Media Type' | translate }}<span class="caret" ng-class="{'caret-reversed': sortDirection=='desc'}" ng-show="sortByField=='mediaType'"></span></th>
+        <th class="hand" ng-click="onClickTableHeader('state')">{{ 'State' | translate }}<span class="caret" ng-class="{'caret-reversed': sortDirection=='desc'}" ng-show="sortByField=='state'"></span></th>
+        <th class="hand" ng-click="onClickTableHeader('status')">{{'IMAGE_STATUS' | translate }}<span class="caret" ng-class="{'caret-reversed': sortDirection=='desc'}" ng-show="sortByField=='status'"></span></th>
+        <th class="hand" ng-click="onClickTableHeader('guestOS')">{{ 'Platform' | translate }}<span class="caret" ng-class="{'caret-reversed': sortDirection=='desc'}" ng-show="sortByField=='guestOS'"></span></th>
+        <th class="hand" ng-click="onClickTableHeader('size')">{{ 'Size' | translate }}<span class="caret" ng-class="{'caret-reversed': sortDirection=='desc'}" ng-show="sortByField=='size'"></span></th>
+        <th class="hand" ng-click="onClickTableHeader('format')">{{ 'Format' | translate }}<span class="caret" ng-class="{'caret-reversed': sortDirection=='desc'}" ng-show="sortByField=='format'"></span></th>
       </tr>
     </thead>
     <tbody>

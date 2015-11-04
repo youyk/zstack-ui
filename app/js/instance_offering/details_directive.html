@@ -7,56 +7,56 @@
   <div class="row">
     <div class="col-md-6">
       <div class="row">
-        <label>Name:</label>
+        <label>{{ 'Name' | translate }}:</label>
         <div class="form-control-static">{{data.name}}</div>
       </div>
       <div class="row">
-        <label>Description:</label>
+        <label>{{ 'Description' | translate }}:</label>
         <div class="form-control-static">{{data.description}}</div>
       </div>
       <div class="row">
-        <label>State:</label>
+        <label>{{ 'State' | translate }}:</label>
         <div class="form-control-static zs-state"><span class="label" ng-class="{'label-success': data.state=='Enabled', 'label-default': data.state!='Enabled'}">{{data.state}}</span></div>
       </div>
       <div class="row">
-        <label>UUID:</label>
+        <label>{{ 'UUID' | translate }}:</label>
         <div class="form-control-static">{{data.uuid}}</div>
       </div>
       <div class="row">
-        <label>CPU Number:</label>
+        <label>{{ 'CPU Number' | translate }}:</label>
         <div class="form-control-static">{{data.cpuNum}}</div>
       </div>
       <div class="row">
-        <label>CPU Speed:</label>
+        <label>{{ 'CPU Speed' | translate }}:</label>
         <div class="form-control-static">{{data.cpuSpeed}} MHZ</div>
       </div>
       <div class="row">
-        <label>Memory Size:</label>
+        <label>{{ 'Memory Size' | translate }}:</label>
         <div class="form-control-static">{{ZStackUtil.bytesToSize(data.memorySize)}}</div>
       </div>
     </div>
     <div class="col-md-6">
       <div class="row">
-        <label>Disk IOPS:</label>
+        <label>{{ 'Disk IOPS' | translate }}:</label>
         <div ng-if="data.volumeTotalIops!=''" class="form-control-static">{{data.volumeTotalIops}}</div>
         <div ng-if="data.volumeTotalIops==''" class="form-control-static">Unlimited</div>
       </div>
       <div class="row">
-        <label>Disk Bandwidth:</label>
+        <label>{{ 'Disk Bandwidth' | translate }}:</label>
         <div ng-if="data.volumeTotalBandwidth!=''" class="form-control-static">{{ZStackUtil.bytesToSize(data.volumeTotalBandwidth)}}</div>
         <div ng-if="data.volumeTotalBandwidth==''" class="form-control-static">Unlimited</div>
       </div>
       <div class="row">
-        <label>Network Bandwidth:</label>
+        <label>{{ 'Network Bandwidth' | translate }}:</label>
         <div ng-if="data.networkOutboundBandwidth!=''" class="form-control-static">{{ZStackUtil.bytesToSize(data.networkOutboundBandwidth)}}</div>
         <div ng-if="data.networkOutboundBandwidth==''" class="form-control-static">Unlimited</div>
       </div>
       <div class="row">
-        <label>Create Date:</label>
+        <label>{{ 'Create Date' | translate }}:</label>
         <div class="form-control-static">{{data.createDate}}</div>
       </div>
       <div class="row">
-        <label>Last Update Date:</label>
+        <label>{{ 'Last Update Date' | translate }}:</label>
         <div class="form-control-static">{{data.lastOpDate}}</div>
       </div>
     </div>

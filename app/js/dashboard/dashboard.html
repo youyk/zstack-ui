@@ -2,15 +2,15 @@
   <table class="table table-hover">
     <thead>
       <tr>
-        <th>Capacity Name</th>
-        <th>Total Capacity</th>
-        <th>Availble Capacity</th>
-        <th>Availble Percentage</th>
+        <th>{{ 'DASHBOARD_CAPACITY_NAME' | translate }}</th>
+        <th>{{ 'DASHBOARD_TOTAL_COPACITY' | translate }}</th>
+        <th>{{ 'DASHBOARD_AVAILABLE_CAPACITY' | translate }}</th>
+        <th>{{ 'DASHBOARD_AVAILABLE_PERCENTAGE' | translate }}</th>
       </tr>
     </thead>
     <tbody>
       <tr ng-repeat="item in capList">
-        <td>{{item.name}}</td>
+        <td>{{item.name | translate}}</td>
         <td>{{item.total}}</td>
         <td>{{item.available}}</td>
         <td>{{item.percent}}</td>
@@ -20,13 +20,13 @@
   <table class="table table-hover">
     <thead>
       <tr>
-        <th>Resource Name</th>
-        <th>Count</th>
+        <th>{{ 'DASHBOARD_RESOURCE_NAME' | translate }}</th>
+        <th>{{ 'COUNT' | translate }}</th>
       </tr>
     </thead>
     <tbody>
       <tr ng-repeat="item in resList">
-        <td>{{item.name}}</td>
+        <td>{{item.name | translate}}</td>
         <td>{{item.count}}</td>
       </tr>
     </tbody>

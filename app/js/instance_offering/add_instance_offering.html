@@ -5,36 +5,36 @@
   <div class="modal-body">
     <form role="form">
       <div class="form-group">
-        <label>Name:</label>
+        <label>{{ 'Name' | translate }}:</label>
         <input type="text" class="form-control" ng-model="name">
       </div>
       <div class="form-group">
-        <label>Description:</label>
+        <label>{{ 'Description' | translate }}:</label>
         <textarea class="form-control" rows="3" ng-model="description"></textarea>
       </div>
       <div class="form-group">
-        <label>CPU Number:</label>
+        <label>{{ 'CPU Number' | translate }}:</label>
         <input type="text" class="form-control" ng-model="cpuNum">
       </div>
       <div class="form-group">
-        <label>CPU Speed:</label>
+        <label>{{ 'CPU Speed' | translate }}:</label>
         <input type="text" class="form-control" ng-model="cpuSpeed">
       </div>
       <div class="form-group">
-        <label>Memory:</label>
+        <label>{{ 'Memory Size' | translate }}:</label>
         <input type="text" class="form-control" ng-model="memorySize">
       </div>
       <form role="form">
       <div class="form-group">
-        <label>Disk IOPS:</label>
+        <label>{{ 'Disk IOPS' | translate }}:</label>
         <input type="text" class="form-control" ng-model="volumeTotalIops">
       </div>
       <div class="form-group">
-        <label>Disk Bandwidth:</label>
+        <label>{{ 'Disk Bandwidth' | translate }}:</label>
         <input type="text" class="form-control" ng-model="volumeTotalBandwidth">
       </div>
       <div class="form-group">
-        <label>Network Bandwidth:</label>
+        <label>{{ 'Network Bandwidth' | translate }}:</label>
         <input type="text" class="form-control" ng-model="networkOutboundBandwidth">
       </div>
     </form>

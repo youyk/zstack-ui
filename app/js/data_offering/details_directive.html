@@ -7,33 +7,33 @@
   <div class="row">
     <div class="col-md-6">
       <div class="row">
-        <label>Name:</label>
+        <label>{{ 'Name' | translate }}:</label>
         <div class="form-control-static">{{data.name}}</div>
       </div>
       <div class="row">
-        <label>Description:</label>
+        <label>{{ 'Description' | translate }}:</label>
         <div class="form-control-static"  style="min-height:27px">{{data.description}}</div>
       </div>
       <div class="row">
-        <label>State:</label>
+        <label>{{ 'State' | translate }}:</label>
         <div class="form-control-static zs-state"><span class="label" ng-class="{'label-success': data.state=='Enabled', 'label-default': data.state!='Enabled'}">{{data.state}}</span></div>
       </div>
       <div class="row">
-        <label>UUID:</label>
+        <label>{{ 'UUID' | translate }}:</label>
         <div class="form-control-static">{{data.uuid}}</div>
       </div>
     </div>
     <div class="col-md-6">
       <div class="row">
-        <label>Disk Size:</label>
+        <label>{{ 'Disk Size' | translate }}:</label>
         <div class="form-control-static">{{ZStackUtil.bytesToSize(data.diskSize)}}</div>
       </div>
       <div class="row">
-        <label>Create Date:</label>
+        <label>{{ 'Create Date' | translate }}:</label>
         <div class="form-control-static">{{data.createDate}}</div>
       </div>
       <div class="row">
-        <label>Last Update Date:</label>
+        <label>{{ 'Last Update Date' | translate }}:</label>
         <div class="form-control-static">{{data.lastOpDate}}</div>
       </div>
     </div>

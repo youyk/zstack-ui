@@ -1,5 +1,5 @@
 <div class="form-horizontal zs-details">
-  <div class="btn-toolbar">
+  <div class="btn-toolbar" ng-if="data.type == 'Data'">
     <span class="btn-group">
       <a class="btn btn-default" ng-if="data.state!='Enabled'" ng-click="enable()">{{ 'ENABLE' | translate }}</a>
       <a class="btn btn-default" ng-if="data.state=='Enabled'" ng-click="disable()">{{ 'DISABLE' | translate }}</a>
@@ -13,49 +13,49 @@
   <div class="row">
     <div class="col-md-6">
       <div class="row">
-        <label>Name:</label>
+        <label>{{ 'Name' | translate }}:</label>
         <div class="form-control-static">{{data.name}}</div>
       </div>
       <div class="row">
-        <label>Description:</label>
+        <label>{{ 'Description' | translate }}:</label>
         <div class="form-control-static">{{data.description}}</div>
       </div>
       <div class="row">
-        <label>State:</label>
+        <label>{{ 'State' | translate }}:</label>
         <div class="form-control-static zs-state"><span class="label" ng-class="{'label-success': data.state=='Enabled', 'label-default': data.state!='Enabled'}">{{data.state}}</span></div>
       </div>
       <div class="row">
-        <label>Status:</label>
+        <label>{{ 'Status' | translate }}:</label>
         <div class="form-control-static zs-state"><span class="label" ng-class="{'label-success': data.status=='Ready', 'label-default': data.status!='Ready'}">{{data.status}}</span></div>
       </div>
       <div class="row">
-        <label>Vm UUID:</label>
+        <label>{{ 'Vm UUID' | translate }}:</label>
         <div class="form-control-static">{{data.vmInstanceUuid}}</div>
       </div>
       <div class="row">
-        <label>UUID:</label>
+        <label>{{ 'UUID' | translate }}:</label>
         <div class="form-control-static">{{data.uuid}}</div>
       </div>
     </div>
     <div class="col-md-6">
       <div class="row">
-        <label>Size:</label>
+        <label>{{ 'Size' | translate }}:</label>
         <div class="form-control-static">{{ZStackUtil.bytesToSize(data.size)}}</div>
       </div>
       <div class="row">
-        <label>Format:</label>
+        <label>{{ 'Format' | translate }}:</label>
         <div class="form-control-static">{{data.format}}</div>
       </div>
       <div class="row">
-        <label>Type:</label>
+        <label>{{ 'Type' | translate }}:</label>
         <div class="form-control-static">{{data.type}}</div>
       </div>
       <div class="row">
-        <label>Create Date:</label>
+        <label>{{ 'Create Date' | translate }}:</label>
         <div class="form-control-static">{{data.createDate}}</div>
       </div>
       <div class="row">
-        <label>Last Update Date:</label>
+        <label>{{ 'Last Update Date' | translate }}:</label>
         <div class="form-control-static">{{data.lastOpDate}}</div>
       </div>
     </div>
@@ -69,19 +69,19 @@
       <a class="btn btn-default" ng-click="backupSnapshot(node.inventory)">{{ 'BACKUP' | translate }}</a>
       <a class="btn btn-danger" ng-click="deleteSnapshot(node.inventory)">{{ 'DELETE' | translate }}</a>
       <div class="row">
-        <label>Name:</label>
+        <label>{{ 'Name' | translate }}:</label>
         <div class="form-control-static">{{node.inventory.name}}</div>
       </div>
       <div class="row">
-        <label>Create Date:</label>
+        <label>{{ 'Create Date' | translate }}:</label>
         <div class="form-control-static">{{node.inventory.createDate}}</div>
       </div>
       <div class="row">
-        <label>Volume Type:</label>
+        <label>{{ 'Volume Type' | translate }}:</label>
         <div class="form-control-static">{{node.inventory.volumeType}}</div>
       </div>
       <div class="row">
-        <label>primaryStorageInstallPath:</label>
+        <label>{{ 'primaryStorageInstallPath' | translate }}:</label>
         <div class="form-control-static" style="overflow: hidden;">{{node.inventory.primaryStorageInstallPath}}</div>
       </div>
       <span><a class="btn zs-btn-noborder" ng-click="node.inventory.expanded = false"><span class="glyphicon glyphicon-chevron-up"></span></a>

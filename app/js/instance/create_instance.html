@@ -5,49 +5,49 @@
   <div class="modal-body">
     <form>
       <div class="form-group required">
-        <label>Name:</label>
+        <label>{{ 'Name' | translate }}:</label>
         <input type="text" class="form-control" ng-model="name">
       </div>
       <div class="form-group required">
-        <label>InstanceOffering:</label>
+        <label>{{ 'Instance Offering' | translate }}:</label>
         <input type="text" class="form-control" ng-model="instanceOffering.name" readonly>
         <a ng-controller="InstanceOfferingModalCtrl" ng-click="open()">Select</a>
       </div>
       <div class="form-group required">
-        <label>Image:</label>
+        <label>{{ 'Image' | translate }}:</label>
         <input type="text" class="form-control" ng-model="image.name" readonly>
         <a ng-controller="ImageModalCtrl" href="" ng-click="open()">Select</a>
       </div>
       <div class="form-group">
-        <label>DataOffering:</label>
+        <label>{{ 'Disk Offering' | translate }}:</label>
         <input type="text" class="form-control" ng-model="dataOffering.name" readonly placeholder="Optional">
         <a ng-controller="DataOfferingModalCtrl" ng-click="open()">Select</a>
       </div>
       <div class="form-group">
-        <label>VM Host Name:</label>
+        <label>{{ 'VM Host Name' | translate }}:</label>
         <input type="text" class="form-control" ng-model="hostname" placeholder="Optional">
       </div>
       <div class="form-group" ng-if="!multiHost">
-        <label>Static Ip:</label>
+        <label>{{ 'Static IP' | translate }}:</label>
         <input type="text" class="form-control" ng-model="ip" placeholder="Optional">
       </div>
       <div class="form-group" ng-if="!multiHost">
-        <label>Host:</label>
+        <label>{{ 'Host' | translate }}:</label>
         <input type="text" class="form-control" ng-model="host.name" readonly placeholder="Optional">
         <a ng-controller="HostModalCtrl" ng-click="open()">Select</a>
       </div>
       <div class="form-group" ng-if="!multiHost">
-        <label>Description:</label>
+        <label>{{ 'Description' | translate }}:</label>
         <input type="text" class="form-control" ng-model="description" placeholder="Optional">
       </div>
       <div class="checkbox">
         <label>
           <input type="checkbox" ng-model="multiHost">
-          Create multiple vms
+          {{ 'Create multiple VMs' | translate }}
         </label>
       </div>
       <div class="form-group" ng-if="multiHost">
-        <label>Create Count:</label>
+        <label>{{ 'Create Count' | translate }}:</label>
         <input type="number" class="form-control" ng-model="$parent.createCount">
       </div>
     </form>

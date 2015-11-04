@@ -23,11 +23,50 @@
     "SEARCH": "Search",
     "QOS": "QoS",
 
+    "COUNT": "Count",
+    "VM_INSTANCE": "VM Instance",
+
     "name": "Name",
     "uuid": "UUID",
 
+    "CPU": "CPU",
+    "Primary Storage": "Primary Storage",
+    "Backup Storage": "Backup Storage",
+    "IP Address": "IP Address",
+    "VM Instance": "VM Instance",
+    "Volume": "Volume",
+    "Host": "Host",
+    "Image": "Image",
+    "Instance Offering": "Instance Offering",
+    "Disk Offering": "Disk Offering",
+    "Name": "Name",
+    "Description": "Description",
+    "State": "State",
+    "Hypervisor": "Hypervisor",
+    "CPU Number": "CPU Number",
+    "Memory Size": "Memory Size",
+    "Create Date": "Create Date",
+    "Last Update Date": "Last Update Date",
+    "Netmask": "Netmask",
+    "Gateway": "Gateway",
+    "Instance Offering UUID": "Instance Offering UUID",
+    "Image UUID": "Image UUID",
+    "Host UUID": "Host UUID",
+    "Default IP": "Default IP",
+    "Host IP": "Host IP",
+    "MAC": "MAC",
+    "Size": "Size",
+    "Type": "Type",
+
+
     "CONFIRM": "Confirm",
     "CONFIRM_STR": "Please type \"ok\" to confirm.",
+
+    "DASHBOARD_CAPACITY_NAME": "Capacity Name",
+    "DASHBOARD_TOTAL_COPACITY": "Total Capacity",
+    "DASHBOARD_AVAILABLE_CAPACITY": "Available Capacity",
+    "DASHBOARD_AVAILABLE_PERCENTAGE": "Available percentage",
+    "DASHBOARD_RESOURCE_NAME": "Resource Name",
 
 
     "INSTANCE_CREATE": "Create Instance",
@@ -47,15 +86,20 @@
     "IMAGE_ENABLE": "Enable",
     "IMAGE_DISABLE": "Disable",
     "IMAGE_DELETE": "Delete",
+    "IMAGE_STATUS": "Status",
 
     "HOST_ADD": "Add Host",
     "HOST_RECONNECT": "Reconnect",
     "HOST_MAINTENANCE": "Enter Maintenance Mode",
+    "HOST_STATUS": "Status",
 
     "NETWORK_ADD_IP_RANGE": "Add IP Range",
+    "NETWORK_IP_RANGE_NAME": "Name",
 
-    "VOLUME_ADD": "Add Volume",
+    "VOLUME_ADD": "Add Size",
     "VOLUME_CREATE_IMAGE": "Create Image",
+    "VOLUME_CREATE_SNAPSHOT": "Create Snapshot",
+    "VOLUME_STATUS": "Status",
 
     "DATA_OFFERING_ADD": "Add Data Offering",
 

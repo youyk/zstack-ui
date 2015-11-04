@@ -14,23 +14,23 @@
     <thead>
       <tr>
         <th><input type="checkbox" ng-model="selectAllItems" ng-click="selectAll()"></input></th>
-        <th class="hand" ng-click="onClickTableHeader('name')">Name<span class="caret" ng-class="{'caret-reversed': sortDirection=='desc'}" ng-show="sortByField=='name'"></span></th>
-        <th>Description</th>
-        <th>CPU Number</th>
-        <th>CPU Speed</th>
-        <th>Memory</th>
-        <th class="hand" ng-click="onClickTableHeader('state')">State<span class="caret" ng-class="{'caret-reversed': sortDirection=='desc'}" ng-show="sortByField=='state'"></span></th>
+        <th class="hand" ng-click="onClickTableHeader('name')">{{ 'Name' | translate }}<span class="caret" ng-class="{'caret-reversed': sortDirection=='desc'}" ng-show="sortByField=='name'"></span></th>
+        <th>{{ 'CPU Number' | translate }}</th>
+        <th>{{ 'CPU Speed' | translate }}</th>
+        <th>{{ 'Memory Size' | translate }}</th>
+        <th class="hand" ng-click="onClickTableHeader('state')">{{ 'State' | translate }}<span class="caret" ng-class="{'caret-reversed': sortDirection=='desc'}" ng-show="sortByField=='state'"></span></th>
+        <th>{{ 'Create Date' | translate }}</th>
       </tr>
     </thead>
     <tbody>
       <tr ng-repeat="item in itemList" ng-class="{'table-highlight': item.selected}">
         <td><input type="checkbox" ng-model="item.selected" ng-click="select(item)"></input></td>
         <td ng-if="item.collapsed" ng-click="click(item)"><a ng-click="item.collapsed=!item.collapsed">{{item.name}}</a></td>
-        <td ng-if="item.collapsed" ng-click="click(item)">{{item.description}}</td>
         <td ng-if="item.collapsed" ng-click="click(item)">{{item.cpuNum}}</td>
         <td ng-if="item.collapsed" ng-click="click(item)">{{item.cpuSpeed}} MHZ</td>
         <td ng-if="item.collapsed" ng-click="click(item)">{{ZStackUtil.bytesToSize(item.memorySize)}}</td>
         <td ng-if="item.collapsed" ng-click="click(item)"><span class="label" ng-class="{'label-success': item.state=='Enabled', 'label-default': item.state!='Enabled'}">{{item.state}}</span></td>
+        <td ng-if="item.collapsed" ng-click="click(item)">{{item.createDate}}</td>
         <td colspan="6" ng-if="!item.collapsed">
           <div instance-offering-details-directive ng-model="item"></div>
         </td>

@@ -24,35 +24,35 @@
   <div class="row">
     <div class="col-md-6">
       <div class="row">
-        <label>Name:</label>
+        <label>{{ 'Name' | translate}}:</label>
         <div class="form-control-static">{{data.name}}</div>
       </div>
       <div class="row">
-        <label>Description:</label>
+        <label>{{ 'Description' | translate }}:</label>
         <div class="form-control-static">{{data.description}}</div>
       </div>
       <div class="row">
-        <label>State:</label>
+        <label>{{ 'State' | translate }}:</label>
         <div class="form-control-static zs-state"><span class="label" ng-class="{'label-success': data.state=='Running', 'label-default': data.state!='Running'}">{{data.state}}</span></div>
       </div>
       <div class="row">
-        <label>Hypervisor:</label>
+        <label>{{ 'Hypervisor' | translate }}:</label>
         <div class="form-control-static">{{data.hypervisorType}}</div>
       </div>
       <div class="row">
-        <label>CPU Number:</label>
+        <label>{{ 'CPU Number' | translate }}:</label>
         <div class="form-control-static">{{data.cpuNum}}</div>
       </div>
       <div class="row">
-        <label>Memory Size:</label>
+        <label>{{ 'Memory Size' | translate }}:</label>
         <div class="form-control-static">{{ZStackUtil.bytesToSize(data.memorySize)}}</div>
       </div>
       <div class="row">
-        <label>Create Date:</label>
+        <label>{{ 'Create Date' | translate }}:</label>
         <div class="form-control-static">{{data.createDate}}</div>
       </div>
       <div class="row">
-        <label>Last Update Date:</label>
+        <label>{{ 'Last Update Date' | translate }}:</label>
         <div class="form-control-static">{{data.lastOpDate}}</div>
       </div>
     </div>
@@ -66,41 +66,41 @@
         <div class="form-control-static">{{data.vmNics[0].ip}}</div>
       </div>
       <div class="row">
-        <label>Netmask:</label>
+        <label>{{ 'Netmask' | translate }}:</label>
         <div class="form-control-static">{{data.vmNics[0].netmask}}</div>
       </div>
       <div class="row">
-        <label>Gateway:</label>
+        <label>{{ 'Gateway' | translate }}:</label>
         <div class="form-control-static">{{data.vmNics[0].gateway}}</div>
       </div>
       <div class="row">
-        <label>MAC:</label>
+        <label>{{ 'MAC' | translate }}:</label>
         <div class="form-control-static">{{data.vmNics[0].mac}}</div>
       </div>
       <div class="row">
-        <label>Instance Offering UUID:</label>
+        <label>{{ 'Instance Offering UUID' | translate }}:</label>
         <div class="form-control-static"><a ng-href="#/main/instance_offering/{{data.instanceOfferingUuid}}">{{data.instanceOfferingUuid}}</a></div>
       </div>
       <div class="row">
-        <label>Image UUID:</label>
+        <label>{{ 'Image UUID' | translate }}:</label>
         <div class="form-control-static"><a ng-href="#/main/instance_offering/{{data.imageUuid}}">{{data.imageUuid}}</a></div>
       </div>
       <div class="row">
-        <label>Host UUID:</label>
+        <label>{{ 'Host UUID' | translate }}:</label>
         <div class="form-control-static"><a ng-href="#/main/instance_offering/{{data.hostUuid}}">{{data.hostUuid}}</a></div>
       </div>
     </div>
   </div>
   <div class="row">
-    <label>Volume:</label>
+    <label>{{ 'Volume' | translate }}:</label>
   </div>
   <div class="row" style="padding: 5px 20px;">
     <table class="table" style="border: 1px solid rgb(204, 204, 204); background-color: transparent">
       <thead>
         <tr style="color: rgb(112, 112, 112);">
-          <th style="min-width:300px; font-weight: normal;">Name</th>
-          <th style="min-width:100px; font-weight: normal;">Size</th>
-          <th style="min-width:80px; font-weight: normal;">Type</th>
+          <th style="min-width:300px; font-weight: normal;">{{ 'Name' | translate }}</th>
+          <th style="min-width:100px; font-weight: normal;">{{ 'Size' | translate }}</th>
+          <th style="min-width:80px; font-weight: normal;">{{ 'Type' | translate }}</th>
         </tr>
       </thead>
       <tbody>

@@ -5,33 +5,30 @@
   <div class="modal-body">
     <form role="form">
       <div class="form-group">
-        <label>Name:</label>
+        <label>{{ 'Name' | translate }}:</label>
         <input type="text" class="form-control" ng-model="name">
       </div>
       <div class="form-group">
-        <label>Description:</label>
+        <label>{{ 'Description' | translate }}:</label>
         <textarea class="form-control" rows="3" ng-model="description"></textarea>
       </div>
       <div class="form-group">
-        <label>Start IP:</label>
+        <label>{{ 'Start IP' | translate }}:</label>
         <input type="text" class="form-control" ng-model="startIp">
       </div>
       <div class="form-group">
-        <label>End IP:</label>
+        <label>{{ 'End IP' | translate }}:</label>
         <input type="text" class="form-control" ng-model="endIp">
       </div>
       <div class="form-group">
-        <label>Netmask:</label>
+        <label>{{ 'Netmask' | translate }}:</label>
         <input type="text" class="form-control" ng-model="netmask">
       </div>
       <div class="form-group">
-        <label>Gateway:</label>
+        <label>{{ 'Gateway' | translate }}:</label>
         <input type="text" class="form-control" ng-model="gateway">
       </div>
     </form>
   </div>
-  <div class="modal-footer">
-    <button class="btn" ng-click="cancel()">Cancel</button>
-    <button class="btn btn-primary" ng-click="ok()">OK</button>
-  </div>
+  <div ng-include="'js/helper_modals/footer.html'"></div>
 </div>

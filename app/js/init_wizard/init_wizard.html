@@ -1,85 +1,85 @@
 <div class="zs-wizard">
-  <h2>Preparation {{currentStep+1}} / {{stepCount}}</h2>
+  <h2>{{ 'Preparation' | translate }} {{currentStep+1}} / {{stepCount}}</h2>
   <div ng-switch="currentStep">
     <div ng-switch-when="0">
       <h3>{{ 'HOST' | translate }}</h3>
       <form>
         <div class="form-group">
-          <label for="usr">Name:</label>
+          <label>{{ 'Name' | translate }}:</label>
           <input type="text" class="form-control" ng-model="host.name">
         </div>
         <div class="form-group">
-          <label for="usr">Description:</label>
+          <label>{{ 'Description' | translate }}:</label>
           <textarea class="form-control" rows="3" ng-model="host.description"></textarea>
         </div>
         <div class="form-group">
-          <label for="usr">Host Ip:</label>
+          <label>{{ 'Host IP' | translate }}:</label>
           <input type="text" class="form-control" ng-model="host.hostIp">
         </div>
         <div class="form-group">
-          <label for="usr">Root Password:</label>
+          <label>{{ 'Root Password' | translate }}:</label>
           <input type="password" class="form-control" ng-model="host.password">
         </div>
-        <button class="btn btn-primary" ng-if="!addingHost" ng-click="addHost()">Create</button>
-        <span ng-if="addingHost" class="help-block">This operation might take several minutes.<span class="glyphicon glyphicon-cog spinning"></span></span>
+        <button class="btn btn-primary" ng-if="!addingHost" ng-click="addHost()">{{ 'Create' | translate }}</button>
+        <span ng-if="addingHost" class="help-block">{{ 'This operation might take several minutes.' | translate }}<span class="glyphicon glyphicon-cog spinning"></span></span>
       </form>
     </div>
     <div ng-switch-when="1">
-      <h3>Backup Storage</h3>
+      <h3>{{ 'Backup Storage' | translate }}</h3>
       <form role="form">
         <div class="form-group">
-          <label>Host Ip:</label>
+          <label>{{ 'Host IP' | translate }}:</label>
           <input type="text" class="form-control" ng-model="backupStorage.hostname">
         </div>
         <div class="form-group">
-          <label>Root Password:</label>
+          <label>{{ 'Root Password' | translate }}:</label>
           <input type="password" class="form-control" ng-model="backupStorage.password">
         </div>
-        <button class="btn btn-primary" ng-if="!addingStorage" ng-click="addStorage()">Create</button>
-        <span ng-if="addingStorage" class="help-block">This operation might take several minutes.<span class="glyphicon glyphicon-cog spinning"></span></span>
+        <button class="btn btn-primary" ng-if="!addingStorage" ng-click="addStorage()">{{ 'Create' | translate }}</button>
+        <span ng-if="addingStorage" class="help-block">{{ 'This operation might take several minutes.' | translate }}<span class="glyphicon glyphicon-cog spinning"></span></span>
       </form>
     </div>
     <div ng-switch-when="2">
       <h3>{{ 'INSTANCE_OFFERING' | translate }}</h3>
       <form>
         <div class="form-group">
-          <label>Name:</label>
+          <label>{{ 'Name' | translate }}:</label>
           <input type="text" class="form-control" ng-model="instance_offering.name">
         </div>
         <div class="form-group">
-          <label>Description:</label>
+          <label>{{ 'Description' | translate }}:</label>
           <textarea class="form-control" rows="3" ng-model="instance_offering.description"></textarea>
         </div>
         <div class="form-group">
-          <label>CPU Number:</label>
+          <label>{{ 'CPU Number' | translate }}:</label>
           <input type="text" class="form-control" ng-model="instance_offering.cpuNum">
         </div>
         <div class="form-group">
-          <label>CPU Speed:</label>
+          <label>{{ 'CPU Speed' | translate }}:</label>
           <input type="text" class="form-control" ng-model="instance_offering.cpuSpeed">
           MHZ
         </div>
         <div class="form-group">
-          <label>Memory:</label>
+          <label>{{ 'Memory Size' | translate }}:</label>
           <input type="text" class="form-control" ng-model="instance_offering.memorySize">
         </div>
-        <button class="btn btn-primary" ng-if="!creatingInstanceOffering" ng-click="createInstanceOffering()">Create</button>
-        <span ng-if="creatingInstanceOffering" class="help-block">This operation might take several minutes.<span class="glyphicon glyphicon-cog spinning"></span></span>
+        <button class="btn btn-primary" ng-if="!creatingInstanceOffering" ng-click="createInstanceOffering()">{{ 'Create' | translate }}</button>
+        <span ng-if="creatingInstanceOffering" class="help-block">{{ 'This operation might take several minutes.' | translate }}<span class="glyphicon glyphicon-cog spinning"></span></span>
       </form>
     </div>
     <div ng-switch-when="3">
       <h3>{{ 'IMAGE' | translate }}</h3>
       <form role="form">
         <div class="form-group">
-          <label for="usr">Name:</label>
+          <label>{{ 'Name' | translate }}:</label>
           <input type="text" class="form-control" ng-model="image.name">
         </div>
         <div class="form-group">
-          <label for="usr">Description:</label>
+          <label>{{ 'Description' | translate }}:</label>
           <textarea class="form-control" rows="3" ng-model="image.description"></textarea>
         </div>
         <div class="form-group">
-          <label for="usr">Media Type:</label>
+          <label>{{ 'Media Type' | translate }}:</label>
           <div class="btn-group" dropdown is-open="false">
             <button id="media-type-button" type="button" class="btn btn-default" dropdown-toggle ng-disabled="disabled">
               {{image.mediaType}} <span class="caret"></span>
@@ -92,7 +92,7 @@
           </div>
         </div>
         <div class="form-group">
-          <label for="usr">Plateform:</label>
+          <label>{{ 'Plateform' | translate }}:</label>
           <div class="btn-group" dropdown is-open="false">
             <button id="platform-button" type="button" class="btn btn-default" dropdown-toggle ng-disabled="disabled">
               {{image.platform}} <span class="caret"></span>
@@ -105,18 +105,18 @@
           </div>
         </div>
         <div class="form-group">
-          <label for="usr">URL:</label>
+          <label>{{ 'URL' | translate }}:</label>
           <input type="text" class="form-control" ng-model="image.url">
         </div>
-        <button class="btn btn-primary" ng-if="!creatingImage" ng-click="createImage()">Create</button>
-        <span ng-if="creatingImage" class="help-block">This operation might take several minutes.<span class="glyphicon glyphicon-cog spinning"></span></span>
+        <button class="btn btn-primary" ng-if="!creatingImage" ng-click="createImage()">{{ 'Create' | translate }}</button>
+        <span ng-if="creatingImage" class="help-block">{{ 'This operation might take several minutes.' | translate }}<span class="glyphicon glyphicon-cog spinning"></span></span>
       </form>
     </div>
     <div ng-switch-when="4">
-      <h3>L2 Network</h3>
+      <h3>{{ 'L2 Network' | translate }}</h3>
       <form role="form">
         <div class="form-group">
-          <label for="usr">Type:</label>
+          <label>{{ 'Type' | translate }}:</label>
           <div class="btn-group" dropdown is-open="false">
             <button id="media-type-button" type="button" class="btn btn-default" dropdown-toggle ng-disabled="disabled">
               {{l2Network.type}} <span class="caret"></span>
@@ -129,50 +129,50 @@
           </div>
         </div>
         <div class="form-group" ng-if="l2Network.type == 'L2VlanNetwork'">
-          <label>VLAN:</label>
+          <label>{{ 'VLAN' | translate }}:</label>
           <input type="text" class="form-control" ng-model="l2Network.vlan">
         </div>
         <div class="form-group">
-          <label>Physical Interface:</label>
+          <label>{{ 'Physical Interface' | translate }}:</label>
           <input type="text" class="form-control" ng-model="l2Network.physicalInterface">
         </div>
-        <button class="btn btn-primary" ng-if="!creatingL2Network" ng-click="createL2Network()">Create</button>
-        <span ng-if="creatingL2Network" class="help-block">This operation might take several minutes.<span class="glyphicon glyphicon-cog spinning"></span></span>
+        <button class="btn btn-primary" ng-if="!creatingL2Network" ng-click="createL2Network()">{{ 'Create' | translate }}</button>
+        <span ng-if="creatingL2Network" class="help-block">{{ 'This operation might take several minutes.' | translate }}<span class="glyphicon glyphicon-cog spinning"></span></span>
       </form>
     </div>
     <div ng-switch-when="5">
-      <h3>L3 Network</h3>
+      <h3>{{ 'L3 Network' | translate }}</h3>
       <form role="form">
         <div class="form-group">
-          <label>DNS:</label>
+          <label>{{ 'DNS' | translate }}:</label>
           <input type="text" class="form-control" ng-model="l3Network.dns">
         </div>
         <div class="form-group">
-          <label>IP Range Name:</label>
+          <label>{{ 'IP Range Name' | translate }}:</label>
           <input type="text" class="form-control" ng-model="ipRange.name">
         </div>
         <div class="form-group">
-          <label>Description:</label>
+          <label>{{ 'Description' | translate }}:</label>
           <textarea class="form-control" rows="3" ng-model="ipRange.description"></textarea>
         </div>
         <div class="form-group">
-          <label>Start IP:</label>
+          <label>{{ 'Start IP' | translate }}:</label>
           <input type="text" class="form-control" ng-model="ipRange.startIp">
         </div>
         <div class="form-group">
-          <label>End IP:</label>
+          <label>{{ 'End IP' | translate }}:</label>
           <input type="text" class="form-control" ng-model="ipRange.endIp">
         </div>
         <div class="form-group">
-          <label>Netmask:</label>
+          <label>{{ 'Netmask' | translate }}:</label>
           <input type="text" class="form-control" ng-model="ipRange.netmask">
         </div>
         <div class="form-group">
-          <label>Gateway:</label>
+          <label>{{ 'Gateway' | translate }}:</label>
           <input type="text" class="form-control" ng-model="ipRange.gateway">
         </div>
-        <button class="btn btn-primary" ng-if="!creatingL3Network" ng-click="createL3Network()">Create</button>
-        <span ng-if="creatingL3Network" class="help-block">This operation might take several minutes.<span class="glyphicon glyphicon-cog spinning"></span></span>
+        <button class="btn btn-primary" ng-if="!creatingL3Network" ng-click="createL3Network()">{{ 'Create' | translate }}</button>
+        <span ng-if="creatingL3Network" class="help-block">{{ 'This operation might take several minutes.' | translate }}<span class="glyphicon glyphicon-cog spinning"></span></span>
       </form>
     </div>
   </div>
