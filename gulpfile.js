@@ -56,6 +56,8 @@ gulp.task('css', function() {
       './app/bower_components/angular-bootstrap/ui-bootstrap-csp.css',
       './app/bower_components/bootstrap/dist/css/bootstrap.min.css',
       './app/bower_components/ng-inline-edit/dist/ng-inline-edit.min.css',
+      './app/bower_components/angular-tree-control/css/tree-control.css',
+      './app/bower_components/angular-tree-control/css/tree-control-attribute.css',
       './app/css/app.css'
     ])
     // .pipe(autoprefixer({
@@ -107,6 +109,7 @@ gulp.task('static', ['clean', 'templates', 'font', 'css', 'vendor', 'index', 'co
       './app/bower_components/cryptojslib/rollups/sha512.js',
       './app/bower_components/ng-inline-edit/dist/ng-inline-edit.min.js',
       './app/bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js',
+      './app/bower_components/angular-tree-control/angular-tree-control.js',
       './app/js/app.js',
       './tmp/templates.js',
       './app/js/**/*.js'
@@ -127,6 +130,7 @@ gulp.task('staticWithMap', ['clean', 'templates', 'font', 'css', 'vendor', 'inde
       './app/bower_components/cryptojslib/rollups/sha512.js',
       './app/bower_components/ng-inline-edit/dist/ng-inline-edit.min.js',
       './app/bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js',
+      './app/bower_components/angular-tree-control/angular-tree-control.js',
       './app/js/app.js',
       './tmp/templates.js',
       './app/js/**/*.js'
@@ -149,6 +153,7 @@ gulp.task('staticWithoutMinify', ['clean', 'templates', 'font', 'css', 'vendor',
       './app/bower_components/cryptojslib/rollups/sha512.js',
       './app/bower_components/ng-inline-edit/dist/ng-inline-edit.min.js',
       './app/bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js',
+      './app/bower_components/angular-tree-control/angular-tree-control.js',
       './app/js/app.js',
       './tmp/templates.js',
       './app/js/**/*.js'
