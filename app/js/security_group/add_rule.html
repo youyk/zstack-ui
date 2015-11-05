@@ -1,0 +1,48 @@
+<div ng-show="showDialog">
+  <div class="modal-header">
+    <h3>{{ 'SECURITY_GROUP_ADD' | translate}}</h3>
+  </div>
+  <div class="modal-body">
+    <form role="form">
+      <div class="form-group">
+        <label>{{ 'Type' | translate }}:</label>
+        <div class="btn-group" dropdown is-open="false">
+          <button id="platform-button" type="button" class="btn btn-default" dropdown-toggle ng-disabled="disabled">
+            {{type}} <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="platform-button">
+            <li role="menuitem" ng-repeat="item in typeList">
+              <a ng-click="select('type', item)">{{item}}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>{{ 'Port Start' | translate }}:</label>
+        <input class="form-control" ng-model="startPort"></input>
+      </div>
+      <div class="form-group">
+        <label>{{ 'Port End' | translate }}:</label>
+        <input class="form-control" ng-model="endPort"></input>
+      </div>
+      <div class="form-group">
+        <label>{{ 'Protocol' | translate }}:</label>
+        <div class="btn-group" dropdown is-open="false">
+          <button id="platform-button" type="button" class="btn btn-default" dropdown-toggle ng-disabled="disabled">
+            {{protocol}} <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="platform-button">
+            <li role="menuitem" ng-repeat="item in protocolList">
+              <a ng-click="select('protocol', item)">{{item}}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>{{ 'Allowed CIDR' | translate }}:</label>
+        <input class="form-control" ng-model="allowedCider"></input>
+      </div>
+    </form>
+  </div>
+  <div ng-include="'js/helper_modals/footer.html'"></div>
+</div>

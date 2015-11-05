@@ -1,0 +1,45 @@
+<div ng-show="showDialog">
+  <div class="modal-header">
+    <h3>{{ 'SECURITY_GROUP_ADD' | translate}}</h3>
+  </div>
+  <div class="modal-body">
+    <form role="form">
+      <div class="form-group">
+        <label>{{ 'Name' | translate }}:</label>
+        <input type="text" class="form-control" ng-model="name">
+      </div>
+      <div class="form-group">
+        <label>{{ 'Description' | translate }}:</label>
+        <textarea class="form-control" rows="3" ng-model="description"></textarea>
+      </div>
+      <div class="form-group">
+        <label>{{ 'Rules' | translate }}:</label>
+      </div>
+      <a class="btn btn-default" ng-controller="AddRuleModalCtrl" ng-click="open()">{{ 'ADD' | translate }}</a>
+      <a ng-if="selectRuleList.length > 0" class="btn btn-default" ng-click="deleteRules(selectRuleList)">{{ 'DELETE' | translate }}</a>
+      <table class="table table-striped table-bordered zs-tab">
+        <thead>
+          <tr>
+            <th><input type="checkbox" ng-model="selectAllRuleItems" ng-click="selectAllRules()"></input></th>
+            <th>{{ 'Type' | translate }}</th>
+            <th>{{ 'Port Start' | translate }}</th>
+            <th>{{ 'Port End' | translate }}</th>
+            <th>{{ 'Protocol' | translate }}</th>
+            <th>{{ 'Allowed Cider' | translate }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="item in rules" ng-class="{'table-highlight': item.selected}">
+            <td><input type="checkbox" ng-model="item.selected" ng-click="selectRuleItem(item)"></input></td>
+            <td ng-click="clickRuleItem(item)">{{item.type}}</td>
+            <td ng-click="clickRuleItem(item)">{{item.startPort}}</td>
+            <td ng-click="clickRuleItem(item)">{{item.endPort}}</td>
+            <td ng-click="clickRuleItem(item)">{{item.protocol}}</td>
+            <td ng-click="clickRuleItem(item)">{{item.allowedCidr}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+  </div>
+  <div ng-include="'js/helper_modals/footer.html'"></div>
+</div>

@@ -16,9 +16,7 @@
         <label>{{ 'Disk Size' | translate }}:</label>
         <input type="text" class="form-control" ng-model="diskSize">
       </div>
+    </form>
   </div>
-  <div class="modal-footer">
-    <button class="btn" ng-click="cancel()">Cancel</button>
-    <button class="btn btn-primary" ng-click="ok()">OK</button>
-  </div>
+  <div ng-include="'js/helper_modals/footer.html'"></div>
 </div>

@@ -26,6 +26,7 @@
     'zstackUI.offering.data',
     'zstackUI.network',
     'zstackUI.volume',
+    'zstackUI.security_group',
     'zstackUI.services.api',
     'zstackUI.settings',
     'zstackUI.log'

@@ -103,5 +103,7 @@
 
     "DATA_OFFERING_ADD": "Add Data Offering",
 
-    "INSTANCE_OFFERING_ADD": "Add Instance Offering"
+    "INSTANCE_OFFERING_ADD": "Add Instance Offering",
+
+    "SECURITY_GROUP_ADD": "Add"
   }

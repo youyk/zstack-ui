@@ -747,5 +747,75 @@ angular.module('zstackUI.services.api', ['zstackUI.services.util', 'ui.router', 
     });
   }
 
+  self.querySecurityGroup = function (msgBody) {
+    return self.simpleCall('org.zstack.network.securitygroup.APIQuerySecurityGroupMsg', msgBody);
+  }
+
+  self.createSecurityGroup = function (msgBody) {
+    return self.simpleCall('org.zstack.network.securitygroup.APICreateSecurityGroupMsg', msgBody);
+  }
+
+  self.enableSecurityGroup = function (uuid) {
+    return self.simpleCall('org.zstack.network.securitygroup.APIChangeSecurityGroupStateMsg', {
+      uuid: uuid,
+      stateEvent: 'enable'
+    });
+  }
+
+  self.disableSecurityGroup = function (uuid) {
+    return self.simpleCall('org.zstack.network.securitygroup.APIChangeSecurityGroupStateMsg', {
+      uuid: uuid,
+      stateEvent: 'disable'
+    });
+  }
+
+  self.deleteSecurityGroup = function (uuid) {
+    return self.simpleCall('org.zstack.network.securitygroup.APIDeleteSecurityGroupMsg', {
+      uuid: uuid
+    });
+  }
+
+  self.queryVmNic = function (msgBody) {
+    return self.simpleCall('org.zstack.header.vm.APIQueryVmNicMsg', msgBody);
+  }
+
+  self.addSecurityGroupRule = function (msgBody) {
+    return self.simpleCall('org.zstack.network.securitygroup.APIAddSecurityGroupRuleMsg', msgBody);
+  }
+
+  self.deleteSecurityGroupRule = function (uuids) {
+    return self.simpleCall('org.zstack.network.securitygroup.APIDeleteSecurityGroupRuleMsg', {
+      ruleUuids: uuids
+    });
+  }
+
+  self.deleteVmNicFromSecurityGroup = function (uuid, securityGroupUuid) {
+    return self.simpleCall('org.zstack.network.securitygroup.APIDeleteVmNicFromSecurityGroupMsg', {
+      vmNicUuids: uuid,
+      securityGroupUuid: securityGroupUuid
+    });
+  }
+
+  self.queryVmNicInSecurityGroup = function (msgBody) {
+    return self.simpleCall('org.zstack.network.securitygroup.APIQueryVmNicInSecurityGroupMsg', msgBody);
+  }
+
+  self.attachSecurityGroupToL3Network = function (msgBody) {
+    return self.simpleCall('org.zstack.network.securitygroup.APIAttachSecurityGroupToL3NetworkMsg', msgBody);
+  }
+
+  self.getCandidateVmNicForSecurityGroup = function (securityGroupUuid) {
+    return self.simpleCall('org.zstack.network.securitygroup.APIGetCandidateVmNicForSecurityGroupMsg', {
+      securityGroupUuid: securityGroupUuid
+    });
+  }
+
+  self.addVmNicToSecurityGroup = function (uuids, securityGroupUuid) {
+    return self.simpleCall('org.zstack.network.securitygroup.APIAddVmNicToSecurityGroupMsg', {
+      vmNicUuids: uuids,
+      securityGroupUuid: securityGroupUuid
+    });
+  }
+
   return self;
 }])

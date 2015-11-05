@@ -236,9 +236,8 @@ angular.module('zstackUI.services.util', [])
         }
       });
 
-      modalInstance.result.then(function () {
+      modalInstance.result.then(function (msg) {
       }, function () {
-        $log.info('Modal dismissed at: ' + new Date());
       });
     };
   }

@@ -322,7 +322,7 @@ angular.module('zstackUI.helper_modals',
   };
 }])
 
-.controller('ConfirmModalCtrl', ['$scope', '$modal', '$log', function ($scope, $modal, $log) {
+.controller('ConfirmModalCtrl', ['$scope', '$modal', 'ZStackUtil', function ($scope, $modal, ZStackUtil) {
 
   var self = $scope;
   $scope.data = {};
@@ -344,7 +344,8 @@ angular.module('zstackUI.helper_modals',
 
     modalInstance.result.then(function (msg) {
       $scope.$emit("child-dialog:close", msg);
-      cb(arg);
+      if (ZStackUtil.notNullnotUndefined(cb))
+        cb(arg);
     }, function () {
       $scope.$emit("child-dialog:close");
       $log.info('Modal dismissed at: ' + new Date());

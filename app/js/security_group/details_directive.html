@@ -1,0 +1,90 @@
+<div class="form-horizontal zs-details">
+  <div class="btn-toolbar">
+    <a class="btn btn-default" ng-if="data.state!='Enabled'" ng-click="enable()">{{ 'ENABLE' | translate }}</a></span>
+    <a class="btn btn-default" ng-if="data.state=='Enabled'" ng-click="disable()">{{ 'DISABLE' | translate }}</a></span>
+    <a class="btn btn-danger"  ng-controller="ConfirmModalCtrl" ng-click="open(delete)">{{ 'DELETE' | translate }}</a></span>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="row">
+        <label>{{ 'Name' | translate }}:</label>
+        <div class="form-control-static">{{data.name}}</div>
+      </div>
+      <div class="row">
+        <label>{{ 'Description' | translate }}:</label>
+        <div class="form-control-static"  style="min-height:27px">{{data.description}}</div>
+      </div>
+      <div class="row">
+        <label>{{ 'State' | translate }}:</label>
+        <div class="form-control-static zs-state"><span class="label" ng-class="{'label-success': data.state=='Enabled', 'label-default': data.state!='Enabled'}">{{data.state}}</span></div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="row">
+        <label>{{ 'UUID' | translate }}:</label>
+        <div class="form-control-static">{{data.uuid}}</div>
+      </div>
+      <div class="row">
+        <label>{{ 'Create Date' | translate }}:</label>
+        <div class="form-control-static">{{data.createDate}}</div>
+      </div>
+      <div class="row">
+        <label>{{ 'Last Update Date' | translate }}:</label>
+        <div class="form-control-static">{{data.lastOpDate}}</div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <label>{{ 'Rules' | translate }}:</label>
+  </div>
+  <a class="btn btn-primary" ng-controller="AddRuleModalCtrl2" ng-click="open()">{{ 'ADD' | translate }}</a>
+  <a ng-if="selectRuleList.length > 0" class="btn btn-danger" ng-controller="ConfirmModalCtrl" ng-click="open(deleteRules, selectRuleList)">{{ 'DELETE' | translate }}</a>
+  <table class="table table-striped table-bordered zs-tab">
+    <thead>
+      <tr>
+        <th><input type="checkbox" ng-model="selectAllRuleItems" ng-click="selectAllRules()"></input></th>
+        <th>{{ 'Type' | translate }}</th>
+        <th>{{ 'Port Start' | translate }}</th>
+        <th>{{ 'Port End' | translate }}</th>
+        <th>{{ 'Protocol' | translate }}</th>
+        <th>{{ 'Cider' | translate }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="item in data.rules" ng-class="{'table-highlight': item.selected}">
+        <td><input type="checkbox" ng-model="item.selected" ng-click="selectRuleItem(item)"></input></td>
+        <td ng-click="clickRuleItem(item)">{{item.type}}</td>
+        <td ng-click="clickRuleItem(item)">{{item.startPort}}</td>
+        <td ng-click="clickRuleItem(item)">{{item.endPort}}</td>
+        <td ng-click="clickRuleItem(item)">{{item.protocol}}</td>
+        <td ng-click="clickRuleItem(item)">{{item.allowedCidr}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="row">
+    <label>{{ 'VM Instance' | translate }}:</label>
+  </div>
+  <a class="btn btn-primary" ng-controller="CandidateNicsModalCtrl" ng-click="open()">{{ 'ADD' | translate }}</a>
+  <a ng-if="selectNicList.length > 0" class="btn btn-danger" ng-controller="ConfirmModalCtrl" ng-click="open(deleteNics, selectNicList)">{{ 'DELETE' | translate }}</a>
+  <table class="table table-striped table-bordered zs-tab">
+    <thead>
+      <tr>
+        <th><input type="checkbox" ng-model="selectAllNicItems" ng-click="selectAllNics()"></input></th>
+        <th>{{ 'IP' | translate }}</th>
+        <th>{{ 'Device ID' | translate }}</th>
+        <th>{{ 'UUID' | translate }}</th>
+        <th>{{ 'VM UUID' | translate }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="item in data.nics" ng-class="{'table-highlight': item.selected}">
+        <td><input type="checkbox" ng-model="item.selected" ng-click="selectNicItem(item)"></input></td>
+        <td ng-click="clickNicItem(item)">{{item.ip}}</td>
+        <td ng-click="clickNicItem(item)">{{item.deviceId}}</td>
+        <td ng-click="clickNicItem(item)">{{item.uuid}}</td>
+        <td ng-click="clickNicItem(item)"><a ng-href="#/main/instance/{{item.vmInstanceUuid}}">{{item.vmInstanceUuid}}</a></td>
+      </tr>
+    </tbody>
+  </table>
+  <span><a class="btn zs-btn-noborder" ng-click="collapse()"><span class="glyphicon glyphicon-chevron-up"></span></a>
+</div>
