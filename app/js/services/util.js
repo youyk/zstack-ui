@@ -220,7 +220,55 @@ angular.module('zstackUI.services.util', [])
       }
   }
 
+  self.initLaunchModalScope = function(scope, modal, templateUrl, controller) {
+    scope.open = function (size) {
 
+      var modalInstance = modal.open({
+        animation: false,
+        templateUrl: templateUrl,
+        controller: controller,
+        backdrop: 'static',
+        size: size,
+        resolve: {
+          modalScope: function () {
+            return scope;
+          }
+        }
+      });
+
+      modalInstance.result.then(function () {
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
+    };
+  }
+
+  self.initModalScope = function(scope, modalInstance, modalScope) {
+    scope.showDialog = true;
+
+    scope.$on("child-dialog:open", function() {
+      scope.showDialog = false;
+    })
+
+    scope.$on("child-dialog:close", function(_, msg) {
+      console.log(msg)
+      scope.showDialog = true;
+      if (ZStackUtil.notNullnotUndefined(msg))
+        scope[msg.name] = msg.data;
+    })
+
+    scope.ok = function() {
+      scope.action(function(ret) {
+        console.log(ret)
+        modalScope.$emit("update:list");
+      })
+      modalInstance.close('ok');
+    };
+
+    scope.cancel = function() {
+      modalInstance.dismiss('cancel');
+    };
+  }
 
   return self;
 })

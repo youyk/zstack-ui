@@ -327,7 +327,7 @@ angular.module('zstackUI.helper_modals',
   var self = $scope;
   $scope.data = {};
 
-  $scope.open = function (cb) {
+  $scope.open = function (cb, arg) {
 
     var modalInstance = $modal.open({
       animation: false,
@@ -344,7 +344,7 @@ angular.module('zstackUI.helper_modals',
 
     modalInstance.result.then(function (msg) {
       $scope.$emit("child-dialog:close", msg);
-      cb();
+      cb(arg);
     }, function () {
       $scope.$emit("child-dialog:close");
       $log.info('Modal dismissed at: ' + new Date());

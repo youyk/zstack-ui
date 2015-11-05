@@ -6,7 +6,7 @@
       <a class="btn btn-default" ng-if="data.status!='Ready'" ng-controller="InstanceModalCtrl" ng-click="open()">{{ 'ATTACH' | translate }}</a>
       <a class="btn btn-default" ng-if="data.status=='Ready'" ng-click="detach()">{{ 'DETACH' | translate }}</a>
       <a class="btn btn-default" ng-controller="CreateImageModalCtrl" ng-click="open()">{{ 'VOLUME_CREATE_IMAGE' | translate }}</a>
-      <a class="btn btn-default" ng-click="createSnapShoot()">{{ 'VOLUME_CREATE_SNAPSHOT' | translate }}</a>
+      <a class="btn btn-default" ng-controller="CreateSnapshotModalCtrl" ng-click="open()">{{ 'VOLUME_CREATE_SNAPSHOT' | translate }}</a>
     </span>
     <a class="btn btn-danger" ng-click="delete()">{{ 'DELETE' | translate }}</a>
   </div>
@@ -25,12 +25,8 @@
         <div class="form-control-static zs-state"><span class="label" ng-class="{'label-success': data.state=='Enabled', 'label-default': data.state!='Enabled'}">{{data.state}}</span></div>
       </div>
       <div class="row">
-        <label>{{ 'Status' | translate }}:</label>
+        <label>{{ 'VOLUME_STATUS' | translate }}:</label>
         <div class="form-control-static zs-state"><span class="label" ng-class="{'label-success': data.status=='Ready', 'label-default': data.status!='Ready'}">{{data.status}}</span></div>
-      </div>
-      <div class="row">
-        <label>{{ 'Vm UUID' | translate }}:</label>
-        <div class="form-control-static">{{data.vmInstanceUuid}}</div>
       </div>
       <div class="row">
         <label>{{ 'UUID' | translate }}:</label>
@@ -38,6 +34,10 @@
       </div>
     </div>
     <div class="col-md-6">
+      <div class="row">
+        <label>{{ 'VM UUID' | translate }}:</label>
+        <div class="form-control-static">{{data.vmInstanceUuid}}</div>
+      </div>
       <div class="row">
         <label>{{ 'Size' | translate }}:</label>
         <div class="form-control-static">{{ZStackUtil.bytesToSize(data.size)}}</div>
@@ -60,17 +60,24 @@
       </div>
     </div>
   </div>
+  <div class="row">
+    <label>{{ 'Snapshot' | translate }}:</label>
+  </div>
   <treecontrol class="tree-light"
     tree-model="data.snapshotTreeRoot"
     options="treeOptions">
     <a href ng-if="!node.inventory.expanded" ng-click="node.inventory.expanded = true">{{node.inventory.name}}</a>
     <div class="zs-tree-node-expanded" href ng-if="!!node.inventory.expanded">
-      <a class="btn btn-default" ng-click="revertSnapshot(node.inventory)">{{ 'REVERT' | translate }}</a>
-      <a class="btn btn-default" ng-click="backupSnapshot(node.inventory)">{{ 'BACKUP' | translate }}</a>
-      <a class="btn btn-danger" ng-click="deleteSnapshot(node.inventory)">{{ 'DELETE' | translate }}</a>
+      <a class="btn btn-default" ng-click="revertSnapshot(node.inventory)">{{ 'Revert' | translate }}</a>
+      <a class="btn btn-default" ng-click="backupSnapshot(node.inventory)">{{ 'Backup' | translate }}</a>
+      <a class="btn btn-danger" ng-controller="ConfirmModalCtrl" ng-click="open(deleteSnapshot, node.inventory)">{{ 'DELETE' | translate }}</a>
       <div class="row">
         <label>{{ 'Name' | translate }}:</label>
         <div class="form-control-static">{{node.inventory.name}}</div>
+      </div>
+      <div class="row">
+        <label>{{ 'Description' | translate }}:</label>
+        <div class="form-control-static">{{node.inventory.description}}</div>
       </div>
       <div class="row">
         <label>{{ 'Create Date' | translate }}:</label>

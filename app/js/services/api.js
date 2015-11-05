@@ -728,5 +728,24 @@ angular.module('zstackUI.services.api', ['zstackUI.services.util', 'ui.router', 
     return self.simpleCall('org.zstack.header.vm.APICreateVmInstanceMsg', msgBody);
   }
 
+  self.backupVolumeFromSnapshot = function (uuid) {
+    return self.simpleCall('org.zstack.header.storage.snapshot.APIBackupVolumeSnapshotMsg', {
+      uuid: uuid,
+      backupStorageUuid: self.defaultBackupStorage.uuid
+    });
+  }
+
+  self.revertVolumeFromSnapshot = function (uuid) {
+    return self.simpleCall('org.zstack.header.storage.snapshot.APIRevertVolumeFromSnapshotMsg', {
+      uuid: uuid
+    });
+  }
+
+  self.deleteVolumeSnapshot = function (uuid) {
+    return self.simpleCall('org.zstack.header.storage.snapshot.APIDeleteVolumeSnapshotMsg', {
+      uuid: uuid
+    });
+  }
+
   return self;
 }])

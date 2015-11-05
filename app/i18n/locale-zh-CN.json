@@ -84,6 +84,9 @@
     "Create": "创建",
     "L2 Network": "二层网络",
     "L3 Network": "三层网络",
+    "Volume Type": "存储类型",
+    "VM UUID": "虚拟机UUID",
+    "Snapshot": "快照",
 
     "CONFIRM": "确认",
     "CONFIRM_STR": "请输入\"ok\"确认操作.",

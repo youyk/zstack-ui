@@ -188,3 +188,42 @@ angular.module('zstackUI.volume.modal.controller',
     $modalInstance.dismiss('cancel');
   };
 }])
+
+.controller('CreateSnapshotModalCtrl', ['$scope', '$modal', 'ZStackUtil', function ($scope, $modal, ZStackUtil) {
+
+  ZStackUtil.initLaunchModalScope($scope, $modal, 'js/volume/create_snapshot.html', 'CreateSnapshotModalInstanceCtrl');
+
+}])
+
+.controller('CreateSnapshotModalInstanceCtrl', ['$scope', 'ZStackApi', 'ZStackUtil', '$modalInstance', 'modalScope', function ($scope, ZStackApi, ZStackUtil, $modalInstance, modalScope) {
+  ZStackUtil.initModalScope($scope, $modalInstance, modalScope);
+  var self = $scope;
+  
+
+  $scope.name = "";
+  $scope.description = "";
+
+  $scope.createSnapShot = function(name, description, cb) {
+    ZStackApi.createVolumeSnapshot({
+      name: name,
+      description, description,
+      volumeUuid: modalScope.data.uuid
+    })
+    .then(function(result) {
+      if (ZStackUtil.notNullnotUndefined(cb))
+        cb(result);
+    })
+  }
+
+  $scope.action = function(cb) {
+    self.createSnapShot($scope.name, $scope.description, cb);
+  }
+
+  $scope.ok = function() {
+    self.action(function(ret) {
+      console.log(ret)
+      modalScope.$emit("update:snapshot");
+    })
+    $modalInstance.close('ok');
+  };
+}])

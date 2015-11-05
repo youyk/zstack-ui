@@ -7,7 +7,7 @@
         <a class="btn btn-default" ng-if="selectList.length > 0" ng-click="disable()">{{ 'DISABLE' | translate }}</a>
         <a class="btn btn-default" ng-if="selectList.length > 0" ng-click="detach()">{{ 'DETACH' | translate }}</a>
       </span>
-      <a class="btn btn-danger" ng-if="selectList.length > 0" ng-click="delete()">{{ 'DELETE' | translate }}</a>
+      <a class="btn btn-danger" ng-if="selectList.length > 0" ng-controller="ConfirmModalCtrl" ng-click="open(delete)">{{ 'DELETE' | translate }}</a>
     </span>
     <search_directive style="float: right;"></search_directive>
   </div>

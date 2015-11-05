@@ -58,8 +58,7 @@ angular.module('zstackUI.volume.directive',
       
       $scope.queryList();
 
-      $scope.expand = function(item) {
-        item.collapsed = !item.collapsed;
+      $scope.querySnapshotTree = function(item) {
         ZStackApi.queryVolumeSnapshotTree({
           conditions: [{
             name: 'volumeUuid',
@@ -71,6 +70,11 @@ angular.module('zstackUI.volume.directive',
           console.log(result);
           item.snapshotTreeRoot = result.inventories[0].tree;
         })
+      }
+
+      $scope.expand = function(item) {
+        item.collapsed = !item.collapsed;
+        $scope.querySnapshotTree(item);
       }
 
       function operationCb(result) {
