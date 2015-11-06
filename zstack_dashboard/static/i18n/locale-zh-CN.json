@@ -9,8 +9,8 @@
     "IMAGE": "镜像",
     "NETWORK": "网络",
     "VOLUME": "虚拟机磁盘",
-    "INSTANCE_OFFERING": "虚拟机配置模板",
-    "DATA_OFFERING": "磁盘模板",
+    "INSTANCE_OFFERING": "计算方案",
+    "DATA_OFFERING": "磁盘方案",
 
 
     "ADD": "添加",
@@ -38,8 +38,8 @@
     "Volume": "虚拟机磁盘",
     "Host": "物理机",
     "Image": "镜像",
-    "Instance Offering": "虚拟机配置模板",
-    "Disk Offering": "磁盘模板",
+    "Instance Offering": "计算方案",
+    "Disk Offering": "磁盘方案",
     "Name": "名字",
     "Description": "简介",
     "State": "启用状态",
@@ -50,7 +50,7 @@
     "Last Update Date": "最后操作日期",
     "Netmask": "子网掩码",
     "Gateway": "网关",
-    "Instance Offering UUID": "虚拟机配置模板UUID",
+    "Instance Offering UUID": "计算方案UUID",
     "Image UUID": "镜像UUID",
     "Host UUID": "物理机UUID",
     "Default IP": "默认IP",
@@ -84,6 +84,12 @@
     "Create": "创建",
     "L2 Network": "二层网络",
     "L3 Network": "三层网络",
+    "Volume Type": "存储类型",
+    "VM UUID": "虚拟机UUID",
+    "Snapshot": "快照",
+    "Security Group": "安全组",
+    "Rules": "规则",
+    "Allow CIDER": "允许CIDR",
 
     "CONFIRM": "确认",
     "CONFIRM_STR": "请输入\"ok\"确认操作.",
@@ -127,7 +133,9 @@
     "VOLUME_CREATE_SNAPSHOT": "创建快照",
     "VOLUME_STATUS": "就绪状态",
 
-    "DATA_OFFERING_ADD": "添加磁盘模板",
+    "DATA_OFFERING_ADD": "添加磁盘方案",
 
-    "INSTANCE_OFFERING_ADD": "添加虚拟机配置模板"
+    "INSTANCE_OFFERING_ADD": "添加计算方案",
+
+    "SECURITY_GROUP_ADD": "新建"
 }

@@ -206,7 +206,7 @@ angular.module('zstackUI.volume.modal.controller',
   $scope.createSnapShot = function(name, description, cb) {
     ZStackApi.createVolumeSnapshot({
       name: name,
-      description, description,
+      description: description,
       volumeUuid: modalScope.data.uuid
     })
     .then(function(result) {
