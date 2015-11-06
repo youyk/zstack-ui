@@ -1,0 +1,65 @@
+﻿{
+    "LANGUAGE": "語言",
+    "SETTINGS": "設置",
+    "LOGOUT": "登出",
+
+    "DASHBOARD": "首頁",
+    "INSTANCE": "虛擬機",
+    "HOST": "實體機",
+    "IMAGE": "映像檔",
+    "NETWORK": "網路",
+    "VOLUME": "磁碟",
+    "INSTANCE_OFFERING": "計算方案",
+    "DATA_OFFERING": "磁碟方案",
+
+
+    "ADD": "增加",
+    "ATTACH": "掛載",
+    "DETACH": "卸載",
+    "ENABLE": "啟用",
+    "DISABLE": "停用",
+    "DELETE": "刪除",
+    "CREATE": "新建",
+    "ITEMS_PER_PAGE": "項/頁",
+    "SEARCH": "搜尋",
+    "QOS": "QOS",
+
+    "name": "名稱",
+    "uuid": "UUID",
+
+    "CONFIRM": "確認",
+    "CONFIRM_STR": "請輸入\"ok\"確認操作.",
+
+
+    "INSTANCE_CREATE": "新建虛擬機",
+    "INSTANCE_START": "啟動",
+    "INSTANCE_STOP": "停止",
+    "INSTANCE_REBOOT": "重啟",
+    "INSTANCE_DELETE": "刪除",
+    "INSTANCE_MIGRATE": "遷移",
+    "INSTANCE_CONSOLE": "控制台",
+    "INSTANCE_ATTACH_VOLUME": "掛載磁碟",
+    "INSTANCE_DETACH_VOLUME": "卸載磁碟",
+    "INSTANCE_CHANGE_INSTANCE_OFFERING": "修改配置",
+    "INSTANCE_ATTACH_ISO": "掛載映像檔",
+    "INSTANCE_DETACH_ISO": "卸載映像檔",
+
+    "IMAGE_ADD": "新增映像檔",
+    "IMAGE_ENABLE": "啟用",
+    "IMAGE_DISABLE": "停用",
+    "IMAGE_DELETE": "刪除",
+
+
+    "HOST_ADD": "新增實體機",
+    "HOST_RECONNECT": "重連實體機",
+    "HOST_MAINTENANCE": "實體機維護模式",
+
+    "NETWORK_ADD_IP_RANGE": "增加IP範圍",
+
+    "VOLUME_ADD": "增加磁碟",
+    "VOLUME_CREATE_IMAGE": "創建磁碟映像",
+
+    "DATA_OFFERING_ADD": "增加資料模板",
+
+    "INSTANCE_OFFERING_ADD": "增加虛擬機配製模板"
+}
